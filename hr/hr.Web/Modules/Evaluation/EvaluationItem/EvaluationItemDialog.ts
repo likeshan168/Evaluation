@@ -3,6 +3,7 @@ namespace hr.Evaluation {
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.responsive()
+    @Serenity.Decorators.maximizable()
     export class EvaluationItemDialog extends Serenity.EntityDialog<EvaluationItemRow, any> {
         protected getFormKey() { return EvaluationItemForm.formKey; }
         protected getIdProperty() { return EvaluationItemRow.idProperty; }

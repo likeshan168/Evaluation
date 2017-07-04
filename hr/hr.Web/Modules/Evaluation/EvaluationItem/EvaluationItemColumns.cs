@@ -11,10 +11,11 @@ namespace hr.Evaluation.Columns
         //[EditLink, DisplayName("Db.Shared.RecordId")]
         //public Int32 Id { get; set; }
         public Int32 OrderNo { get; set; }
+        [QuickFilter]
         [Width(100, Max = 120, Min = 100)]
         public String FirstKpiName { get; set; }
         [Width(100, Max = 120, Min = 100)]
-
+        [QuickFilter]
         public String SecondKpiName { get; set; }
         [EditLink, Width(500, Max = 600, Min = 400)]
         public String Content { get; set; }

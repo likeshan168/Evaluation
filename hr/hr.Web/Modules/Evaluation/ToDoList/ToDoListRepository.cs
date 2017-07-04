@@ -36,14 +36,14 @@ namespace hr.Evaluation.Repositories
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
-            //if(Authorization.HasPermission(PermissionKeys.))
-            //{
+            if (Authorization.HasPermission(Administration.PermissionKeys.Security))
+            {
+                return new MyListHandler().Process(connection, request);
+            }
 
-            //}
             Dictionary<string, object> filters = new Dictionary<string, object>();
             filters.Add(MyRow.Fields.UserId.Name, Authorization.UserId);
             request.EqualityFilter = filters;
-
             return new MyListHandler().Process(connection, request);
         }
 

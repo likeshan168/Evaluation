@@ -21,7 +21,7 @@ namespace hr.Evaluation.Entities
             set { Fields.Id[this] = value; }
         }
 
-        [DisplayName("OrderNo"), SortOrder(3, false),NotNull]
+        [DisplayName("OrderNo"), SortOrder(3, false), NotNull]
         public Int32? OrderNo
         {
             get { return Fields.OrderNo[this]; }
@@ -70,7 +70,7 @@ namespace hr.Evaluation.Entities
             set { Fields.IsSelfEvaluation[this] = value; }
         }
 
-        [DisplayName("Remark"), Size(400)]
+        [DisplayName("Remark"), Size(400), TextAreaEditor]
         public String Remark
         {
             get { return Fields.Remark[this]; }
