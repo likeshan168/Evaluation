@@ -1,6 +1,7 @@
 ﻿
 namespace hr.Evaluation.Entities
 {
+    using hr.Administration.Entities;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
@@ -22,6 +23,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("User"), NotNull, ForeignKey("[dbo].[Users]", "UserId"), LeftJoin("jUser"), TextualField("UserUsername")]
+        [LookupEditor(typeof(UserRow))]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }
@@ -48,6 +50,12 @@ namespace hr.Evaluation.Entities
             get { return Fields.UserUsername[this]; }
             set { Fields.UserUsername[this] = value; }
         }
+        [DisplayName("IsComplete")]
+        public bool? IsComplete
+        {
+            get { return Fields.IsComplete[this]; }
+            set { Fields.IsComplete[this] = value; }
+        }
 
         IIdField IIdRow.IdField
         {
@@ -72,7 +80,7 @@ namespace hr.Evaluation.Entities
             public Int32Field UserId;
             public StringField Title;
             public StringField Content;
-
+            public BooleanField IsComplete;
             public StringField UserUsername;
 
             public RowFields()

@@ -19,5 +19,7 @@ namespace hr.Evaluation.Columns
         [EditLink]
         public String Title { get; set; }
         public String Content { get; set; }
+        [Width(150, Max = 200, Min = 150)]
+        public bool IsComplete { get; set; }
     }
 }

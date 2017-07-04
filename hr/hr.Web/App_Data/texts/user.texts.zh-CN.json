@@ -61,7 +61,9 @@
   "Db.Evaluation.ToDoList.EntityPlural": "待办事项",
   "Db.Evaluation.ToDoList.EntitySingular": "待办事项",
   "Db.Evaluation.ToDoList.Id": "编号",
+  "Db.Evaluation.ToDoList.IsComplete": "是否已完成",
   "Db.Evaluation.ToDoList.Title": "标题",
+  "Db.Evaluation.ToDoList.UserId": "用户名",
   "Db.Evaluation.ToDoList.UserUsername": "用户名",
   "Db.Evaluation.UserEvaluationRelation.EntityPlural": "考核关系",
   "Db.Evaluation.UserEvaluationRelation.EntitySingular": "考核关系",
@@ -85,5 +87,7 @@
   "Navigation.Evaluation/SecondKpi": "第二指标",
   "Navigation.Evaluation/ToDoList": "待办事项",
   "Navigation.Evaluation/UserEvaluationRelation": "考核关系管理",
-  "Navigation.SiteTitle": "人力资源系统"
+  "Navigation.SiteTitle": "人力资源系统",
+  "Site.Layout.FooterCopyright": "Copyright (c) 2017.",
+  "Site.Layout.FooterInfo": "SkyFaith Platform"
 }

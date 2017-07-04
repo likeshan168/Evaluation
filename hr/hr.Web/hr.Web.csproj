@@ -1706,6 +1706,7 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_103200_AddIsSelfEvaluationToEvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170704_090200_AddIsCompleteInToDoList.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170704_080800_ToDoList.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_213600_EvaluationResult.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_175900_UserEvaluationToUser.cs" />
