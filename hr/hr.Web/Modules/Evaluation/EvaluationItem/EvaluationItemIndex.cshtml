@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = Serenity.LocalText.Get("Db.Evaluation.EvaluationItem.EntityPlural");
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new hr.Evaluation.EvaluationItemGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = Serenity.LocalText.Get("Db.Evaluation.FirstKpi.EntityPlural");
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new hr.Evaluation.FirstKpiGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

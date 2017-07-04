@@ -92,7 +92,8 @@ namespace hr
         public static class Navigation
         {
             public static LocalText LogoutLink = "Logout";
-            public static LocalText SiteTitle = "hr";
+            //public static LocalText SiteTitle = "hr";
+            public static LocalText SiteTitle = "HR";
         }
 
         public static class Site

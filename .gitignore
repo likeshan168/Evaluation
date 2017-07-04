@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/hr/hr.Web/App_Data/upload/Temporary
+/hr/hr.Web/App_Data/upload/Temporary

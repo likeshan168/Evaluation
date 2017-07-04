@@ -1100,6 +1100,42 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
     <Content Include="wkhtmltopdf-license.txt" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ContentType.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.DepartmentColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeExcelImportForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeImportService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ExamColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.FirstKpiColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SecondKpiColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ToDoListColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TransferEmployeeRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\RolePermission\RolePermissionDialog.ts" />
@@ -1182,6 +1218,14 @@
     <TypeScriptCompile Include="Modules\Common\Reporting\ReportDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
     <TypeScriptCompile Include="Modules\Common\UserPreference\UserPreferenceStorage.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Employee\EmployeeExcelImportDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation2.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation0.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamListDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
@@ -1196,6 +1240,11 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation0.cshtml" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation.cshtml" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation2.cshtml" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation.cshtml" />
+    <Content Include="Modules\Common\Dashboard\DashboardIndex - 复制.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1535,6 +1584,107 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
     <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
+    <Content Include="Modules\Evaluation\Department\DepartmentIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.DepartmentRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.DepartmentService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.DepartmentForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\Department\DepartmentGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Department\DepartmentDialog.ts" />
+    <Content Include="Modules\Evaluation\Employee\EmployeeIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\Employee\EmployeeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Employee\EmployeeDialog.ts" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemDialog.ts" />
+    <Content Include="Modules\Evaluation\FirstKpi\FirstKpiIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.FirstKpiRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.FirstKpiService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.FirstKpiForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\FirstKpi\FirstKpiGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\FirstKpi\FirstKpiDialog.ts" />
+    <Content Include="Modules\Evaluation\SecondKpi\SecondKpiIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SecondKpiRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SecondKpiService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SecondKpiForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\SecondKpi\SecondKpiGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\SecondKpi\SecondKpiDialog.ts" />
+    <Content Include="Modules\Evaluation\Exam\ExamIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ExamRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ExamService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ExamForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamDialog.ts" />
+    <Content Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationDialog.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationToUserRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationToUserService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationToUserForm.ts" />
+    <Content Include="Modules\Evaluation\ToDoList\ToDoListIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ToDoListRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ToDoListService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ToDoListForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\ToDoList\ToDoListGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\ToDoList\ToDoListDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1552,6 +1702,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\Evaluation.UserListFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_103200_AddIsSelfEvaluationToEvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170704_080800_ToDoList.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_213600_EvaluationResult.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_175900_UserEvaluationToUser.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_162700_UserEvaluationRelation.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170703_084100_AddTitleToExam.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170630_145200_AddIsEnabledToExam.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170630_141700_Exam.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_105500_AddOrderNo.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_173600_AddFirstKPIToEvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_171200_EvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_113900_Employee.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
@@ -1579,6 +1744,7 @@
     <Compile Include="Modules\AdminLTE\Tables\TablesController.cs" />
     <Compile Include="Modules\AdminLTE\Forms\FormsController.cs" />
     <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
+    <Compile Include="Modules\Common\Dashboard\DashboardPageModel - 复制.cs" />
     <Compile Include="Modules\Common\Helpers\EmailHelper.cs" />
     <Compile Include="Modules\Common\Helpers\ExcelImportRequest.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
@@ -1590,55 +1756,7 @@
     <Compile Include="Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.ChangingLookupTextEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.FilteredLookupDetailEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.HardcodedValuesEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.InlineImageFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
     <Compile Include="Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Meeting.MeetingAttendeeEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.EmployeeListFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.NotesEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.OrderDetailsEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.PhoneEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Organization.BusinessUnitEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\StaticTextBlockAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
@@ -1650,6 +1768,7 @@
     <Compile Include="Modules\Administration\Translation\TranslationListRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPage.cs" />
+    <Compile Include="Modules\Common\Helpers\MyPinYin.cs" />
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
     <Compile Include="Imports\MVC\MVC.cs">
       <AutoGen>True</AutoGen>
@@ -1667,6 +1786,12 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeImportEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeImportForm.cs" />
+    <Compile Include="Modules\Evaluation\Employee\TransferEmployeeRequest.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\ContentType.cs" />
+    <Compile Include="Modules\Evaluation\Employee\GenderType.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationNavigation.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPassword\AccountPage.ForgotPassword.cs" />
@@ -1721,6 +1846,56 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentRow.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentColumns.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentForm.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentRepository.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Department\DepartmentPage.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeRow.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeColumns.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeForm.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeRepository.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeeEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Employee\EmployeePage.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemRow.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemColumns.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemForm.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemRepository.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPage.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiRow.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiColumns.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiForm.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiRepository.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\FirstKpi\FirstKpiPage.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiRow.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiColumns.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiForm.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiRepository.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\SecondKpi\SecondKpiPage.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamRow.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamColumns.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamForm.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamRepository.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Exam\ExamPage.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationRow.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationColumns.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationForm.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationRepository.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationPage.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationToUser\UserEvaluationToUserRow.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationToUser\UserEvaluationToUserRepository.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListRow.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListColumns.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListForm.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListRepository.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\ToDoList\ToDoListPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
