@@ -40,5 +40,10 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().List(connection, request);
         }
+
+        public int GetCurrentUserId()
+        {
+            return int.Parse(((UserDefinition)Authorization.UserDefinition).Id);
+        }
     }
 }

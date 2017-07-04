@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[Employee]"), DisplayName("Employee"), InstanceName("Employee"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.Employee.View)]
+    [ModifyPermission(PermissionKeys.Employee.Modify)]
     public sealed class EmployeeRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, SortOrder(1, false)]

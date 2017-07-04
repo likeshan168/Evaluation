@@ -10,6 +10,7 @@ namespace hr.Administration.Repositories
     using System.ComponentModel.DataAnnotations;
     using System.Configuration;
     using System.Data;
+    using System.Linq;
     using System.Web.Security;
     using MyRow = Entities.UserRow;
 
@@ -56,7 +57,16 @@ namespace hr.Administration.Repositories
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
-            return new MyListHandler().Process(connection, request);
+            //Dictionary<string, object> filters = new Dictionary<string, object>();
+            //filters.Add(MyRow.Fields.Username.Name, "admin");
+            //request.EqualityFilter = filters;
+
+            //request.Criteria = new Criteria("Username!='admin'");
+            var userList = new MyListHandler().Process(connection, request);
+
+            userList.Entities = userList.Entities.Where(item => item.Username != "admin").ToList();
+            //return new MyListHandler().Process(connection, request);
+            return userList;
         }
 
         public static string ValidateDisplayName(IDbConnection connection, string displayName, Int32? existingUserId)

@@ -798,9 +798,12 @@ declare namespace hr.Evaluation {
         static formKey: string;
     }
     interface ToDoListForm {
-        UserId: Serenity.IntegerEditor;
+        UserId: Serenity.LookupEditor;
+        StartDate: Serenity.DateEditor;
+        EndDate: Serenity.DateEditor;
         Title: Serenity.StringEditor;
-        Content: Serenity.StringEditor;
+        Content: Serenity.TextAreaEditor;
+        CreateBy: Serenity.LookupEditor;
     }
 }
 declare namespace hr.Evaluation {
@@ -809,19 +812,13 @@ declare namespace hr.Evaluation {
         UserId?: number;
         Title?: string;
         Content?: string;
+        IsComplete?: boolean;
         UserUsername?: string;
-        UserDisplayName?: string;
-        UserEmail?: string;
-        UserSource?: string;
-        UserPasswordHash?: string;
-        UserPasswordSalt?: string;
-        UserLastDirectoryUpdate?: string;
-        UserUserImage?: string;
-        UserInsertDate?: string;
-        UserInsertUserId?: number;
-        UserUpdateDate?: string;
-        UserUpdateUserId?: number;
-        UserIsActive?: number;
+        StartDate?: string;
+        EndDate?: string;
+        CreateBy?: number;
+        CreateByUsername?: string;
+        Url?: string;
     }
     namespace ToDoListRow {
         const idProperty = "Id";
@@ -832,19 +829,13 @@ declare namespace hr.Evaluation {
             const UserId: string;
             const Title: string;
             const Content: string;
+            const IsComplete: string;
             const UserUsername: string;
-            const UserDisplayName: string;
-            const UserEmail: string;
-            const UserSource: string;
-            const UserPasswordHash: string;
-            const UserPasswordSalt: string;
-            const UserLastDirectoryUpdate: string;
-            const UserUserImage: string;
-            const UserInsertDate: string;
-            const UserInsertUserId: string;
-            const UserUpdateDate: string;
-            const UserUpdateUserId: string;
-            const UserIsActive: string;
+            const StartDate: string;
+            const EndDate: string;
+            const CreateBy: string;
+            const CreateByUsername: string;
+            const Url: string;
         }
     }
 }
@@ -856,12 +847,14 @@ declare namespace hr.Evaluation {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ToDoListRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ToDoListRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function GetCurrentUserId(request: Serenity.ServiceRequest, onSuccess?: (response: System.Int32) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
             const Retrieve: string;
             const List: string;
+            const GetCurrentUserId: string;
         }
     }
 }
@@ -1571,6 +1564,34 @@ declare namespace hr.Evaluation {
     }
 }
 declare namespace hr.Evaluation {
+    class Evaluation1 {
+        private container;
+        constructor(container: JQuery);
+        init(): void;
+    }
+}
+declare namespace hr.Evaluation {
+    class Evaluation2 {
+        private container;
+        constructor(container: JQuery);
+        init(): void;
+    }
+}
+declare namespace hr.Evaluation {
+    class SelfEvaluation {
+        private container;
+        constructor(container: JQuery);
+        init(): void;
+    }
+}
+declare namespace hr.Evaluation {
+    class SelfEvaluation1 {
+        private container;
+        constructor(container: JQuery);
+        init(): void;
+    }
+}
+declare namespace hr.Evaluation {
     class EvaluationItemDialog extends Serenity.EntityDialog<EvaluationItemRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1708,6 +1729,7 @@ declare namespace hr.Evaluation {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: ToDoListForm;
+        protected updateInterface(): void;
     }
 }
 declare namespace hr.Evaluation {
@@ -1718,6 +1740,12 @@ declare namespace hr.Evaluation {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected addButtonClick(): void;
+        /**
+       * Removing add button from grid using its css class
+       */
+        protected getButtons(): Serenity.ToolButton[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }
 declare namespace hr.Evaluation {

@@ -42,6 +42,7 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().List(connection, request);
         }
+        [AllowAnonymous]
         /// <summary>
         /// get the self evaluation items
         /// </summary>
@@ -54,6 +55,7 @@ namespace hr.Evaluation.Endpoints
                 return conn.Query<MyRow>(sql);
             }
         }
+        [AllowAnonymous]
         /// <summary>
         /// get the evluation items except self evaluation items
         /// </summary>
@@ -67,6 +69,7 @@ namespace hr.Evaluation.Endpoints
             }
         }
 
+        [AllowAnonymous]
         public IEnumerable<MyRow> GetEvaluation2()
         {
             using (var conn = SqlConnections.NewByKey("Default"))

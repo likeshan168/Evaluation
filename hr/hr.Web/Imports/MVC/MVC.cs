@@ -88,7 +88,7 @@ namespace MVC
             public static class Dashboard
             {
                 public const string DashboardIndex = "~/Modules/Common/Dashboard/DashboardIndex.cshtml";
-                //public const string DashboardIndex - 复制 = "~/Modules/Common/Dashboard/DashboardIndex - 复制.cshtml";
+                public const string DashboardIndexbak = "~/Modules/Common/Dashboard/DashboardIndexbak.cshtml";
             }
 
             public static class Reporting
@@ -112,6 +112,14 @@ namespace MVC
             public static class Employee
             {
                 public const string EmployeeIndex = "~/Modules/Evaluation/Employee/EmployeeIndex.cshtml";
+            }
+
+            public static class Evaluation_
+            {
+                public const string Evaluation1 = "~/Modules/Evaluation/Evaluation/Evaluation1.cshtml";
+                public const string Evaluation2 = "~/Modules/Evaluation/Evaluation/Evaluation2.cshtml";
+                public const string SelfEvaluation = "~/Modules/Evaluation/Evaluation/SelfEvaluation.cshtml";
+                public const string SelfEvaluation1 = "~/Modules/Evaluation/Evaluation/SelfEvaluation1.cshtml";
             }
 
             public static class EvaluationItem

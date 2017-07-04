@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[SecondKPI]"), DisplayName("Second Kpi"), InstanceName("Second Kpi"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.SecondKpi.View)]
+    [ModifyPermission(PermissionKeys.SecondKpi.Modify)]
     [LookupScript("Evaluation.SecondKpi")]
     public sealed class SecondKpiRow : Row, IIdRow, INameRow
     {

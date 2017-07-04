@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[Exam]"), DisplayName("Exam"), InstanceName("Exam"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.Exam.View)]
+    [ModifyPermission(PermissionKeys.Exam.Modify)]
     [LookupScript("Evaluation.Exam")]
     public sealed class ExamRow : Row, IIdRow, INameRow
     {

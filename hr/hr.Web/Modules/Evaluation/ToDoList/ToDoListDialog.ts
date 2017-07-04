@@ -11,6 +11,13 @@ namespace hr.Evaluation {
         protected getService() { return ToDoListService.baseUrl; }
 
         protected form = new ToDoListForm(this.idPrefix);
+        protected updateInterface(): void {
+            super.updateInterface();
+            if (!Q.Authorization.userDefinition.IsAdmin) {
+                Serenity.EditorUtils.setReadonly(this.element.find('[name="UserId"]'), true);
+            }
 
+            Serenity.EditorUtils.setReadonly(this.element.find('[name="CreateBy"]'), true);
+        }
     }
 }

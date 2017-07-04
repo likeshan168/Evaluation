@@ -13,8 +13,11 @@ namespace hr.Evaluation.Forms
     [BasedOnRow(typeof(Entities.ToDoListRow))]
     public class ToDoListForm
     {
-        public String UserUsername { get; set; }
+        public String UserId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public String Title { get; set; }
         public String Content { get; set; }
+        public Int32 CreateBy { get; set; }
     }
 }

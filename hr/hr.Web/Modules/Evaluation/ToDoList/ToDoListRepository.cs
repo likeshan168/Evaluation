@@ -6,6 +6,7 @@ namespace hr.Evaluation.Repositories
     using Serenity.Data;
     using Serenity.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using MyRow = Entities.ToDoListRow;
 
@@ -35,6 +36,14 @@ namespace hr.Evaluation.Repositories
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
+            //if(Authorization.HasPermission(PermissionKeys.))
+            //{
+
+            //}
+            Dictionary<string, object> filters = new Dictionary<string, object>();
+            filters.Add(MyRow.Fields.UserId.Name, Authorization.UserId);
+            request.EqualityFilter = filters;
+
             return new MyListHandler().Process(connection, request);
         }
 

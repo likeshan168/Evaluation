@@ -12,8 +12,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[UserEvaluationRelation]"), DisplayName("User Evaluation Relation"), InstanceName("User Evaluation Relation"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.UserEvaluationRelation.View)]
+    [ModifyPermission(PermissionKeys.UserEvaluationRelation.Modify)]
     public sealed class UserEvaluationRelationRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

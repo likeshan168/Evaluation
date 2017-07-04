@@ -694,7 +694,7 @@ var hr;
         }(Serenity.PrefixedContext));
         ToDoListForm.formKey = 'Evaluation.ToDoList';
         Evaluation.ToDoListForm = ToDoListForm;
-        [['UserId', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Content', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(ToDoListForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['UserId', function () { return Serenity.LookupEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Content', function () { return Serenity.TextAreaEditor; }], ['CreateBy', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(ToDoListForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;
@@ -709,7 +709,7 @@ var hr;
             var Fields;
             (function (Fields) {
             })(Fields = ToDoListRow.Fields || (ToDoListRow.Fields = {}));
-            ['Id', 'UserId', 'Title', 'Content', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'UserId', 'Title', 'Content', 'IsComplete', 'UserUsername', 'StartDate', 'EndDate', 'CreateBy', 'CreateByUsername', 'Url'].forEach(function (x) { return Fields[x] = x; });
         })(ToDoListRow = Evaluation.ToDoListRow || (Evaluation.ToDoListRow = {}));
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -723,7 +723,7 @@ var hr;
             var Methods;
             (function (Methods) {
             })(Methods = ToDoListService.Methods || (ToDoListService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetCurrentUserId'].forEach(function (x) {
                 ToDoListService[x] = function (r, s, o) { return Q.serviceRequest(ToDoListService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = ToDoListService.baseUrl + '/' + x;
             });
@@ -3194,6 +3194,214 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var Evaluation1 = (function () {
+            function Evaluation1(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            Evaluation1.prototype.init = function () {
+                var _this = this;
+                var res = Evaluation.EvaluationItemService.GetEvaluation1(null, function (response) {
+                    console.log(response);
+                    var grps = response.reduce(function (result, current) {
+                        result[current.FirstKpiName] = result[current.FirstKpiName] || [];
+                        result[current.FirstKpiName].push(current);
+                        return result;
+                    }, {});
+                    var html = "<table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='4'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
+                    for (var pro in grps) {
+                        //console.log(pro);
+                        var subGrps = grps[pro].reduce(function (result, current) {
+                            result[current.SecondKpiName] = result[current.SecondKpiName] || [];
+                            result[current.SecondKpiName].push(current);
+                            return result;
+                        }, {});
+                        console.log(subGrps);
+                        var subKeys = [];
+                        for (var subpro in subGrps) {
+                            subKeys.push(subpro);
+                        }
+                        var toprowpan = subKeys.length;
+                        var colspan = 5;
+                        var i = 0;
+                        for (var subpro in subGrps) {
+                            var subarr = subGrps[subpro];
+                            html += '<tr>';
+                            if (i === 0) {
+                                html += "<td rowspan='" + toprowpan + "' style='vertical-align: middle;width:80px'>" + pro + "</td>";
+                            }
+                            i++;
+                            html += "<td>" + subpro + "</td>";
+                            $.each(subarr, function (index, value) {
+                                html += "<td><textarea style='width:100%;min-height:100px;' type='text'>" + value.Content + "</textarea></td>";
+                            });
+                            html += '<td><input type="text" /></td></tr>';
+                        }
+                    }
+                    html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation2'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>";
+                    _this.container.html(html);
+                });
+            };
+            return Evaluation1;
+        }());
+        Evaluation.Evaluation1 = Evaluation1;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var Evaluation2 = (function () {
+            function Evaluation2(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            Evaluation2.prototype.init = function () {
+                var _this = this;
+                var res = Evaluation.EvaluationItemService.GetEvaluation2(null, function (response) {
+                    console.log(response);
+                    var grps = response.reduce(function (result, current) {
+                        result[current.FirstKpiName] = result[current.FirstKpiName] || [];
+                        result[current.FirstKpiName].push(current);
+                        return result;
+                    }, {});
+                    var html = "<table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='8'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                               \n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='5' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
+                    for (var pro in grps) {
+                        //console.log(pro);
+                        var subGrps = grps[pro].reduce(function (result, current) {
+                            result[current.SecondKpiName] = result[current.SecondKpiName] || [];
+                            result[current.SecondKpiName].push(current);
+                            return result;
+                        }, {});
+                        console.log(subGrps);
+                        var subKeys = [];
+                        for (var subpro in subGrps) {
+                            subKeys.push(subpro);
+                        }
+                        var toprowpan = subKeys.length;
+                        var colspan = 5;
+                        var i = 0;
+                        for (var subpro in subGrps) {
+                            var subarr = subGrps[subpro];
+                            html += '<tr>';
+                            if (i === 0) {
+                                html += "<td rowspan='" + toprowpan + "' style='vertical-align: middle;width:80px'>" + pro + "</td>";
+                            }
+                            i++;
+                            html += "<td style='vertical-align:middle;'>" + subpro + "</td>";
+                            $.each(subarr, function (index, value) {
+                                html += "<td style='vertical-align:bottom;'><label>" + value.Content + "(<label style='color: blue;'>" + value.Score + "\u5206</label>)<br/><input type=\"radio\" name='" + value.SecondKpiName + "' value='" + value.Score + "' style='width:100%'/></label> </td>";
+                            });
+                            html += "<td style='vertical- align:middle;' ><input type=\"text\" style=\"width:100%\"/></td></tr>";
+                        }
+                    }
+                    html += "<tr><td colspan='8' class='text-center'><a href='Evaluation1'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a></td><tr></table>";
+                    _this.container.html(html);
+                });
+            };
+            return Evaluation2;
+        }());
+        Evaluation.Evaluation2 = Evaluation2;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var SelfEvaluation = (function () {
+            function SelfEvaluation(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            SelfEvaluation.prototype.init = function () {
+                var _this = this;
+                var res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, function (response) {
+                    var html = "<table>\n                                   <tr>\n                                        <th colspan='4' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
+                    if (response !== null) {
+                        var count_1 = res.responseJSON.length;
+                        if (res.responseJSON.length !== 0) {
+                            res.responseJSON.forEach(function (item, index) {
+                                html += "<tr>";
+                                if (index == 0) {
+                                    html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                }
+                                html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
+                                if (item.ContentType === 1) {
+                                    //输入框
+                                    html += "<td><textarea style='width:100%;min-height:150px;'>" + item.Mark + "</textarea></td>";
+                                }
+                                html += "</tr>";
+                            });
+                            html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                        else {
+                            html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                            html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                    }
+                    else {
+                        html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                        html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                    }
+                    _this.container.html(html);
+                });
+            };
+            return SelfEvaluation;
+        }());
+        Evaluation.SelfEvaluation = SelfEvaluation;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var SelfEvaluation1 = (function () {
+            function SelfEvaluation1(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            SelfEvaluation1.prototype.init = function () {
+                var _this = this;
+                var res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, function (response) {
+                    var html = "<table>\n                                    <tr>\n                                        <th class='text-center' style='font-size:18px;' colspan='5'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                     </tr>\n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='2' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
+                    if (response !== null) {
+                        var count_2 = res.responseJSON.length;
+                        if (res.responseJSON.length !== 0) {
+                            res.responseJSON.forEach(function (item, index) {
+                                html += "<tr>";
+                                if (index == 0) {
+                                    html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                }
+                                html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
+                                if (item.ContentType === 1) {
+                                    //输入框
+                                    html += "<td>" + item.Mark + "</td>";
+                                }
+                                html += "<td><input type=\"text\" /></td></tr>";
+                            });
+                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                        else {
+                            html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                    }
+                    else {
+                        html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
+                        html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation1'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                    }
+                    _this.container.html(html);
+                });
+            };
+            return SelfEvaluation1;
+        }());
+        Evaluation.SelfEvaluation1 = SelfEvaluation1;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var EvaluationItemDialog = (function (_super) {
             __extends(EvaluationItemDialog, _super);
             function EvaluationItemDialog() {
@@ -3508,12 +3716,12 @@ var hr;
                 var res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, function (response) {
                     var html = "<table>\n                                   <tr>\n                                        <th colspan='4' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
                     if (response !== null) {
-                        var count_1 = res.responseJSON.length;
+                        var count_3 = res.responseJSON.length;
                         if (res.responseJSON.length !== 0) {
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
                                 if (index == 0) {
-                                    html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                    html += "<td rowspan='" + count_3 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
                                 }
                                 html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
                                 if (item.ContentType === 1) {
@@ -3555,12 +3763,12 @@ var hr;
                 var res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, function (response) {
                     var html = "<table>\n                                    <tr>\n                                        <th class='text-center' style='font-size:18px;' colspan='5'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                     </tr>\n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='2' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
                     if (response !== null) {
-                        var count_2 = res.responseJSON.length;
+                        var count_4 = res.responseJSON.length;
                         if (res.responseJSON.length !== 0) {
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
                                 if (index == 0) {
-                                    html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                    html += "<td rowspan='" + count_4 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
                                 }
                                 html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
                                 if (item.ContentType === 1) {
@@ -3819,6 +4027,13 @@ var hr;
             ToDoListDialog.prototype.getLocalTextPrefix = function () { return Evaluation.ToDoListRow.localTextPrefix; };
             ToDoListDialog.prototype.getNameProperty = function () { return Evaluation.ToDoListRow.nameProperty; };
             ToDoListDialog.prototype.getService = function () { return Evaluation.ToDoListService.baseUrl; };
+            ToDoListDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                if (!Q.Authorization.userDefinition.IsAdmin) {
+                    Serenity.EditorUtils.setReadonly(this.element.find('[name="UserId"]'), true);
+                }
+                Serenity.EditorUtils.setReadonly(this.element.find('[name="CreateBy"]'), true);
+            };
             return ToDoListDialog;
         }(Serenity.EntityDialog));
         ToDoListDialog = __decorate([
@@ -3842,6 +4057,41 @@ var hr;
             ToDoListGrid.prototype.getIdProperty = function () { return Evaluation.ToDoListRow.idProperty; };
             ToDoListGrid.prototype.getLocalTextPrefix = function () { return Evaluation.ToDoListRow.localTextPrefix; };
             ToDoListGrid.prototype.getService = function () { return Evaluation.ToDoListService.baseUrl; };
+            ToDoListGrid.prototype.addButtonClick = function () {
+                var _this = this;
+                Evaluation.ToDoListService.GetCurrentUserId(null, function (response) {
+                    _this.editItem({
+                        UserId: response,
+                        StartDate: Q.formatDate(new Date(), 'yyyy-MM-dd'),
+                        CreateBy: response
+                    });
+                });
+            };
+            /**
+           * Removing add button from grid using its css class
+           */
+            ToDoListGrid.prototype.getButtons = function () {
+                //Q.Authorization.hasPermission("")
+                var buttons = _super.prototype.getButtons.call(this);
+                console.log(Q.Authorization.userDefinition.Permissions);
+                if (!Q.Authorization.hasPermission("Evaluation:ToDoList:Modify")) {
+                    buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
+                    return buttons;
+                }
+                return buttons;
+            };
+            ToDoListGrid.prototype.onClick = function (e, row, cell) {
+                if (Q.Authorization.hasPermission("Evaluation:ToDoList:Modify")) {
+                    _super.prototype.onClick.call(this, e, row, cell);
+                }
+                else {
+                    var target = $(e.target);
+                    if (target.hasClass("s-EditLink")) {
+                        e.preventDefault();
+                        Q.notifyError("您无权进行查看,请联系管理员！");
+                    }
+                }
+            };
             return ToDoListGrid;
         }(Serenity.EntityGrid));
         ToDoListGrid = __decorate([

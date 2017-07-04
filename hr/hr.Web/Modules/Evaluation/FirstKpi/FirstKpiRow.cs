@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[FirstKPI]"), DisplayName("First Kpi"), InstanceName("First Kpi"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.FirstKpi.View)]
+    [ModifyPermission(PermissionKeys.FirstKpi.Modify)]
     [LookupScript("Evaluation.FirstKpi")]
 
     public sealed class FirstKpiRow : Row, IIdRow, INameRow

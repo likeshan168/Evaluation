@@ -15,11 +15,70 @@ namespace hr.Evaluation.Repositories
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            // get the exam info
+            var exam = new ExamRepository().Retrieve(uow.Connection, new RetrieveRequest()
+            {
+                EntityId = request.Entity.ExamId
+            });
+            //add self evaluation to todo list
+            var todoRep = new ToDoListRepository();
+            todoRep.Create(uow, new SaveRequest<Entities.ToDoListRow>()
+            {
+                Entity = new Entities.ToDoListRow()
+                {
+                    UserId = request.Entity.UserId,
+                    Title = Constants.Evaluation.Title,
+                    Content = Constants.Evaluation.Content,
+                    StartDate = DateTime.Now,
+                    EndDate = exam.Entity.EndDate,
+                    CreateBy = Int32.Parse(Authorization.UserId),
+                    Url = "~/Evaluation/Evaluation/SelfEvaluation"
+                }
+            });
+            //add evaluation to todo list
+            //todoRep.Create(uow, new SaveRequest<Entities.ToDoListRow>()
+            //{
+            //    Entity = new Entities.ToDoListRow()
+            //    {
+            //        UserId = request.Entity.UserId,
+            //        Title = Constants.Evaluation.Title,
+            //        Content = Constants.Evaluation.EvaluationContent,
+            //        StartDate = DateTime.Now,
+            //        EndDate = exam.Entity.EndDate,
+            //        CreateBy = Int32.Parse(Authorization.UserId),
+            //        Url = "~/Evaluation/Evaluation/SelfEvaluation"
+            //    }
+            //});
+
+
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
 
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            // get the exam info
+            var exam = new ExamRepository().Retrieve(uow.Connection, new RetrieveRequest()
+            {
+                EntityId = request.Entity.ExamId
+            });
+            // check if the exam is changed or just change the relationship of users
+            if (!uow.Connection.Exists<MyRow>(MyRow.Fields.Id == request.Entity.Id.Value && MyRow.Fields.ExamId == request.Entity.ExamId.Value))
+            {
+                var todoRep = new ToDoListRepository();
+                todoRep.Create(uow, new SaveRequest<Entities.ToDoListRow>()
+                {
+                    Entity = new Entities.ToDoListRow()
+                    {
+                        UserId = request.Entity.UserId,
+                        Title = Constants.Evaluation.Title,
+                        Content = Constants.Evaluation.Content,
+                        StartDate = DateTime.Now,
+                        EndDate = exam.Entity.EndDate,
+                        CreateBy = Int32.Parse(Authorization.UserId),
+                        Url = "~/Evaluation/Evaluation/SelfEvaluation"
+                    }
+                });
+            }
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
 
