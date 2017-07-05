@@ -10,6 +10,9 @@
         export declare function GetSelfEvaluation(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation1(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation2(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation1ByExam(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation2ByExam(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
             export declare const Create: string;
@@ -20,9 +23,12 @@
             export declare const GetSelfEvaluation: string;
             export declare const GetEvaluation1: string;
             export declare const GetEvaluation2: string;
+            export declare const GetSelfEvaluationByExam: string;
+            export declare const GetEvaluation1ByExam: string;
+            export declare const GetEvaluation2ByExam: string;
         }
 
-        ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetSelfEvaluation', 'GetEvaluation1', 'GetEvaluation2'].forEach(x => {
+        ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetSelfEvaluation', 'GetEvaluation1', 'GetEvaluation2', 'GetSelfEvaluationByExam', 'GetEvaluation1ByExam', 'GetEvaluation2ByExam'].forEach(x => {
             (<any>EvaluationItemService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });

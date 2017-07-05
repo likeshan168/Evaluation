@@ -63,6 +63,8 @@
   "Db.Evaluation.ToDoList.EndDate": "结束时间",
   "Db.Evaluation.ToDoList.EntityPlural": "待办事项",
   "Db.Evaluation.ToDoList.EntitySingular": "待办事项",
+  "Db.Evaluation.ToDoList.ExamId": "评估考核",
+  "Db.Evaluation.ToDoList.ExamTitle": "评估考核",
   "Db.Evaluation.ToDoList.Id": "编号",
   "Db.Evaluation.ToDoList.IsComplete": "是否已完成",
   "Db.Evaluation.ToDoList.StartDate": "开始时间",

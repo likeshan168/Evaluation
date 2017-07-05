@@ -11,6 +11,8 @@
         CreateBy?: number;
         CreateByUsername?: string;
         Url?: string;
+        ExamId?: number;
+        ExamTitle?: string;
     }
 
     export namespace ToDoListRow {
@@ -30,9 +32,11 @@
             export declare const CreateBy: string;
             export declare const CreateByUsername: string;
             export declare const Url: string;
+            export declare const ExamId: string;
+            export declare const ExamTitle: string;
         }
 
-        ['Id', 'UserId', 'Title', 'Content', 'IsComplete', 'UserUsername', 'StartDate', 'EndDate', 'CreateBy', 'CreateByUsername', 'Url'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'UserId', 'Title', 'Content', 'IsComplete', 'UserUsername', 'StartDate', 'EndDate', 'CreateBy', 'CreateByUsername', 'Url', 'ExamId', 'ExamTitle'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

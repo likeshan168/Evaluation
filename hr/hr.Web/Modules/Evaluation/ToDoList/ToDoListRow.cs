@@ -92,6 +92,21 @@ namespace hr.Evaluation.Entities
             set { Fields.Url[this] = value; }
         }
 
+        [DisplayName("ExamId"), ForeignKey("[hr].[Exam]", "Id"), LeftJoin("jExam"), TextualField("ExamTitle")]
+        [LookupEditor(typeof(ExamRow))]
+        public Int32? ExamId
+        {
+            get { return Fields.ExamId[this]; }
+            set { Fields.ExamId[this] = value; }
+        }
+
+        [DisplayName("ExamTitle"), Expression("jExam.[Title]")]
+        public String ExamTitle
+        {
+            get { return Fields.ExamTitle[this]; }
+            set { Fields.ExamTitle[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.Id; }
@@ -122,6 +137,9 @@ namespace hr.Evaluation.Entities
             public Int32Field CreateBy;
             public StringField CreateByUsername;
             public StringField Url;
+            public Int32Field ExamId;
+            public StringField ExamTitle;
+
             public RowFields()
                 : base()
             {

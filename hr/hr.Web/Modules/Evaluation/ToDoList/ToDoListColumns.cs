@@ -25,6 +25,7 @@ namespace hr.Evaluation.Columns
         public DateTime EndDate { get; set; }
         public String CreateByUsername { get; set; }
         public String Url { get; set; }
+        public String ExamTitle { get; set; }
 
         [Width(150, Max = 200, Min = 150)]
         public bool IsComplete { get; set; }

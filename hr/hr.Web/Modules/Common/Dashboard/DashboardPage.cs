@@ -32,7 +32,7 @@ namespace hr.Common.Pages
                 //}
                 //else
                 //{
-                return conn.Query<DashboardPageModel>($"SELECT t.Title, t.Content, t.StartDate, t.EndDate, u2.Username as CreateBy, t.Url FROM hr.ToDoList AS t LEFT JOIN dbo.Users AS u ON t.UserId = u.UserId LEFT JOIN dbo.Users AS u2 ON u2.UserId = t.CreateBy WHERE t.IsComplete = 0 AND t.EndDate >= GETDATE() and t.UserId={int.Parse(((UserDefinition)Authorization.UserDefinition).Id)}");
+                return conn.Query<DashboardPageModel>($"SELECT t.Title, t.Content, t.StartDate, t.EndDate, u2.Username as CreateBy, t.Url, t.ExamId FROM hr.ToDoList AS t LEFT JOIN dbo.Users AS u ON t.UserId = u.UserId LEFT JOIN dbo.Users AS u2 ON u2.UserId = t.CreateBy WHERE t.IsComplete = 0 AND t.EndDate >= GETDATE() and t.UserId={int.Parse(((UserDefinition)Authorization.UserDefinition).Id)}");
                 //}
             }
         }

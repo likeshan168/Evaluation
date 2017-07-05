@@ -18,6 +18,7 @@ namespace hr.Evaluation.Forms
         public DateTime EndDate { get; set; }
         public String Title { get; set; }
         public String Content { get; set; }
+        public Int32 ExamId { get; set; }
         public Int32 CreateBy { get; set; }
     }
 }

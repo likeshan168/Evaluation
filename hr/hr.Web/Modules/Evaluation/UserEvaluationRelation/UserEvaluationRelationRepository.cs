@@ -32,7 +32,8 @@ namespace hr.Evaluation.Repositories
                     StartDate = DateTime.Now,
                     EndDate = exam.Entity.EndDate,
                     CreateBy = Int32.Parse(Authorization.UserId),
-                    Url = "~/Evaluation/Evaluation/SelfEvaluation"
+                    Url = "~/Evaluation/Evaluation/SelfEvaluation",
+                    ExamId = exam.Entity.Id
                 }
             });
             //add evaluation to todo list
@@ -75,7 +76,8 @@ namespace hr.Evaluation.Repositories
                         StartDate = DateTime.Now,
                         EndDate = exam.Entity.EndDate,
                         CreateBy = Int32.Parse(Authorization.UserId),
-                        Url = "~/Evaluation/Evaluation/SelfEvaluation"
+                        Url = "~/Evaluation/Evaluation/SelfEvaluation",
+                        ExamId = exam.Entity.Id
                     }
                 });
             }

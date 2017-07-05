@@ -7,7 +7,9 @@
         }
 
         public init(): void {
-            let res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, (response) => {
+            //console.log(this.getQueryString("i", window.location.href))
+            let examId = parseInt(this.getQueryString("i", window.location.href));
+            let res = Evaluation.EvaluationItemService.GetSelfEvaluationByExam({ ExamId: examId }, (response) => {
                 let html = `<table>
                                    <tr>
                                         <th colspan='5' class='text-center' style='font-size:18px'>
@@ -45,6 +47,13 @@
                 }
                 this.container.html(html);
             });
+        }
+
+        private getQueryString(field, url) {
+            var href = url ? url : window.location.href;
+            var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+            var string = reg.exec(href);
+            return string ? string[1] : null;
         }
     }
 }
