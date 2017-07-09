@@ -32,25 +32,24 @@ namespace hr.Evaluation.Repositories
                     StartDate = DateTime.Now,
                     EndDate = exam.Entity.EndDate,
                     CreateBy = Int32.Parse(Authorization.UserId),
-                    Url = "~/Evaluation/Evaluation/SelfEvaluation",
+                    Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
                     ExamId = exam.Entity.Id
                 }
             });
-            //add evaluation to todo list
-            //todoRep.Create(uow, new SaveRequest<Entities.ToDoListRow>()
-            //{
-            //    Entity = new Entities.ToDoListRow()
-            //    {
-            //        UserId = request.Entity.UserId,
-            //        Title = Constants.Evaluation.Title,
-            //        Content = Constants.Evaluation.EvaluationContent,
-            //        StartDate = DateTime.Now,
-            //        EndDate = exam.Entity.EndDate,
-            //        CreateBy = Int32.Parse(Authorization.UserId),
-            //        Url = "~/Evaluation/Evaluation/SelfEvaluation"
-            //    }
-            //});
-
+            var itemIds = exam.Entity.EvaluationIds.Split(',');
+            var erdRep = new EvaluationResultDetailRepository();
+            foreach (var id in itemIds)
+            {
+                erdRep.Create(uow, new SaveRequest<Entities.EvaluationResultDetailRow>()
+                {
+                    Entity = new Entities.EvaluationResultDetailRow()
+                    {
+                        ExamId = exam.Entity.Id,
+                        UserId = request.Entity.UserId,
+                        EvaluationItemId = int.Parse(id)
+                    }
+                });
+            }
 
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
@@ -76,10 +75,25 @@ namespace hr.Evaluation.Repositories
                         StartDate = DateTime.Now,
                         EndDate = exam.Entity.EndDate,
                         CreateBy = Int32.Parse(Authorization.UserId),
-                        Url = "~/Evaluation/Evaluation/SelfEvaluation",
+                        Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
                         ExamId = exam.Entity.Id
                     }
                 });
+                //添加考核结果详情
+                var itemIds = exam.Entity.EvaluationIds.Split(',');
+                var erdRep = new EvaluationResultDetailRepository();
+                foreach (var id in itemIds)
+                {
+                    erdRep.Create(uow, new SaveRequest<Entities.EvaluationResultDetailRow>()
+                    {
+                        Entity = new Entities.EvaluationResultDetailRow()
+                        {
+                            ExamId = exam.Entity.Id,
+                            UserId = request.Entity.UserId,
+                            EvaluationItemId = int.Parse(id)
+                        }
+                    });
+                }
             }
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }

@@ -87,7 +87,7 @@ namespace hr.Evaluation.Endpoints
         /// get the self evaluation items
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<MyRow> GetSelfEvaluationByExam(EvaluationItemRequest request)
+        public IEnumerable<EvaluationItemViewModel> GetSelfEvaluationByExam(EvaluationItemRequest request)
         {
             using (var conn = SqlConnections.NewByKey("Default"))
             {
@@ -95,8 +95,8 @@ namespace hr.Evaluation.Endpoints
                 string sql = $"select * from hr.Exam where Id=${request.ExamId}";
                 var exam = conn.Query<ExamRow>(sql).FirstOrDefault();
 
-                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
-                var items = conn.Query<MyRow>(sql);
+                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
+                var items = conn.Query<EvaluationItemViewModel>(sql);
 
                 if (exam != null)
                 {
@@ -113,7 +113,7 @@ namespace hr.Evaluation.Endpoints
         /// get the evluation items except self evaluation items
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<MyRow> GetEvaluation1ByExam(EvaluationItemRequest request)
+        public IEnumerable<EvaluationItemViewModel> GetEvaluation1ByExam(EvaluationItemRequest request)
         {
             using (var conn = SqlConnections.NewByKey("Default"))
             {
@@ -121,8 +121,8 @@ namespace hr.Evaluation.Endpoints
                 string sql = $"select * from hr.Exam where Id=${request.ExamId}";
                 var exam = conn.Query<ExamRow>(sql).FirstOrDefault();
 
-                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id WHERE isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 4  ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
-                var items = conn.Query<MyRow>(sql);
+                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 4  AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
+                var items = conn.Query<EvaluationItemViewModel>(sql);
                 if (exam != null)
                 {
                     var itemIds = exam.EvaluationIds.Split(',');
@@ -136,15 +136,15 @@ namespace hr.Evaluation.Endpoints
         }
 
         [AllowAnonymous]
-        public IEnumerable<MyRow> GetEvaluation2ByExam(EvaluationItemRequest request)
+        public IEnumerable<EvaluationItemViewModel> GetEvaluation2ByExam(EvaluationItemRequest request)
         {
             using (var conn = SqlConnections.NewByKey("Default"))
             {
                 //get the evaluation items by examid
                 string sql = $"select * from hr.Exam where Id=${request.ExamId}";
                 var exam = conn.Query<ExamRow>(sql).FirstOrDefault();
-                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id WHERE isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 2   ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
-                var items = conn.Query<MyRow>(sql);
+                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 2  AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
+                var items = conn.Query<EvaluationItemViewModel>(sql);
                 if (exam != null)
                 {
                     var itemIds = exam.EvaluationIds.Split(',');
@@ -153,6 +153,16 @@ namespace hr.Evaluation.Endpoints
                 }
 
                 return items;
+            }
+        }
+
+        [AllowAnonymous]
+        public IEnumerable<UserViewModel> GetUserToUsers()
+        {
+            using (var conn = SqlConnections.NewByKey("Default"))
+            {
+                string sql = $"SELECT r.UserId,us.Username FROM hr.UserEvaluationToUser u LEFT JOIN hr.UserEvaluationRelation r ON u.UserEvaluationRelationId = r.Id LEFT JOIN dbo.Users us ON us.UserId = r.UserId WHERE u.UserId = {int.Parse(Authorization.UserId)}";
+                return conn.Query<UserViewModel>(sql);
             }
         }
     }

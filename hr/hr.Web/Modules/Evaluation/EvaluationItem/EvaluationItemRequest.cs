@@ -6,9 +6,10 @@ using System.Web;
 
 namespace hr.Evaluation
 {
-    public class EvaluationItemRequest: ServiceRequest
+    public class EvaluationItemRequest : ServiceRequest
     {
         public EvaluationItemRequest() { }
         public int ExamId { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -7494,3 +7494,21 @@ section.content > .s-DataGrid {
 .s-Evaluation-ToDoListDialog .caption {
   width: 150px;
 }
+.s-Evaluation-EvaluationResultDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-EvaluationResultDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-EvaluationResultDetailDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-EvaluationResultDetailDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-ScoreDetailDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-ScoreDetailDialog .caption {
+  width: 150px;
+}

@@ -131,6 +131,16 @@ namespace MVC
                 public const string EvaluationItemPreviewSelfEvaluation0 = "~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewSelfEvaluation0.cshtml";
             }
 
+            public static class EvaluationResult
+            {
+                public const string EvaluationResultIndex = "~/Modules/Evaluation/EvaluationResult/EvaluationResultIndex.cshtml";
+            }
+
+            public static class EvaluationResultDetail
+            {
+                public const string EvaluationResultDetailIndex = "~/Modules/Evaluation/EvaluationResultDetail/EvaluationResultDetailIndex.cshtml";
+            }
+
             public static class Exam
             {
                 public const string ExamIndex = "~/Modules/Evaluation/Exam/ExamIndex.cshtml";
@@ -139,6 +149,11 @@ namespace MVC
             public static class FirstKpi
             {
                 public const string FirstKpiIndex = "~/Modules/Evaluation/FirstKpi/FirstKpiIndex.cshtml";
+            }
+
+            public static class ScoreDetail
+            {
+                public const string ScoreDetailIndex = "~/Modules/Evaluation/ScoreDetail/ScoreDetailIndex.cshtml";
             }
 
             public static class SecondKpi

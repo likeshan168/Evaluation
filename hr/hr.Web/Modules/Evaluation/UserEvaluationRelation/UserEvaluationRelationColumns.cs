@@ -13,7 +13,7 @@ namespace hr.Evaluation.Columns
     [BasedOnRow(typeof(Entities.UserEvaluationRelationRow))]
     public class UserEvaluationRelationColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId")]
+        [EditLink, DisplayName("Db.Shared.RecordId"), SortOrder(1, false)]
         public Int32 Id { get; set; }
         public String UserUsername { get; set; }
         //[EditLink]

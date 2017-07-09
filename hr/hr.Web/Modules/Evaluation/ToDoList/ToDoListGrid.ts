@@ -33,7 +33,7 @@ namespace hr.Evaluation {
             var buttons = super.getButtons();
             console.log(Q.Authorization.userDefinition.Permissions);
             if (!Q.Authorization.hasPermission("Evaluation:ToDoList:Modify")) {
-                
+
                 buttons.splice(Q.indexOf(buttons, x => x.cssClass == "add-button"), 1);
                 return buttons;
             }
@@ -45,12 +45,41 @@ namespace hr.Evaluation {
                 super.onClick(e, row, cell);
             } else {
                 var target = $(e.target);
-                
+
                 if (target.hasClass("s-EditLink")) {
                     e.preventDefault();
                     Q.notifyError("您无权进行查看,请联系管理员！");
                 }
             }
+        }
+
+        protected getColumns() {
+            //super.getQuickFilters();
+            var columns = super.getColumns();
+            let flds = ToDoListRow.Fields;
+            let section = "Evaluation";
+            let index = 0;
+            Q.first(columns, x => x.field === flds.Url)
+                .format = (ctx) => {
+                    //TODO: 考虑过期的情况
+                    return `<a href='${ctx.value.substr(ctx.value.indexOf('/') + 1)}'>点击进入</a>`
+                }
+            return columns;
+        }
+
+
+        protected getSlickOptions(): Slick.GridOptions {
+            var opt = super.getSlickOptions();
+            opt.enableTextSelectionOnCells = true;
+            opt.selectedCellCssClass = "slick-row-selected";
+            opt.enableCellNavigation = true;
+            return opt;
+        }
+
+        protected createSlickGrid(): Slick.Grid {
+            var grid = super.createSlickGrid();
+            grid.setSelectionModel(new Slick.RowSelectionModel());
+            return grid;
         }
     }
 }

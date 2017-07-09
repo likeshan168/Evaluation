@@ -27,6 +27,7 @@ namespace hr.Evaluation.Endpoints
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
+            //TODO:delete the related records
             return new MyRepository().Delete(uow, request);
         }
 

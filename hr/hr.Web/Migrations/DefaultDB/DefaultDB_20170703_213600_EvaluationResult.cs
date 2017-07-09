@@ -7,6 +7,7 @@ namespace hr.Migrations.DefaultDB
     {
         public override void Up()
         {
+            //TODO: drop table EvaluationResult which is not used
             Create.Table("EvaluationResult").InSchema("hr")
               .WithColumn("Id").AsInt32().PrimaryKey().Identity().NotNullable()
               .WithColumn("UserId").AsInt32().NotNullable()
@@ -21,7 +22,7 @@ namespace hr.Migrations.DefaultDB
                 .WithColumn("EvaluationItemId").AsInt32().Nullable()
                 .ForeignKey("Fk_EvaluationResultDetail_EvaluationItemId", "hr", "EvaluationItem", "Id")
                 .WithColumn("InputContent").AsString(int.MaxValue).Nullable()
-                .WithColumn("Score").AsInt32().Nullable();
+                .WithColumn("Score").AsInt32().Nullable();//记录每一项考核的分数（不是给被考核人看的，是给管理员和考核人看的）
         }
     }
 }

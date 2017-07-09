@@ -10,9 +10,10 @@
         export declare function GetSelfEvaluation(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation1(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation2(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetEvaluation1ByExam(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetEvaluation2ByExam(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation1ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation2ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetUserToUsers(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<UserViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
             export declare const Create: string;
@@ -26,9 +27,10 @@
             export declare const GetSelfEvaluationByExam: string;
             export declare const GetEvaluation1ByExam: string;
             export declare const GetEvaluation2ByExam: string;
+            export declare const GetUserToUsers: string;
         }
 
-        ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetSelfEvaluation', 'GetEvaluation1', 'GetEvaluation2', 'GetSelfEvaluationByExam', 'GetEvaluation1ByExam', 'GetEvaluation2ByExam'].forEach(x => {
+        ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetSelfEvaluation', 'GetEvaluation1', 'GetEvaluation2', 'GetSelfEvaluationByExam', 'GetEvaluation1ByExam', 'GetEvaluation2ByExam', 'GetUserToUsers'].forEach(x => {
             (<any>EvaluationItemService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });

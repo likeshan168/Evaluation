@@ -7,7 +7,13 @@
         }
 
         public init(): void {
-            let res = Evaluation.EvaluationItemService.GetEvaluation1(null, (response) => {
+            let examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+            let userId = parseInt(hr.Utils.getQueryString("p", window.location.href));
+            console.log($.cookie('evaluated_user'));
+            let res = Evaluation.EvaluationItemService.GetEvaluation1ByExam({
+                ExamId: examId,
+                UserId: userId
+            }, (response) => {
                 console.log(response);
                 let grps = response.reduce(function (result, current) {
                     result[current.FirstKpiName] = result[current.FirstKpiName] || [];
@@ -16,7 +22,7 @@
                 }, {});
                 let html = `<table>
                                 <tr>
-                                    <th class='text-center' style='font-size:18px;' colspan='4'>他人评价</th>
+                                    <th class='text-center' style='font-size:18px;' colspan='4'>对<u>${$.cookie('evaluated_user')}</u>进行评价</th>
                                 </tr>
                                     <tr>
                                         <td style='width:80px;'>考核项目</td>
@@ -56,7 +62,7 @@
                         html += '<td><input type="text" /></td></tr>';
                     }
                 }
-                html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation2'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>";
+                html += `<tr><td colspan='4' class='text-center'><a href='SelfEvaluation1?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation2?i=${examId}&p=${userId}'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>`;
 
                 this.container.html(html);
 

@@ -68,6 +68,14 @@ namespace hr.Evaluation
             public const string View = "Evaluation:UserEvaluationRelation:View";
         }
 
+        [DisplayName("UserEvaluationRelation")]
+        public class EvaluationResult
+        {
+            public const string Delete = "Evaluation:EvaluationResult:Delete";
+            public const string Modify = "Evaluation:EvaluationResult:Modify";
+            public const string View = "Evaluation:EvaluationResult:View";
+        }
+
         public const string General = "Evaluation:General";
     }
 }
