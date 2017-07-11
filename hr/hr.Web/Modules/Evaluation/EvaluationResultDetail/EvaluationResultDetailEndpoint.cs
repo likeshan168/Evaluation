@@ -46,9 +46,18 @@ namespace hr.Evaluation.Endpoints
         public SaveResponse Add(IUnitOfWork uow, AddEvaluationResultRequest<MyRow> request)
         {
             var rep = new MyRepository();
+            int evaluationUserId;
             foreach (var item in request.Entities)
             {
-                var result = uow.Connection.Query<MyRow>($"select * from hr.EvaluationResultDetail where EvaluationItemId={item.EvaluationItemId} and ExamId={item.ExamId} and UserId={item.UserId}").FirstOrDefault();
+                if (item.EvaluationUserId.HasValue)
+                {
+                    evaluationUserId = item.EvaluationUserId.Value;
+                }
+                else
+                {
+                    evaluationUserId = int.Parse(Authorization.UserId);
+                }
+                var result = uow.Connection.Query<MyRow>($"select * from hr.EvaluationResultDetail where EvaluationItemId={item.EvaluationItemId} and ExamId={item.ExamId} and UserId={item.UserId} and EvaluationUserId={evaluationUserId}").FirstOrDefault();
                 if (result == null)
                 {
                     rep.Create(uow, new SaveRequest<MyRow>
@@ -59,6 +68,7 @@ namespace hr.Evaluation.Endpoints
                 else
                 {
                     //update
+                    item.EvaluationUserId = evaluationUserId;
                     rep.Update(uow, new SaveRequest<MyRow>
                     {
                         EntityId = result.Id,

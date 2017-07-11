@@ -1,6 +1,7 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using hr.Evaluation.Repositories;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
@@ -23,11 +24,19 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
-            //TODO:delete the related records
+            // first update the isenabled to false
+            //second delete the related evaluation result records
+            var relation = Retrieve(uow.Connection, new RetrieveRequest { EntityId = request.EntityId }).Entity;
+            if (relation != null)
+            {
+                string sql = $"UPDATE hr.ToDoList SET IsEnabled=0 WHERE UserId={relation.UserId} AND ExamId = {relation.ExamId};delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId}";
+                uow.Connection.Execute(sql);
+            }
+
             return new MyRepository().Delete(uow, request);
         }
 

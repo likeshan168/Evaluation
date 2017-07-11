@@ -172,10 +172,10 @@ namespace hr.Administration.Repositories
 
                 if (username == null)
                     throw DataValidation.RequiredError(fld.Username.Name, fld.Username.Title);
-
-                if (!IsValidUsername(username))
-                    throw new ValidationError("InvalidUsername", "Username",
-                        "Usernames should start with letters, only contain letters and numbers!");
+                // remove the validation, because it need to contain chinese name
+                //if (!IsValidUsername(username))
+                //    throw new ValidationError("InvalidUsername", "Username",
+                //        "Usernames should start with letters, only contain letters and numbers!");
 
                 var existing = GetUser(connection,
                     new Criteria(fld.Username) == username |

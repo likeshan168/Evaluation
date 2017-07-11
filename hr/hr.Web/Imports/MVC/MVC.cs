@@ -151,6 +151,11 @@ namespace MVC
                 public const string FirstKpiIndex = "~/Modules/Evaluation/FirstKpi/FirstKpiIndex.cshtml";
             }
 
+            public static class LeaderShip
+            {
+                public const string LeaderShipIndex = "~/Modules/Evaluation/LeaderShip/LeaderShipIndex.cshtml";
+            }
+
             public static class ScoreDetail
             {
                 public const string ScoreDetailIndex = "~/Modules/Evaluation/ScoreDetail/ScoreDetailIndex.cshtml";
@@ -169,6 +174,11 @@ namespace MVC
             public static class UserEvaluationRelation
             {
                 public const string UserEvaluationRelationIndex = "~/Modules/Evaluation/UserEvaluationRelation/UserEvaluationRelationIndex.cshtml";
+            }
+
+            public static class UserToUserView
+            {
+                public const string UserToUserViewIndex = "~/Modules/Evaluation/UserToUserView/UserToUserViewIndex.cshtml";
             }
 
         }

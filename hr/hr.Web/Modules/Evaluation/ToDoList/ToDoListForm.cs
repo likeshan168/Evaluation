@@ -20,5 +20,6 @@ namespace hr.Evaluation.Forms
         public String Content { get; set; }
         public Int32 ExamId { get; set; }
         public Int32 CreateBy { get; set; }
+        public bool IsEnabled { get; set; }
     }
 }

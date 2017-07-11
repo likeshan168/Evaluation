@@ -1,0 +1,21 @@
+﻿
+namespace hr.Evaluation {
+    export interface UserToUserViewRow {
+        UserId?: number;
+        ExamId?: number;
+        EvaluationUserId?: number;
+    }
+
+    export namespace UserToUserViewRow {
+        export const localTextPrefix = 'Evaluation.UserToUserView';
+
+        export namespace Fields {
+            export declare const UserId;
+            export declare const ExamId;
+            export declare const EvaluationUserId;
+        }
+
+        ['UserId', 'ExamId', 'EvaluationUserId'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

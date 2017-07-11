@@ -7437,6 +7437,23 @@ section.content > .s-DataGrid {
   width: 45%;
   float: right;
 }
+.drag-helper {
+  position: absolute;
+  display: inline-block;
+  padding: 4px 10px 4px 26px;
+  background-color: #e0e0e0;
+  border: 1px solid gray;
+  opacity: 0.7;
+  z-index: 99999;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px silver;
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  background-image: url(../serenity/images/ok.png);
+}
+.drag-helper.reject {
+  background-image: url(../serenity/images/slash.png);
+}
 .s-Evaluation-DepartmentDialog > .size {
   width: 650px;
   height: 500px;
@@ -7510,5 +7527,29 @@ section.content > .s-DataGrid {
   width: 650px;
 }
 .s-Evaluation-ScoreDetailDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-LeaderShipDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-LeaderShipDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-UserToUserViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-UserToUserViewDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-UserToUserViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-UserToUserViewDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-UserToUserViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-UserToUserViewDialog .caption {
   width: 150px;
 }

@@ -40,10 +40,17 @@ namespace hr.Evaluation.Repositories
             {
                 return new MyListHandler().Process(connection, request);
             }
-
-            Dictionary<string, object> filters = new Dictionary<string, object>();
-            filters.Add(MyRow.Fields.UserId.Name, Authorization.UserId);
-            request.EqualityFilter = filters;
+            if (request.EqualityFilter == null)
+            {
+                Dictionary<string, object> filters = new Dictionary<string, object>();
+                filters.Add(MyRow.Fields.UserId.Name, Authorization.UserId);
+                request.EqualityFilter = filters;
+            }
+            else
+            {
+                request.EqualityFilter.Add(MyRow.Fields.UserId.Name, Authorization.UserId);
+            }
+            
             return new MyListHandler().Process(connection, request);
         }
 

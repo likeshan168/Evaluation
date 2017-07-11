@@ -1,0 +1,16 @@
+﻿
+
+namespace hr.Evaluation {
+    export class UserToUserViewForm extends Serenity.PrefixedContext {
+        static formKey = 'Evaluation.UserToUserView';
+    }
+
+    export interface UserToUserViewForm {
+        Id: Serenity.IntegerEditor;
+        UserId: Serenity.IntegerEditor;
+        ExamId: Serenity.IntegerEditor;
+        EvaluationUserId: Serenity.IntegerEditor;
+    }
+
+    [['Id', () => Serenity.IntegerEditor], ['UserId', () => Serenity.IntegerEditor], ['ExamId', () => Serenity.IntegerEditor], ['EvaluationUserId', () => Serenity.IntegerEditor]].forEach(x => Object.defineProperty(UserToUserViewForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+}

@@ -3,6 +3,7 @@
 namespace hr.Administration.Endpoints
 {
     using Entities;
+    using hr.Evaluation.Repositories;
     using Repositories;
     using Serenity;
     using Serenity.ComponentModel;
@@ -23,7 +24,12 @@ namespace hr.Administration.Endpoints
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return new MyRepository().Create(uow, request);
+            var res = new MyRepository().Create(uow, request);
+            new LeaderShipRepository().Create(uow, new SaveRequest<Evaluation.Entities.LeaderShipRow>()
+            {
+                Entity = new Evaluation.Entities.LeaderShipRow { UserId = int.Parse(res.EntityId.ToString()) }
+            });
+            return res;
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
@@ -31,7 +37,7 @@ namespace hr.Administration.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {

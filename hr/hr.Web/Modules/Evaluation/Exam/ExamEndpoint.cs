@@ -1,6 +1,7 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using hr.Evaluation.Repositories;
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
@@ -22,9 +23,12 @@ namespace hr.Evaluation.Endpoints
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return new MyRepository().Update(uow, request);
+            //同事更新任务结束时间
+            var res = new MyRepository().Update(uow, request);
+            uow.Connection.Execute($"update hr.ToDoList set EndDate='{request.Entity.EndDate.Value.ToString("yyyy-MM-dd")}' where IsEnabled =1 and IsComplete = 0 and ExamId = {request.Entity.Id.Value}");
+            return res;
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {

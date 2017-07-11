@@ -13,6 +13,7 @@
         Url?: string;
         ExamId?: number;
         ExamTitle?: string;
+        IsEnabled?: boolean;
     }
 
     export namespace ToDoListRow {
@@ -34,9 +35,10 @@
             export declare const Url: string;
             export declare const ExamId: string;
             export declare const ExamTitle: string;
+            export declare const IsEnabled: string;
         }
 
-        ['Id', 'UserId', 'Title', 'Content', 'IsComplete', 'UserUsername', 'StartDate', 'EndDate', 'CreateBy', 'CreateByUsername', 'Url', 'ExamId', 'ExamTitle'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'UserId', 'Title', 'Content', 'IsComplete', 'UserUsername', 'StartDate', 'EndDate', 'CreateBy', 'CreateByUsername', 'Url', 'ExamId', 'ExamTitle', 'IsEnabled'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -74,6 +74,14 @@ namespace hr.Evaluation
             public const string Delete = "Evaluation:EvaluationResult:Delete";
             public const string Modify = "Evaluation:EvaluationResult:Modify";
             public const string View = "Evaluation:EvaluationResult:View";
+
+        }
+        [DisplayName("LeaderShipRow")]
+        public class LeaderShipRow
+        {
+            public const string Delete = "Evaluation:LeaderShipRow:Delete";
+            public const string Modify = "Evaluation:LeaderShipRow:Modify";
+            public const string View = "Evaluation:LeaderShipRow:View";
         }
 
         public const string General = "Evaluation:General";

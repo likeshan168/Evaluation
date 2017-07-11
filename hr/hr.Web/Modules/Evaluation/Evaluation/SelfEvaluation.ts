@@ -5,7 +5,7 @@
             //this.InitView(container);
             this.container = container;
         }
-
+        //TODO: 考虑评估过期的情况
         public init(): void {
             //console.log(Utils.getCurrentUserId());
             hr.Evaluation.ToDoListService.GetCurrentUserId(null, userId => {
@@ -72,25 +72,38 @@
                         if (!flag) {
                             return;
                         }
+                        let obj = new Object();
+                        obj['UserId'] = userId;
+                        obj['ExamId'] = examId;
                         Q.confirm("提交自我评价的内容吗,一旦提交再进行修改?", () => {
-                            let arr = [];
-                            inputs.each((index, ele) => {
-                                let tmpEle = $(ele);
-                                arr.push({
-                                    UserId: userId,
-                                    ExamId: examId,
-                                    InputContent: tmpEle.val(),
-                                    EvaluationItemId: tmpEle.data("itemid")
+                            hr.Evaluation.UserToUserViewService.List({
+                                EqualityFilter: obj
+                            }, res => {
+                                console.log(res);
+                                let arr = [];
+                                res.Entities.forEach((item, i) => {
+                                    inputs.each((index, ele) => {
+                                        let tmpEle = $(ele);
+                                        arr.push({
+                                            UserId: userId,
+                                            ExamId: examId,
+                                            InputContent: tmpEle.val(),
+                                            EvaluationItemId: tmpEle.data("itemid"),
+                                            EvaluationUserId: item.EvaluationUserId
+                                        });
+                                    });
+                                })
+
+                                hr.Evaluation.EvaluationResultDetailService.Add({
+                                    Entities: arr
+                                }, response => {
+                                    Q.notifySuccess("提交成功");
+                                    nexta.removeClass("hidden").addClass("show");
+                                    saveBtn.addClass('hidden');
+                                    inputs.attr('disabled', 'disabled');
                                 });
-                            });
-                            hr.Evaluation.EvaluationResultDetailService.Add({
-                                Entities: arr
-                            }, response => {
-                                Q.notifySuccess("提交成功");
-                                nexta.removeClass("hidden").addClass("show");
-                                saveBtn.attr('disabled', 'disabled').addClass('hidden');
-                                inputs.attr('disabled', 'disabled');
-                            });
+                            })
+
                         });
                     });
                 });

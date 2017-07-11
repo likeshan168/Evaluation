@@ -29,7 +29,9 @@ namespace hr.Evaluation.Columns
        
         public String ExamTitle { get; set; }
 
-        [Width(150, Max = 200, Min = 150)]
+        [Width(150, Max = 200, Min = 150),QuickFilter]
         public bool IsComplete { get; set; }
+        [QuickFilter, Width(150, Max = 200, Min = 150)]
+        public bool IsEnabled { get; set; }
     }
 }

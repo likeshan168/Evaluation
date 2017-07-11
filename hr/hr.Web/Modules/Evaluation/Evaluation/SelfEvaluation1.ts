@@ -23,7 +23,7 @@
                         </div>
                         <div class='row text-center'>
                            <div class='col-md-1 col-md-offset-4'> <a id='preva' href='SelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a></div>
-                           <div class='col-md-1'><button type="button" class="btn btn-primary" id='btnSave'>保存</button></div>
+                           <div class='col-md-1'><button type="button" class="btn btn-primary hidden" id='btnSave'>保存</button></div>
                            <div class='col-md-1'> <a id='nexta' href='Evaluation1?i=${examId}' class='hidden'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></div>
                         </div>`;
 
@@ -45,15 +45,22 @@
         }
 
         private onSelectChange(examId: number, sltUsers: JQuery): void {
-            
+
+            let nexta = $('#nexta');
+            let preva = $('#preva');
+            let btn = $('#btnSave');
+
             let evaluationContent = $('#evaluationContent');
             let html = '';
             if (sltUsers.val() === '0') {
                 html += `<p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>`;
                 evaluationContent.html(html);
+                btn.addClass('hidden');
+                nexta.addClass('hidden');
                 return;
             }
-            let res = Evaluation.EvaluationItemService.GetSelfEvaluationByExam({
+            
+            let res = Evaluation.EvaluationItemService.GetSelfEvaluation1ByExam({
                 ExamId: examId,
                 UserId: sltUsers.val()
             }, (response) => {
@@ -66,6 +73,7 @@
                             html += `<p class='bg-danger text-center'>${sltUsers.children("option:selected").text()}同志还未进行过自我评价，在其进行自我评价之后，才能进行下一步的操作</p>`;
                             evaluationContent.html(html);
                             $('#nexta').removeClass('hidden').removeClass('show').addClass('hidden');
+                            btn.removeClass('hidden');
                             return;
                         };
                         html += `<table>
@@ -100,14 +108,13 @@
                                 html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control' type="number" max="${item.Score}" min="0" /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
                             }
                         })
-                    } 
+                    }
                 }
 
                 evaluationContent.html(html);
-                let nexta = $('#nexta');
-                let preva = $('#preva');
-                let btn = $('#btnSave');
-                nexta.removeClass('hidden').addClass('show').attr('href', `Evaluation1?i=${examId}&p=${sltUsers.val() }`);
+                
+                nexta.removeClass('hidden').addClass('show').attr('href', `Evaluation1?i=${examId}&p=${sltUsers.val()}`);
+                btn.removeClass('hidden');
                 let inputScore = $('input[type="number"].form-control');
 
                 inputScore.change((e) => {
@@ -142,11 +149,32 @@
 
                     if (Q.any(arr, p => !Q.isEmptyOrNull($(p).val())) && Q.any(arr, p => !$(p).hasClass('success'))) {
                         Q.confirm('数据未保存，您确认离开此页面吗？', () => {
-                            window.location.href = nexta.attr('href');
+                            $.cookie('evaluated_user', sltUsers.children("option:selected").text(), { path: '/' });
+                            //进入下一页之前判断领导关系
+                            LeaderShipService.CheckCurrentUserIsParent({
+                                UserId: parseInt(sltUsers.val())
+                            }, response => {
+                                if (response) {
+                                    window.location.href = nexta.attr('href');
+                                }
+                                else {
+                                    window.location.href = `Evaluation2?i=${examId}&p=${sltUsers.val()}`;
+                                }
+                            });
                         });
                     } else {
-                        $.cookie('evaluated_user', sltUsers.children("option:selected").text(), { path:'/' });
-                        window.location.href = nexta.attr('href');
+                        $.cookie('evaluated_user', sltUsers.children("option:selected").text(), { path: '/' });
+                        LeaderShipService.CheckCurrentUserIsParent({
+                            UserId: parseInt(sltUsers.val())
+                        }, response => {
+                            console.log(response);
+                            if (response) {
+                                window.location.href = nexta.attr('href');
+                            }
+                            else {
+                                window.location.href = `Evaluation2?i=${examId}&p=${sltUsers.val()}`;
+                            }
+                        });
                     }
                 });
                 btn.click(e => {

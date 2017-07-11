@@ -3,6 +3,7 @@ namespace hr.Evaluation.Endpoints
 {
     using hr.Administration.Entities;
     using hr.Administration.Repositories;
+    using hr.Evaluation.Repositories;
     using hr.Modules.Common.Helpers;
     using Serenity.Data;
     using Serenity.Services;
@@ -89,6 +90,11 @@ namespace hr.Evaluation.Endpoints
                             InsertDate = DateTime.Now,
                             InsertUserId = int.Parse(((UserDefinition)Serenity.Authorization.UserDefinition).Id),
                             LastDirectoryUpdate = DateTime.Now
+                        });
+
+                        new LeaderShipRepository().Create(uow, new SaveRequest<Entities.LeaderShipRow>()
+                        {
+                            Entity = new Entities.LeaderShipRow { UserId = userId }
                         });
                     }
 

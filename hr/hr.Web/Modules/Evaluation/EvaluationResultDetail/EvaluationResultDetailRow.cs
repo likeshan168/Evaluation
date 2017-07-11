@@ -56,6 +56,13 @@ namespace hr.Evaluation.Entities
             set { Fields.Score[this] = value; }
         }
 
+        [DisplayName("EvaluationUserId")]
+        public Int32? EvaluationUserId
+        {
+            get { return Fields.EvaluationUserId[this]; }
+            set { Fields.EvaluationUserId[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.Id; }
@@ -81,6 +88,7 @@ namespace hr.Evaluation.Entities
             public StringField InputContent;
             public Int32Field Score;
             public Int32Field UserId;
+            public Int32Field EvaluationUserId;
 
 
             public RowFields()

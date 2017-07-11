@@ -4,6 +4,7 @@ namespace hr.Evaluation.Endpoints
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Collections.Generic;
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.ToDoListRepository;
@@ -24,7 +25,7 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
@@ -38,6 +39,10 @@ namespace hr.Evaluation.Endpoints
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
+
+            //var equalityFilter = new Dictionary<string, object>();
+            //equalityFilter.Add(MyRow.Fields.IsEnabled.Name, true);
+            //request.EqualityFilter = equalityFilter;
             return new MyRepository().List(connection, request);
         }
 

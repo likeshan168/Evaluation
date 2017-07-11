@@ -106,6 +106,12 @@ namespace hr.Evaluation.Entities
             get { return Fields.ExamTitle[this]; }
             set { Fields.ExamTitle[this] = value; }
         }
+        [DisplayName("IsEnabled")]
+        public bool? IsEnabled
+        {
+            get { return Fields.IsEnabled[this]; }
+            set { Fields.IsEnabled[this] = value; }
+        }
 
         IIdField IIdRow.IdField
         {
@@ -139,6 +145,7 @@ namespace hr.Evaluation.Entities
             public StringField Url;
             public Int32Field ExamId;
             public StringField ExamTitle;
+            public BooleanField IsEnabled;
 
             public RowFields()
                 : base()

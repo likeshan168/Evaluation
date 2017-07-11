@@ -6,6 +6,7 @@
         InputContent?: string;
         Score?: number;
         UserId?: number;
+        EvaluationUserId?: number;
     }
 
     export namespace EvaluationResultDetailRow {
@@ -20,9 +21,10 @@
             export declare const InputContent: string;
             export declare const Score: string;
             export declare const UserId: string;
+            export declare const EvaluationUserId: string;
         }
 
-        ['Id', 'ExamId', 'EvaluationItemId', 'InputContent', 'Score', 'UserId'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'ExamId', 'EvaluationItemId', 'InputContent', 'Score', 'UserId', 'EvaluationUserId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
