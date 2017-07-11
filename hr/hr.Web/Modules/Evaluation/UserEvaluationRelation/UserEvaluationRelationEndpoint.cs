@@ -16,6 +16,8 @@ namespace hr.Evaluation.Endpoints
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            //HttpContext.Current.Request.Url.Host;
+            string host = HttpContext.Request.Url.Host;
             return new MyRepository().Create(uow, request);
         }
 

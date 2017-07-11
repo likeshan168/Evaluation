@@ -47,11 +47,16 @@ namespace hr.Evaluation.Endpoints
         {
             var rep = new MyRepository();
             int evaluationUserId;
+            bool isSelfEvaluation = false;
+            int examId = 0;
             foreach (var item in request.Entities)
             {
                 if (item.EvaluationUserId.HasValue)
                 {
                     evaluationUserId = item.EvaluationUserId.Value;
+                    //只有是自我评价的时候，才会上传EvaluationUserId这个参数
+                    isSelfEvaluation = true;
+                    examId = item.ExamId.Value;
                 }
                 else
                 {
@@ -76,6 +81,38 @@ namespace hr.Evaluation.Endpoints
                     });
                 }
             }
+            //在完成自我评价之后，通知其他的评估人对本人进行评估
+            if (isSelfEvaluation)
+            {
+                //发送邮件通知评估人进行评估
+                var equalityFilter = new System.Collections.Generic.Dictionary<string, object>();
+                equalityFilter.Add(Entities.UserToUserViewRow.Fields.UserId.Name, Authorization.UserId);
+                equalityFilter.Add(Entities.UserToUserViewRow.Fields.ExamId.Name, examId);
+                var evaluationUsers = new Repositories.UserToUserViewRepository().List(uow.Connection, new ListRequest
+                {
+                    EqualityFilter = equalityFilter
+                });
+
+                //查询条件为UserId= and ExamId = and IsComplete=0 and IsEnabled=1
+                equalityFilter = new System.Collections.Generic.Dictionary<string, object>();
+                equalityFilter.Add(Entities.TodoListViewRow.Fields.UserId.Name, Authorization.UserId);
+                equalityFilter.Add(Entities.TodoListViewRow.Fields.ExamId.Name, examId);
+                equalityFilter.Add(Entities.TodoListViewRow.Fields.IsComplete.Name, 0);
+                equalityFilter.Add(Entities.TodoListViewRow.Fields.IsEnabled.Name, 1);
+                var todo = new Repositories.TodoListViewRepository().List(uow.Connection, new ListRequest
+                {
+                    EqualityFilter = equalityFilter
+                }).Entities.FirstOrDefault();
+
+                foreach (var item in evaluationUsers.Entities)
+                {
+                    todo.Email = item.Email;
+                    todo.Url = HttpContext.Request.Url.Host + '/' + todo.Url;
+                    todo.Username = item.Username;
+                    Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send(todo));
+                }
+            }
+
 
             return new SaveResponse();
         }

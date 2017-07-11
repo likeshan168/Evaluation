@@ -10,9 +10,9 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[UserToUserView]"), DisplayName("User To User View"), InstanceName("User To User View"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.EvaluationResult.View)]
-    [ModifyPermission(PermissionKeys.EvaluationResult.Modify)]
-    public sealed class UserToUserViewRow : Row, IIdRow
+    [ReadPermission("Administration:General")]
+    [ModifyPermission("Administration:General")]
+    public sealed class UserToUserViewRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id")]
         public Int32? Id
@@ -58,7 +58,12 @@ namespace hr.Evaluation.Entities
 
         IIdField IIdRow.IdField
         {
-            get { return Fields.Id; }
+            get { return Fields.; }
+        }
+
+        StringField INameRow.NameField
+        {
+            get { return Fields.Email; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();

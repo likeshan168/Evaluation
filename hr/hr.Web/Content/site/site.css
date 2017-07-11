@@ -7553,3 +7553,21 @@ section.content > .s-DataGrid {
 .s-Evaluation-UserToUserViewDialog .caption {
   width: 150px;
 }
+.s-Evaluation-TodoListViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-TodoListViewDialog .caption {
+  width: 150px;
+}
+.s-Default-TodoListViewDialog > .size {
+  width: 650px;
+}
+.s-Default-TodoListViewDialog .caption {
+  width: 150px;
+}
+.s-Evaluation-TodoListViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-TodoListViewDialog .caption {
+  width: 150px;
+}

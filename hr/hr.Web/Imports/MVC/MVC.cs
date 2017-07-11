@@ -173,12 +173,8 @@ namespace MVC
 
             public static class UserEvaluationRelation
             {
+                public const string EvaluationRemind = "~/Modules/Evaluation/UserEvaluationRelation/EvaluationRemind.cshtml";
                 public const string UserEvaluationRelationIndex = "~/Modules/Evaluation/UserEvaluationRelation/UserEvaluationRelationIndex.cshtml";
-            }
-
-            public static class UserToUserView
-            {
-                public const string UserToUserViewIndex = "~/Modules/Evaluation/UserToUserView/UserToUserViewIndex.cshtml";
             }
 
         }

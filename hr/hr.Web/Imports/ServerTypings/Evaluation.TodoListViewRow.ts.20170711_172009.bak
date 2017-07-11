@@ -1,0 +1,26 @@
+﻿
+namespace hr.Evaluation {
+    export interface TodoListViewRow {
+        Username?: string;
+        Url?: string;
+        StartDate?: string;
+        EndDate?: string;
+        Title?: string;
+    }
+
+    export namespace TodoListViewRow {
+        export const nameProperty = 'Username';
+        export const localTextPrefix = 'Evaluation.TodoListView';
+
+        export namespace Fields {
+            export declare const Username;
+            export declare const Url;
+            export declare const StartDate;
+            export declare const EndDate;
+            export declare const Title;
+        }
+
+        ['Username', 'Url', 'StartDate', 'EndDate', 'Title'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

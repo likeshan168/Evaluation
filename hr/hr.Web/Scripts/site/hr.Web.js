@@ -322,6 +322,54 @@ var hr;
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
+    var Default;
+    (function (Default) {
+        var TodoListViewForm = (function (_super) {
+            __extends(TodoListViewForm, _super);
+            function TodoListViewForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return TodoListViewForm;
+        }(Serenity.PrefixedContext));
+        TodoListViewForm.formKey = 'Default.TodoListView';
+        Default.TodoListViewForm = TodoListViewForm;
+        [['Id', function () { return Serenity.IntegerEditor; }], ['Username', function () { return Serenity.StringEditor; }], ['Url', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TodoListViewForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var TodoListViewRow;
+        (function (TodoListViewRow) {
+            TodoListViewRow.nameProperty = 'Username';
+            TodoListViewRow.localTextPrefix = 'Default.TodoListView';
+            var Fields;
+            (function (Fields) {
+            })(Fields = TodoListViewRow.Fields || (TodoListViewRow.Fields = {}));
+            ['Id', 'Username', 'Url', 'StartDate', 'EndDate', 'Title'].forEach(function (x) { return Fields[x] = x; });
+        })(TodoListViewRow = Default.TodoListViewRow || (Default.TodoListViewRow = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var TodoListViewService;
+        (function (TodoListViewService) {
+            TodoListViewService.baseUrl = 'Default/TodoListView';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TodoListViewService.Methods || (TodoListViewService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                TodoListViewService[x] = function (r, s, o) { return Q.serviceRequest(TodoListViewService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TodoListViewService.baseUrl + '/' + x;
+            });
+        })(TodoListViewService = Default.TodoListViewService || (Default.TodoListViewService = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
     var Evaluation;
     (function (Evaluation) {
         var ContentType;
@@ -927,6 +975,55 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var TodoListViewForm = (function (_super) {
+            __extends(TodoListViewForm, _super);
+            function TodoListViewForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return TodoListViewForm;
+        }(Serenity.PrefixedContext));
+        TodoListViewForm.formKey = 'Evaluation.TodoListView';
+        Evaluation.TodoListViewForm = TodoListViewForm;
+        [['Id', function () { return Serenity.IntegerEditor; }], ['Username', function () { return Serenity.StringEditor; }], ['Url', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TodoListViewForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var TodoListViewRow;
+        (function (TodoListViewRow) {
+            TodoListViewRow.idProperty = 'Id';
+            TodoListViewRow.nameProperty = 'Username';
+            TodoListViewRow.localTextPrefix = 'Evaluation.TodoListView';
+            var Fields;
+            (function (Fields) {
+            })(Fields = TodoListViewRow.Fields || (TodoListViewRow.Fields = {}));
+            ['Id', 'UserId', 'Username', 'Email', 'Url', 'StartDate', 'EndDate', 'Title', 'IsComplete', 'IsEnabled', 'ExamId'].forEach(function (x) { return Fields[x] = x; });
+        })(TodoListViewRow = Evaluation.TodoListViewRow || (Evaluation.TodoListViewRow = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var TodoListViewService;
+        (function (TodoListViewService) {
+            TodoListViewService.baseUrl = 'Evaluation/TodoListView';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TodoListViewService.Methods || (TodoListViewService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                TodoListViewService[x] = function (r, s, o) { return Q.serviceRequest(TodoListViewService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TodoListViewService.baseUrl + '/' + x;
+            });
+        })(TodoListViewService = Evaluation.TodoListViewService || (Evaluation.TodoListViewService = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var UserEvaluationRelationForm = (function (_super) {
             __extends(UserEvaluationRelationForm, _super);
             function UserEvaluationRelationForm() {
@@ -1024,22 +1121,6 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserToUserViewForm = (function (_super) {
-            __extends(UserToUserViewForm, _super);
-            function UserToUserViewForm() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            return UserToUserViewForm;
-        }(Serenity.PrefixedContext));
-        UserToUserViewForm.formKey = 'Evaluation.UserToUserView';
-        Evaluation.UserToUserViewForm = UserToUserViewForm;
-        [['Id', function () { return Serenity.IntegerEditor; }], ['UserId', function () { return Serenity.IntegerEditor; }], ['ExamId', function () { return Serenity.IntegerEditor; }], ['EvaluationUserId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(UserToUserViewForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
-    var Evaluation;
-    (function (Evaluation) {
         var UserToUserViewRow;
         (function (UserToUserViewRow) {
             UserToUserViewRow.idProperty = 'Id';
@@ -1047,7 +1128,7 @@ var hr;
             var Fields;
             (function (Fields) {
             })(Fields = UserToUserViewRow.Fields || (UserToUserViewRow.Fields = {}));
-            ['Id', 'UserId', 'ExamId', 'EvaluationUserId'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'UserId', 'ExamId', 'EvaluationUserId', 'Email', 'Username'].forEach(function (x) { return Fields[x] = x; });
         })(UserToUserViewRow = Evaluation.UserToUserViewRow || (Evaluation.UserToUserViewRow = {}));
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5272,50 +5353,6 @@ var hr;
             Serenity.Decorators.registerFormatter()
         ], UserListFormatter);
         Evaluation.UserListFormatter = UserListFormatter;
-    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
-    var Evaluation;
-    (function (Evaluation) {
-        var UserToUserViewDialog = (function (_super) {
-            __extends(UserToUserViewDialog, _super);
-            function UserToUserViewDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Evaluation.UserToUserViewForm(_this.idPrefix);
-                return _this;
-            }
-            UserToUserViewDialog.prototype.getFormKey = function () { return Evaluation.UserToUserViewForm.formKey; };
-            UserToUserViewDialog.prototype.getLocalTextPrefix = function () { return Evaluation.UserToUserViewRow.localTextPrefix; };
-            UserToUserViewDialog.prototype.getService = function () { return Evaluation.UserToUserViewService.baseUrl; };
-            return UserToUserViewDialog;
-        }(Serenity.EntityDialog));
-        UserToUserViewDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], UserToUserViewDialog);
-        Evaluation.UserToUserViewDialog = UserToUserViewDialog;
-    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
-    var Evaluation;
-    (function (Evaluation) {
-        var UserToUserViewGrid = (function (_super) {
-            __extends(UserToUserViewGrid, _super);
-            function UserToUserViewGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            UserToUserViewGrid.prototype.getColumnsKey = function () { return 'Evaluation.UserToUserView'; };
-            UserToUserViewGrid.prototype.getDialogType = function () { return Evaluation.UserToUserViewDialog; };
-            UserToUserViewGrid.prototype.getLocalTextPrefix = function () { return Evaluation.UserToUserViewRow.localTextPrefix; };
-            UserToUserViewGrid.prototype.getService = function () { return Evaluation.UserToUserViewService.baseUrl; };
-            return UserToUserViewGrid;
-        }(Serenity.EntityGrid));
-        UserToUserViewGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], UserToUserViewGrid);
-        Evaluation.UserToUserViewGrid = UserToUserViewGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;

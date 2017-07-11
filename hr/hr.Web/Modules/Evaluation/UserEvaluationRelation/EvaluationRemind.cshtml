@@ -1,0 +1,19 @@
+﻿@model hr.Evaluation.Entities.TodoListViewRow
+
+<html>
+<head>
+    <title>@Model.Title</title>
+</head>
+<body>
+    <p>Dear @Model.Username,</p>
+
+    <p>请点击一下链接去进行评估测试:</p>
+
+    <p><a href="@Model.Url">@Model.Url</a></p>
+
+    <p>If you have any questions,please contact to us.</p>
+
+    Thanks,
+    The "hr" Team
+</body>
+</html>

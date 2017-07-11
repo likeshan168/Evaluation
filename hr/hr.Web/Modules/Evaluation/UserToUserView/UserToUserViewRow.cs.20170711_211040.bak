@@ -42,20 +42,6 @@ namespace hr.Evaluation.Entities
             set { Fields.EvaluationUserId[this] = value; }
         }
 
-        [DisplayName("Email"), Size(100), QuickSearch]
-        public String Email
-        {
-            get { return Fields.Email[this]; }
-            set { Fields.Email[this] = value; }
-        }
-
-        [DisplayName("Username"), Size(100)]
-        public String Username
-        {
-            get { return Fields.Username[this]; }
-            set { Fields.Username[this] = value; }
-        }
-
         IIdField IIdRow.IdField
         {
             get { return Fields.Id; }
@@ -74,8 +60,6 @@ namespace hr.Evaluation.Entities
             public Int32Field UserId;
             public Int32Field ExamId;
             public Int32Field EvaluationUserId;
-            public StringField Email;
-            public StringField Username;
 
             public RowFields()
                 : base()

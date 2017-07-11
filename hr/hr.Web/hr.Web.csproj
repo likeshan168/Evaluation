@@ -1181,9 +1181,6 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewColumns.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserViewModel.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1283,8 +1280,6 @@
     <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamListDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListFormatter.ts" />
-    <TypeScriptCompile Include="Modules\Evaluation\UserToUserView\UserToUserViewDialog.ts" />
-    <TypeScriptCompile Include="Modules\Evaluation\UserToUserView\UserToUserViewGrid.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
@@ -1308,7 +1303,7 @@
     <Content Include="Modules\Evaluation\Evaluation\SelfEvaluation1.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\Evaluation2.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\Evaluation1.cshtml" />
-    <Content Include="Modules\Evaluation\UserToUserView\UserToUserViewIndex.cshtml" />
+    <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1800,12 +1795,15 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.TodoListViewRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.TodoListViewService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.TodoListViewForm.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TodoListViewRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewForm.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TodoListViewService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TodoListViewForm.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewService.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1861,6 +1859,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
     <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />
@@ -1934,10 +1933,6 @@
     <Compile Include="Modules\Evaluation\EvaluationResult\AddEvaluationResultRequest.cs" />
     <Compile Include="Modules\Evaluation\Evaluation\EvaluationPage.cs" />
     <Compile Include="Modules\Evaluation\PermissionKeys.cs" />
-    <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewColumns.cs" />
-    <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewEndpoint.cs" />
-    <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewForm.cs" />
-    <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewPage.cs" />
     <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewRepository.cs" />
     <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewRow.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
@@ -2068,6 +2063,9 @@
     <Compile Include="Modules\Evaluation\LeaderShip\LeaderShipRepository.cs" />
     <Compile Include="Modules\Evaluation\LeaderShip\LeaderShipEndpoint.cs" />
     <Compile Include="Modules\Evaluation\LeaderShip\LeaderShipPage.cs" />
+    <Compile Include="Modules\Evaluation\TodoListView\TodoListViewRow.cs" />
+    <Compile Include="Modules\Evaluation\TodoListView\TodoListViewRepository.cs" />
+    <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2222,7 +2220,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56483/</IISUrl>
+          <IISUrl>http://localhost:55610/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

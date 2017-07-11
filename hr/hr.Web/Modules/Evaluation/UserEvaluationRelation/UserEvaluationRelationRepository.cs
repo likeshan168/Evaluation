@@ -2,6 +2,7 @@
 
 namespace hr.Evaluation.Repositories
 {
+    using Hangfire;
     using hr.Evaluation.Entities;
     using Serenity;
     using Serenity.Data;
@@ -92,22 +93,26 @@ namespace hr.Evaluation.Repositories
 
             #region add todo list info
             //add self evaluation to todo list
-            var todoRep = new ToDoListRepository();
-            todoRep.Create(uow, new SaveRequest<ToDoListRow>()
+            if (!isUpdate)
             {
-                Entity = new ToDoListRow()
+                var todoRep = new ToDoListRepository();
+                var todoResponse = todoRep.Create(uow, new SaveRequest<ToDoListRow>()
                 {
-                    UserId = request.Entity.UserId,
-                    Title = Constants.Evaluation.Title,
-                    Content = Constants.Evaluation.Content,
-                    StartDate = DateTime.Now,
-                    EndDate = exam.Entity.EndDate,
-                    CreateBy = Int32.Parse(Authorization.UserId),
-                    Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
-                    ExamId = exam.Entity.Id,
-                    IsEnabled = true
-                }
-            });
+                    Entity = new ToDoListRow()
+                    {
+                        UserId = request.Entity.UserId,
+                        Title = Constants.Evaluation.Title,
+                        Content = Constants.Evaluation.Content,
+                        StartDate = DateTime.Now,
+                        EndDate = exam.Entity.EndDate,
+                        CreateBy = Int32.Parse(Authorization.UserId),
+                        Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
+                        ExamId = exam.Entity.Id,
+                        IsEnabled = true
+                    }
+                });
+            }
+
             #endregion
 
             //获取评价人信息
@@ -177,6 +182,24 @@ namespace hr.Evaluation.Repositories
                 }
                 index++;
             }
+            #endregion
+
+            #region 发送邮件进行通知
+            //只有在新增的时候，通知员工进行自我评价
+            if (!isUpdate)
+            {
+                var equalityFilter = new Dictionary<string, object>();
+                equalityFilter.Add(TodoListViewRow.Fields.UserId.Name, request.Entity.UserId);
+                equalityFilter.Add(TodoListViewRow.Fields.ExamId.Name, exam.Entity.Id);
+                equalityFilter.Add(TodoListViewRow.Fields.IsComplete.Name, 0);
+                equalityFilter.Add(TodoListViewRow.Fields.IsEnabled.Name, 1);
+                var todo = new TodoListViewRepository().List(uow.Connection, new ListRequest
+                {
+                    EqualityFilter = equalityFilter
+                }).Entities.FirstOrDefault();
+                BackgroundJob.Enqueue(() => EmailMangement.Send(todo));
+            }
+
             #endregion
         }
 
