@@ -42,12 +42,12 @@
                             })
                             html += `<tr><td colspan='5' class='text-center'><button type="button" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=${examId}' id='nexta' class='hidden'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                         } else {
-                            html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
+                            html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
                             html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                         }
 
                     } else {
-                        html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
+                        html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
                         html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     }
                     this.container.html(html);
@@ -95,7 +95,8 @@
                                 })
 
                                 hr.Evaluation.EvaluationResultDetailService.Add({
-                                    Entities: arr
+                                    Entities: arr,
+                                    IsComplete: false
                                 }, response => {
                                     Q.notifySuccess("提交成功");
                                     nexta.removeClass("hidden").addClass("show");

@@ -14,9 +14,12 @@ using HR = hr.Evaluation.Pages;
 
 [assembly: NavigationLink(7800, "Evaluation/Employee", typeof(HR.EmployeeController))]
 [assembly: NavigationLink(7900, "Evaluation/Department", typeof(HR.DepartmentController))]
-[assembly: NavigationLink(8000, "Evaluation/ToDoList", typeof(HR.ToDoListController))]
+//[assembly: NavigationLink(8000, "Evaluation/ToDoList", typeof(HR.ToDoListController))]
 
 [assembly: NavigationLink(8100, "Evaluation/LeaderShip", typeof(HR.LeaderShipController))]
+
+//[assembly: NavigationLink(8200, "Evaluation/EvaluationFinalResult", typeof(HR.EvaluationFinalResultController))]
+
 
 //[assembly: NavigationLink(9700, "Evaluation/Employee", typeof(HR.EmployeeController), icon: "fa fa-users")]
 //[assembly: NavigationLink(9800, "Evaluation/Department", typeof(HR.DepartmentController), icon: "fa fa-building")]

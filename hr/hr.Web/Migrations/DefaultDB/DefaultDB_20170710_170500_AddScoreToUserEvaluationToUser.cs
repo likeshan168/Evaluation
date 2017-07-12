@@ -9,7 +9,7 @@ namespace hr.Migrations.DefaultDB
         public override void Up()
         {
             Alter.Table("UserEvaluationToUser").InSchema("hr")
-              .AddColumn("Score").AsInt32().Nullable();
+              .AddColumn("HasEvaluated").AsBoolean().Nullable();
         }
     }
 }

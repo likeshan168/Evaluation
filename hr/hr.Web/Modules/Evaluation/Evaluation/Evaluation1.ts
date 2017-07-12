@@ -139,7 +139,8 @@
                         })
                         console.log(entities);
                         hr.Evaluation.EvaluationResultDetailService.Add({
-                            Entities: entities
+                            Entities: entities,
+                            IsComplete: false
                         }, response => {
                             Q.notifySuccess('保存成功！');
                             //inputScore.attr('disabled', 'disabled');

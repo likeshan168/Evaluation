@@ -12,10 +12,12 @@ namespace hr.Evaluation.Repositories
     using System.Data;
     using System.Linq;
     using System.Text;
+    using System.Web;
     using MyRow = Entities.UserEvaluationRelationRow;
 
     public class UserEvaluationRelationRepository
     {
+        public HttpRequestBase WebRequest { get; set; }
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
@@ -37,8 +39,8 @@ namespace hr.Evaluation.Repositories
              */
             if (!uow.Connection.Exists<MyRow>(MyRow.Fields.Id == request.Entity.Id.Value && MyRow.Fields.ExamId == request.Entity.ExamId.Value))
             {
-                //添加考核结果详情
-                AddTodoListAndEvaluationResultDetail(uow, request, GetEvaluationUserIdsByUserIdAndExamId(uow, request), true);
+                //添加考核结果详情，这里是将考卷更改了
+                AddTodoListAndEvaluationResultDetail(uow, request, GetEvaluationUserIdsByUserIdAndExamId(uow, request), false);
             }
             else
             {
@@ -53,6 +55,8 @@ namespace hr.Evaluation.Repositories
 
                 var toAddList = userList.Except(oldUserList);
                 AddTodoListAndEvaluationResultDetail(uow, request, toAddList, true);
+                //在添加考核人以后应该要对其进行发送邮件告知，对被考核人进行评价
+                //TODO; add the email feature in the future if needed
             }
 
             var res = new MySaveHandler().Process(uow, request, SaveRequestType.Update);
@@ -92,26 +96,27 @@ namespace hr.Evaluation.Repositories
             #endregion
 
             #region add todo list info
+            //TODO: add the feature in the future
             //add self evaluation to todo list
-            if (!isUpdate)
-            {
-                var todoRep = new ToDoListRepository();
-                var todoResponse = todoRep.Create(uow, new SaveRequest<ToDoListRow>()
-                {
-                    Entity = new ToDoListRow()
-                    {
-                        UserId = request.Entity.UserId,
-                        Title = Constants.Evaluation.Title,
-                        Content = Constants.Evaluation.Content,
-                        StartDate = DateTime.Now,
-                        EndDate = exam.Entity.EndDate,
-                        CreateBy = Int32.Parse(Authorization.UserId),
-                        Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
-                        ExamId = exam.Entity.Id,
-                        IsEnabled = true
-                    }
-                });
-            }
+            //if (!isUpdate)
+            //{
+            //    var todoRep = new ToDoListRepository();
+            //    var todoResponse = todoRep.Create(uow, new SaveRequest<ToDoListRow>()
+            //    {
+            //        Entity = new ToDoListRow()
+            //        {
+            //            UserId = request.Entity.UserId,
+            //            Title = Constants.Evaluation.Title,
+            //            Content = Constants.Evaluation.Content,
+            //            StartDate = DateTime.Now,
+            //            EndDate = exam.Entity.EndDate,
+            //            CreateBy = Int32.Parse(Authorization.UserId),
+            //            Url = $"Evaluation/Evaluation/SelfEvaluation?i={exam.Entity.Id}",
+            //            ExamId = exam.Entity.Id,
+            //            IsEnabled = true
+            //        }
+            //    });
+            //}
 
             #endregion
 
@@ -120,67 +125,52 @@ namespace hr.Evaluation.Repositories
 
             EvaluationResultDetailRepository erdRep = new EvaluationResultDetailRepository(); ;
             EvaluationItemRepository itemRep = new EvaluationItemRepository();
-            int index = 0;
             foreach (var evaluationUserId in evaluationUserIds)
             {
-                var itemIds = exam.Entity.EvaluationIds.Split(',');
-                foreach (var id in itemIds)
+                //如果是更新的话，需要将被评价人的自我评价也更新过来
+
+                if (isUpdate)
                 {
-                    #region 代码逻辑有问题
-                    ////判断是否为自我评价，如果是就插入一遍就行
-                    //var temp = itemRep.Retrieve(uow.Connection, new RetrieveRequest
-                    //{
-                    //    EntityId = id
-                    //});
-                    ////不是自我评价
-                    //if (temp != null && !temp.Entity.IsSelfEvaluation.Value)
-                    //{
-                    //    erdRep.Create(uow, new SaveRequest<EvaluationResultDetailRow>()
-                    //    {
-                    //        Entity = new EvaluationResultDetailRow()
-                    //        {
-                    //            ExamId = exam.Entity.Id,
-                    //            UserId = request.Entity.UserId,
-                    //            EvaluationItemId = int.Parse(id),
-                    //            EvaluationUserId = evaluationUserId
-                    //        }
-                    //    });
-                    //}
-                    //else
-                    //{
-                    //    if (!isUpdate)
-                    //    {
-                    //        //自我评价，只能插入一次
-                    //        if (index == 0)
-                    //        {
-                    //            erdRep.Create(uow, new SaveRequest<EvaluationResultDetailRow>()
-                    //            {
-                    //                Entity = new EvaluationResultDetailRow()
-                    //                {
-                    //                    ExamId = exam.Entity.Id,
-                    //                    UserId = request.Entity.UserId,
-                    //                    EvaluationItemId = int.Parse(id),
-                    //                    EvaluationUserId = request.Entity.UserId
-                    //                }
-                    //            });
-                    //        }
-                    //    }
-                    //} 
-                    #endregion
-
-
-                    erdRep.Create(uow, new SaveRequest<EvaluationResultDetailRow>()
+                    var rst = erdRep.List(uow.Connection, new ListRequest
                     {
-                        Entity = new EvaluationResultDetailRow()
+                        EqualityFilter = new Dictionary<string, object>
                         {
-                            ExamId = exam.Entity.Id,
-                            UserId = request.Entity.UserId,
-                            EvaluationItemId = int.Parse(id),
-                            EvaluationUserId = evaluationUserId
+                            { EvaluationResultDetailRow.Fields.ExamId.Name,exam.Entity.Id },
+                            { EvaluationResultDetailRow.Fields.UserId.Name,request.Entity.UserId }
                         }
                     });
+                    rst.Entities.DistinctBy(p => new { p.EvaluationItemId }).ToList().ForEach(p =>
+                       {
+                           erdRep.Create(uow, new SaveRequest<EvaluationResultDetailRow>()
+                           {
+                               Entity = new EvaluationResultDetailRow()
+                               {
+                                   ExamId = exam.Entity.Id,
+                                   UserId = request.Entity.UserId,
+                                   EvaluationItemId = p.EvaluationItemId,
+                                   EvaluationUserId = evaluationUserId,
+                                   InputContent = p.InputContent
+                               }
+                           });
+                       });
                 }
-                index++;
+                else
+                {
+                    var itemIds = exam.Entity.EvaluationIds.Split(',');
+                    foreach (var id in itemIds)
+                    {
+                        erdRep.Create(uow, new SaveRequest<EvaluationResultDetailRow>()
+                        {
+                            Entity = new EvaluationResultDetailRow()
+                            {
+                                ExamId = exam.Entity.Id,
+                                UserId = request.Entity.UserId,
+                                EvaluationItemId = int.Parse(id),
+                                EvaluationUserId = evaluationUserId
+                            }
+                        });
+                    }
+                }
             }
             #endregion
 
@@ -188,16 +178,7 @@ namespace hr.Evaluation.Repositories
             //只有在新增的时候，通知员工进行自我评价
             if (!isUpdate)
             {
-                var equalityFilter = new Dictionary<string, object>();
-                equalityFilter.Add(TodoListViewRow.Fields.UserId.Name, request.Entity.UserId);
-                equalityFilter.Add(TodoListViewRow.Fields.ExamId.Name, exam.Entity.Id);
-                equalityFilter.Add(TodoListViewRow.Fields.IsComplete.Name, 0);
-                equalityFilter.Add(TodoListViewRow.Fields.IsEnabled.Name, 1);
-                var todo = new TodoListViewRepository().List(uow.Connection, new ListRequest
-                {
-                    EqualityFilter = equalityFilter
-                }).Entities.FirstOrDefault();
-                BackgroundJob.Enqueue(() => EmailMangement.Send(todo));
+                SendEmail(uow, request, exam.Entity.Id);
             }
 
             #endregion
@@ -226,6 +207,24 @@ namespace hr.Evaluation.Repositories
             {
                 uow.Connection.Execute(sb.ToString());
             }
+        }
+
+        private void SendEmail(IUnitOfWork uow, SaveRequest<MyRow> request, int? examId)
+        {
+            var equalityFilter = new Dictionary<string, object>();
+            equalityFilter.Add(TodoListViewRow.Fields.UserId.Name, request.Entity.UserId);
+            equalityFilter.Add(TodoListViewRow.Fields.ExamId.Name, examId);
+            equalityFilter.Add(TodoListViewRow.Fields.IsComplete.Name, 0);
+            equalityFilter.Add(TodoListViewRow.Fields.IsEnabled.Name, 1);
+            var todo = new TodoListViewRepository().List(uow.Connection, new ListRequest
+            {
+                EqualityFilter = equalityFilter
+            }).Entities.FirstOrDefault();
+            if (WebRequest != null && WebRequest.Url != null && !string.IsNullOrEmpty(WebRequest.Url.Host))
+            {
+                todo.Url = WebRequest.Url.Host + ':' + WebRequest.Url.Port + '/' + todo.Url;
+            }
+            BackgroundJob.Enqueue(() => EmailMangement.Send(todo));
         }
     }
 }

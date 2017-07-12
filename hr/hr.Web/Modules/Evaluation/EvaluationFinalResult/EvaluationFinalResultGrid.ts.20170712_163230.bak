@@ -1,0 +1,17 @@
+﻿
+namespace hr.Evaluation {
+    
+    @Serenity.Decorators.registerClass()
+    export class EvaluationFinalResultGrid extends Serenity.EntityGrid<EvaluationFinalResultRow, any> {
+        protected getColumnsKey() { return 'Evaluation.EvaluationFinalResult'; }
+        //protected getDialogType() { return EvaluationFinalResultDialog; }
+        protected getLocalTextPrefix() { return EvaluationFinalResultRow.localTextPrefix; }
+        protected getService() { return EvaluationFinalResultService.baseUrl; }
+        protected getIdProperty() { return DepartmentRow.idProperty; }
+
+
+        constructor(container: JQuery) {
+            super(container);
+        }
+    }
+}

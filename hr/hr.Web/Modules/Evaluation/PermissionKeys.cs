@@ -84,6 +84,14 @@ namespace hr.Evaluation
             public const string View = "Evaluation:LeaderShipRow:View";
         }
 
+        [DisplayName("EvaluationFinalResult")]
+        public class EvaluationFinalResult
+        {
+            public const string Delete = "Evaluation:EvaluationFinalResult:Delete";
+            public const string Modify = "Evaluation:EvaluationFinalResult:Modify";
+            public const string View = "Evaluation:EvaluationFinalResult:View";
+        }
+
         public const string General = "Evaluation:General";
     }
 }

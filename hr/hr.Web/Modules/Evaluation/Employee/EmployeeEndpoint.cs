@@ -66,8 +66,11 @@ namespace hr.Evaluation.Endpoints
                     var fld = UserRow.Fields;
                     foreach (MyRow item in employees)
                     {
-                        if (connection.Exists<UserRow>(UserRow.Fields.Username == item.Name))
+                        var existedUser = connection.Query<UserRow>($"select * from dbo.users where Username='{item.Name}';").FirstOrDefault();
+                        if (existedUser != null)
                         {
+                            //存在的话，应该更新以下用户信息
+                            connection.Execute($"update dbo.users set Email='{item.Email}', LastDirectoryUpdate='{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' where Username='{item.Name}';");
                             continue;
                         }
 

@@ -98,7 +98,8 @@
                         });
                         //console.log(entities);
                         hr.Evaluation.EvaluationResultDetailService.Add({
-                            Entities: entities
+                            Entities: entities,
+                            IsComplete: true
                         }, response => {
                             Q.notifySuccess('保存成功！');
                         });

@@ -1139,6 +1139,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EmployeeImportService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationFinalResultColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1803,7 +1806,17 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TodoListViewService.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.TodoListViewForm.ts" />
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserToUserViewService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationFinalResultRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationFinalResultService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultGrid.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1860,6 +1873,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
+    <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
     <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />
@@ -2066,6 +2080,11 @@
     <Compile Include="Modules\Evaluation\TodoListView\TodoListViewRow.cs" />
     <Compile Include="Modules\Evaluation\TodoListView\TodoListViewRepository.cs" />
     <Compile Include="Modules\Evaluation\UserToUserView\UserToUserViewEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultRow.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultColumns.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultRepository.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

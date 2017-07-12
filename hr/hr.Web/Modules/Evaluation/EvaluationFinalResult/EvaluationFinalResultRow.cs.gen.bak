@@ -9,19 +9,19 @@ namespace hr.Evaluation.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), TableName("[hr].[UserToUserView]"), DisplayName("User To User View"), InstanceName("User To User View"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.EvaluationResult.View)]
-    [ModifyPermission(PermissionKeys.EvaluationResult.Modify)]
-    public sealed class UserToUserViewRow : Row, IIdRow
+    [ConnectionKey("Default"), TableName("[hr].[EvaluationFinalResult]"), DisplayName("Evaluation Final Result"), InstanceName("Evaluation Final Result"), TwoLevelCached]
+    [ReadPermission("Administration:General")]
+    [ModifyPermission("Administration:General")]
+    public sealed class EvaluationFinalResultRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id")]
-        public Int32? Id
+        public Int64? Id
         {
             get { return Fields.Id[this]; }
             set { Fields.Id[this] = value; }
         }
 
-        [DisplayName("User Id"), NotNull]
+        [DisplayName("User Id")]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }
@@ -35,18 +35,11 @@ namespace hr.Evaluation.Entities
             set { Fields.ExamId[this] = value; }
         }
 
-        [DisplayName("Evaluation User Id")]
-        public Int32? EvaluationUserId
+        [DisplayName("Title"), Size(400), QuickSearch]
+        public String Title
         {
-            get { return Fields.EvaluationUserId[this]; }
-            set { Fields.EvaluationUserId[this] = value; }
-        }
-
-        [DisplayName("Email"), Size(100), QuickSearch]
-        public String Email
-        {
-            get { return Fields.Email[this]; }
-            set { Fields.Email[this] = value; }
+            get { return Fields.Title[this]; }
+            set { Fields.Title[this] = value; }
         }
 
         [DisplayName("Username"), Size(100)]
@@ -54,46 +47,53 @@ namespace hr.Evaluation.Entities
         {
             get { return Fields.Username[this]; }
             set { Fields.Username[this] = value; }
-
         }
-        [DisplayName("HasEvaluated"), Size(100)]
-        public bool? HasEvaluated
+
+        [DisplayName("Total Score"), Size(38), Scale(1)]
+        public Decimal? TotalScore
         {
-            get
-            {
-                return Fields.HasEvaluated[this];
-            }
-            set
-            {
-                Fields.HasEvaluated[this] = value;
-            }
+            get { return Fields.TotalScore[this]; }
+            set { Fields.TotalScore[this] = value; }
+        }
+
+        [DisplayName("Grade"), Size(4), NotNull]
+        public String Grade
+        {
+            get { return Fields.Grade[this]; }
+            set { Fields.Grade[this] = value; }
         }
 
         IIdField IIdRow.IdField
         {
-            get { return Fields.Id; }
+            get { return Fields.; }
+        }
+
+        StringField INameRow.NameField
+        {
+            get { return Fields.Title; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
 
-        public UserToUserViewRow()
+        public EvaluationFinalResultRow()
             : base(Fields)
         {
         }
 
         public class RowFields : RowFieldsBase
         {
-            public Int32Field Id;
+            public Int64Field Id;
             public Int32Field UserId;
             public Int32Field ExamId;
-            public Int32Field EvaluationUserId;
-            public StringField Email;
+            public StringField Title;
             public StringField Username;
-            public BooleanField HasEvaluated;
+            public DecimalField TotalScore;
+            public StringField Grade;
+
             public RowFields()
                 : base()
             {
-                LocalTextPrefix = "Evaluation.UserToUserView";
+                LocalTextPrefix = "Evaluation.EvaluationFinalResult";
             }
         }
     }

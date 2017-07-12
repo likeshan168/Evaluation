@@ -122,6 +122,11 @@ namespace MVC
                 public const string SelfEvaluation1 = "~/Modules/Evaluation/Evaluation/SelfEvaluation1.cshtml";
             }
 
+            public static class EvaluationFinalResult
+            {
+                public const string EvaluationFinalResultIndex = "~/Modules/Evaluation/EvaluationFinalResult/EvaluationFinalResultIndex.cshtml";
+            }
+
             public static class EvaluationItem
             {
                 public const string EvaluationItemIndex = "~/Modules/Evaluation/EvaluationItem/EvaluationItemIndex.cshtml";

@@ -12,5 +12,7 @@ namespace hr.Evaluation
 
         public List<T> Entities { get; set; }
 
+        public bool IsComplete { get; set; }
+
     }
 }

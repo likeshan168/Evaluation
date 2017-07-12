@@ -1,0 +1,30 @@
+﻿
+namespace hr.Evaluation {
+    export interface EvaluationFinalResultRow {
+        Id?: number;
+        UserId?: number;
+        ExamId?: number;
+        Title?: string;
+        Username?: string;
+        TotalScore?: number;
+        Grade?: string;
+    }
+
+    export namespace EvaluationFinalResultRow {
+        export const nameProperty = 'Title';
+        export const localTextPrefix = 'Evaluation.EvaluationFinalResult';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const UserId;
+            export declare const ExamId;
+            export declare const Title;
+            export declare const Username;
+            export declare const TotalScore;
+            export declare const Grade;
+        }
+
+        ['Id', 'UserId', 'ExamId', 'Title', 'Username', 'TotalScore', 'Grade'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+
