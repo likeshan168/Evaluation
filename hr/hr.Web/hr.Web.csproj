@@ -1307,6 +1307,7 @@
     <Content Include="Modules\Evaluation\Evaluation\Evaluation2.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\Evaluation1.cshtml" />
     <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />

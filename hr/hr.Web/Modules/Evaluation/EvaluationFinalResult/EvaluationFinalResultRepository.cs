@@ -45,6 +45,7 @@ namespace hr.Evaluation.Repositories
                     if (item.UserId == p.UserId)
                     {
                         p.TotalScore = 0;
+                        p.Grade = "考核还未完";
                     }
                 }
             });
