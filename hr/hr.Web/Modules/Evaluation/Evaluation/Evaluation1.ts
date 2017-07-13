@@ -59,7 +59,7 @@
                             html += `<td><textarea class='form-control' style='width:100%;min-height:100px;' type='text'>${value.InputContent !== undefined?value.InputContent:value.Content}</textarea></td>`;
 
                             if (value.FScore) {
-                                html += `<td><input data-itemid='${value.Id}' data-maxscore='${value.Score}' class='form-control success' type="number" max="${value.Score}" min="0" value='${value.FScore}' /></td></tr>`;
+                                html += `<td><input disabled='disabled' data-itemid='${value.Id}' data-maxscore='${value.Score}' class='form-control success' type="number" max="${value.Score}" min="0" value='${value.FScore}' /></td></tr>`;
                             }
                             else {
                                 html += `<td><input  data-itemid='${value.Id}' data-maxscore='${value.Score}' class='form-control' type="number" max="${value.Score}" min="0" /></td></tr>`;
@@ -71,7 +71,7 @@
                         //html += '<td><input type="text" /></td></tr>';
                     }
                 }
-                html += `<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type="button" class="btn btn-primary" id='btnSave'>保存</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=${examId}&p=${userId}'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>`;
+                html += `<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type="button" class="btn btn-primary hidden" id='btnSave'>保存</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=${examId}&p=${userId}'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>`;
 
                 this.container.html(html);
 
@@ -97,6 +97,9 @@
                 inputScore.each((index, ele) => {
                     arr.push(ele);
                 });
+                if (Q.any(arr, p => !$(p).hasClass('success'))) {
+                    btn.removeClass('hidden');
+                }
                 preva.click((e) => {
                     e.preventDefault();
 
@@ -145,6 +148,7 @@
                             Q.notifySuccess('保存成功！');
                             //inputScore.attr('disabled', 'disabled');
                             inputScore.addClass('success');
+                            btn.addClass('hidden');
                         });
                     }
                 });

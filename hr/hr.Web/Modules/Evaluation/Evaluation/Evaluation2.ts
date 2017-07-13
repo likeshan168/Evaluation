@@ -76,6 +76,11 @@
                 let preva = $('#preva');
 
                 let checkedRd = $("input[type='radio']:checked");
+                //已经评价过之后就不能再修改
+                if (checkedRd.length != 0) {
+                    radio.attr('disabled', 'disabled');
+                    btnSave.addClass('hidden');
+                }
                 checkedRd.each((index, ele) => {
                     $(ele).parent().parent().parent().removeClass("text-danger").addClass("text-success");
                 });
@@ -96,13 +101,16 @@
                                 Score: parseInt($(ele).val())
                             });
                         });
-                        //console.log(entities);
-                        hr.Evaluation.EvaluationResultDetailService.Add({
-                            Entities: entities,
-                            IsComplete: true
-                        }, response => {
-                            Q.notifySuccess('保存成功！');
-                        });
+                        Q.confirm('您确认提交保存吗,保存之后就不能再修改', () => {
+                            hr.Evaluation.EvaluationResultDetailService.Add({
+                                Entities: entities,
+                                IsComplete: true
+                            }, response => {
+                                Q.notifySuccess(`您已完成对${$.cookie('evaluated_user')}的评估！`);
+                                radio.attr('disabled', 'disabled');
+                                btnSave.addClass('hidden');
+                            });
+                        })
                     }
                 });
 

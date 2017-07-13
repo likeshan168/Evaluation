@@ -13,40 +13,40 @@ namespace hr.Evaluation
     public class EmailMangement
     {
         [DisplayName("评估测试邮件")]
-        public static void Send2(TodoListViewRow todo, string evaluationUserName)
+        public static void Send2(string title,string userName, string url, string email, string evaluationUserName)
         {
             //var emailBody = TemplateHelper.RenderTemplate(
             //        "~/Modules/Evaluation/UserEvaluationRelation/EvaluationRemind.cshtml", todo);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"<html><head><title>{todo.Title}</title></head>");
+            sb.Append($"<html><head><title>{title}</title></head>");
             sb.Append($"<body><p>Dear {evaluationUserName},</p>");
-            sb.Append($"<p>{todo.Username}已经完成自我评价，请点击以下链接对他进行评估测试:</p>");
-            sb.Append($"<p><a href='{todo.Url}'>{todo.Url}</a></p>");
+            sb.Append($"<p>{userName}已经完成自我评价，请点击以下链接对他进行评估测试:</p>");
+            sb.Append($"<p><a href='{url}'>{url}</a></p>");
             sb.Append($"<p>If you have any questions,please contact to us.</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
             sb.Append("</html>");
-            EmailHelper.Send(todo.Title, sb.ToString(), todo.Email);
+            EmailHelper.Send(title, sb.ToString(), email);
         }
         [DisplayName("自我评价邮件")]
-        public static void Send(TodoListViewRow todo)
+        public static void Send(string title, string userName, string email, string url)
         {
             //var emailBody = TemplateHelper.RenderTemplate(
             //        "~/Modules/Evaluation/UserEvaluationRelation/EvaluationRemind.cshtml", todo);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"<html><head><title>{todo.Title}</title></head>");
-            sb.Append($"<body><p>Dear {todo.Username},</p>");
+            sb.Append($"<html><head><title>{title}</title></head>");
+            sb.Append($"<body><p>Dear {userName},</p>");
             sb.Append($"<p>请点击以下链接去进行评估测试:</p>");
-            sb.Append($"<p><a href='{todo.Url}'>{todo.Url}</a></p>");
+            sb.Append($"<p><a href='{url}'>{url}</a></p>");
             sb.Append($"<p>If you have any questions, please contact to us.</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
             sb.Append("</html>");
-            EmailHelper.Send(todo.Title, sb.ToString(), todo.Email);
+            EmailHelper.Send(title, sb.ToString(), email);
         }
         [DisplayName("考核结果邮件")]
         public static void Send3(EvaluationFinalResultRow todo)

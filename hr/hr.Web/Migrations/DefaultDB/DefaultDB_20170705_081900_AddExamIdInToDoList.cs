@@ -8,9 +8,9 @@ namespace hr.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Alter.Table("ToDoList").InSchema("hr")
-              .AddColumn("ExamId").AsInt32().Nullable()
-              .ForeignKey("FK_ToDoList_ExamId", "hr", "Exam", "Id");
+            //Alter.Table("ToDoList").InSchema("hr")
+            //  .AddColumn("ExamId").AsInt32().Nullable()
+            //  .ForeignKey("FK_ToDoList_ExamId", "hr", "Exam", "Id");
         }
     }
 }

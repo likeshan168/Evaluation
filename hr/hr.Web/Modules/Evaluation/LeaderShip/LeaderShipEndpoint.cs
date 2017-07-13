@@ -5,6 +5,7 @@ namespace hr.Evaluation.Endpoints
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+    using System.Linq;
     using System.Web.Mvc;
     using MyRepository = Repositories.LeaderShipRepository;
     using MyRow = Entities.LeaderShipRow;
@@ -40,10 +41,11 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().List(connection, request);
         }
-
+        [AllowAnonymous]
         public bool CheckCurrentUserIsParent(IDbConnection connection, UserRequest request)
         {
-            var leaderShip = Retrieve(connection, new RetrieveRequest { EntityId = request.UserId }).Entity;
+            //var leaderShip = Retrieve(connection, new RetrieveRequest { EntityId = request.UserId }).Entity;
+            var leaderShip = connection.Query<MyRow>($"select * from hr.LeaderShip where UserId={request.UserId};").FirstOrDefault();
             if (leaderShip != null)
             {
                 return leaderShip.ParentUserId.ToString() == Authorization.UserId;

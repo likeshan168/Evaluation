@@ -1,11 +1,13 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using hr.Administration.Repositories;
     using hr.Evaluation.Entities;
     using hr.Evaluation.Repositories;
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.Web.Mvc;
@@ -95,30 +97,34 @@ namespace hr.Evaluation.Endpoints
             if (isSelfEvaluation)
             {
                 //发送邮件通知评估人进行评估
-                var equalityFilter = new System.Collections.Generic.Dictionary<string, object>();
-                equalityFilter.Add(UserToUserViewRow.Fields.UserId.Name, Authorization.UserId);
-                equalityFilter.Add(UserToUserViewRow.Fields.ExamId.Name, examId);
-                var evaluationUsers = new UserToUserViewRepository().List(uow.Connection, new ListRequest
-                {
-                    EqualityFilter = equalityFilter
-                });
+                //var equalityFilter = new Dictionary<string, object>();
+                //equalityFilter.Add(UserToUserViewRow.Fields.UserId.Name, Authorization.UserId);
+                //equalityFilter.Add(UserToUserViewRow.Fields.ExamId.Name, examId);
+                //var evaluationUsers = new UserToUserViewRepository().List(uow.Connection, new ListRequest
+                //{
+                //    EqualityFilter = equalityFilter
+                //});
 
-                //查询条件为UserId= and ExamId = and IsComplete=0 and IsEnabled=1
-                equalityFilter = new System.Collections.Generic.Dictionary<string, object>();
-                equalityFilter.Add(TodoListViewRow.Fields.UserId.Name, Authorization.UserId);
-                equalityFilter.Add(TodoListViewRow.Fields.ExamId.Name, examId);
-                equalityFilter.Add(TodoListViewRow.Fields.IsComplete.Name, 0);
-                equalityFilter.Add(TodoListViewRow.Fields.IsEnabled.Name, 1);
-                var todo = new TodoListViewRepository().List(uow.Connection, new ListRequest
-                {
-                    EqualityFilter = equalityFilter
-                }).Entities.FirstOrDefault();
+                var evaluationUsers = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={Authorization.UserId} and ExamId={examId}");
 
-                foreach (var item in evaluationUsers.Entities)
+                //var examEqualityFilter = new Dictionary<string, object>();
+                //examEqualityFilter.Add(ExamRow.Fields.Id.Name, examId);
+                //examEqualityFilter.Add(ExamRow.Fields.IsEnabled.Name, 1);
+                //var exam = new ExamRepository().List(uow.Connection, new ListRequest
+                //{
+                //    EqualityFilter = examEqualityFilter
+                //}).Entities.FirstOrDefault();
+                var exam = uow.Connection.Query<ExamRow>($"select * from hr.Exam where Id={examId} and IsEnabled=1;").FirstOrDefault();
+                if (exam != null)
                 {
-                    todo.Email = item.Email;
-                    todo.Url = HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + todo.Url;
-                    Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send2(todo, item.Username));
+                    foreach (var item in evaluationUsers)
+                    {
+                        Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send2(exam.Title,
+                            Authorization.Username,
+                            HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={exam.Id}",
+                            item.Email,
+                            item.Username));
+                    }
                 }
             }
 
@@ -131,31 +137,14 @@ namespace hr.Evaluation.Endpoints
                  * 2. 标记对应考核人为已进行考核
                  * 3. 判断所有的考核人是否都已经进行过考核
                  */
-                //var relation = new UserEvaluationRelationRepository().List(uow.Connection, new ListRequest
-                //{
-                //    EqualityFilter = new System.Collections.Generic.Dictionary<string, object>
-                //    {
-                //        { UserEvaluationRelationRow.Fields.UserId.Name, userId },
-                //        { UserEvaluationRelationRow.Fields.ExamId.Name, examId }
-                //    }
-                //}).Entities.FirstOrDefault();
                 var relation = uow.Connection.Query<UserEvaluationRelationRow>($"select * from hr.UserEvaluationRelation where UserId={userId} and ExamId={examId}").FirstOrDefault();
 
                 if (relation != null)
                 {
                     uow.Connection.Execute($"update hr.UserEvaluationToUser set HasEvaluated = 1 where UserId={int.Parse(Authorization.UserId)} and UserEvaluationRelationId={relation.Id};");
-                    //var noEvaluations = new UserToUserViewRepository().List(uow.Connection, new ListRequest
-                    //{
-                    //    Criteria = new Criteria(UserToUserViewRow.Fields.UserId) == userId.Value && new Criteria(UserToUserViewRow.Fields.ExamId) == examId && new Criteria(UserToUserViewRow.Fields.HasEvaluated).IsNull()
-                    //}).Entities;
                     var noEvaluations = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={userId} and ExamId={examId} and HasEvaluated is null;");
                     if (noEvaluations == null || noEvaluations.Count() == 0)
                     {
-                        //如果判断都已经进行了评价，那么就应该要发邮件告知被考核人考核结果
-                        //var  evaluationResult = new EvaluationFinalResultRepository().List(uow.Connection, new ListRequest
-                        // {
-                        //    Criteria = new Criteria(EvaluationFinalResultRow.Fields.UserId) == userId.Value && new Criteria(EvaluationFinalResultRow.Fields.ExamId) == examId
-                        //}).Entities.FirstOrDefault();
                         var evaluationResult = uow.Connection.Query<EvaluationFinalResultRow>($"select * from hr.EvaluationFinalResult where UserId={userId} and ExamId={examId};").FirstOrDefault();
                         if (evaluationResult != null)
                         {

@@ -45,7 +45,7 @@ namespace hr.Evaluation.Endpoints
             //request.EqualityFilter = equalityFilter;
             return new MyRepository().List(connection, request);
         }
-
+        [AllowAnonymous]
         public int GetCurrentUserId()
         {
             return int.Parse(((UserDefinition)Authorization.UserDefinition).Id);

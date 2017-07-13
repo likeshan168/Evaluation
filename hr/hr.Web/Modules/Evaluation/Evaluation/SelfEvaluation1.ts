@@ -67,13 +67,13 @@
 
                 if (response !== null) {
                     let count = res.responseJSON.length;
-                    console.log(res.responseJSON);
+                    //console.log(res.responseJSON);
                     if (res.responseJSON.length !== 0) {
                         if (Q.any(res.responseJSON, p => Q.isEmptyOrNull(p['InputContent']))) {
                             html += `<p class='bg-danger text-center'>${sltUsers.children("option:selected").text()}同志还未进行过自我评价，在其进行自我评价之后，才能进行下一步的操作</p>`;
                             evaluationContent.html(html);
                             $('#nexta').removeClass('hidden').removeClass('show').addClass('hidden');
-                            btn.removeClass('hidden');
+                            //btn.removeClass('hidden');
                             return;
                         };
                         html += `<table>
@@ -102,7 +102,7 @@
                                 html += `<td><em>${item.Mark}</em><textarea data-itemid='${item.Id}' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent === undefined ? '' : item.InputContent}</textarea></td>`
                             }
                             if (item.FScore) {
-                                html += `<td><input data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control success' type="number" max="${item.Score}" min="0" value='${item.FScore}' /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
+                                html += `<td><input disabled='disabled' data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control success' type="number" max="${item.Score}" min="0" value='${item.FScore}' /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
                             }
                             else {
                                 html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control' type="number" max="${item.Score}" min="0" /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
@@ -114,7 +114,7 @@
                 evaluationContent.html(html);
                 
                 nexta.removeClass('hidden').addClass('show').attr('href', `Evaluation1?i=${examId}&p=${sltUsers.val()}`);
-                btn.removeClass('hidden');
+                //btn.removeClass('hidden');
                 let inputScore = $('input[type="number"].form-control');
 
                 inputScore.change((e) => {
@@ -133,6 +133,9 @@
                 inputScore.each((index, ele) => {
                     arr.push(ele);
                 });
+                if (Q.any(arr, p => !$(p).hasClass('success'))) {
+                    btn.removeClass('hidden');
+                } 
                 preva.click((e) => {
                     e.preventDefault();
 
@@ -178,7 +181,7 @@
                     }
                 });
                 btn.click(e => {
-                    console.log(arr);
+                    //console.log(arr);
                     if (Q.any(arr, p => Q.isEmptyOrNull($(p).val()))) {
                         Q.notifyError('还有未评分的项目');
                         return;
@@ -192,14 +195,15 @@
                                 Score: parseInt($(ele).val())
                             });
                         })
-                        console.log(entities);
+                        //console.log(entities);
                         hr.Evaluation.EvaluationResultDetailService.Add({
                             Entities: entities,
                             IsComplete: false
                         }, response => {
                             Q.notifySuccess('保存成功！');
                             //inputScore.attr('disabled', 'disabled');
-                            inputScore.addClass('success');
+                            inputScore.addClass('success').attr('disabled', 'disabled');
+                            btn.addClass('hidden');
                         });
                     }
                 });

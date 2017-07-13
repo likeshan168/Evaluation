@@ -3,6 +3,7 @@
 namespace hr.Evaluation.Repositories
 {
     using Hangfire;
+    using hr.Administration.Repositories;
     using hr.Evaluation.Entities;
     using Serenity;
     using Serenity.Data;
@@ -22,6 +23,20 @@ namespace hr.Evaluation.Repositories
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            //先判断是否已经存在
+            var relations = List(uow.Connection, new ListRequest
+            {
+                EqualityFilter = new Dictionary<string, object>
+                {
+                    { MyRow.Fields.UserId.Name, request.Entity.UserId },
+                    { MyRow.Fields.ExamId.Name, request.Entity.ExamId }
+                }
+            }).Entities;
+            if (relations != null && relations.Count != 0)
+            {
+                throw new Exception("已经存在改用户对应考核的关系配置，请点击修改");
+            }
+
             var res = new MySaveHandler().Process(uow, request, SaveRequestType.Create);
             AddTodoListAndEvaluationResultDetail(uow, request, GetEvaluationUserIdsByUserIdAndExamId(uow, request));
 
@@ -212,19 +227,21 @@ namespace hr.Evaluation.Repositories
         private void SendEmail(IUnitOfWork uow, SaveRequest<MyRow> request, int? examId)
         {
             var equalityFilter = new Dictionary<string, object>();
-            equalityFilter.Add(TodoListViewRow.Fields.UserId.Name, request.Entity.UserId);
-            equalityFilter.Add(TodoListViewRow.Fields.ExamId.Name, examId);
-            equalityFilter.Add(TodoListViewRow.Fields.IsComplete.Name, 0);
-            equalityFilter.Add(TodoListViewRow.Fields.IsEnabled.Name, 1);
-            var todo = new TodoListViewRepository().List(uow.Connection, new ListRequest
+            equalityFilter.Add(ExamRow.Fields.Id.Name, examId);
+            equalityFilter.Add(ExamRow.Fields.IsEnabled.Name, 1);
+            var todo = new ExamRepository().List(uow.Connection, new ListRequest
             {
                 EqualityFilter = equalityFilter
             }).Entities.FirstOrDefault();
-            if (WebRequest != null && WebRequest.Url != null && !string.IsNullOrEmpty(WebRequest.Url.Host))
+            var user = new UserRepository().Retrieve(uow.Connection, new RetrieveRequest
             {
-                todo.Url = WebRequest.Url.Host + ':' + WebRequest.Url.Port + '/' + todo.Url;
+                EntityId = request.Entity.UserId
+            }).Entity;
+            if (todo != null && user != null)
+            {
+                BackgroundJob.Enqueue(() => EmailMangement.Send(todo.Title, user.Username, user.Email, WebRequest.Url.Host + ':' + WebRequest.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={examId}"));
             }
-            BackgroundJob.Enqueue(() => EmailMangement.Send(todo));
+
         }
     }
 }

@@ -3617,7 +3617,7 @@ var hr;
                             $.each(subarr, function (index, value) {
                                 html += "<td><textarea class='form-control' style='width:100%;min-height:100px;' type='text'>" + (value.InputContent !== undefined ? value.InputContent : value.Content) + "</textarea></td>";
                                 if (value.FScore) {
-                                    html += "<td><input data-itemid='" + value.Id + "' data-maxscore='" + value.Score + "' class='form-control success' type=\"number\" max=\"" + value.Score + "\" min=\"0\" value='" + value.FScore + "' /></td></tr>";
+                                    html += "<td><input disabled='disabled' data-itemid='" + value.Id + "' data-maxscore='" + value.Score + "' class='form-control success' type=\"number\" max=\"" + value.Score + "\" min=\"0\" value='" + value.FScore + "' /></td></tr>";
                                 }
                                 else {
                                     html += "<td><input  data-itemid='" + value.Id + "' data-maxscore='" + value.Score + "' class='form-control' type=\"number\" max=\"" + value.Score + "\" min=\"0\" /></td></tr>";
@@ -3625,7 +3625,7 @@ var hr;
                             });
                         }
                     }
-                    html += "<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type=\"button\" class=\"btn btn-primary\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-right' aria-hidden='true'></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                    html += "<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type=\"button\" class=\"btn btn-primary hidden\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-right' aria-hidden='true'></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                     _this.container.html(html);
                     var nexta = $('#nexta');
                     var preva = $('#preva');
@@ -3648,6 +3648,9 @@ var hr;
                     inputScore.each(function (index, ele) {
                         arr.push(ele);
                     });
+                    if (Q.any(arr, function (p) { return !$(p).hasClass('success'); })) {
+                        btn.removeClass('hidden');
+                    }
                     preva.click(function (e) {
                         e.preventDefault();
                         if (Q.any(arr, function (p) { return !Q.isEmptyOrNull($(p).val()); }) && Q.any(arr, function (p) { return !$(p).hasClass('success'); })) {
@@ -3696,6 +3699,7 @@ var hr;
                                 Q.notifySuccess('保存成功！');
                                 //inputScore.attr('disabled', 'disabled');
                                 inputScore.addClass('success');
+                                btn.addClass('hidden');
                             });
                         }
                     });
@@ -3773,6 +3777,11 @@ var hr;
                     var radio = $("input[type='radio']");
                     var preva = $('#preva');
                     var checkedRd = $("input[type='radio']:checked");
+                    //已经评价过之后就不能再修改
+                    if (checkedRd.length != 0) {
+                        radio.attr('disabled', 'disabled');
+                        btnSave.addClass('hidden');
+                    }
                     checkedRd.each(function (index, ele) {
                         $(ele).parent().parent().parent().removeClass("text-danger").addClass("text-success");
                     });
@@ -3793,12 +3802,15 @@ var hr;
                                     Score: parseInt($(ele).val())
                                 });
                             });
-                            //console.log(entities);
-                            hr.Evaluation.EvaluationResultDetailService.Add({
-                                Entities: entities_2,
-                                IsComplete: true
-                            }, function (response) {
-                                Q.notifySuccess('保存成功！');
+                            Q.confirm('您确认提交保存吗,保存之后就不能再修改', function () {
+                                hr.Evaluation.EvaluationResultDetailService.Add({
+                                    Entities: entities_2,
+                                    IsComplete: true
+                                }, function (response) {
+                                    Q.notifySuccess("\u60A8\u5DF2\u5B8C\u6210\u5BF9" + $.cookie('evaluated_user') + "\u7684\u8BC4\u4F30\uFF01");
+                                    radio.attr('disabled', 'disabled');
+                                    btnSave.addClass('hidden');
+                                });
                             });
                         }
                     });
@@ -3865,16 +3877,16 @@ var hr;
                                     html += "<td style='width:150px;'><small class='bg-danger'>" + item.Remark + "</small></td>";
                                     html += "</tr>";
                                 });
-                                html += "<tr><td colspan='5' class='text-center'><button type=\"button\" class=\"btn btn-primary\">\u63D0\u4EA4</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=" + examId + "' id='nexta' class='hidden'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                                html += "<tr><td colspan='5' class='text-center'><button type=\"button\" class=\"btn btn-primary\">\u63D0\u4EA4</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=" + examId + "' id='nexta' class='hidden'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA</a></td><tr></table>";
                             }
                             else {
                                 html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                                html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                                html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA</a></td><tr></table>";
                             }
                         }
                         else {
                             html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA</a></td><tr></table>";
                         }
                         _this.container.html(html);
                         var saveBtn = $("button.btn-primary");
@@ -3990,13 +4002,13 @@ var hr;
                 }, function (response) {
                     if (response !== null) {
                         var count_2 = res.responseJSON.length;
-                        console.log(res.responseJSON);
+                        //console.log(res.responseJSON);
                         if (res.responseJSON.length !== 0) {
                             if (Q.any(res.responseJSON, function (p) { return Q.isEmptyOrNull(p['InputContent']); })) {
                                 html += "<p class='bg-danger text-center'>" + sltUsers.children("option:selected").text() + "\u540C\u5FD7\u8FD8\u672A\u8FDB\u884C\u8FC7\u81EA\u6211\u8BC4\u4EF7\uFF0C\u5728\u5176\u8FDB\u884C\u81EA\u6211\u8BC4\u4EF7\u4E4B\u540E\uFF0C\u624D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>";
                                 evaluationContent.html(html);
                                 $('#nexta').removeClass('hidden').removeClass('show').addClass('hidden');
-                                btn.removeClass('hidden');
+                                //btn.removeClass('hidden');
                                 return;
                             }
                             ;
@@ -4012,7 +4024,7 @@ var hr;
                                     html += "<td><em>" + item.Mark + "</em><textarea data-itemid='" + item.Id + "' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>" + (item.InputContent === undefined ? '' : item.InputContent) + "</textarea></td>";
                                 }
                                 if (item.FScore) {
-                                    html += "<td><input data-itemid='" + item.Id + "' data-maxscore='" + item.Score + "' class='form-control success' type=\"number\" max=\"" + item.Score + "\" min=\"0\" value='" + item.FScore + "' /></td><td><small class='bg-danger'>" + item.Remark + "</small></td></tr>";
+                                    html += "<td><input disabled='disabled' data-itemid='" + item.Id + "' data-maxscore='" + item.Score + "' class='form-control success' type=\"number\" max=\"" + item.Score + "\" min=\"0\" value='" + item.FScore + "' /></td><td><small class='bg-danger'>" + item.Remark + "</small></td></tr>";
                                 }
                                 else {
                                     html += "<td><input  data-itemid='" + item.Id + "' data-maxscore='" + item.Score + "' class='form-control' type=\"number\" max=\"" + item.Score + "\" min=\"0\" /></td><td><small class='bg-danger'>" + item.Remark + "</small></td></tr>";
@@ -4022,7 +4034,7 @@ var hr;
                     }
                     evaluationContent.html(html);
                     nexta.removeClass('hidden').addClass('show').attr('href', "Evaluation1?i=" + examId + "&p=" + sltUsers.val());
-                    btn.removeClass('hidden');
+                    //btn.removeClass('hidden');
                     var inputScore = $('input[type="number"].form-control');
                     inputScore.change(function (e) {
                         var obj = $(e.target);
@@ -4040,6 +4052,9 @@ var hr;
                     inputScore.each(function (index, ele) {
                         arr.push(ele);
                     });
+                    if (Q.any(arr, function (p) { return !$(p).hasClass('success'); })) {
+                        btn.removeClass('hidden');
+                    }
                     preva.click(function (e) {
                         e.preventDefault();
                         if (Q.any(arr, function (p) { return !Q.isEmptyOrNull($(p).val()); }) && Q.any(arr, function (p) { return !$(p).hasClass('success'); })) {
@@ -4085,7 +4100,7 @@ var hr;
                         }
                     });
                     btn.click(function (e) {
-                        console.log(arr);
+                        //console.log(arr);
                         if (Q.any(arr, function (p) { return Q.isEmptyOrNull($(p).val()); })) {
                             Q.notifyError('还有未评分的项目');
                             return;
@@ -4100,14 +4115,15 @@ var hr;
                                     Score: parseInt($(ele).val())
                                 });
                             });
-                            console.log(entities_3);
+                            //console.log(entities);
                             hr.Evaluation.EvaluationResultDetailService.Add({
                                 Entities: entities_3,
                                 IsComplete: false
                             }, function (response) {
                                 Q.notifySuccess('保存成功！');
                                 //inputScore.attr('disabled', 'disabled');
-                                inputScore.addClass('success');
+                                inputScore.addClass('success').attr('disabled', 'disabled');
+                                btn.addClass('hidden');
                             });
                         }
                     });

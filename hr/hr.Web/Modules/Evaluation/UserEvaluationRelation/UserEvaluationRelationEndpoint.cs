@@ -34,7 +34,9 @@ namespace hr.Evaluation.Endpoints
             var relation = Retrieve(uow.Connection, new RetrieveRequest { EntityId = request.EntityId }).Entity;
             if (relation != null)
             {
-                string sql = $"UPDATE hr.ToDoList SET IsEnabled=0 WHERE UserId={relation.UserId} AND ExamId = {relation.ExamId};delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId}";
+                //string sql = $"UPDATE hr.ToDoList SET IsEnabled=0 WHERE UserId={relation.UserId} AND ExamId = {relation.ExamId};delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId}";
+                //由于没有启用todolist,所有把关于todolist相关的操作都删除掉
+                string sql = $"delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId}";
                 uow.Connection.Execute(sql);
             }
 
