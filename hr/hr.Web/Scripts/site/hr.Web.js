@@ -701,6 +701,39 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var EvaluationResultViewRow;
+        (function (EvaluationResultViewRow) {
+            EvaluationResultViewRow.idProperty = 'Id';
+            EvaluationResultViewRow.nameProperty = 'Username';
+            EvaluationResultViewRow.localTextPrefix = 'Evaluation.EvaluationResultView';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EvaluationResultViewRow.Fields || (EvaluationResultViewRow.Fields = {}));
+            ['Id', 'UserId', 'Username', 'ParentUserId', 'ExamId', 'Title', 'Email', 'EvaluationEmail', 'TotalScore', 'EvaluationUserId', 'EvaluationUser'].forEach(function (x) { return Fields[x] = x; });
+        })(EvaluationResultViewRow = Evaluation.EvaluationResultViewRow || (Evaluation.EvaluationResultViewRow = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var EvaluationResultViewService;
+        (function (EvaluationResultViewService) {
+            EvaluationResultViewService.baseUrl = 'Evaluation/EvaluationResultView';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EvaluationResultViewService.Methods || (EvaluationResultViewService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'SendNotifyEmail'].forEach(function (x) {
+                EvaluationResultViewService[x] = function (r, s, o) { return Q.serviceRequest(EvaluationResultViewService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EvaluationResultViewService.baseUrl + '/' + x;
+            });
+        })(EvaluationResultViewService = Evaluation.EvaluationResultViewService || (Evaluation.EvaluationResultViewService = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var ExamForm = (function (_super) {
             __extends(ExamForm, _super);
             function ExamForm() {
@@ -4138,6 +4171,75 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var EvaluationFinalResultDetail = (function (_super) {
+            __extends(EvaluationFinalResultDetail, _super);
+            function EvaluationFinalResultDetail(userId, examId) {
+                var _this = _super.call(this) || this;
+                _this.userId = userId;
+                _this.examId = examId;
+                return _this;
+            }
+            EvaluationFinalResultDetail.prototype.onDialogOpen = function () {
+                _super.prototype.onDialogOpen.call(this);
+                //Evaluation.EvaluationItemService.List({}, response => {
+                //    this.examList = new EvaluationItemGrid($("#div").first()).init();
+                //    let selectedKeys = $("[name='EvaluationIds']").val().split(',');
+                //    this.examList.rowSelection.selectKeys(selectedKeys);
+                //    Q.initFullHeightGridPage($('#div'));
+                //})
+                this.detailGrid = new Evaluation.EvaluationResultViewGrid($("#div").first(), this.userId, this.examId).init();
+                //let selectedKeys = $("[name='EvaluationIds']").val().split(',');
+                //this.examList.rowSelection.selectKeys(selectedKeys);
+                Q.initFullHeightGridPage($('#div'));
+            };
+            EvaluationFinalResultDetail.prototype.getTemplate = function () {
+                // you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
+                return "<div id='div' style='height:500px;'></div>";
+            };
+            EvaluationFinalResultDetail.prototype.getDialogOptions = function () {
+                var _this = this;
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.title = '考核结果详情';
+                opt.buttons = [
+                    //{
+                    //    text: "Ok",
+                    //    showText: "Ok",
+                    //    click: () => {
+                    //        //Q.notifyInfo("ok");
+                    //        //console.log(this.examList.rowSelection.getSelectedKeys());
+                    //        let selectedItems = this.examList.rowSelection.getSelectedKeys();
+                    //        if (selectedItems.length == 0) {
+                    //            Q.notifyWarning("请选择要发布的考核项");
+                    //            return;
+                    //        }
+                    //        $("[name='EvaluationIds']").val(this.examList.rowSelection.getSelectedKeys().join(','));
+                    //        this.dialogClose();
+                    //    }
+                    //},
+                    {
+                        text: "Cancel",
+                        showText: "Cancel",
+                        click: function () {
+                            //Q.notifyInfo("cancel");
+                            _this.dialogClose();
+                        }
+                    }
+                ];
+                return opt;
+            };
+            return EvaluationFinalResultDetail;
+        }(Serenity.TemplatedDialog));
+        EvaluationFinalResultDetail = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.maximizable()
+        ], EvaluationFinalResultDetail);
+        Evaluation.EvaluationFinalResultDetail = EvaluationFinalResultDetail;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var EvaluationFinalResultGrid = (function (_super) {
             __extends(EvaluationFinalResultGrid, _super);
             function EvaluationFinalResultGrid(container) {
@@ -4160,7 +4262,35 @@ var hr;
                     onViewSubmit: function () { return _this.onViewSubmit(); },
                     separator: true
                 }));
+                buttons.push(hr.Common.ExcelExportHelper.createToolButton({
+                    title: '导出考核明细',
+                    hint: '导出考核明细',
+                    grid: this,
+                    service: Evaluation.EvaluationFinalResultService.baseUrl + '/ListDetailExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
                 return buttons;
+            };
+            EvaluationFinalResultGrid.prototype.getColumns = function () {
+                //super.getQuickFilters();
+                var columns = _super.prototype.getColumns.call(this);
+                var flds = Evaluation.EvaluationFinalResultRow.Fields;
+                var index = 0;
+                Q.first(columns, function (x) { return x.field === flds.UserName; })
+                    .format = function (ctx) {
+                    console.log(ctx.item);
+                    //TODO: 考虑过期的情况
+                    return "<a href='#' class='check_detail'>" + ctx.value + "</a>";
+                };
+                return columns;
+            };
+            EvaluationFinalResultGrid.prototype.onClick = function (e, row, cell) {
+                var target = $(e.target);
+                var rst = this.itemAt(row);
+                if (target.hasClass("check_detail")) {
+                    new Evaluation.EvaluationFinalResultDetail(rst.UserId, rst.ExamId).dialogOpen();
+                }
             };
             return EvaluationFinalResultGrid;
         }(Serenity.EntityGrid));
@@ -4667,6 +4797,107 @@ var hr;
             Serenity.Decorators.registerClass()
         ], EvaluationResultDetailGrid);
         Evaluation.EvaluationResultDetailGrid = EvaluationResultDetailGrid;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var EvaluationResultViewGrid = (function (_super) {
+            __extends(EvaluationResultViewGrid, _super);
+            function EvaluationResultViewGrid(container, userId, examId) {
+                var _this = _super.call(this, container) || this;
+                _this.userId = userId;
+                _this.examId = examId;
+                _this.setTitle("");
+                return _this;
+            }
+            EvaluationResultViewGrid.prototype.getColumnsKey = function () { return 'Evaluation.EvaluationResultView'; };
+            //protected getDialogType() { return EvaluationResultViewDialog; }
+            EvaluationResultViewGrid.prototype.getLocalTextPrefix = function () { return Evaluation.EvaluationResultViewRow.localTextPrefix; };
+            EvaluationResultViewGrid.prototype.getService = function () { return Evaluation.EvaluationResultViewService.baseUrl; };
+            EvaluationResultViewGrid.prototype.getIdProperty = function () { return Evaluation.EvaluationResultRow.idProperty; };
+            EvaluationResultViewGrid.prototype.getButtons = function () {
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
+                return buttons;
+            };
+            EvaluationResultViewGrid.prototype.onViewSubmit = function () {
+                // only continue if base class returns true (didn't cancel request)
+                if (!_super.prototype.onViewSubmit.call(this)) {
+                    return false;
+                }
+                // view object is the data source for grid (SlickRemoteView)
+                // this is an EntityGrid so its Params object is a ListRequest
+                var request = this.view.params;
+                // list request has a Criteria parameter
+                // we AND criteria here to existing one because 
+                // otherwise we might clear filter set by 
+                // an edit filter dialog if any.
+                request.Criteria = Serenity.Criteria.and(request.Criteria, [['UserId'], '=', this.userId], [['ExamId'], '=', this.examId]);
+                // TypeScript doesn't support operator overloading
+                // so we had to use array syntax above to build criteria.
+                // Make sure you write
+                // [['Field'], '>', 10] (which means field A is greater than 10)
+                // not 
+                // ['A', '>', 10] (which means string 'A' is greater than 10
+                return true;
+            };
+            EvaluationResultViewGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            EvaluationResultViewGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            EvaluationResultViewGrid.prototype.getColumns = function () {
+                //super.getQuickFilters();
+                var columns = _super.prototype.getColumns.call(this);
+                var flds = Evaluation.EvaluationResultViewRow.Fields;
+                var index = 0;
+                Q.first(columns, function (x) { return x.field === flds.EvaluationEmail; })
+                    .format = function (ctx) {
+                    console.log(ctx.item);
+                    //TODO: 考虑过期的情况
+                    if (ctx.item.TotalScore > 0) {
+                        return ctx.value;
+                    }
+                    else {
+                        return "<a href='#' class='send_email'>" + ctx.value + "</a>";
+                    }
+                };
+                return columns;
+            };
+            EvaluationResultViewGrid.prototype.onClick = function (e, row, cell) {
+                var target = $(e.target);
+                var rst = this.itemAt(row);
+                if (target.hasClass("send_email")) {
+                    Q.confirm("发送邮件通知吗", function () {
+                        Evaluation.EvaluationResultViewService.SendNotifyEmail({
+                            UserName: rst.Username,
+                            Title: rst.Title,
+                            Url: "Evaluation/Evaluation/SelfEvaluation?i=" + rst.ExamId,
+                            Email: rst.EvaluationEmail,
+                            EvaluationUserName: rst.EvaluationUser
+                        }, (function (response) {
+                            if (response) {
+                                Q.notifyInfo("邮件已发送");
+                            }
+                        }));
+                    });
+                }
+            };
+            return EvaluationResultViewGrid;
+        }(Serenity.EntityGrid));
+        EvaluationResultViewGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationResultViewGrid);
+        Evaluation.EvaluationResultViewGrid = EvaluationResultViewGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;

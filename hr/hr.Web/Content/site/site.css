@@ -7571,3 +7571,9 @@ section.content > .s-DataGrid {
 .s-Evaluation-TodoListViewDialog .caption {
   width: 150px;
 }
+.s-Evaluation-EvaluationResultViewDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-EvaluationResultViewDialog .caption {
+  width: 150px;
+}

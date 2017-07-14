@@ -16,15 +16,18 @@ namespace hr.Evaluation.Endpoints
 
     [RoutePrefix("Services/Evaluation/EvaluationResultDetail"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
+    //[ConnectionKey(typeof(MyRow))]
     public class EvaluationResultDetailController : ServiceEndpoint
     {
-        [HttpPost, AuthorizeCreate(typeof(MyRow))]
+        //[HttpPost, AuthorizeCreate(typeof(MyRow))]
+        [HttpPost, AllowAnonymous]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        //[HttpPost, AllowAnonymous]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
@@ -47,6 +50,7 @@ namespace hr.Evaluation.Endpoints
         }
 
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
+        //[HttpPost, AllowAnonymous]
         public SaveResponse Add(IUnitOfWork uow, AddEvaluationResultRequest<MyRow> request)
         {
             var rep = new MyRepository();
@@ -77,10 +81,11 @@ namespace hr.Evaluation.Endpoints
                 var result = uow.Connection.Query<MyRow>($"select * from hr.EvaluationResultDetail where EvaluationItemId={item.EvaluationItemId} and ExamId={item.ExamId} and UserId={item.UserId} and EvaluationUserId={evaluationUserId}").FirstOrDefault();
                 if (result == null)
                 {
-                    rep.Create(uow, new SaveRequest<MyRow>
-                    {
-                        Entity = item
-                    });
+                    //rep.Create(uow, new SaveRequest<MyRow>
+                    //{
+                    //    Entity = item
+                    //});
+                    //uow.Connection.Execute($"insert into hr.EvaluationResultDetail(ExamId,EvaluationItemId, InputContent, UserId,Score, EvaluationUserId) values({item.ExamId},{item.EvaluationItemId},'{item.InputContent}',{item.UserId},{item.Score},{item.EvaluationUserId}) ;");
                 }
                 else
                 {
@@ -91,6 +96,14 @@ namespace hr.Evaluation.Endpoints
                         EntityId = result.Id,
                         Entity = item
                     });
+                    //if (string.IsNullOrWhiteSpace(item.InputContent))
+                    //{
+                    //    uow.Connection.Execute($"update hr.EvaluationResultDetail set Score={item.Score.Value} where Id={result.Id};");
+                    //}
+                    //else
+                    //{
+                    //    uow.Connection.Execute($"update hr.EvaluationResultDetail set Score={item.Score.Value}, InputContent='{item.InputContent}' where Id={result.Id};");
+                    //}
                 }
             }
             //在完成自我评价之后，通知其他的评估人对本人进行评估

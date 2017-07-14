@@ -10,8 +10,10 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[Department]"), DisplayName("Department"), InstanceName("Department"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.Department.View)]
-    [ModifyPermission(PermissionKeys.Department.Modify)]
+    //[ReadPermission(PermissionKeys.Department.View)]
+    //[ModifyPermission(PermissionKeys.Department.Modify)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Evaluation.Department")]
     public sealed class DepartmentRow : Row, IIdRow, INameRow
     {

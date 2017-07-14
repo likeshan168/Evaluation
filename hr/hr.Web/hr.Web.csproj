@@ -1157,6 +1157,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultDetailColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultViewColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ExamColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1272,6 +1275,7 @@
     <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
     <TypeScriptCompile Include="Modules\Common\UserPreference\UserPreferenceStorage.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Employee\EmployeeExcelImportDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultDetail.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation2.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation.ts" />
@@ -1818,6 +1822,14 @@
     </TypeScriptCompile>
     <Content Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultGrid.ts" />
+    <Content Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultViewRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultViewService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewGrid.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1874,6 +1886,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
+    <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResult\AddEvaluationResultRequest.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultColumns.cs" />
@@ -2086,6 +2099,11 @@
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultRepository.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultEndpoint.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\EvaluationFinalResultPage.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewRow.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewColumns.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewRepository.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

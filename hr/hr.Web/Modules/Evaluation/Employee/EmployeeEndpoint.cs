@@ -28,6 +28,7 @@ namespace hr.Evaluation.Endpoints
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            //TODO: 员工删除之后需要做的事情？
             return new MyRepository().Update(uow, request);
         }
 
@@ -94,7 +95,7 @@ namespace hr.Evaluation.Endpoints
                             InsertUserId = int.Parse(((UserDefinition)Serenity.Authorization.UserDefinition).Id),
                             LastDirectoryUpdate = DateTime.Now
                         });
-
+                        //添加用户到上下级
                         new LeaderShipRepository().Create(uow, new SaveRequest<Entities.LeaderShipRow>()
                         {
                             Entity = new Entities.LeaderShipRow { UserId = userId }

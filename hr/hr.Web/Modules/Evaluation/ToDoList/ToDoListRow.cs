@@ -11,8 +11,10 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[ToDoList]"), DisplayName("To Do List"), InstanceName("To Do List"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.ToDoList.View)]
-    [ModifyPermission(PermissionKeys.ToDoList.Modify)]
+    //[ReadPermission(PermissionKeys.ToDoList.View)]
+    //[ModifyPermission(PermissionKeys.ToDoList.Modify)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     public sealed class ToDoListRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[EvaluationResult]"), DisplayName("Evaluation Result"), InstanceName("Evaluation Result"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.EvaluationResult.View)]
-    [ModifyPermission(PermissionKeys.EvaluationResult.Modify)]
+    [ReadPermission(PermissionKeys.EvaluationFinalResult.View)]
+    [ModifyPermission(PermissionKeys.EvaluationFinalResult.Modify)]
     public sealed class EvaluationResultRow : Row, IIdRow
     {
         [DisplayName("Id"), Identity]

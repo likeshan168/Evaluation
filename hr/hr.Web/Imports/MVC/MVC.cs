@@ -146,6 +146,11 @@ namespace MVC
                 public const string EvaluationResultDetailIndex = "~/Modules/Evaluation/EvaluationResultDetail/EvaluationResultDetailIndex.cshtml";
             }
 
+            public static class EvaluationResultView
+            {
+                public const string EvaluationResultViewIndex = "~/Modules/Evaluation/EvaluationResultView/EvaluationResultViewIndex.cshtml";
+            }
+
             public static class Exam
             {
                 public const string ExamIndex = "~/Modules/Evaluation/Exam/ExamIndex.cshtml";

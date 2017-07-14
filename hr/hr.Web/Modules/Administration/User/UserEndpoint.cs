@@ -41,7 +41,13 @@ namespace hr.Administration.Endpoints
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
-            return new MyRepository().Delete(uow, request);
+
+            //1. 删除领导关系  2. 删除角色
+            int userId = int.Parse(request.EntityId.ToString());
+            uow.Connection.Execute($"delete from hr.LeaderShip where UserId={userId};update [hr].[LeaderShip] set ParentUserId=null where ParentUserId={userId};delete from dbo.UserRoles where UserId={userId}");
+
+            var res = new MyRepository().Delete(uow, request);
+            return res;
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]

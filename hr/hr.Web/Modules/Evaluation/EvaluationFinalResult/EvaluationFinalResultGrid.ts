@@ -25,8 +25,39 @@ namespace hr.Evaluation {
                 onViewSubmit: () => this.onViewSubmit(),
                 separator: true
             }));
+            buttons.push(Common.ExcelExportHelper.createToolButton({
+                title: '导出考核明细',
+                hint: '导出考核明细',
+                grid: this,
+                service: EvaluationFinalResultService.baseUrl + '/ListDetailExcel',
+                onViewSubmit: () => this.onViewSubmit(),
+                separator: true
+            }));
             return buttons;
         }
 
+        protected getColumns() {
+            //super.getQuickFilters();
+            var columns = super.getColumns();
+            let flds = EvaluationFinalResultRow.Fields;
+            let index = 0;
+            Q.first(columns, x => x.field === flds.UserName)
+                .format = (ctx) => {
+                    console.log(ctx.item);
+                    //TODO: 考虑过期的情况
+                    return `<a href='#' class='check_detail'>${ctx.value}</a>`
+                }
+            return columns;
+        }
+
+        protected onClick(e: JQueryEventObject, row: number, cell: number) {
+
+            var target = $(e.target);
+            let rst = this.itemAt(row);
+            if (target.hasClass("check_detail")) {
+                new EvaluationFinalResultDetail(rst.UserId, rst.ExamId).dialogOpen();
+            }
+
+        }
     }
 }

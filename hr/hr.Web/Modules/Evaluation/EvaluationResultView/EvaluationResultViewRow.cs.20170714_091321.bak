@@ -1,0 +1,124 @@
+﻿
+namespace hr.Evaluation.Entities
+{
+    using Serenity;
+    using Serenity.ComponentModel;
+    using Serenity.Data;
+    using Serenity.Data.Mapping;
+    using System;
+    using System.ComponentModel;
+    using System.IO;
+
+    [ConnectionKey("Default"), TableName("[hr].[EvaluationResultView]"), DisplayName("Evaluation Result View"), InstanceName("Evaluation Result View"), TwoLevelCached]
+    [ReadPermission("Administration:General")]
+    [ModifyPermission("Administration:General")]
+    public sealed class EvaluationResultViewRow : Row, IIdRow, INameRow
+    {
+        [DisplayName("Id")]
+        public Int64? Id
+        {
+            get { return Fields.Id[this]; }
+            set { Fields.Id[this] = value; }
+        }
+
+        [DisplayName("User Id")]
+        public Int32? UserId
+        {
+            get { return Fields.UserId[this]; }
+            set { Fields.UserId[this] = value; }
+        }
+
+        [DisplayName("Username"), Size(100), QuickSearch]
+        public String Username
+        {
+            get { return Fields.Username[this]; }
+            set { Fields.Username[this] = value; }
+        }
+
+        [DisplayName("Parent User Id")]
+        public Int32? ParentUserId
+        {
+            get { return Fields.ParentUserId[this]; }
+            set { Fields.ParentUserId[this] = value; }
+        }
+
+        [DisplayName("Exam Id"), NotNull]
+        public Int32? ExamId
+        {
+            get { return Fields.ExamId[this]; }
+            set { Fields.ExamId[this] = value; }
+        }
+
+        [DisplayName("Title"), Size(400)]
+        public String Title
+        {
+            get { return Fields.Title[this]; }
+            set { Fields.Title[this] = value; }
+        }
+
+        [DisplayName("Email"), Size(100)]
+        public String Email
+        {
+            get { return Fields.Email[this]; }
+            set { Fields.Email[this] = value; }
+        }
+
+        [DisplayName("Total Score"), Size(12), Scale(1), NotNull]
+        public Decimal? TotalScore
+        {
+            get { return Fields.TotalScore[this]; }
+            set { Fields.TotalScore[this] = value; }
+        }
+
+        [DisplayName("Evaluation User Id")]
+        public Int32? EvaluationUserId
+        {
+            get { return Fields.EvaluationUserId[this]; }
+            set { Fields.EvaluationUserId[this] = value; }
+        }
+
+        [DisplayName("Evaluation User"), Size(100)]
+        public String EvaluationUser
+        {
+            get { return Fields.EvaluationUser[this]; }
+            set { Fields.EvaluationUser[this] = value; }
+        }
+
+        IIdField IIdRow.IdField
+        {
+            get { return Fields.Id; }
+        }
+
+        StringField INameRow.NameField
+        {
+            get { return Fields.Username; }
+        }
+
+        public static readonly RowFields Fields = new RowFields().Init();
+
+        public EvaluationResultViewRow()
+            : base(Fields)
+        {
+        }
+
+        public class RowFields : RowFieldsBase
+        {
+            public Int64Field Id;
+            public Int32Field UserId;
+            public StringField Username;
+            public Int32Field ParentUserId;
+            public Int32Field ExamId;
+            public StringField Title;
+            public StringField Email;
+            public DecimalField TotalScore;
+            public Int32Field EvaluationUserId;
+            public StringField EvaluationUser;
+
+            public RowFields()
+                : base()
+            {
+                LocalTextPrefix = "Evaluation.EvaluationResultView";
+            }
+        }
+    }
+}

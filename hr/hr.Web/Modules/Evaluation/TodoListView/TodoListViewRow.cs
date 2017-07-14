@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[TodoListView]"), DisplayName("Todo List View"), InstanceName("Todo List View"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.EvaluationResult.View)]
-    [ModifyPermission(PermissionKeys.EvaluationResult.Modify)]
+    [ReadPermission(PermissionKeys.EvaluationFinalResult.View)]
+    [ModifyPermission(PermissionKeys.EvaluationFinalResult.Modify)]
     public sealed class TodoListViewRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), NotNull]

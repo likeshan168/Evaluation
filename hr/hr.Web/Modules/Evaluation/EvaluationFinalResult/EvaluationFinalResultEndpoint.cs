@@ -1,9 +1,12 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using hr.Evaluation.Entities;
+    using hr.Evaluation.Repositories;
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Collections.Generic;
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.EvaluationFinalResultRepository;
@@ -24,7 +27,7 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
@@ -47,6 +50,17 @@ namespace hr.Evaluation.Endpoints
             var report = new Serenity.Reporting.DynamicDataReport(data, request.IncludeColumns, typeof(Columns.EvaluationFinalResultColumns));
             var bytes = new ReportRepository().Render(report);
             return Serenity.Web.ExcelContentResult.Create(bytes, "EvaluationFinalResult_" +
+                System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
+        }
+
+        public FileContentResult ListDetailExcel(IDbConnection connection, ListRequest request)
+        {
+            var data = new EvaluationResultViewRepository().List(connection, request).Entities;
+            var flds = EvaluationResultViewRow.Fields;
+            var includeColums = new List<string> { flds.Username.Name, flds.Title.Name, flds.EvaluationEmail.Name, flds.TotalScore.Name, flds.EvaluationUser.Name };
+            var report = new Serenity.Reporting.DynamicDataReport(data, includeColums, typeof(Columns.EvaluationResultViewColumns));
+            var bytes = new ReportRepository().Render(report);
+            return Serenity.Web.ExcelContentResult.Create(bytes, "EvaluationFinalResultDetail_" +
                 System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
         }
     }

@@ -11,20 +11,20 @@ namespace hr.Evaluation
     [DisplayName("Evaluation")]
     public class PermissionKeys
     {
-        [DisplayName("Department")]
-        public class Department
-        {
-            public const string Delete = "Evaluation:Department:Delete";
-            public const string Modify = "Evaluation:Department:Modify";
-            public const string View = "Evaluation:Department:View";
-        }
-        [DisplayName("Employee")]
-        public class Employee
-        {
-            public const string Delete = "Evaluation:Employee:Delete";
-            public const string Modify = "Evaluation:Employee:Modify";
-            public const string View = "Evaluation:Employee:View";
-        }
+        //[DisplayName("Department")]
+        //public class Department
+        //{
+        //    public const string Delete = "Evaluation:Department:Delete";
+        //    public const string Modify = "Evaluation:Department:Modify";
+        //    public const string View = "Evaluation:Department:View";
+        //}
+        //[DisplayName("Employee")]
+        //public class Employee
+        //{
+        //    public const string Delete = "Evaluation:Employee:Delete";
+        //    public const string Modify = "Evaluation:Employee:Modify";
+        //    public const string View = "Evaluation:Employee:View";
+        //}
         [DisplayName("EvaluationItem")]
         public class EvaluationItem
         {
@@ -53,13 +53,13 @@ namespace hr.Evaluation
             public const string Modify = "Evaluation:SecondKpi:Modify";
             public const string View = "Evaluation:SecondKpi:View";
         }
-        [DisplayName("ToDoList")]
-        public class ToDoList
-        {
-            public const string Delete = "Evaluation:ToDoList:Delete";
-            public const string Modify = "Evaluation:ToDoList:Modify";
-            public const string View = "Evaluation:ToDoList:View";
-        }
+        //[DisplayName("ToDoList")]
+        //public class ToDoList
+        //{
+        //    public const string Delete = "Evaluation:ToDoList:Delete";
+        //    public const string Modify = "Evaluation:ToDoList:Modify";
+        //    public const string View = "Evaluation:ToDoList:View";
+        //}
         [DisplayName("UserEvaluationRelation")]
         public class UserEvaluationRelation
         {
@@ -68,12 +68,20 @@ namespace hr.Evaluation
             public const string View = "Evaluation:UserEvaluationRelation:View";
         }
 
-        [DisplayName("UserEvaluationRelation")]
-        public class EvaluationResult
+        [DisplayName("EvaluationFinalResult")]
+        public class EvaluationFinalResult
         {
             public const string Delete = "Evaluation:EvaluationResult:Delete";
             public const string Modify = "Evaluation:EvaluationResult:Modify";
             public const string View = "Evaluation:EvaluationResult:View";
+
+        }
+        [DisplayName("EvaluationResultDetail")]
+        public class EvaluationResultDetail
+        {
+            public const string Delete = "Evaluation:EvaluationResultDetail:Delete";
+            public const string Modify = "Evaluation:EvaluationResultDetail:Modify";
+            public const string View = "Evaluation:EvaluationResultDetail:View";
 
         }
         [DisplayName("LeaderShipRow")]
@@ -84,13 +92,13 @@ namespace hr.Evaluation
             public const string View = "Evaluation:LeaderShipRow:View";
         }
 
-        [DisplayName("EvaluationFinalResult")]
-        public class EvaluationFinalResult
-        {
-            public const string Delete = "Evaluation:EvaluationFinalResult:Delete";
-            public const string Modify = "Evaluation:EvaluationFinalResult:Modify";
-            public const string View = "Evaluation:EvaluationFinalResult:View";
-        }
+        //[DisplayName("EvaluationFinalResult")]
+        //public class EvaluationFinalResult
+        //{
+        //    public const string Delete = "Evaluation:EvaluationFinalResult:Delete";
+        //    public const string Modify = "Evaluation:EvaluationFinalResult:Modify";
+        //    public const string View = "Evaluation:EvaluationFinalResult:View";
+        //}
 
         public const string General = "Evaluation:General";
     }
