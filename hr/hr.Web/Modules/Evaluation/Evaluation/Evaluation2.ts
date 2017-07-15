@@ -127,13 +127,31 @@
 
                     if (checkedRd.length > 0 && Q.any(checkedRd, p => $(p).parent().parent().parent().hasClass('text-danger'))) {
                         Q.confirm('数据未保存，您确认离开此页面吗？', () => {
-                            window.location.href = preva.attr('href');
+                            //window.location.href = preva.attr('href');
+
+                            //进入上一页之前判断领导关系
+                            this.CheckCurrentUserIsParent(userId, examId, preva);
                         });
                     } else {
-                        window.location.href = preva.attr('href');
+                        //window.location.href = preva.attr('href');
+                        this.CheckCurrentUserIsParent(userId, examId, preva);
                     }
                 });
 
+            });
+        }
+
+        private CheckCurrentUserIsParent(userId: number, examId: number, preva: JQuery): void{
+            //进入下一页之前判断领导关系
+            LeaderShipService.CheckCurrentUserIsParent({
+                UserId: userId
+            }, response => {
+                if (response) {
+                    window.location.href = preva.attr('href');
+                }
+                else {
+                    window.location.href = `SelfEvaluation1?i=${examId}&p=${userId}`;
+                }
             });
         }
     }

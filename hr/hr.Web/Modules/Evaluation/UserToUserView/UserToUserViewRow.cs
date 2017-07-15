@@ -10,8 +10,8 @@ namespace hr.Evaluation.Entities
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[hr].[UserToUserView]"), DisplayName("User To User View"), InstanceName("User To User View"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.EvaluationFinalResult.View)]
-    [ModifyPermission(PermissionKeys.EvaluationFinalResult.Modify)]
+    [ReadPermission(PermissionKeys.EvaluationResultDetail.View)]
+    [ModifyPermission(PermissionKeys.EvaluationResultDetail.Modify)]
     public sealed class UserToUserViewRow : Row, IIdRow
     {
         [DisplayName("Id")]

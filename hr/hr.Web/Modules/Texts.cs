@@ -69,12 +69,12 @@ namespace hr
                 public static class SignUp
                 {
                     public static LocalText ActivateEmailSubject = "Activate Your hr Account";
-                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " + 
+                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " +
                         "Use the e-mail and password you used while signing up to login.";
                     public static LocalText FormInfo = "Enter your details to create a free account.";
                     public static LocalText FormTitle = "Sign up for hr";
                     public static LocalText SubmitButton = "Sign Up";
-                    public static LocalText Success = "An e-mail with instructions to active your account is " + 
+                    public static LocalText Success = "An e-mail with instructions to active your account is " +
                         "sent to your e-mail address. Please check your e-mails.";
 
                     public static LocalText DisplayName = "Full Name";
@@ -192,5 +192,10 @@ namespace hr
                 "records that depends on this one!";
             public static LocalText SavePrimaryKeyError = "Can't save record. There is another record with the same {1} value!";
         }
+        public static partial class Evaluation
+        {
+            public static LocalText EvaluationError = "There are some other items need to be evaluated";
+        }
+
     }
 }

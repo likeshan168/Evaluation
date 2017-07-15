@@ -19,8 +19,8 @@ namespace hr.Evaluation.Endpoints
     //[ConnectionKey(typeof(MyRow))]
     public class EvaluationResultDetailController : ServiceEndpoint
     {
-        //[HttpPost, AuthorizeCreate(typeof(MyRow))]
-        [HttpPost, AllowAnonymous]
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
+        //[HttpPost, AllowAnonymous]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
@@ -49,8 +49,8 @@ namespace hr.Evaluation.Endpoints
             return new MyRepository().List(connection, request);
         }
 
-        [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        //[HttpPost, AllowAnonymous]
+        //[HttpPost, AuthorizeCreate(typeof(MyRow))]
+        [HttpPost, AllowAnonymous]
         public SaveResponse Add(IUnitOfWork uow, AddEvaluationResultRequest<MyRow> request)
         {
             var rep = new MyRepository();
@@ -90,6 +90,15 @@ namespace hr.Evaluation.Endpoints
                 else
                 {
                     //update
+                    if (isSelfEvaluation && string.IsNullOrWhiteSpace(item.InputContent))
+                    {
+                        //在服务器端进行判断，如果还有未进行评估的就报错
+                        throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationError);
+                    }
+                    else if (!item.Score.HasValue || item.Score.HasValue && item.Score.Value == 0)
+                    {
+                        throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationError);
+                    }
                     item.EvaluationUserId = evaluationUserId;
                     rep.Update(uow, new SaveRequest<MyRow>
                     {
