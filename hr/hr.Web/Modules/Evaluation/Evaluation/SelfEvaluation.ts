@@ -84,6 +84,7 @@
                                 res.Entities.forEach((item, i) => {
                                     inputs.each((index, ele) => {
                                         let tmpEle = $(ele);
+                                        console.log(tmpEle.val())
                                         arr.push({
                                             UserId: userId,
                                             ExamId: examId,

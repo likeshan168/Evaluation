@@ -1,6 +1,6 @@
 ﻿
 <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="home" id="ApplicationPath" href="~/" />
@@ -23,9 +23,11 @@
 {
     @Html.Stylesheet("~/Content/site/site.rtl.css")
 }
+@*<script src = "~/Scripts/pollyfill/modernizr.latest.js" ></script>*@
 @{var cookie = Request.Cookies["ThemePreference"]; var theme = cookie != null && !cookie.Value.IsEmptyOrNull() ? cookie.Value : "default"; }
 <script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
 <script type="text/javascript">window.paceOptions = { minTime: 250, ghostTime: 250, restartOnRequestAfter: 250, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: true, ignoreURLs: [] } };</script>
+<script src="~/Scripts/pollyfill/matchMedia.js"></script>
 @Html.Script("~/Scripts/pace.js")
 @foreach (var x in CommonIncludes.Scripts) { @Html.Script(x) }
 @Html.Script("~/Scripts/jquery.cropzoom.js")
