@@ -190,7 +190,7 @@ namespace hr.Evaluation.Repositories
             #endregion
 
             #region 发送邮件进行通知
-            //只有在新增的时候，通知员工进行自我评价
+            //只有在新增的时候，通知员工进行自我评价(记住：是在考核开始的当天发送，而不是马上发送邮件)
             if (!isUpdate)
             {
                 SendEmail(uow, request, exam.Entity.Id);
@@ -239,9 +239,25 @@ namespace hr.Evaluation.Repositories
             }).Entity;
             if (todo != null && user != null)
             {
-                BackgroundJob.Enqueue(() => EmailMangement.Send(todo.Title, user.Username, user.Email, WebRequest.Url.Host + ':' + WebRequest.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={examId}"));
+                //计算现在离考核开始还有多少天
+                if (todo.StartDate.HasValue)
+                {
+                    DateTime now = DateTime.Now;
+                    int days = now.GetDiffDays(todo.StartDate.Value);
+                    if (todo.StartDate.Value > now)
+                    {
+                        BackgroundJob.Schedule(
+                        () => EmailMangement.Send(todo.Title, user.Username, user.Email, "http://" + WebRequest.Url.Host + ':' + WebRequest.Url.Port),
+                        TimeSpan.FromDays(days));
+                    }
+                    else
+                    {
+                        //立即发送
+                        BackgroundJob.Enqueue(() => EmailMangement.Send(todo.Title, user.Username, user.Email, "http://" + WebRequest.Url.Host + ':' + WebRequest.Url.Port));
+                    }
+                }
+                //BackgroundJob.Enqueue(() => EmailMangement.Send(todo.Title, user.Username, user.Email, WebRequest.Url.Host + ':' + WebRequest.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={examId}"));
             }
-
         }
     }
 }

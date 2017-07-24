@@ -24,7 +24,7 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
@@ -45,7 +45,7 @@ namespace hr.Evaluation.Endpoints
         {
             Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send2(request.Title,
                             request.UserName,
-                            HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + request.Url,
+                            "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + request.Url,
                             request.Email,
                             request.EvaluationUserName));
             return true;

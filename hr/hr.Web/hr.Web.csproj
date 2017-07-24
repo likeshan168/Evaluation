@@ -1126,6 +1126,12 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.AddEvaluationResultRequest`1.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BatchEmailRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BEmailRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ContentType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1151,9 +1157,6 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemViewModel.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultDetailColumns.ts">
@@ -1282,8 +1285,6 @@
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation0.ts" />
-    <TypeScriptCompile Include="Modules\Evaluation\EvaluationResult\EvaluationResultDialog.ts" />
-    <TypeScriptCompile Include="Modules\Evaluation\EvaluationResult\EvaluationResultGrid.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\Evaluation1.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\Evaluation2.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation1.ts" />
@@ -1315,7 +1316,6 @@
     <Content Include="Modules\Evaluation\Evaluation\Evaluation2.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\Evaluation1.cshtml" />
     <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
-    <Content Include="Modules\Evaluation\EvaluationResult\EvaluationResultIndex.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -1757,15 +1757,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Evaluation\ToDoList\ToDoListGrid.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\ToDoList\ToDoListDialog.ts" />
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultRow.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultService.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultForm.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
     <Content Include="Modules\Evaluation\EvaluationResultDetail\EvaluationResultDetailIndex.cshtml" />
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationResultDetailRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
@@ -1887,16 +1878,11 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\AddEvaluationResultRequest.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultColumns.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultEndpoint.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultForm.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultPage.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultRepository.cs" />
-    <Compile Include="Modules\Evaluation\EvaluationResult\EvaluationResultRow.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationResultDetail\AddEvaluationResultRequest.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
     <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />

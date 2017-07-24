@@ -49,7 +49,7 @@
                             </span>
 
                             <!-- todo text -->
-                            <span class="text"><a class="btn" href="Evaluation/Evaluation/SelfEvaluation?i=@item.Id">@item.Title</a></span>
+                            <span class="text"><a class="text-success" href="Evaluation/Evaluation/SelfEvaluation?i=@item.Id">@item.Title</a></span>
 
                             <!-- Emphasis label -->
                             <small class="label label-info"><i class="fa fa-clock-o"></i>开始时间：@item.StartDate</small>
@@ -68,7 +68,7 @@
 </div><!-- /.row -->
 <script>
     $(document).ready(function () {
-        $('a.btn').click(function (e) {
+        $('a.text-success').click(function (e) {
             e.preventDefault();
             Q.confirm(`说明：
 1、被评人的执行力考核内容作为评分人的考核依据

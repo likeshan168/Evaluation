@@ -6,6 +6,9 @@
         EvaluationUserId?: number;
         Email?: string;
         Username?: string;
+        EvaluationEmail?: string;
+        EvaluationName?: string;
+        Title?: string;
         HasEvaluated?: boolean;
     }
 
@@ -20,10 +23,13 @@
             export declare const EvaluationUserId: string;
             export declare const Email: string;
             export declare const Username: string;
+            export declare const EvaluationEmail: string;
+            export declare const EvaluationName: string;
+            export declare const Title: string;
             export declare const HasEvaluated: string;
         }
 
-        ['Id', 'UserId', 'ExamId', 'EvaluationUserId', 'Email', 'Username', 'HasEvaluated'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'UserId', 'ExamId', 'EvaluationUserId', 'Email', 'Username', 'EvaluationEmail', 'EvaluationName', 'Title', 'HasEvaluated'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

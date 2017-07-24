@@ -195,6 +195,8 @@ namespace hr
         public static partial class Evaluation
         {
             public static LocalText EvaluationError = "There are some other items need to be evaluated";
+            public static LocalText EvaluationNotStart = "The Evaluation hasn't begun yet";
+            public static LocalText EvaluationEnded = "The Evaluation is over";
         }
 
     }

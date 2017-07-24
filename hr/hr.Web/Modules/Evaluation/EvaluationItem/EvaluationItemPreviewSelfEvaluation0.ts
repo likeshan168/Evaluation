@@ -7,8 +7,9 @@
         }
 
         public init(): void {
-            let res = Evaluation.EvaluationItemService.GetSelfEvaluation(null, (response) => {
-                let html = `<table>
+            let examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+            let res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, (response) => {
+                let html = `<div class='row'><table class='table table-bordered table-condensed'>
                                     <tr>
                                         <th class='text-center' style='font-size:18px;' colspan='5'>他人评价</th>
                                      </tr>
@@ -36,15 +37,15 @@
                             }
                             html += `<td><input type="text" /></td></tr>`;
                         })
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     } else {
                         html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     }
 
                 } else {
                     html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                    html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                    html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table></div>`
                 }
                 this.container.html(html);
             });

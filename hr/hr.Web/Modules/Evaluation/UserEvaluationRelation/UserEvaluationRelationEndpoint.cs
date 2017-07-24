@@ -1,10 +1,17 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using Hangfire;
+    using hr.Administration.Entities;
+    using hr.Administration.Repositories;
+    using hr.Evaluation.Entities;
     using hr.Evaluation.Repositories;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
     using MyRepository = Repositories.UserEvaluationRelationRepository;
     using MyRow = Entities.UserEvaluationRelationRow;
@@ -51,6 +58,38 @@ namespace hr.Evaluation.Endpoints
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
+        }
+
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
+        public ServiceResponse BatchSendEmail(IDbConnection connection, BatchEmailRequest request)
+        {
+            if (request != null && request.Users != null)
+            {
+                //获取所有的用户信息以及考核信息
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"select * from hr.UserToUserView where UserId in(");
+                foreach (var item in request.Users)
+                {
+                    sb.Append($"{item.UserId},");
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append(") and ExamId in(");
+                foreach (var item in request.Users)
+                {
+                    sb.Append($"{item.ExamId}");
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append(");");
+                var users = connection.Query<UserToUserViewRow>(sb.ToString()).DistinctBy(p => new { p.UserId, p.ExamId });
+                //发送邮件
+                foreach (var user in users)
+                {
+                    BackgroundJob.Enqueue(() => EmailMangement.Send(user.Title, user.Username, user.Email, "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port));
+                }
+            }
+
+            return new ServiceResponse();
+
         }
     }
 }

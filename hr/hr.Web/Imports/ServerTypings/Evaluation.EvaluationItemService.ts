@@ -7,9 +7,9 @@
         export declare function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetSelfEvaluation(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetEvaluation1(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetEvaluation2(request: Serenity.ServiceRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetSelfEvaluation(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation1(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetEvaluation2(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetSelfEvaluation1ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation1ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;

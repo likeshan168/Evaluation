@@ -143,7 +143,8 @@ namespace hr.Evaluation.Endpoints
                     {
                         Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send2(exam.Title,
                             Authorization.Username,
-                            HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={exam.Id}",
+                            //HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={exam.Id}",
+                            "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port,
                             item.Email,
                             item.Username));
                     }

@@ -56,6 +56,28 @@ namespace hr.Evaluation.Entities
             set { Fields.Username[this] = value; }
 
         }
+        [DisplayName("EvaluationEmail"), Size(100), QuickSearch]
+        public String EvaluationEmail
+        {
+            get { return Fields.EvaluationEmail[this]; }
+            set { Fields.EvaluationEmail[this] = value; }
+        }
+
+        [DisplayName("Username"), Size(100)]
+        public String EvaluationName
+        {
+            get { return Fields.EvaluationName[this]; }
+            set { Fields.EvaluationName[this] = value; }
+
+        }
+        [DisplayName("Title"), Size(100)]
+        public String Title
+        {
+            get { return Fields.Title[this]; }
+            set { Fields.Title[this] = value; }
+
+        }
+
         [DisplayName("HasEvaluated"), Size(100)]
         public bool? HasEvaluated
         {
@@ -89,6 +111,9 @@ namespace hr.Evaluation.Entities
             public Int32Field EvaluationUserId;
             public StringField Email;
             public StringField Username;
+            public StringField EvaluationEmail;
+            public StringField EvaluationName;
+            public StringField Title;
             public BooleanField HasEvaluated;
             public RowFields()
                 : base()

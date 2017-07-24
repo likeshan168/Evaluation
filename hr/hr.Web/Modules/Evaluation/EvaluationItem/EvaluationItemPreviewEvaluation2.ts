@@ -7,14 +7,16 @@
         }
 
         public init(): void {
-            let res = Evaluation.EvaluationItemService.GetEvaluation2(null, (response) => {
+            let examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+
+            let res = Evaluation.EvaluationItemService.GetEvaluation2({ ExamId: examId }, (response) => {
                 console.log(response);
                 let grps = response.reduce(function (result, current) {
                     result[current.FirstKpiName] = result[current.FirstKpiName] || [];
                     result[current.FirstKpiName].push(current);
                     return result;
                 }, {});
-                let html = `<table>
+                let html = `<div class='row'><table class='table table-bordered table-condensed'>
                                 <tr>
                                     <th class='text-center' style='font-size:18px;' colspan='8'>他人评价</th>
                                 </tr>
@@ -57,7 +59,7 @@
                         html += `<td style='vertical- align:middle;' ><input type="text" style="width:100%"/></td></tr>`;
                     }
                 }
-                html += "<tr><td colspan='8' class='text-center'><a href='PreviewEvaluation'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a></td><tr></table>";
+                html += `<tr><td colspan='8' class='text-center'><a href='PreviewEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a></td><tr></table></div>`;
 
                 this.container.html(html);
 
