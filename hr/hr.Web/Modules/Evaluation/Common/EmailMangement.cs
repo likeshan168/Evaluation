@@ -13,7 +13,7 @@ namespace hr.Evaluation
     public class EmailMangement
     {
         [DisplayName("评估测试邮件")]
-        public static void Send2(string title,string userName, string url, string email, string evaluationUserName)
+        public static void Send2(string title, string userName, string url, string evaluationUserEmail, string evaluationUserName)
         {
             //var emailBody = TemplateHelper.RenderTemplate(
             //        "~/Modules/Evaluation/UserEvaluationRelation/EvaluationRemind.cshtml", todo);
@@ -28,7 +28,7 @@ namespace hr.Evaluation
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
             sb.Append("</html>");
-            EmailHelper.Send(title, sb.ToString(), email);
+            EmailHelper.Send(title, sb.ToString(), evaluationUserEmail);
         }
         [DisplayName("自我评价邮件")]
         public static void Send(string title, string userName, string email, string url)

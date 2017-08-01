@@ -145,8 +145,8 @@ namespace hr.Evaluation.Endpoints
                             Authorization.Username,
                             //HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + $"Evaluation/Evaluation/SelfEvaluation?i={exam.Id}",
                             "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port,
-                            item.Email,
-                            item.Username));
+                            item.EvaluationEmail,
+                            item.EvaluationName));
                     }
                 }
             }
