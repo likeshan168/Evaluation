@@ -53,7 +53,7 @@
 
                             <!-- Emphasis label -->
                             <small class="label label-info"><i class="fa fa-clock-o"></i>开始时间：@item.StartDate</small>
-                            <small class="label label-info"><i class="fa fa-clock-o"></i>结束时间：@item.EndDate</small>
+                            <small class="label label-info"><i class="fa fa-clock-o"></i>结束时间：@item.EndDate.Value.AddDays(1)</small>
                             <!-- General tools such as edit or delete-->
                             @*<div class="tools">
                                     <i class="fa fa-edit"></i>

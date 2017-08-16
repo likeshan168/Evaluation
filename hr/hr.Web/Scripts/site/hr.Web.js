@@ -3924,7 +3924,7 @@ var hr;
                             var obj = new Object();
                             obj['UserId'] = userId;
                             obj['ExamId'] = examId;
-                            Q.confirm("提交自我评价的内容吗,一旦提交再进行修改?", function () {
+                            Q.confirm("提交自我评价的内容吗,一旦提交将不能进行修改?", function () {
                                 hr.Evaluation.UserToUserViewService.List({
                                     EqualityFilter: obj
                                 }, function (res) {
@@ -4258,11 +4258,22 @@ var hr;
                 var index = 0;
                 Q.first(columns, function (x) { return x.field === flds.UserName; })
                     .format = function (ctx) {
-                    console.log(ctx.item);
                     //TODO: 考虑过期的情况
                     return "<a href='#' class='check_detail'>" + ctx.value + "</a>";
                 };
                 return columns;
+            };
+            EvaluationFinalResultGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            EvaluationFinalResultGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
             };
             EvaluationFinalResultGrid.prototype.onClick = function (e, row, cell) {
                 var target = $(e.target);
@@ -4829,7 +4840,7 @@ var hr;
             //protected getDialogType() { return EvaluationResultViewDialog; }
             EvaluationResultViewGrid.prototype.getLocalTextPrefix = function () { return Evaluation.EvaluationResultViewRow.localTextPrefix; };
             EvaluationResultViewGrid.prototype.getService = function () { return Evaluation.EvaluationResultViewService.baseUrl; };
-            EvaluationResultViewGrid.prototype.getIdProperty = function () { return EvaluationResultRow.idProperty; };
+            EvaluationResultViewGrid.prototype.getIdProperty = function () { return Evaluation.EvaluationResultViewRow.idProperty; };
             EvaluationResultViewGrid.prototype.getButtons = function () {
                 var buttons = _super.prototype.getButtons.call(this);
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
@@ -4875,7 +4886,6 @@ var hr;
                 var index = 0;
                 Q.first(columns, function (x) { return x.field === flds.EvaluationEmail; })
                     .format = function (ctx) {
-                    console.log(ctx.item);
                     //TODO: 考虑过期的情况
                     if (ctx.item.TotalScore > 0) {
                         return ctx.value;

@@ -43,11 +43,24 @@ namespace hr.Evaluation {
             let index = 0;
             Q.first(columns, x => x.field === flds.UserName)
                 .format = (ctx) => {
-                    console.log(ctx.item);
                     //TODO: 考虑过期的情况
                     return `<a href='#' class='check_detail'>${ctx.value}</a>`
                 }
             return columns;
+        }
+
+        protected getSlickOptions(): Slick.GridOptions {
+            var opt = super.getSlickOptions();
+            opt.enableTextSelectionOnCells = true;
+            opt.selectedCellCssClass = "slick-row-selected";
+            opt.enableCellNavigation = true;
+            return opt;
+        }
+
+        protected createSlickGrid(): Slick.Grid {
+            var grid = super.createSlickGrid();
+            grid.setSelectionModel(new Slick.RowSelectionModel());
+            return grid;
         }
 
         protected onClick(e: JQueryEventObject, row: number, cell: number) {

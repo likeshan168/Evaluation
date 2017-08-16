@@ -7,7 +7,7 @@ namespace hr.Evaluation {
         //protected getDialogType() { return EvaluationResultViewDialog; }
         protected getLocalTextPrefix() { return EvaluationResultViewRow.localTextPrefix; }
         protected getService() { return EvaluationResultViewService.baseUrl; }
-        protected getIdProperty() { return EvaluationResultRow.idProperty; }
+        protected getIdProperty() { return EvaluationResultViewRow.idProperty; }
 
         private userId: number;
         private examId: number;
@@ -76,7 +76,6 @@ namespace hr.Evaluation {
             let index = 0;
             Q.first(columns, x => x.field === flds.EvaluationEmail)
                 .format = (ctx) => {
-                    console.log(ctx.item);
                     //TODO: 考虑过期的情况
                     if (ctx.item.TotalScore > 0) {
                         return ctx.value;
