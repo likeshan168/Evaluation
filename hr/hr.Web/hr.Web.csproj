@@ -565,6 +565,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\EvaluationFinalResult.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\EvaluationFinalResult1.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\EvaluationResultView.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\LeaderEvaluationResult.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\OtherEvaluationResult.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\UserToUserView.sql" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Imports\Web.config" />
     <Content Include="Migrations\Web.config" />
@@ -1127,6 +1133,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.AddEvaluationResultRequest`1.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BatchDeleteRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BatchEmailRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1175,6 +1184,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.LeaderShipColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.MyExcelImportRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ScoreDetailColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1191,6 +1203,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationExcelImportService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserEvaluationRelationImportForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserViewModel.ts">
@@ -1291,6 +1309,7 @@
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation1.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamListDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
@@ -1845,7 +1864,7 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_103200_AddIsSelfEvaluationToEvaluationContent.cs" />
-    <Compile Include="Migrations\DefaultDB\DefaultDB_20170816_171000_SetExamIdToNullableInEvaluationRelation.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20170817_170100_CreateView2.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170710_171800_AddEvaluationUserIdToEvaluationResultDetail.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170710_170500_AddScoreToUserEvaluationToUser.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170710_154400_ModifyLeaderShip.cs" />
@@ -1880,11 +1899,15 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\Common\BatchDeleteRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
+    <Compile Include="Modules\Evaluation\Common\MyExcelImportRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultDetail\AddEvaluationResultRequest.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationImportForm.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
     <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />

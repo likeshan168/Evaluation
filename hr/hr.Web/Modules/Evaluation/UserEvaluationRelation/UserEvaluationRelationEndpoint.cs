@@ -74,9 +74,10 @@ namespace hr.Evaluation.Endpoints
                 }
                 sb.Remove(sb.Length - 1, 1);
                 sb.Append(") and ExamId in(");
-                foreach (var item in request.Users)
+                var examIdQuery = request.Users.Select(p => p.ExamId).Distinct();
+                foreach (var item in examIdQuery)
                 {
-                    sb.Append($"{item.ExamId}");
+                    sb.Append($"{item},");
                 }
                 sb.Remove(sb.Length - 1, 1);
                 sb.Append(");");
@@ -90,6 +91,37 @@ namespace hr.Evaluation.Endpoints
 
             return new ServiceResponse();
 
+        }
+
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
+        public ServiceResponse BatchDelete(IUnitOfWork uow, BatchDeleteRequest request)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+            foreach (var item in request.Ids)
+            {
+                var relation = Retrieve(uow.Connection, new RetrieveRequest { EntityId = item }).Entity;
+                if (relation != null)
+                {
+                    //string sql = $"UPDATE hr.ToDoList SET IsEnabled=0 WHERE UserId={relation.UserId} AND ExamId = {relation.ExamId};delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId}";
+                    //由于没有启用todolist,所有把关于todolist相关的操作都删除掉
+                    sb.Append($"delete from hr.EvaluationResultDetail where UserId={relation.UserId} and ExamId={relation.ExamId};");
+                    //uow.Connection.Execute(sql);
+                    sb.Append($"delete from hr.UserEvaluationToUser where UserId={relation.UserId} and UserEvaluationRelationId={relation.Id};");
+                    sb2.Append($"delete from hr.UserEvaluationRelation where Id = {item};");
+                }
+            }
+            if (sb.Length > 0)
+            {
+                uow.Connection.Execute(sb.ToString());
+                
+                if (sb2.Length > 0)
+                {
+                    uow.Connection.Execute(sb2.ToString());
+                }
+            }
+           
+            return new ServiceResponse();
         }
     }
 }

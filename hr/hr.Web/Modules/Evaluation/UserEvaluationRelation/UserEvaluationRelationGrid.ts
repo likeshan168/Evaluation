@@ -24,6 +24,7 @@ namespace hr.Evaluation {
                 cssClass: 'outlook-button',
                 onClick: () => {
                     let selectedKeys = this.rowSelection.getSelectedKeys();
+                    console.log(selectedKeys);
                     if (selectedKeys.length == 0) {
                         //this.rowSelection.selectKeys(["1", "2"]);
                         Q.alert("请选择需要发送邮件的被考核人");
@@ -43,6 +44,46 @@ namespace hr.Evaluation {
                             Q.notifySuccess("邮件已发送");
                         });
                     }
+                }
+            });
+
+            // add our import button
+            buttons.push({
+                title: '导入Excel',
+                cssClass: 'export-xlsx-button',
+                onClick: () => {
+                    // open import dialog, let it handle rest
+                    var dialog = new UserEvaluationRelationExcelImportDialog();
+                    dialog.element.on('dialogclose', () => {
+                        this.refresh();
+                        dialog = null;
+                    });
+                    dialog.dialogOpen();
+                },
+                separator: true
+            });
+            buttons.push({
+                title: '删除选中项',
+                icon: 'ion-close-circled',
+                separator: true,
+                onClick: () => {
+                    let selectedKeys = this.rowSelection.getSelectedKeys();
+                    if (selectedKeys.length == 0) {
+                        Q.alert("请选择要删除的项");
+                        return;
+                    }
+                    Q.confirm("确认要删除选中项吗", () => {
+                        let ids = [];
+                        selectedKeys.forEach((value, index) => {
+                            ids.push(parseInt(value));
+                        });
+                        UserEvaluationRelationService.BatchDelete({
+                            Ids: ids
+                        }, response => {
+                            Q.notifySuccess("删除成功");
+                            this.refresh();
+                        })
+                    });
                 }
             });
             return buttons;

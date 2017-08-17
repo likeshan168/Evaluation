@@ -1042,6 +1042,23 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var UserEvaluationRelationExcelImportService;
+        (function (UserEvaluationRelationExcelImportService) {
+            UserEvaluationRelationExcelImportService.baseUrl = 'Evaluation/UserEvaluationRelationExcelImport';
+            var Methods;
+            (function (Methods) {
+            })(Methods = UserEvaluationRelationExcelImportService.Methods || (UserEvaluationRelationExcelImportService.Methods = {}));
+            ['ExcelImport'].forEach(function (x) {
+                UserEvaluationRelationExcelImportService[x] = function (r, s, o) { return Q.serviceRequest(UserEvaluationRelationExcelImportService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = UserEvaluationRelationExcelImportService.baseUrl + '/' + x;
+            });
+        })(UserEvaluationRelationExcelImportService = Evaluation.UserEvaluationRelationExcelImportService || (Evaluation.UserEvaluationRelationExcelImportService = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var UserEvaluationRelationForm = (function (_super) {
             __extends(UserEvaluationRelationForm, _super);
             function UserEvaluationRelationForm() {
@@ -1052,6 +1069,22 @@ var hr;
         UserEvaluationRelationForm.formKey = 'Evaluation.UserEvaluationRelation';
         Evaluation.UserEvaluationRelationForm = UserEvaluationRelationForm;
         [['UserId', function () { return Serenity.LookupEditor; }], ['UserList', function () { return Serenity.LookupEditor; }], ['ExamId', function () { return Serenity.LookupEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserEvaluationRelationForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var UserEvaluationRelationImportForm = (function (_super) {
+            __extends(UserEvaluationRelationImportForm, _super);
+            function UserEvaluationRelationImportForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return UserEvaluationRelationImportForm;
+        }(Serenity.PrefixedContext));
+        UserEvaluationRelationImportForm.formKey = 'Evaluation.UserEvaluationRelationExcelImport';
+        Evaluation.UserEvaluationRelationImportForm = UserEvaluationRelationImportForm;
+        [['ExamId', function () { return Serenity.LookupEditor; }], ['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(UserEvaluationRelationImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;
@@ -1080,7 +1113,7 @@ var hr;
             var Methods;
             (function (Methods) {
             })(Methods = UserEvaluationRelationService.Methods || (UserEvaluationRelationService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'BatchSendEmail'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'BatchSendEmail', 'BatchDelete'].forEach(function (x) {
                 UserEvaluationRelationService[x] = function (r, s, o) { return Q.serviceRequest(UserEvaluationRelationService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = UserEvaluationRelationService.baseUrl + '/' + x;
             });
@@ -5621,6 +5654,64 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var UserEvaluationRelationExcelImportDialog = (function (_super) {
+            __extends(UserEvaluationRelationExcelImportDialog, _super);
+            function UserEvaluationRelationExcelImportDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Evaluation.UserEvaluationRelationImportForm(_this.idPrefix);
+                return _this;
+            }
+            UserEvaluationRelationExcelImportDialog.prototype.getDialogTitle = function () {
+                return "导入Excel";
+            };
+            UserEvaluationRelationExcelImportDialog.prototype.getDialogButtons = function () {
+                var _this = this;
+                return [
+                    {
+                        text: '导入',
+                        click: function () {
+                            if (!_this.validateBeforeSave())
+                                return;
+                            if (_this.form.ExamId.value == null) {
+                                Q.notifyError("请选择考核!");
+                                return;
+                            }
+                            if (_this.form.FileName.value == null ||
+                                Q.isEmptyOrNull(_this.form.FileName.value.Filename)) {
+                                Q.notifyError("Please select a file!");
+                                return;
+                            }
+                            Evaluation.UserEvaluationRelationExcelImportService.ExcelImport({
+                                ExamId: Q.parseInteger(_this.form.ExamId.value),
+                                FileName: _this.form.FileName.value.Filename
+                            }, function (response) {
+                                Q.notifyInfo('新增: ' + (response.Inserted || 0) +
+                                    ', 更新: ' + (response.Updated || 0));
+                                if (response.ErrorList != null && response.ErrorList.length > 0) {
+                                    Q.notifyError(response.ErrorList.join(',\r\n '));
+                                }
+                                _this.dialogClose();
+                            });
+                        },
+                    },
+                    {
+                        text: '取消',
+                        click: function () { return _this.dialogClose(); }
+                    }
+                ];
+            };
+            return UserEvaluationRelationExcelImportDialog;
+        }(Serenity.PropertyDialog));
+        UserEvaluationRelationExcelImportDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserEvaluationRelationExcelImportDialog);
+        Evaluation.UserEvaluationRelationExcelImportDialog = UserEvaluationRelationExcelImportDialog;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var UserEvaluationRelationGrid = (function (_super) {
             __extends(UserEvaluationRelationGrid, _super);
             function UserEvaluationRelationGrid(container) {
@@ -5643,6 +5734,7 @@ var hr;
                     cssClass: 'outlook-button',
                     onClick: function () {
                         var selectedKeys = _this.rowSelection.getSelectedKeys();
+                        console.log(selectedKeys);
                         if (selectedKeys.length == 0) {
                             //this.rowSelection.selectKeys(["1", "2"]);
                             Q.alert("请选择需要发送邮件的被考核人");
@@ -5663,6 +5755,45 @@ var hr;
                                 Q.notifySuccess("邮件已发送");
                             });
                         }
+                    }
+                });
+                // add our import button
+                buttons.push({
+                    title: '导入Excel',
+                    cssClass: 'export-xlsx-button',
+                    onClick: function () {
+                        // open import dialog, let it handle rest
+                        var dialog = new Evaluation.UserEvaluationRelationExcelImportDialog();
+                        dialog.element.on('dialogclose', function () {
+                            _this.refresh();
+                            dialog = null;
+                        });
+                        dialog.dialogOpen();
+                    },
+                    separator: true
+                });
+                buttons.push({
+                    title: '删除选中项',
+                    icon: 'ion-close-circled',
+                    separator: true,
+                    onClick: function () {
+                        var selectedKeys = _this.rowSelection.getSelectedKeys();
+                        if (selectedKeys.length == 0) {
+                            Q.alert("请选择要删除的项");
+                            return;
+                        }
+                        Q.confirm("确认要删除选中项吗", function () {
+                            var ids = [];
+                            selectedKeys.forEach(function (value, index) {
+                                ids.push(parseInt(value));
+                            });
+                            Evaluation.UserEvaluationRelationService.BatchDelete({
+                                Ids: ids
+                            }, function (response) {
+                                Q.notifySuccess("删除成功");
+                                _this.refresh();
+                            });
+                        });
                     }
                 });
                 return buttons;

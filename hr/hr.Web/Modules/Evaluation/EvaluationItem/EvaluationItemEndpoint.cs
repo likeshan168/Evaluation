@@ -220,7 +220,7 @@ namespace hr.Evaluation.Endpoints
             {
                 throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationNotStart);
             }
-            else if (exam.EndDate < now)
+            else if (exam.EndDate.Value.AddDays(1) < now) //第二天凌晨结束
             {
                 throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationEnded);
             }

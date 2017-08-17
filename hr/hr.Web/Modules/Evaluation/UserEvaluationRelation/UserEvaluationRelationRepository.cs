@@ -42,6 +42,18 @@ namespace hr.Evaluation.Repositories
 
             return res;
         }
+        /// <summary>
+        /// 专为批量导入用的
+        /// </summary>
+        /// <param name="uow"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public SaveResponse BatchCreate(IUnitOfWork uow, SaveRequest<MyRow> request)
+        {
+            var res = new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            //AddTodoListAndEvaluationResultDetail(uow, request, GetEvaluationUserIdsByUserIdAndExamId(uow, request));
+            return res;
+        }
 
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
@@ -100,7 +112,7 @@ namespace hr.Evaluation.Repositories
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
         private class MyListHandler : ListRequestHandler<MyRow> { }
 
-        private void AddTodoListAndEvaluationResultDetail(IUnitOfWork uow, SaveRequest<MyRow> request, IEnumerable<int> evaluationUserIds, bool isUpdate = false)
+        public void AddTodoListAndEvaluationResultDetail(IUnitOfWork uow, SaveRequest<MyRow> request, IEnumerable<int> evaluationUserIds, bool isUpdate = false)
         {
             // get the exam info
             #region get the exam info
@@ -191,15 +203,16 @@ namespace hr.Evaluation.Repositories
 
             #region 发送邮件进行通知
             //只有在新增的时候，通知员工进行自我评价(记住：是在考核开始的当天发送，而不是马上发送邮件)
-            if (!isUpdate)
-            {
-                SendEmail(uow, request, exam.Entity.Id);
-            }
+            //if (!isUpdate)
+            //{
+            //    SendEmail(uow, request, exam.Entity.Id);
+            //}
+            //现在都不自动发送邮件了，改为手动发送邮件
 
             #endregion
         }
 
-        private IEnumerable<int> GetEvaluationUserIdsByUserIdAndExamId(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public IEnumerable<int> GetEvaluationUserIdsByUserIdAndExamId(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             var equalityFilter = new Dictionary<string, object>();
             equalityFilter.Add(UserToUserViewRow.Fields.UserId.Name, request.Entity.UserId);
