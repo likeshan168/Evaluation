@@ -39,7 +39,7 @@ namespace hr.Evaluation
             StringBuilder sb = new StringBuilder();
             sb.Append($"<html><head><title>{title}</title></head>");
             sb.Append($"<body><p>Dear {userName},</p>");
-            sb.Append($"<p>请点击以下链接去进行评估测试:</p>");
+            sb.Append($"<p>请点击以下链接去进行评估考核:</p>");
             sb.Append($"<p><a href='{url}'>{url}</a></p>");
             sb.Append($"<p>If you have any questions, please contact to us</p>");
             sb.Append("Thanks,<br/>");
