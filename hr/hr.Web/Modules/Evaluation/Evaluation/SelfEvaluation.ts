@@ -75,7 +75,7 @@
                         let obj = new Object();
                         obj['UserId'] = userId;
                         obj['ExamId'] = examId;
-                        Q.confirm("提交自我评价的内容吗,一旦提交将不能进行修改?", () => {
+                        Q.confirm("提交自我评价的内容吗?,一旦提交将不能进行修改", () => {
                             hr.Evaluation.UserToUserViewService.List({
                                 EqualityFilter: obj
                             }, res => {

@@ -18,5 +18,7 @@ namespace hr.Administration.Columns
         public String Email { get; set; }
         [Width(100)]
         public String Source { get; set; }
+        [QuickFilter]
+        public String RoleName { get; set; }
     }
 }

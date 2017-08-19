@@ -61,6 +61,56 @@ namespace hr.Administration.Repositories
             return new SaveResponse();
         }
 
+        public SaveResponse BatchUpdate(IUnitOfWork uow, UserRoleBatchUpdateRequest request)
+        {
+            Check.NotNull(request, "request");
+            Check.NotNull(request.UserIds, "userID");
+            Check.NotNull(request.Roles, "permissions");
+
+            var userIDs = request.UserIds;
+            foreach (var userID in userIDs)
+            {
+                var oldList = new HashSet<Int32>(
+                GetExisting(uow.Connection, userID)
+                .Select(x => x.RoleId.Value));
+
+                var newList = new HashSet<Int32>(request.Roles.ToList());
+
+                if (oldList.SetEquals(newList))
+                    return new SaveResponse();
+
+                foreach (var k in oldList)
+                {
+                    if (newList.Contains(k))
+                        continue;
+
+                    new SqlDelete(fld.TableName)
+                        .Where(
+                            new Criteria(fld.UserId) == userID &
+                            new Criteria(fld.RoleId) == k)
+                        .Execute(uow.Connection);
+                }
+
+                foreach (var k in newList)
+                {
+                    if (oldList.Contains(k))
+                        continue;
+
+                    uow.Connection.Insert(new MyRow
+                    {
+                        UserId = userID,
+                        RoleId = k
+                    });
+                }
+            }
+
+
+            BatchGenerationUpdater.OnCommit(uow, fld.GenerationKey);
+            BatchGenerationUpdater.OnCommit(uow, Entities.UserPermissionRow.Fields.GenerationKey);
+
+            return new SaveResponse();
+        }
+
         private List<MyRow> GetExisting(IDbConnection connection, Int32 userId)
         {
             return connection.List<MyRow>(q =>

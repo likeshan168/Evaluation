@@ -18,6 +18,12 @@ namespace hr.Administration.Endpoints
             return new MyRepository().Update(uow, request);
         }
 
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse BatchUpdate(IUnitOfWork uow, UserRoleBatchUpdateRequest request)
+        {
+            return new MyRepository().BatchUpdate(uow, request);
+        }
+
         public UserRoleListResponse List(IDbConnection connection, UserRoleListRequest request)
         {
             return new MyRepository().List(connection, request);

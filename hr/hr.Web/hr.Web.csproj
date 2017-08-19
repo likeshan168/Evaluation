@@ -1130,6 +1130,9 @@
     <Content Include="Scripts\pollyfill\matchMedia.js" />
     <Content Include="Scripts\pollyfill\modernizr.latest.js" />
     <Content Include="wkhtmltopdf-license.txt" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleBatchUpdateRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.AddEvaluationResultRequest`1.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1260,6 +1263,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
+    <TypeScriptCompile Include="Modules\Administration\User\ChooseRoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
@@ -1895,6 +1899,7 @@
     <Compile Include="Modules\Administration\AdministrationPermissionKeys.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
+    <Compile Include="Modules\Administration\UserRole\UserRoleBatchUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />

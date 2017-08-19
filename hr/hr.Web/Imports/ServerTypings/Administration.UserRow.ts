@@ -12,6 +12,8 @@
         IsActive?: number;
         Password?: string;
         PasswordConfirm?: string;
+        RoleId?: number;
+        RoleName?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -42,13 +44,15 @@
             export declare const IsActive: string;
             export declare const Password: string;
             export declare const PasswordConfirm: string;
+            export declare const RoleId: string;
+            export declare const RoleName: string;
             export declare const InsertUserId: string;
             export declare const InsertDate: string;
             export declare const UpdateUserId: string;
             export declare const UpdateDate: string;
         }
 
-        ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
+        ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'RoleId', 'RoleName', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

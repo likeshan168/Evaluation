@@ -11,6 +11,8 @@ namespace hr.Administration.Entities
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript("Administration.User", Permission = PermissionKeys.Security)]
+    [LeftJoin("ur", "UserRoles", "ur.[UserId] = T0.[UserId]")]
+    //[LeftJoin("r", "Role", "r.[RoleId] = ur.[RoleId]")]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity]
@@ -98,6 +100,21 @@ namespace hr.Administration.Entities
             set { Fields.LastDirectoryUpdate[this] = value; }
         }
 
+        [Expression("ur.[RoleId]"), DisplayName("RoleId"), ForeignKey("Roles", "RoleId"), LeftJoin("r"), TextualField("RoleName")]
+        [LookupEditor(typeof(RoleRow))]
+        public Int32? RoleId
+        {
+            get { return Fields.RoleId[this]; }
+            set { Fields.RoleId[this] = value; }
+        }
+
+        [DisplayName("RoleName"), Expression("r.[RoleName]")]
+        public String RoleName
+        {
+            get { return Fields.RoleName[this]; }
+            set { Fields.RoleName[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.UserId; }
@@ -135,6 +152,8 @@ namespace hr.Administration.Entities
 
             public StringField Password;
             public StringField PasswordConfirm;
+            public Int32Field RoleId;
+            public StringField RoleName;
 
             public RowFields()
                 : base("Users")

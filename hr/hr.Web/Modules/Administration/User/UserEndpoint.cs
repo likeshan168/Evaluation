@@ -42,9 +42,9 @@ namespace hr.Administration.Endpoints
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
 
-            //1. 删除领导关系  2. 删除角色
+            //1. 删除领导关系  2. 删除角色 3. 删除配置关系 4. 删除考核结果
             int userId = int.Parse(request.EntityId.ToString());
-            uow.Connection.Execute($"delete from hr.LeaderShip where UserId={userId};update [hr].[LeaderShip] set ParentUserId=null where ParentUserId={userId};delete from dbo.UserRoles where UserId={userId}");
+            uow.Connection.Execute($"delete from hr.LeaderShip where UserId={userId};update [hr].[LeaderShip] set ParentUserId=null where ParentUserId={userId};delete from dbo.UserRoles where UserId={userId};delete from hr.UserEvaluationRelation where UserId={userId};delete from hr.UserEvaluationToUser where UserId={userId};delete from hr.EvaluationResultDetail where UserId={userId} or EvaluationUserId={userId};");
 
             var res = new MyRepository().Delete(uow, request);
             return res;
