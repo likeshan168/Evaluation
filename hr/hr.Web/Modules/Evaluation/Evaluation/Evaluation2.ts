@@ -1,6 +1,7 @@
 ﻿namespace hr.Evaluation {
     export class Evaluation2 {
         private container: JQuery;
+
         constructor(container: JQuery) {
             //this.InitView(container);
             this.container = container;
@@ -20,7 +21,7 @@
                 }, {});
                 let html = `<table>
                                 <tr>
-                                    <th class='text-center' style='font-size:18px;' colspan='7'>对<u>${$.cookie('evaluated_user')}</u>进行评价</th>
+                                    <th class='text-center' style='font-size:18px;' colspan='7'>对&nbsp;&nbsp;<span style="color:#00a7d0">${$.cookie('evaluated_user')}</span>&nbsp;&nbsp;进行评价</th>
                                 </tr>
                                     <tr>
                                         <td style='width:80px;'>考核项目</td>
@@ -39,7 +40,6 @@
                         result[current.SecondKpiName].push(current);
                         return result;
                     }, {});
-                    console.log(subGrps);
                     let subKeys = [];
                     for (let subpro in subGrps) {
                         subKeys.push(subpro);
@@ -51,17 +51,17 @@
 
                     for (let subpro in subGrps) {
                         subarr = subGrps[subpro];
-                        html += '<tr class="text-danger">'
+                        html += '<tr class="text-notdone">';
                         if (i === 0) {
                             html += `<td rowspan='${toprowpan}' style='vertical-align: middle;width:80px'>${pro}</td>`;
                         }
                         i++;
-                        html += `<td style='vertical-align:middle;'>${subpro}</td>`
+                        html += `<td style='vertical-align:middle;'>${subpro}</td>`;
                         $.each(subarr, (index, value) => {
                             if (value.FScore) {
-                                html += `<td style='vertical-align:bottom;'><label>${value.Content}(<label style='color: blue;'>${value.Score}分</label>)<br/><input data-itemid='${value.Id}' type="radio" checked='checked' name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label> </td>`
+                                html += `<td style='vertical-align:bottom;'><label style="font-weight: normal">${value.Content}(<span style='color: #1a2d27;'>${value.Score}分</span>)<br/><input data-itemid='${value.Id}' type="radio" checked='checked' name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label>  </td>`
                             } else {
-                                html += `<td style='vertical-align:bottom;'><label>${value.Content}(<label style='color: blue;'>${value.Score}分</label>)<br/><input data-itemid='${value.Id}' type="radio" name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label> </td>`
+                                html += `<td style='vertical-align:bottom;'><label style="font-weight: normal">${value.Content}(<span style='color: #1a2d27;'>${value.Score}分</span>)<br/><input data-itemid='${value.Id}' type="radio" name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label> </td>`
                             }
 
                         });
@@ -82,7 +82,7 @@
                     btnSave.addClass('hidden');
                 }
                 checkedRd.each((index, ele) => {
-                    $(ele).parent().parent().parent().removeClass("text-danger").addClass("text-success");
+                    $(ele).parent().parent().parent().removeClass("text-notdone").addClass("text-done");
                 });
                 btnSave.click(e => {
                     //console.log(subarr);
@@ -117,15 +117,15 @@
                 let prt;
                 radio.change(e => {
                     prt = $(e.target).parent().parent().parent();
-                    if (prt.hasClass('text-danger')) {
-                        $(e.target).parent().parent().parent().removeClass("text-danger").addClass("text-success");
+                    if (prt.hasClass('text-notdone')) {
+                        console.log("hello");
+                        $(e.target).parent().parent().parent().removeClass("text-notdone").addClass("text-done");
                     }
                 });
 
                 preva.click((e) => {
                     e.preventDefault();
-
-                    if (checkedRd.length > 0 && Q.any(checkedRd, p => $(p).parent().parent().parent().hasClass('text-danger'))) {
+                    if ($("input[type='radio']:checked").length > 0) {
                         Q.confirm('数据未保存，您确认离开此页面吗？', () => {
                             //window.location.href = preva.attr('href');
 
@@ -141,7 +141,7 @@
             });
         }
 
-        private CheckCurrentUserIsParent(userId: number, examId: number, preva: JQuery): void{
+        private CheckCurrentUserIsParent(userId: number, examId: number, preva: JQuery): void {
             //进入下一页之前判断领导关系
             LeaderShipService.CheckCurrentUserIsParent({
                 UserId: userId

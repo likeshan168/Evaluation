@@ -1,6 +1,7 @@
 ﻿namespace hr.Evaluation {
     export class Evaluation1 {
         private container: JQuery;
+
         constructor(container: JQuery) {
             //this.InitView(container);
             this.container = container;
@@ -26,7 +27,7 @@
                         }, {});
                         let html = `<table>
                                 <tr>
-                                    <th class='text-center' style='font-size:18px;' colspan='4'>对<u>${$.cookie('evaluated_user')}</u>进行评价</th>
+                                    <th class='text-center' style='font-size:18px;' colspan='4'>对&nbsp;&nbsp;<span style="color: #00a7d0">${$.cookie('evaluated_user')}</span>&nbsp;&nbsp;进行评价</th>
                                 </tr>
                                     <tr>
                                         <td style='width:80px;'>考核项目</td>
@@ -71,7 +72,7 @@
                                 });
                             }
                         }
-                        html += `<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type="button" class="btn btn-primary hidden" id='btnSave'>保存</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=${examId}&p=${userId}'><i class='fa fa-arrow-right' aria-hidden='true'></i>下一页</a></td><tr></table>`;
+                        html += `<tr><td colspan='4' class='text-center'><a id='preva' href='SelfEvaluation1?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;&nbsp;<button id='btnSave' type="button" class="btn btn-primary hidden" id='btnSave'>保存</button>&nbsp;&nbsp;&nbsp;<a id='nexta' href='Evaluation2?i=${examId}&p=${userId}'>下一页<i class='fa fa-arrow-right' aria-hidden='true'></i></a></td><tr></table>`;
 
                         this.container.html(html);
 

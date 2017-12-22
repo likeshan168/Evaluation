@@ -25,38 +25,38 @@
                             res.responseJSON.forEach((item, index) => {
                                 html += `<tr>`;
                                 if (index == 0) {
-                                    html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p class='text-primary'>${item.FirstKpiName}</p></td>`;
+                                    html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p>${item.FirstKpiName}</p></td>`;
                                 }
-                                html += `<td width='80px'><p class='text-success'>${item.SecondKpiName}</p></td>
-                                    <td width='150px'><p class='text-info'>${item.Content}</p></td>`;
+                                html += `<td width='80px'><p>${item.SecondKpiName}</p></td>
+                                    <td width='150px'><p>${item.Content}</p></td>`;
                                 if (item.ContentType === 1) {
                                     //输入框
                                     if (Q.isEmptyOrNull(item.InputContent)) {
-                                        html += `<td><em>${item.Mark}</em><br/><textarea data-itemid='${item.Id}' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent !== undefined ? item.InputContent : ''}</textarea></td>`
+                                        html += `<td>${item.Mark}<br/><textarea data-itemid='${item.Id}' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent !== undefined ? item.InputContent : ''}</textarea></td>`
                                     } else {
-                                        html += `<td><em>${item.Mark}</em><br/><textarea disabled='disabled' data-itemid='${item.Id}' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent !== undefined ? item.InputContent : ''}</textarea></td>`
+                                        html += `<td>${item.Mark}<br/><textarea disabled='disabled' data-itemid='${item.Id}' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent !== undefined ? item.InputContent : ''}</textarea></td>`
                                     }
                                 }
-                                html += `<td style='width:150px;'><small class='bg-danger'>${item.Remark}</small></td>`;
+                                html += `<td style='width:150px;'><small>${item.Remark}</small></td>`;
                                 html += "</tr>";
                             })
-                            html += `<tr><td colspan='5' class='text-center'><button type="button" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=${examId}' id='nexta' class='hidden'><i class="fa fa-arrow-right" aria-hidden="true"></i>开始评价他人</a></td><tr></table>`
+                            html += `<tr><td colspan='5' class='text-center'><button type="button" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=${examId}' id='nexta' class='hideele'>开始评价他人<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`
                         } else {
                             html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                            html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>开始评价他人</a></td><tr></table>`
+                            html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'>开始评价他人<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`
                         }
 
                     } else {
                         html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                        html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>开始评价他人</a></td><tr></table>`
+                        html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId}'>开始评价他人<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`
                     }
                     this.container.html(html);
                     let saveBtn = $("button.btn-primary");
                     let inputs = $("textarea.form-control");
                     let nexta = $("#nexta");
                     if (inputs.attr("disabled") === "disabled") {
-                        nexta.removeClass('hidden').addClass('show');
-                        saveBtn.addClass('hidden');
+                        nexta.removeClass('hideele').addClass('showele');
+                        saveBtn.addClass('hideele');
                     }
                     saveBtn.click((e) => {
                         let flag = true;
@@ -100,8 +100,8 @@
                                     IsComplete: false
                                 }, response => {
                                     Q.notifySuccess("提交成功");
-                                    nexta.removeClass("hidden").addClass("show");
-                                    saveBtn.addClass('hidden');
+                                    nexta.removeClass("hideele").addClass("showele");
+                                    saveBtn.addClass('hideele');
                                     inputs.attr('disabled', 'disabled');
                                 });
                             })

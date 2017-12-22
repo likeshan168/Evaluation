@@ -1,6 +1,7 @@
 ﻿namespace hr.Evaluation {
     export class SelfEvaluation1 {
         private container: JQuery;
+
         constructor(container: JQuery) {
             //this.InitView(container);
             this.container = container;
@@ -16,16 +17,13 @@
                 let ht = `<select class="form-control" id='sltUsers'><option value='0'>请选择要评价的人</option>`;
                 $.each(users, (index, value) => {
                     ht += `<option value='${value.UserId}'>${value.Username}</option>`
-                })
+                });
                 ht += `</select>
                         <div class='row' id='evaluationContent'>
                             <p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>
                         </div>
-                        <div class='row text-center'>
-                           <div class='col-md-1 col-md-offset-4'> <a id='preva' href='SelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a></div>
-                           <div class='col-md-1'><button type="button" class="btn btn-primary hidden" id='btnSave'>保存</button></div>
-                           <div class='col-md-1'> <a id='nexta' href='Evaluation1?i=${examId}' class='hidden'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></div>
-                        </div>`;
+                        <div class="text-center"><a id='preva' href='SelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
+                        `;
 
                 this.container.html(ht);
 
@@ -55,11 +53,11 @@
             if (sltUsers.val() === '0') {
                 html += `<p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>`;
                 evaluationContent.html(html);
-                btn.addClass('hidden');
-                nexta.addClass('hidden');
+                btn.addClass('hideele');
+                nexta.addClass('hideele');
                 return;
             }
-            
+
             let res = Evaluation.EvaluationItemService.GetSelfEvaluation1ByExam({
                 ExamId: examId,
                 UserId: sltUsers.val()
@@ -72,49 +70,47 @@
                         if (Q.any(res.responseJSON, p => Q.isEmptyOrNull(p['InputContent']))) {
                             html += `<p class='bg-danger text-center'>${sltUsers.children("option:selected").text()}同志还未进行过自我评价，在其进行自我评价之后，才能进行下一步的操作</p>`;
                             evaluationContent.html(html);
-                            $('#nexta').removeClass('hidden').removeClass('show').addClass('hidden');
-                            //btn.removeClass('hidden');
+                            $('#nexta').removeClass('hideele').removeClass('showele').addClass('hideele');
                             return;
-                        };
+                        }
                         html += `<table>
                                     <tr>
                                         <th class='text-center' style='font-size:18px;' colspan='6'>
-                                            <span class="caret"></span>对<u>${sltUsers.children("option:selected").text()}</u>进行评价
+                                            对&nbsp;&nbsp;<span style="color:#00a7d0">${sltUsers.children("option:selected").text()}</span>&nbsp;&nbsp;进行评价
                                         </th>
                                      </tr>
                                     <tr>
                                         <td style='width:80px;'><strong>考核项目</strong></td>
                                         <td style='width:80px;'><strong>评价内容</strong></td>
-                                        <td colspan='2' style='min-width:400px;'><strong>评价标准</strong></td>
-                                        <td style='width:100px;'><strong>得分</strong></td>
+                                        <td colspan='2' style='min-width:400px;'><strong>评价标准(被评人的自我评价)</strong></td>
+                                        <td style='width:120px;'><strong>得分(参评人评价)</strong></td>
                                         <td style='width:150px;'><strong>备注</strong></td>
                                     </tr>
                                 `;
                         res.responseJSON.forEach((item, index) => {
                             html += `<tr>`;
                             if (index == 0) {
-                                html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p class='text-primary'>${item.FirstKpiName}</p></td>`;
+                                html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p>${item.FirstKpiName}</p></td>`;
                             }
-                            html += `<td width='80px'><p class='text-success'>${item.SecondKpiName}</p></td>
-                                    <td width='150px'><p class='text-info'>${item.Content}</p></td>`;
+                            html += `<td width='80px'><p>${item.SecondKpiName}</p></td>
+                                    <td width='150px'><p>${item.Content}</p></td>`;
                             if (item.ContentType === 1) {
                                 //输入框
-                                html += `<td><em>${item.Mark}</em><textarea data-itemid='${item.Id}' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent === undefined ? '' : item.InputContent}</textarea></td>`
+                                html += `<td>${item.Mark}<textarea data-itemid='${item.Id}' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent === undefined ? '' : item.InputContent}</textarea></td>`
                             }
                             if (item.FScore) {
-                                html += `<td><input disabled='disabled' data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control success' type="number" max="${item.Score}" min="0" value='${item.FScore}' /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
+                                html += `<td><input disabled='disabled' data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control success' type="number" max="${item.Score}" min="0" value='${item.FScore}' /></td><td><small>${item.Remark}</small></td></tr>`;
                             }
                             else {
-                                html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control' type="number" max="${item.Score}" min="0" /></td><td><small class='bg-danger'>${item.Remark}</small></td></tr>`;
+                                html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control' type="number" max="${item.Score}" min="0" /></td><td><small>${item.Remark}</small></td></tr>`;
                             }
                         })
                     }
                 }
 
                 evaluationContent.html(html);
-                
-                nexta.removeClass('hidden').addClass('show').attr('href', `Evaluation1?i=${examId}&p=${sltUsers.val()}`);
-                //btn.removeClass('hidden');
+
+                nexta.removeClass('hideele').addClass('showele').attr('href', `Evaluation1?i=${examId}&p=${sltUsers.val()}`);
                 let inputScore = $('input[type="number"].form-control');
 
                 inputScore.change((e) => {
@@ -134,8 +130,8 @@
                     arr.push(ele);
                 });
                 if (Q.any(arr, p => !$(p).hasClass('success'))) {
-                    btn.removeClass('hidden');
-                } 
+                    btn.removeClass('hideele');
+                }
                 preva.click((e) => {
                     e.preventDefault();
 
@@ -152,7 +148,7 @@
 
                     if (Q.any(arr, p => !Q.isEmptyOrNull($(p).val())) && Q.any(arr, p => !$(p).hasClass('success'))) {
                         Q.confirm('数据未保存，您确认离开此页面吗？', () => {
-                            $.cookie('evaluated_user', sltUsers.children("option:selected").text(), { path: '/' });
+                            $.cookie('evaluated_user', sltUsers.children("option:selected").text(), {path: '/'});
                             //进入下一页之前判断领导关系
                             LeaderShipService.CheckCurrentUserIsParent({
                                 UserId: parseInt(sltUsers.val())
@@ -166,7 +162,7 @@
                             });
                         });
                     } else {
-                        $.cookie('evaluated_user', sltUsers.children("option:selected").text(), { path: '/' });
+                        $.cookie('evaluated_user', sltUsers.children("option:selected").text(), {path: '/'});
                         LeaderShipService.CheckCurrentUserIsParent({
                             UserId: parseInt(sltUsers.val())
                         }, response => {
@@ -203,7 +199,7 @@
                             Q.notifySuccess('保存成功！');
                             //inputScore.attr('disabled', 'disabled');
                             inputScore.addClass('success').attr('disabled', 'disabled');
-                            btn.addClass('hidden');
+                            btn.addClass('hideele');
                         });
                     }
                 });
