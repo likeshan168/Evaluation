@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace hr.Evaluation.Endpoints
 {
     using Serenity;
@@ -49,6 +51,28 @@ namespace hr.Evaluation.Endpoints
                             request.Email,
                             request.EvaluationUserName));
             return true;
+        }
+
+        public bool BatchSendNotifyEmail(BatchUserEmailRequest request)
+        {
+            try
+            {
+                foreach (var item in request.Entities)
+                {
+                    Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send2(item.Title,
+                        item.UserName,
+                        "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port + '/' + item.Url,
+                        item.Email,
+                        item.EvaluationUserName));
+                }
+
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                ex.Log();
+                return false;
+            }
         }
     }
 }

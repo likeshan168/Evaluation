@@ -1,5 +1,4 @@
-﻿
-namespace hr.Evaluation {
+﻿namespace hr.Evaluation {
 
     @Serenity.Decorators.registerClass()
     export class EvaluationResultViewGrid extends Serenity.EntityGrid<EvaluationResultViewRow, any> {
@@ -20,8 +19,38 @@ namespace hr.Evaluation {
 
         protected getButtons(): Serenity.ToolButton[] {
             var buttons = super.getButtons();
-            buttons.splice(Q.indexOf(buttons, x => x.cssClass == "add-button"), 1);
-
+            buttons.splice(Q.indexOf(buttons, x => x.cssClass === "add-button"), 1);
+            buttons.push({
+                title: '发送邮件通知所有未完成评估的人进行评估',
+                cssClass: 'outlook-button',
+                onClick: () => {
+                    Q.confirm("确认发送邮件吗",
+                        () => {
+                            //get all the items
+                            let items = this.view.getItems().filter(p => p.TotalScore === 0);
+                            let arr = new Array<Evaluation.UserEmailRequest>();
+                            for (let i = 0; i < items.length; i++) {
+                                arr.push({
+                                    Email: items[i].EvaluationEmail,
+                                    EvaluationUserName: items[i].EvaluationUser,
+                                    Title: items[i].Title,
+                                    Url: `Evaluation/Evaluation/SelfEvaluation?i=${items[i].ExamId}`,
+                                    UserName: items[i].Username
+                                });
+                            }
+                            EvaluationResultViewService.BatchSendNotifyEmail({
+                                    Entities: arr
+                                },
+                                response => {
+                                    if (response) {
+                                        Q.notifySuccess("邮件发送成功");
+                                    } else {
+                                        Q.notifyError("邮件发送失败");
+                                    }
+                                });
+                        });
+                }
+            });
             return buttons;
         }
 
@@ -80,7 +109,7 @@ namespace hr.Evaluation {
                     if (ctx.item.TotalScore > 0) {
                         return ctx.value;
                     } else {
-                        return `<a href='#' class='send_email'>${ctx.value}</a>`
+                        return `<a href='#' class='send_email'>${ctx.value}</a>`;
                     }
                 }
             return columns;
