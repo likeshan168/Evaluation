@@ -1,4 +1,6 @@
 ﻿
+using hr.Modules.Common.Helpers;
+
 namespace hr.Evaluation.Entities
 {
     using hr.Administration.Entities;
@@ -24,7 +26,8 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("User"), NotNull, ForeignKey("[dbo].[Users]", "UserId"), LeftJoin("jUser"), TextualField("UserUsername")]
-        [LookupEditor(typeof(UserRow), InplaceAdd = true)]
+//        [LookupEditor(typeof(UserRow), InplaceAdd = true)]
+        [LookupEditor(typeof(CustomUserLookup))]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }
