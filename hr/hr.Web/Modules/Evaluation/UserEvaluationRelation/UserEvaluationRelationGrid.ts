@@ -64,11 +64,11 @@ namespace hr.Evaluation {
             });
             buttons.push({
                 title: '删除选中项',
-                icon: 'ion-close-circled',
+                cssClass: 'delete-button',
                 separator: true,
                 onClick: () => {
                     let selectedKeys = this.rowSelection.getSelectedKeys();
-                    if (selectedKeys.length == 0) {
+                    if (selectedKeys.length === 0) {
                         Q.alert("请选择要删除的项");
                         return;
                     }
@@ -86,6 +86,20 @@ namespace hr.Evaluation {
                     });
                 }
             });
+
+            buttons.push({
+                title: '下载模板',
+                cssClass: 'export-xlsx-button',
+                onClick: () => {
+                    Q.postToService({
+                        service: UserEvaluationRelationService.baseUrl + '/ExcelTemplate',
+                        request: null,
+                        target: '_blank'
+                    });
+                },
+                separator: true
+            });
+
             return buttons;
         }
 

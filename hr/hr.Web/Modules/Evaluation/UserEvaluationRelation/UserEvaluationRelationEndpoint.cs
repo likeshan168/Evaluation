@@ -1,4 +1,7 @@
 ﻿
+using System.IO;
+using Serenity.Web;
+
 namespace hr.Evaluation.Endpoints
 {
     using Hangfire;
@@ -122,6 +125,18 @@ namespace hr.Evaluation.Endpoints
             }
            
             return new ServiceResponse();
+        }
+
+        public FileContentResult ExcelTemplate(IDbConnection connection, ListRequest request)
+        {
+            FileInfo file = new FileInfo(Server.MapPath("~/ExcelTemplate/考核关系.xlsx"));
+            using (FileStream fs = file.OpenRead())
+            {
+                BinaryReader r = new BinaryReader(fs);
+                r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
+                byte[] bytes = r.ReadBytes((int)r.BaseStream.Length);
+                return ExcelContentResult.Create(bytes, "考核关系.xlsx");
+            }
         }
     }
 }
