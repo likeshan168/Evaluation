@@ -1904,6 +1904,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
+    <Compile Include="Modules\Common\Helpers\CustomUserLookup.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchDeleteRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
