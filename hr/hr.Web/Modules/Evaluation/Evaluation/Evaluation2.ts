@@ -125,7 +125,8 @@
 
                 preva.click((e) => {
                     e.preventDefault();
-                    if ($("input[type='radio']:checked").length > 0) {
+                    let disabledRadio = $("input[type='radio']:disabled");
+                    if ($("input[type='radio']:checked").length > 0 && disabledRadio.length === 0) {
                         Q.confirm('数据未保存，您确认离开此页面吗？', () => {
                             //window.location.href = preva.attr('href');
 

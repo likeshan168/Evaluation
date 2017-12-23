@@ -16,7 +16,11 @@
                 //console.log(users);
                 let ht = `<select class="form-control" id='sltUsers'><option value='0'>请选择要评价的人</option>`;
                 $.each(users, (index, value) => {
-                    ht += `<option value='${value.UserId}'>${value.Username}</option>`
+                    if(value.HasEvaluated){
+                        ht += `<option value='${value.UserId}'>${value.Username}(已评价)</option>`
+                    }else{
+                        ht += `<option value='${value.UserId}'>${value.Username}</option>`
+                    }
                 });
                 ht += `</select>
                         <div class='row' id='evaluationContent'>

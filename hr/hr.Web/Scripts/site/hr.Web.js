@@ -3966,7 +3966,9 @@ var hr;
                     });
                     preva.click(function (e) {
                         e.preventDefault();
-                        if ($("input[type='radio']:checked").length > 0) {
+                        var disabledRadio = $("input[type='radio']:disabled");
+                        // console.log(disabledRadio.length);
+                        if ($("input[type='radio']:checked").length > 0 && disabledRadio.length === 0) {
                             Q.confirm('数据未保存，您确认离开此页面吗？', function () {
                                 //window.location.href = preva.attr('href');
                                 //进入上一页之前判断领导关系
@@ -4014,7 +4016,7 @@ var hr;
                 hr.Evaluation.ToDoListService.GetCurrentUserId(null, function (userId) {
                     var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
                     var res = Evaluation.EvaluationItemService.GetSelfEvaluationByExam({ ExamId: examId, UserId: userId }, function (response) {
-                        var html = "<table>\n                                   <tr>\n                                        <th colspan='5' class='text-center' style='font-size:18px'>\n                                            <span class=\"caret\"></span>\u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
+                        var html = "<table>\n                                   <tr>\n                                        <th colspan='5' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
                         if (response !== null) {
                             var count_1 = res.responseJSON.length;
                             if (res.responseJSON.length !== 0) {
@@ -4128,7 +4130,12 @@ var hr;
                     //console.log(users);
                     var ht = "<select class=\"form-control\" id='sltUsers'><option value='0'>\u8BF7\u9009\u62E9\u8981\u8BC4\u4EF7\u7684\u4EBA</option>";
                     $.each(users, function (index, value) {
-                        ht += "<option value='" + value.UserId + "'>" + value.Username + "</option>";
+                        if (value.HasEvaluated) {
+                            ht += "<option value='" + value.UserId + "'>" + value.Username + "(\u5DF2\u8BC4\u4EF7)</option>";
+                        }
+                        else {
+                            ht += "<option value='" + value.UserId + "'>" + value.Username + "</option>";
+                        }
                     });
                     ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
                     _this.container.html(ht);

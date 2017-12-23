@@ -14,7 +14,7 @@
                     let html = `<table>
                                    <tr>
                                         <th colspan='5' class='text-center' style='font-size:18px'>
-                                            <span class="caret"></span>自我评价
+                                            自我评价
                                         </th>
                                     </tr>
                                 `;

@@ -208,7 +208,7 @@ namespace hr.Evaluation.Endpoints
         {
             using (var conn = SqlConnections.NewByKey("Default"))
             {
-                string sql = $"SELECT r.UserId,us.Username FROM hr.UserEvaluationToUser u LEFT JOIN hr.UserEvaluationRelation r ON u.UserEvaluationRelationId = r.Id LEFT JOIN dbo.Users us ON us.UserId = r.UserId WHERE u.UserId = {int.Parse(Authorization.UserId)}";
+                string sql = $"SELECT r.UserId,us.Username, u.HasEvaluated FROM hr.UserEvaluationToUser u LEFT JOIN hr.UserEvaluationRelation r ON u.UserEvaluationRelationId = r.Id LEFT JOIN dbo.Users us ON us.UserId = r.UserId WHERE u.UserId = {int.Parse(Authorization.UserId)}";
                 return conn.Query<UserViewModel>(sql);
             }
         }
@@ -220,7 +220,7 @@ namespace hr.Evaluation.Endpoints
             {
                 throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationNotStart);
             }
-            else if (exam.EndDate.Value.AddDays(1) < now) //第二天凌晨结束
+            else if (exam.EndDate != null && exam.EndDate.Value.AddDays(1) < now) //第二天凌晨结束
             {
                 throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationEnded);
             }
