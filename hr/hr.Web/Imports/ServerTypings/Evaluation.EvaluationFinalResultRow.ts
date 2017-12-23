@@ -14,6 +14,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Title';
         export const localTextPrefix = 'Evaluation.EvaluationFinalResult';
+        export const lookupKey = 'EvaluationFinalResult.ExamTitle';
+
+        export function getLookup(): Q.Lookup<EvaluationFinalResultRow> {
+            return Q.getLookup<EvaluationFinalResultRow>('EvaluationFinalResult.ExamTitle');
+        }
 
         export namespace Fields {
             export declare const Id: string;

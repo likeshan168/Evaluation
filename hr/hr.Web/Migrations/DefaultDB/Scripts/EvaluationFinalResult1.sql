@@ -3,7 +3,7 @@ AS
 SELECT  f.UserId ,
         f.ExamId ,
         f.Title ,
-        f.Username ,
+        f.Username AS UserName,
         f.Email,
         SUM(f.TotalScore) TotalScore
 FROM    ( SELECT    *

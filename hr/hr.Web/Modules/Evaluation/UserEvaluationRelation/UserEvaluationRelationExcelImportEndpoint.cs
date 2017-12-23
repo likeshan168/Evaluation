@@ -53,9 +53,8 @@ namespace hr.Evaluation.Endpoints
             var p = MyRow.Fields;
 
 
-            var response = new ExcelImportResponse();
+            var response = new ExcelImportResponse {ErrorList = new List<string>()};
 
-            response.ErrorList = new List<string>();
 
             var worksheet = ep.Workbook.Worksheets[1];
 

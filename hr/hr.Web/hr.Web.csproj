@@ -1912,6 +1912,9 @@
     <Compile Include="Modules\Evaluation\Common\MyExcelImportRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamTitleLookup.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamUserLookup.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\GradeLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultDetail\AddEvaluationResultRequest.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportEndpoint.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationImportForm.cs" />

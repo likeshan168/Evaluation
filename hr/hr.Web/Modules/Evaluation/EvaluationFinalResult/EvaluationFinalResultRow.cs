@@ -1,4 +1,6 @@
 ﻿
+using hr.Evaluation.EvaluationFinalResult;
+
 namespace hr.Evaluation.Entities
 {
     using Serenity;
@@ -36,6 +38,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("Title"), Size(400), QuickSearch]
+        [LookupEditor(typeof(ExamTitleLookup))]
         public String Title
         {
             get { return Fields.Title[this]; }
@@ -43,6 +46,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("UserName"), Size(100), QuickSearch]
+        [LookupEditor(typeof(ExamUserLookup))]
         public String UserName
         {
             get { return Fields.UserName[this]; }
@@ -57,6 +61,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("Grade"), Size(4), NotNull, QuickSearch]
+        [LookupEditor(typeof(GradeLookup))]
         public String Grade
         {
             get { return Fields.Grade[this]; }

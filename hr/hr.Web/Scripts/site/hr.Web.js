@@ -5554,6 +5554,11 @@ var hr;
             EvaluationFinalResultRow.idProperty = 'Id';
             EvaluationFinalResultRow.nameProperty = 'Title';
             EvaluationFinalResultRow.localTextPrefix = 'Evaluation.EvaluationFinalResult';
+            EvaluationFinalResultRow.lookupKey = 'EvaluationFinalResult.ExamTitle';
+            function getLookup() {
+                return Q.getLookup('EvaluationFinalResult.ExamTitle');
+            }
+            EvaluationFinalResultRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = EvaluationFinalResultRow.Fields || (EvaluationFinalResultRow.Fields = {}));

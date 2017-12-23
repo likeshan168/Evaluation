@@ -18,8 +18,7 @@
             if (user == null)
                 return false;
 
-            bool grant;
-            if (GetUserPermissions(user.UserId).TryGetValue(permission, out grant))
+            if (GetUserPermissions(user.UserId).TryGetValue(permission, out bool grant))
                 return grant;
 
             foreach (var roleId in GetUserRoles(user.UserId))
