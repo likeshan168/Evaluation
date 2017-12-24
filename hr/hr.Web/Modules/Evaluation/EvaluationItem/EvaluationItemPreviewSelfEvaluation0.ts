@@ -9,7 +9,7 @@
         public init(): void {
             let examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
             let res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, (response) => {
-                let html = `<div class='row'><table class='table table-bordered table-condensed'>
+                let html = `<div class='row'><table>
                                     <tr>
                                         <th class='text-center' style='font-size:18px;' colspan='5'>他人评价</th>
                                      </tr>

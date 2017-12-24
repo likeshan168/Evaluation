@@ -16,7 +16,7 @@
                     result[current.FirstKpiName].push(current);
                     return result;
                 }, {});
-                let html = `<div class='row'><table class='table table-bordered table-condensed'>
+                let html = `<div class='row'><table>
                                 <tr>
                                     <th class='text-center' style='font-size:18px;' colspan='8'>他人评价</th>
                                 </tr>
@@ -53,7 +53,7 @@
                         i++;
                         html += `<td style='vertical-align:middle;'>${subpro}</td>`
                         $.each(subarr, (index, value) => {
-                            html += `<td style='vertical-align:bottom;'><label>${value.Content}(<label style='color: blue;'>${value.Score}分</label>)<br/><input type="radio" name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label> </td>`
+                            html += `<td style='vertical-align:bottom;'><label style='font-weight:normal'>${value.Content}(${value.Score}分)<br/><input type="radio" name='${value.SecondKpiName}' value='${value.Score}' style='width:100%'/></label> </td>`
                         });
 
                         html += `<td style='vertical- align:middle;' ><input type="text" style="width:100%"/></td></tr>`;

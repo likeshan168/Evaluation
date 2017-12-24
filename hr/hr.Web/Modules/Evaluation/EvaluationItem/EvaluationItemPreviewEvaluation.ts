@@ -15,7 +15,7 @@
                     result[current.FirstKpiName].push(current);
                     return result;
                 }, {});
-                let html = `<div class='row'> <table class='table table-bordered table-condensed'>
+                let html = `<div class='row'> <table>
                                 <tr>
                                     <th class='text-center' style='font-size:18px;' colspan='4'>他人评价</th>
                                 </tr>

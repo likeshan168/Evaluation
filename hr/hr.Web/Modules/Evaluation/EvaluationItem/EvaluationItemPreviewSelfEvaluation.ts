@@ -40,7 +40,7 @@
 
         private initHtml(container: JQuery, examId: number): void {
             let res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, (response) => {
-                let html = `<table class= 'table table-bordered table-condensed'>
+                let html = `<table>
                                    <tr>
                                         <th colspan='5' class='text-center' style='font-size:18px'>
                                             自我评价
