@@ -1077,6 +1077,21 @@ var hr;
             FirstKpiGrid.prototype.getIdProperty = function () { return Evaluation.FirstKpiRow.idProperty; };
             FirstKpiGrid.prototype.getLocalTextPrefix = function () { return Evaluation.FirstKpiRow.localTextPrefix; };
             FirstKpiGrid.prototype.getService = function () { return Evaluation.FirstKpiService.baseUrl; };
+            FirstKpiGrid.prototype.addButtonClick = function () {
+                this.editItem({
+                    OrderNo: this.getMax(this.getItems()) + 1
+                });
+            };
+            FirstKpiGrid.prototype.getMax = function (arr) {
+                var tmp = arr.map(function (p) { return p.OrderNo; });
+                var max = tmp[0];
+                for (var i = 1; i < tmp.length; i++) {
+                    if (max < tmp[i]) {
+                        max = tmp[i];
+                    }
+                }
+                return max;
+            };
             FirstKpiGrid = __decorate([
                 Serenity.Decorators.registerClass()
             ], FirstKpiGrid);
