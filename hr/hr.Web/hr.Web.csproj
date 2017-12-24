@@ -1262,6 +1262,12 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Content\site\site.hr.less" />
     <Content Include="ExcelTemplate\考核关系.xlsx" />
+    <Content Include="App_Data\texts\user.texts.invariant.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\texts\user.texts.zh-CN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1345,6 +1351,7 @@
     <Content Include="Modules\Evaluation\Evaluation\Evaluation1.cshtml" />
     <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\hr.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -2131,9 +2138,7 @@
     <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewEndpoint.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewPage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
