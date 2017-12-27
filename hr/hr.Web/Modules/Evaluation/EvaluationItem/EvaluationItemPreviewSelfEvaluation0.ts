@@ -16,8 +16,8 @@
                                     <tr>
                                         <td style='width:80px;'>考核项目</td>
                                         <td style='width:80px;'>评价内容</td>
-                                        <td colspan='2' style='min-width:400px;'>评价标准</td>
-                                        <td style='width:80px;'>得分</td>
+                                        <td colspan='2' style='min-width:400px;'>评价标准(被平人的自我评价)</td>
+                                        <td style='width:80px;'>得分(参评人评价)</td>
                                     </tr>
                                 `;
                 if (response !== null) {
