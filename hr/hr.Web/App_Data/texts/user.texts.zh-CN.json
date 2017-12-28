@@ -1,5 +1,6 @@
 {
   "Db.Administration.User.RoleName": "角色",
+  "Db.Administration.User.UserImage": "用户头像",
   "Db.Evaluation.Department.EntityPlural": "部门",
   "Db.Evaluation.Department.EntitySingular": "部门",
   "Db.Evaluation.Department.Id": "编号",

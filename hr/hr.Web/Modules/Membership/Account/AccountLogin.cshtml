@@ -5,7 +5,7 @@
 }
 
 @section Head {
-    <link rel="stylesheet" href="~/Scripts/vegas/vegas.css" />
+    <link rel="stylesheet" href="~/Scripts/vegas/vegas.css"/>
     <script src="~/Scripts/vegas/vegas.min.js"></script>
 }
 
@@ -24,11 +24,11 @@
                     @Texts.Forms.Membership.Login.SignInButton
                 </button>
             </div>
-            @*div class="actions">
+            <div class="actions">
                 <a href="@Url.Content("~/Account/ForgotPassword")"><i class="fa fa-angle-right"></i>&nbsp;@Texts.Forms.Membership.Login.ForgotPassword</a>
-                <a href="@Url.Content("~/Account/SignUp")"><i class="fa fa-angle-right"></i>&nbsp;@Texts.Forms.Membership.Login.SignUpButton</a>
+@*                <a href="@Url.Content("~/Account/SignUp")"><i class="fa fa-angle-right"></i>&nbsp;@Texts.Forms.Membership.Login.SignUpButton</a>*@
                 <div class="clear"></div>
-            </div>*@
+            </div>
         </div>
     </form>
 </div>
@@ -36,22 +36,23 @@
 
 @if (SiteInitialization.SkippedMigrations)
 {
-<div class="alert alert-error alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-warning"></i> Warning!</h4>
-    hr skipped running migrations to avoid modifying an arbitrary database.
-    If you'd like to run migrations on this database, remove the safety check 
-    in SiteInitialization.RunMigrations method.
-</div>
+    <div class="alert alert-error alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+        hr skipped running migrations to avoid modifying an arbitrary database.
+        If you'd like to run migrations on this database, remove the safety check
+        in SiteInitialization.RunMigrations method.
+    </div>
 }
 
 @if (ViewData["Activated"] != null)
 {
-<div class="alert alert-info alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
-    @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
-</div>
+    <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+            <i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
+        @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
+    </div>
 }
 
 <div class="page-content">
@@ -61,16 +62,17 @@
 </div>
 
 <script type="text/javascript">
-jQuery(function() {
-    new hr.Membership.LoginPanel($('#LoginPanel')).init();
-@if (ViewData["Activated"] != null)
-{
-    <text>
-    $(function() { 
-        $('#hr_Membership_LoginPanel0_Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
-        $('#hr_Membership_LoginPanel0_Password').focus();
+    jQuery(function() {
+        new hr.Membership.LoginPanel($('#LoginPanel')).init();
+        @if (ViewData["Activated"] != null)
+        {
+            <text>
+                $(function() {
+                    $('#hr_Membership_LoginPanel0_Username')
+                        .val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
+                    $('#hr_Membership_LoginPanel0_Password').focus();
+                });
+            </text>
+        }
     });
-    </text>
-}
-});
 </script>
