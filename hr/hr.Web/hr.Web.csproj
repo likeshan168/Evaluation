@@ -1271,6 +1271,7 @@
     <Content Include="App_Data\texts\user.texts.zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="appveyor.yml" />
     <None Include="Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
