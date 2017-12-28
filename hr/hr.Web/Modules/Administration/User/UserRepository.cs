@@ -1,4 +1,6 @@
 ﻿
+using hr.Evaluation;
+
 namespace hr.Administration.Repositories
 {
     using Serenity;
@@ -11,6 +13,7 @@ namespace hr.Administration.Repositories
     using System.Configuration;
     using System.Data;
     using System.Linq;
+    using System.Web;
     using System.Web.Security;
     using MyRow = Entities.UserRow;
 
@@ -48,6 +51,25 @@ namespace hr.Administration.Repositories
         public UndeleteResponse Undelete(IUnitOfWork uow, UndeleteRequest request)
         {
             return new MyUndeleteHandler().Process(uow, request);
+        }
+
+        internal SaveResponse BatchUpdate(IUnitOfWork uow, BatchUpdateUserRequest request)
+        {
+            foreach (int userid in request.Userids)
+            {
+                var user = Retrieve(uow.Connection, new RetrieveRequest { EntityId = userid });
+                if (user?.Entity != null)
+                {
+                    user.Entity.Password = "64586103";
+                    Update(uow, new SaveRequest<MyRow> { EntityId = userid, Entity = user.Entity });
+
+                    Hangfire.BackgroundJob.Enqueue(() => EmailMangement.PasswordReset(user.Entity.Username,
+                        "http://" + HttpContext.Current.Request.Url.Host + ':' + HttpContext.Current.Request.Url.Port,
+                        user.Entity.Email));
+                }
+            }
+
+            return new SaveResponse();
         }
 
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)

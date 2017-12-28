@@ -38,6 +38,12 @@ namespace hr.Administration.Endpoints
             return new MyRepository().Update(uow, request);
         }
 
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse BatchUpdate(IUnitOfWork uow, BatchUpdateUserRequest request)
+        {
+            return new MyRepository().BatchUpdate(uow, request);
+        }
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {

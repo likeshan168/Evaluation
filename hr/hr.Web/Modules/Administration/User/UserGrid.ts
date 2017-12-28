@@ -62,6 +62,28 @@
                     }).dialogOpen();
                 }
             });
+            buttons.push({
+                title: '批量重置密码',
+                //cssClass: 'btn btn-danger',
+                icon: 'fa fa-key',
+                onClick: () => {
+                    let selectedKeys = this.rowSelection.getSelectedKeys();
+                    if (selectedKeys.length === 0) {
+                        Q.alert("请选择需要重置密码的用户");
+                        return;
+                    }
+                    let userIds = selectedKeys.map(p => parseInt(p, 10));
+                    UserService.BatchUpdate({ Userids: userIds },
+                        () => {
+                            Q.notifySuccess("密码已经重置");
+                        });
+                    //let grid = this;
+                    //new ChooseRoleDialog({
+                    //    userIDs: userIds,
+                    //    userGrid: grid
+                    //}).dialogOpen();
+                }
+            });
             return buttons;
         }
         protected getColumns() {

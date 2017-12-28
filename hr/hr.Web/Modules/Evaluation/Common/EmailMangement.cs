@@ -41,6 +41,7 @@ namespace hr.Evaluation
             sb.Append($"<body><p>Dear {userName},</p>");
             sb.Append($"<p>请点击以下链接去进行评估考核:</p>");
             sb.Append($"<p><a href='{url}'>{url}</a></p>");
+            sb.Append($"<p>用户名：{userName}，初始密码：64586103</p>");
             sb.Append($"<p>If you have any questions, please contact to us</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
@@ -62,6 +63,20 @@ namespace hr.Evaluation
             sb.Append("</body>");
             sb.Append("</html>");
             EmailHelper.Send(todo.Title, sb.ToString(), todo.Email);
+        }
+
+        [DisplayName("密码重置")]
+        public static void PasswordReset(string userName, string url, string email)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"<html><head><title>密码重置</title></head>");
+            sb.Append($"<body><p>Dear {userName},</p>");
+            sb.Append($"<p>您的密码已经重置为:64586103 请及时登录 <a href='{url}'>{url}</a> 进行修改</p>");
+            sb.Append("Thanks,<br/>");
+            sb.Append(" The \"hr\" Team");
+            sb.Append("</body>");
+            sb.Append("</html>");
+            EmailHelper.Send("密码重置", sb.ToString(), email);
         }
     }
 }

@@ -1130,6 +1130,9 @@
     <Content Include="Scripts\pollyfill\matchMedia.js" />
     <Content Include="Scripts\pollyfill\modernizr.latest.js" />
     <Content Include="wkhtmltopdf-license.txt" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.BatchUpdateUserRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleBatchUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1915,6 +1918,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
+    <Compile Include="Modules\Administration\User\BatchUpdateUserRequest.cs" />
     <Compile Include="Modules\Common\Helpers\CustomUserLookup.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchDeleteRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />

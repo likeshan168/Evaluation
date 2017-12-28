@@ -280,7 +280,7 @@ var hr;
             var Methods;
             (function (Methods) {
             })(Methods = UserService.Methods || (UserService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'BatchUpdate', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(function (x) {
                 UserService[x] = function (r, s, o) { return Q.serviceRequest(UserService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = UserService.baseUrl + '/' + x;
             });
@@ -1846,6 +1846,27 @@ var hr;
                             userIDs: userIds,
                             userGrid: grid
                         }).dialogOpen();
+                    }
+                });
+                buttons.push({
+                    title: '批量重置密码',
+                    //cssClass: 'btn btn-danger',
+                    icon: 'fa fa-key',
+                    onClick: function () {
+                        var selectedKeys = _this.rowSelection.getSelectedKeys();
+                        if (selectedKeys.length === 0) {
+                            Q.alert("请选择需要重置密码的用户");
+                            return;
+                        }
+                        var userIds = selectedKeys.map(function (p) { return parseInt(p, 10); });
+                        Administration.UserService.BatchUpdate({ Userids: userIds }, function () {
+                            Q.notifySuccess("密码已经重置");
+                        });
+                        //let grid = this;
+                        //new ChooseRoleDialog({
+                        //    userIDs: userIds,
+                        //    userGrid: grid
+                        //}).dialogOpen();
                     }
                 });
                 return buttons;
