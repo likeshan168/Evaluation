@@ -165,15 +165,16 @@ namespace hr.Evaluation.Endpoints
                 if (relation != null)
                 {
                     uow.Connection.Execute($"update hr.UserEvaluationToUser set HasEvaluated = 1 where UserId={int.Parse(Authorization.UserId)} and UserEvaluationRelationId={relation.Id};");
-                    var noEvaluations = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={userId} and ExamId={examId} and HasEvaluated is null;");
-                    if (noEvaluations == null || noEvaluations.Count() == 0)
-                    {
-                        var evaluationResult = uow.Connection.Query<EvaluationFinalResultRow>($"select * from hr.EvaluationFinalResult where UserId={userId} and ExamId={examId};").FirstOrDefault();
-                        if (evaluationResult != null)
-                        {
-                            Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send3(evaluationResult));
-                        }
-                    }
+                    //发邮件通知
+                    //var noEvaluations = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={userId} and ExamId={examId} and HasEvaluated is null;");
+                    //if (noEvaluations == null || noEvaluations.Count() == 0)
+                    //{
+                    //    var evaluationResult = uow.Connection.Query<EvaluationFinalResultRow>($"select * from hr.EvaluationFinalResult where UserId={userId} and ExamId={examId};").FirstOrDefault();
+                    //    if (evaluationResult != null)
+                    //    {
+                    //        Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send3(evaluationResult));
+                    //    }
+                    //}
                 }
             }
             #endregion

@@ -1,12 +1,7 @@
 ﻿using hr.Common;
 using hr.Evaluation.Entities;
-using Serenity.Web;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace hr.Evaluation
 {
@@ -23,7 +18,8 @@ namespace hr.Evaluation
             sb.Append($"<body><p>Dear {evaluationUserName},</p>");
             sb.Append($"<p>{userName}已经完成自我评价，请点击以下链接对他进行评估测试:</p>");
             sb.Append($"<p><a href='{url}'>{url}</a></p>");
-            sb.Append($"<p>If you have any questions,please contact to us.</p>");
+            sb.Append($"<p>登录系统的用户名：{userName}，初始密码：64586103</p>");
+            sb.Append($"<p>If you have any questions, please feel free to contact us</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
@@ -41,8 +37,8 @@ namespace hr.Evaluation
             sb.Append($"<body><p>Dear {userName},</p>");
             sb.Append($"<p>请点击以下链接去进行评估考核:</p>");
             sb.Append($"<p><a href='{url}'>{url}</a></p>");
-            sb.Append($"<p>用户名：{userName}，初始密码：64586103</p>");
-            sb.Append($"<p>If you have any questions, please contact to us</p>");
+            sb.Append($"<p>登录系统的用户名：{userName}，初始密码：64586103</p>");
+            sb.Append($"<p>If you have any questions, please feel free to contact us</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
@@ -57,7 +53,7 @@ namespace hr.Evaluation
             sb.Append($"<body><p>Dear {todo.UserName},</p>");
             sb.Append($"<p>您在{todo.Title}中的考核结果如下:</p>");
             sb.Append($"<p>得分：{todo.TotalScore} &nbsp;等级：{todo.Grade}</p>");
-            sb.Append($"<p>If you have any questions, please contact to us.</p>");
+            sb.Append($"<p>If you have any questions, please feel free to contact us</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
             sb.Append("</body>");
