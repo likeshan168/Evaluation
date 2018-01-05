@@ -18,7 +18,7 @@ namespace hr.Evaluation
             sb.Append($"<body><p>Dear {evaluationUserName},</p>");
             sb.Append($"<p>{userName}已经完成自我评价，请点击以下链接对他进行评估测试:</p>");
             sb.Append($"<p><a href='{url}'>{url}</a></p>");
-            sb.Append($"<p>登录系统的用户名：{userName}，初始密码：64586103</p>");
+            sb.Append($"<p>登录系统的用户名：{evaluationUserName}，初始密码：64586103</p>");
             sb.Append($"<p>If you have any questions, please feel free to contact us</p>");
             sb.Append("Thanks,<br/>");
             sb.Append(" The \"hr\" Team");
