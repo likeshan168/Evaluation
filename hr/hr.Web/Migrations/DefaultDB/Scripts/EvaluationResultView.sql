@@ -1,4 +1,7 @@
-﻿CREATE VIEW hr.EvaluationResultView
+﻿IF EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = N'EvaluationResultView')
+DROP VIEW hr.EvaluationResultView
+GO
+CREATE VIEW hr.EvaluationResultView
 AS
 
 SELECT

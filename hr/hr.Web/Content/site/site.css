@@ -7572,3 +7572,9 @@ section.content > .s-DataGrid {
 .s-Evaluation-EvaluationResultViewDialog .caption {
   width: 150px;
 }
+.s-Evaluation-CompanyEvaluationDialog > .size {
+  width: 650px;
+}
+.s-Evaluation-CompanyEvaluationDialog .caption {
+  width: 150px;
+}

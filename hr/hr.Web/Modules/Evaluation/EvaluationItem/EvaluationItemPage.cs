@@ -21,6 +21,11 @@ namespace hr.Evaluation.Pages
             return View("~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewSelfEvaluation.cshtml");
         }
 
+        public ActionResult PreviewCompanyEvaluation()
+        {
+            return View("~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewCompanyEvaluation.cshtml");
+        }
+
         public ActionResult PreviewSelfEvaluation0()
         {
             return View("~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewSelfEvaluation0.cshtml");

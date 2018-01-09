@@ -26,7 +26,7 @@
                         <div class='row' id='evaluationContent'>
                             <p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>
                         </div>
-                        <div class="text-center"><a id='preva' href='SelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
+                        <div class="text-center"><a id='preva' href='CompanyEvaluation?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
                         `;
 
                 this.container.html(ht);
@@ -93,22 +93,29 @@
                                 `;
                         res.responseJSON.forEach((item, index) => {
                             html += `<tr>`;
-                            if (index == 0) {
-                                html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p>${item.FirstKpiName}</p></td>`;
+                            if (index === 0) {
+                                html += `<td rowspan='${count}' style='vertical-align: middle;width:80px'><p>${item
+                                    .FirstKpiName}</p></td>`;
                             }
                             html += `<td width='80px'><p>${item.SecondKpiName}</p></td>
                                     <td width='150px'><p>${item.Content}</p></td>`;
                             if (item.ContentType === 1) {
                                 //输入框
-                                html += `<td>${item.Mark}<textarea data-itemid='${item.Id}' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>${item.InputContent === undefined ? '' : item.InputContent}</textarea></td>`
+                                html += `<td>${item.Mark}<textarea data-itemid='${item.Id
+                                    }' disabled='disabled' class='form-control' style= 'width:100%;min-height:150px;'>${
+                                    item.InputContent === undefined ? '' : item.InputContent}</textarea></td>`
                             }
                             if (item.FScore) {
-                                html += `<td><input disabled='disabled' data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control success' type="number" max="${item.Score}" min="0" value='${item.FScore}' /></td><td><small>${item.Remark}</small></td></tr>`;
+                                html += `<td><input disabled='disabled' data-itemid='${item.Id}' data-maxscore='${
+                                    item.Score}' class='form-control success' type="number" max="${item.Score
+                                    }" min="0" value='${item.FScore}' /></td><td><small>${item.Remark
+                                    }</small></td></tr>`;
+                            } else {
+                                html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score
+                                    }' class='form-control' type="number" max="${item.Score
+                                    }" min="0" /></td><td><small>${item.Remark}</small></td></tr>`;
                             }
-                            else {
-                                html += `<td><input  data-itemid='${item.Id}' data-maxscore='${item.Score}' class='form-control' type="number" max="${item.Score}" min="0" /></td><td><small>${item.Remark}</small></td></tr>`;
-                            }
-                        })
+                        });
                     }
                 }
 

@@ -65,15 +65,15 @@
                             html += `<td style='width:150px;'>${item.Remark}</td>`;
                             html += "</tr>"
                         })
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     } else {
                         html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     }
 
                 } else {
                     html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                    html += `<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                    html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                 }
                 container.html(html);
             });

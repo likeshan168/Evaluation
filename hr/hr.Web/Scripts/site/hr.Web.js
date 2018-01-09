@@ -372,6 +372,38 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var CompanyEvaluationRow;
+        (function (CompanyEvaluationRow) {
+            CompanyEvaluationRow.idProperty = 'CompanyEvaluationId';
+            CompanyEvaluationRow.localTextPrefix = 'Evaluation.CompanyEvaluation';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CompanyEvaluationRow.Fields || (CompanyEvaluationRow.Fields = {}));
+            ['CompanyEvaluationId', 'UserId', 'ExamId', 'EvaluationContent', 'Username', 'UserEmail', 'Title'].forEach(function (x) { return Fields[x] = x; });
+        })(CompanyEvaluationRow = Evaluation.CompanyEvaluationRow || (Evaluation.CompanyEvaluationRow = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var CompanyEvaluationService;
+        (function (CompanyEvaluationService) {
+            CompanyEvaluationService.baseUrl = 'Evaluation/CompanyEvaluation';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CompanyEvaluationService.Methods || (CompanyEvaluationService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetEvaluation', 'AddCompanyEvaluation'].forEach(function (x) {
+                CompanyEvaluationService[x] = function (r, s, o) { return Q.serviceRequest(CompanyEvaluationService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CompanyEvaluationService.baseUrl + '/' + x;
+            });
+        })(CompanyEvaluationService = Evaluation.CompanyEvaluationService || (Evaluation.CompanyEvaluationService = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var ContentType;
         (function (ContentType) {
             ContentType[ContentType["Input"] = 1] = "Input";
@@ -3463,6 +3495,78 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var CompanyEvaluationDialog = (function (_super) {
+            __extends(CompanyEvaluationDialog, _super);
+            function CompanyEvaluationDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new CompanyEvaluationForm(_this.idPrefix);
+                return _this;
+            }
+            CompanyEvaluationDialog.prototype.getFormKey = function () { return CompanyEvaluationForm.formKey; };
+            CompanyEvaluationDialog.prototype.getIdProperty = function () { return Evaluation.CompanyEvaluationRow.idProperty; };
+            CompanyEvaluationDialog.prototype.getLocalTextPrefix = function () { return Evaluation.CompanyEvaluationRow.localTextPrefix; };
+            CompanyEvaluationDialog.prototype.getService = function () { return Evaluation.CompanyEvaluationService.baseUrl; };
+            return CompanyEvaluationDialog;
+        }(Serenity.EntityDialog));
+        CompanyEvaluationDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], CompanyEvaluationDialog);
+        Evaluation.CompanyEvaluationDialog = CompanyEvaluationDialog;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var CompanyEvaluationGrid = (function (_super) {
+            __extends(CompanyEvaluationGrid, _super);
+            function CompanyEvaluationGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            CompanyEvaluationGrid.prototype.getColumnsKey = function () { return 'Evaluation.CompanyEvaluation'; };
+            CompanyEvaluationGrid.prototype.getDialogType = function () { return Evaluation.CompanyEvaluationDialog; };
+            CompanyEvaluationGrid.prototype.getIdProperty = function () { return Evaluation.CompanyEvaluationRow.idProperty; };
+            CompanyEvaluationGrid.prototype.getLocalTextPrefix = function () { return Evaluation.CompanyEvaluationRow.localTextPrefix; };
+            CompanyEvaluationGrid.prototype.getService = function () { return Evaluation.CompanyEvaluationService.baseUrl; };
+            CompanyEvaluationGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass === "add-button"; }), 1);
+                buttons.push(hr.Common.ExcelExportHelper.createToolButton({
+                    title: '导出Excel',
+                    hint: '导出Excel',
+                    grid: this,
+                    service: Evaluation.CompanyEvaluationService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
+                return buttons;
+            };
+            CompanyEvaluationGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            CompanyEvaluationGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            return CompanyEvaluationGrid;
+        }(Serenity.EntityGrid));
+        CompanyEvaluationGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], CompanyEvaluationGrid);
+        Evaluation.CompanyEvaluationGrid = CompanyEvaluationGrid;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var DepartmentDialog = (function (_super) {
             __extends(DepartmentDialog, _super);
             function DepartmentDialog() {
@@ -3724,6 +3828,89 @@ var hr;
             Serenity.Decorators.registerClass()
         ], EmployeeGrid);
         Evaluation.EmployeeGrid = EmployeeGrid;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var CompanyEvaluation = (function () {
+            function CompanyEvaluation(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            CompanyEvaluation.prototype.init = function () {
+                var _this = this;
+                var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+                var userId = parseInt(hr.Utils.getQueryString("p", window.location.href));
+                //console.log(userId);
+                var entity;
+                Evaluation.CompanyEvaluationService.GetEvaluation({
+                    UserId: userId,
+                    ExamId: examId
+                }, (function (response) {
+                    if (response && response.length > 0)
+                        entity = response[0];
+                    var html = "";
+                    if (entity) {
+                        html =
+                            "<div class='container'>\n                                <div class='row'>\n                                    <div col-md='3'>\u4F60\u5BF9\u516C\u53F8\u7684\u653F\u7B56\u3001\u5236\u5EA6\u3001\u6587\u5316\u7B49\u65B9\u9762\u6709\u4EC0\u4E48\u770B\u6CD5\u548C\u610F\u89C1\uFF1F</div>\n                                    <div col-md='10'><textarea id='content' class='form-control' disabled='disabled' style= 'width:100%;min-height:150px;'>" + (entity.EvaluationContent !== undefined ? entity.EvaluationContent : '') + "</textarea ></div>\n                                </div>\n                                <div class='row text-center'>\n                                    <a id='preva' href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button disabled='disabled' type=\"button\" class=\"btn btn-primary\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='SelfEvaluation1?i=" + examId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a>\n                                </div>\n                                </div>\n                            ";
+                    }
+                    else {
+                        html =
+                            "<div class='container'>\n                                <div class='row'>\n                                    <div col-md='3'>\u4F60\u5BF9\u516C\u53F8\u7684\u653F\u7B56\u3001\u5236\u5EA6\u3001\u6587\u5316\u7B49\u65B9\u9762\u6709\u4EC0\u4E48\u770B\u6CD5\u548C\u610F\u89C1\uFF1F</div>\n                                    <div col-md='10'><textarea id='content' class='form-control' style= 'width:100%;min-height:150px;'></textarea ></div>\n                                </div>\n                                <div class='row text-center'>\n                                    <a id='preva' href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='SelfEvaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a>\n                                </div>\n                                </div>\n                             ";
+                    }
+                    _this.container.html(html);
+                    var content = $("#content");
+                    var preva = $("#preva");
+                    var nexta = $("#nexta");
+                    var btnSave = $("#btnSave");
+                    preva.click(function (e) {
+                        e.preventDefault();
+                        if (content.val() && content.attr("disabled") !== "disabled") {
+                            Q.confirm("数据未保存，您确认离开此页面吗？", function () {
+                                window.location.href = preva.attr("href");
+                            });
+                        }
+                        else {
+                            window.location.href = preva.attr("href");
+                        }
+                    });
+                    nexta.click(function (e) {
+                        e.preventDefault();
+                        if (content.val() && content.attr("disabled") !== "disabled") {
+                            Q.confirm("数据未保存，您确认离开此页面吗？", function () {
+                                window.location.href = nexta.attr("href");
+                            });
+                        }
+                        else {
+                            window.location.href = nexta.attr("href");
+                        }
+                    });
+                    btnSave.click(function () {
+                        if (!content.val()) {
+                            Q.alert("内容不能为空");
+                        }
+                        else {
+                            Q.confirm("确认提交吗，提交之后就不能再进行修改？", function () {
+                                Evaluation.CompanyEvaluationService.AddCompanyEvaluation({
+                                    ExamId: examId,
+                                    UserId: userId,
+                                    Content: content.val(),
+                                }, function (response) {
+                                    Q.notifySuccess("保存成功");
+                                    btnSave.attr("disabled", "disabled");
+                                    content.attr("disabled", "disabled");
+                                    nexta.removeClass("hideele").addClass("showele");
+                                });
+                            });
+                        }
+                    });
+                }));
+            };
+            return CompanyEvaluation;
+        }());
+        Evaluation.CompanyEvaluation = CompanyEvaluation;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;
@@ -4048,7 +4235,8 @@ var hr;
                                 res.responseJSON.forEach(function (item, index) {
                                     html += "<tr>";
                                     if (index == 0) {
-                                        html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'><p>" + item.FirstKpiName + "</p></td>";
+                                        html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'><p>" + item
+                                            .FirstKpiName + "</p></td>";
                                     }
                                     html += "<td width='80px'><p>" + item.SecondKpiName + "</p></td>\n                                    <td width='150px'><p>" + item.Content + "</p></td>";
                                     if (item.ContentType === 1) {
@@ -4063,16 +4251,17 @@ var hr;
                                     html += "<td style='width:150px;'><small>" + item.Remark + "</small></td>";
                                     html += "</tr>";
                                 });
-                                html += "<tr><td colspan='5' class='text-center'><button type=\"button\" class=\"btn btn-primary\">\u63D0\u4EA4</button>&nbsp;&nbsp;&nbsp;<a href='SelfEvaluation1?i=" + examId + "' id='nexta' class='hideele'>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
+                                html +=
+                                    "<tr><td colspan='5' class='text-center'><button type=\"button\" class=\"btn btn-primary\">\u63D0\u4EA4</button>&nbsp;&nbsp;&nbsp;<a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "' id='nexta' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                             }
                             else {
-                                html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                                html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
+                                html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
+                                html += "<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                             }
                         }
                         else {
-                            html += "<tr><td colspan='5'>管理员还未添加或启用自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'>\u5F00\u59CB\u8BC4\u4EF7\u4ED6\u4EBA<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
+                            html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                         }
                         _this.container.html(html);
                         var saveBtn = $("button.btn-primary");
@@ -4108,7 +4297,7 @@ var hr;
                                     res.Entities.forEach(function (item, i) {
                                         inputs.each(function (index, ele) {
                                             var tmpEle = $(ele);
-                                            console.log(tmpEle.val());
+                                            //console.log(tmpEle.val())
                                             arr.push({
                                                 UserId: userId,
                                                 ExamId: examId,
@@ -4162,7 +4351,7 @@ var hr;
                             ht += "<option value='" + value.UserId + "'>" + value.Username + "</option>";
                         }
                     });
-                    ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
+                    ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
                     _this.container.html(ht);
                     var sltUsers = $('#sltUsers');
                     sltUsers.change(function () {
@@ -4205,8 +4394,9 @@ var hr;
                             html += "<table>\n                                    <tr>\n                                        <th class='text-center' style='font-size:18px;' colspan='6'>\n                                            \u5BF9&nbsp;&nbsp;<span style=\"color:#00a7d0\">" + sltUsers.children("option:selected").text() + "</span>&nbsp;&nbsp;\u8FDB\u884C\u8BC4\u4EF7\n                                        </th>\n                                     </tr>\n                                    <tr>\n                                        <td style='width:80px;'><strong>\u8003\u6838\u9879\u76EE</strong></td>\n                                        <td style='width:80px;'><strong>\u8BC4\u4EF7\u5185\u5BB9</strong></td>\n                                        <td colspan='2' style='min-width:400px;'><strong>\u8BC4\u4EF7\u6807\u51C6(\u88AB\u8BC4\u4EBA\u7684\u81EA\u6211\u8BC4\u4EF7)</strong></td>\n                                        <td style='width:120px;'><strong>\u5F97\u5206(\u53C2\u8BC4\u4EBA\u8BC4\u4EF7)</strong></td>\n                                        <td style='width:150px;'><strong>\u5907\u6CE8</strong></td>\n                                    </tr>\n                                ";
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
-                                if (index == 0) {
-                                    html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'><p>" + item.FirstKpiName + "</p></td>";
+                                if (index === 0) {
+                                    html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'><p>" + item
+                                        .FirstKpiName + "</p></td>";
                                 }
                                 html += "<td width='80px'><p>" + item.SecondKpiName + "</p></td>\n                                    <td width='150px'><p>" + item.Content + "</p></td>";
                                 if (item.ContentType === 1) {
@@ -4662,6 +4852,25 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
+        var EvaluationItemPreviewCompanyEvaluation = (function () {
+            function EvaluationItemPreviewCompanyEvaluation(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            EvaluationItemPreviewCompanyEvaluation.prototype.init = function () {
+                var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+                var html = "<div class='container'>\n                                <div class='row'>\n                                    <div col-md='3'>\u4F60\u5BF9\u516C\u53F8\u7684\u653F\u7B56\u3001\u5236\u5EA6\u3001\u6587\u5316\u7B49\u65B9\u9762\u6709\u4EC0\u4E48\u770B\u6CD5\u548C\u610F\u89C1\uFF1F</div>\n                                    <div col-md='10'><textarea id='content' class='form-control' style= 'width:100%;min-height:150px;'></textarea ></div>\n                                </div>\n                                <div class='row text-center'>\n                                    <a id='preva' href='PreviewSelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<a id='nexta' href='PreviewSelfEvaluation0?i=" + examId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a>\n                                </div>\n                                </div>\n                             ";
+                this.container.html(html);
+            };
+            return EvaluationItemPreviewCompanyEvaluation;
+        }());
+        Evaluation.EvaluationItemPreviewCompanyEvaluation = EvaluationItemPreviewCompanyEvaluation;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
         var EvaluationItemPreviewEvaluation = (function () {
             function EvaluationItemPreviewEvaluation(container) {
                 //this.InitView(container);
@@ -4834,16 +5043,16 @@ var hr;
                                 html += "<td style='width:150px;'>" + item.Remark + "</td>";
                                 html += "</tr>";
                             });
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                         else {
                             html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                     }
                     else {
                         html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation0?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                     }
                     container.html(html);
                 });
@@ -4882,16 +5091,16 @@ var hr;
                                 }
                                 html += "<td><input type=\"text\" /></td></tr>";
                             });
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                         else {
                             html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                     }
                     else {
                         html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += "<tr><td colspan='5' class='text-center'><a href='PreviewSelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table></div>";
+                        html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='PreviewEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table></div>";
                     }
                     _this.container.html(html);
                 });

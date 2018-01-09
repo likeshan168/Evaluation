@@ -32,6 +32,14 @@ namespace hr.Evaluation
             public const string Modify = "Evaluation:EvaluationItem:Modify";
             public const string View = "Evaluation:EvaluationItem:View";
         }
+        [DisplayName("CompanyEvaluation")]
+        public class CompanyEvaluation
+        {
+            public const string Delete = "Evaluation:CompanyEvaluation:Delete";
+            public const string Modify = "Evaluation:CompanyEvaluation:Modify";
+            public const string View = "Evaluation:CompanyEvaluation:View";
+        }
+
         [DisplayName("Exam")]
         public class Exam
         {

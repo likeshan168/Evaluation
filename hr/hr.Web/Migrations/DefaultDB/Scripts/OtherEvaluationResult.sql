@@ -1,4 +1,7 @@
-﻿Create View hr.OtherEvaluationResult
+﻿IF EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = N'OtherEvaluationResult')
+DROP VIEW hr.OtherEvaluationResult
+GO
+Create View hr.OtherEvaluationResult
 AS
 SELECT 
         UserId ,

@@ -1,4 +1,7 @@
-﻿CREATE VIEW hr.EvaluationFinalResult
+﻿IF EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = N'EvaluationFinalResult')
+DROP VIEW hr.EvaluationFinalResult
+GO
+CREATE VIEW hr.EvaluationFinalResult
 AS
 SELECT
 	ROW_NUMBER () OVER (ORDER BY TotalScore) AS Id,

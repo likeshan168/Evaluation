@@ -104,6 +104,11 @@ namespace MVC
 
         public static class Evaluation
         {
+            public static class CompanyEvaluation
+            {
+                public const string CompanyEvaluationIndex = "~/Modules/Evaluation/CompanyEvaluation/CompanyEvaluationIndex.cshtml";
+            }
+
             public static class Department
             {
                 public const string DepartmentIndex = "~/Modules/Evaluation/Department/DepartmentIndex.cshtml";
@@ -116,6 +121,7 @@ namespace MVC
 
             public static class Evaluation_
             {
+                public const string CompanyEvaluation = "~/Modules/Evaluation/Evaluation/CompanyEvaluation.cshtml";
                 public const string Evaluation1 = "~/Modules/Evaluation/Evaluation/Evaluation1.cshtml";
                 public const string Evaluation2 = "~/Modules/Evaluation/Evaluation/Evaluation2.cshtml";
                 public const string SelfEvaluation = "~/Modules/Evaluation/Evaluation/SelfEvaluation.cshtml";
@@ -130,6 +136,7 @@ namespace MVC
             public static class EvaluationItem
             {
                 public const string EvaluationItemIndex = "~/Modules/Evaluation/EvaluationItem/EvaluationItemIndex.cshtml";
+                public const string EvaluationItemPreviewCompanyEvaluation = "~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewCompanyEvaluation.cshtml";
                 public const string EvaluationItemPreviewEvaluation = "~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewEvaluation.cshtml";
                 public const string EvaluationItemPreviewEvaluation2 = "~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewEvaluation2.cshtml";
                 public const string EvaluationItemPreviewSelfEvaluation = "~/Modules/Evaluation/EvaluationItem/EvaluationItemPreviewSelfEvaluation.cshtml";

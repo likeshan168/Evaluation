@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "预览考核";
+}
+<style>
+    table, table tr th, table tr td {
+        border: 0.5px solid lightgray;
+    }
+
+    table {
+        width: 100%;
+        min-height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+</style>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new hr.Evaluation.EvaluationItemPreviewCompanyEvaluation($('#GridDiv'), {}).init();
+        
+        //Q.initFullHeightGridPage($('#GridDiv'));
+
+    });
+</script>

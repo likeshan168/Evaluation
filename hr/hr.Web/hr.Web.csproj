@@ -1148,6 +1148,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BEmailRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.CompanyEvaluationColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ContentType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1221,6 +1224,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.UserViewModel.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Modules.Evaluation.CompanyEvaluation.CompanyEvaluationRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
@@ -1321,9 +1327,11 @@
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation2.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewCompanyEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewSelfEvaluation0.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\Evaluation1.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\Evaluation2.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\Evaluation\CompanyEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation1.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamListDialog.ts" />
@@ -1354,6 +1362,8 @@
     <Content Include="Modules\Evaluation\Evaluation\Evaluation2.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\Evaluation1.cshtml" />
     <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
+    <Content Include="Modules\Evaluation\Evaluation\CompanyEvaluation.cshtml" />
+    <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewCompanyEvaluation.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\hr.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -1862,6 +1872,15 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewGrid.ts" />
+    <Content Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.CompanyEvaluationRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.CompanyEvaluationService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationGrid.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1906,6 +1925,7 @@
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_173600_AddFirstKPIToEvaluationContent.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_171200_EvaluationContent.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_113900_Employee.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180109_104000_CompanyEvaluation.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
@@ -1927,6 +1947,7 @@
     <Compile Include="Modules\Evaluation\Common\MyExcelImportRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRequest.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamTitleLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamUserLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\GradeLookup.cs" />
@@ -2142,6 +2163,11 @@
     <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewRepository.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewEndpoint.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultView\EvaluationResultViewPage.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRow.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationColumns.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRepository.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,4 +1,7 @@
-﻿Create View hr.UserToUserView
+﻿IF EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = N'UserToUserView')
+DROP VIEW hr.UserToUserView
+GO
+Create View hr.UserToUserView
 As
 SELECT
 	u.Id,
