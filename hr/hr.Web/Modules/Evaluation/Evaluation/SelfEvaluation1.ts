@@ -22,12 +22,23 @@
                         ht += `<option value='${value.UserId}'>${value.Username}</option>`
                     }
                 });
-                ht += `</select>
+                if (userId) {
+                    ht += `</select>
                         <div class='row' id='evaluationContent'>
                             <p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>
                         </div>
-                        <div class="text-center"><a id='preva' href='CompanyEvaluation?i=${examId}&p=${userId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
+                        <div class="text-center"><a id='preva' href='CompanyEvaluation?i=${examId}&p=${userId
+                        }'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${
+                        examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
                         `;
+                } else {
+                    ht += `</select>
+                        <div class='row' id='evaluationContent'>
+                            <p class='bg-danger text-center'>请选择需要评价的人，否则不能进行下一步的操作</p>
+                        </div>
+                        <div class="text-center"><a id='preva' href='SelfEvaluation?i=${examId}'><i class='fa fa-arrow-left' aria-hidden='true'></i>上一页</a>&nbsp;&nbsp;<button type="button" class="btn btn-primary hideele" id='btnSave'>保存</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=${examId}' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></div> 
+                        `;
+                }
 
                 this.container.html(ht);
 

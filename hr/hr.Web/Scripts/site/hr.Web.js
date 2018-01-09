@@ -4291,13 +4291,13 @@ var hr;
                                     "<tr><td colspan='5' class='text-center'><button type=\"button\" class=\"btn btn-primary\">\u63D0\u4EA4</button>&nbsp;&nbsp;&nbsp;<a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "' id='nexta' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                             }
                             else {
-                                html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
-                                html += "<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
+                                html += "<tr><td colspan='5'>管理员未添加或启用您的自我评价内容</td></tr>";
+                                html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                             }
                         }
                         else {
-                            html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
+                            html += "<tr><td colspan='5'>管理员未添加或启用您的自我评价内容</td></tr>";
+                            html += "<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=" + examId + "'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></td><tr></table>";
                         }
                         _this.container.html(html);
                         var saveBtn = $("button.btn-primary");
@@ -4387,7 +4387,12 @@ var hr;
                             ht += "<option value='" + value.UserId + "'>" + value.Username + "</option>";
                         }
                     });
-                    ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
+                    if (userId) {
+                        ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='CompanyEvaluation?i=" + examId + "&p=" + userId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
+                    }
+                    else {
+                        ht += "</select>\n                        <div class='row' id='evaluationContent'>\n                            <p class='bg-danger text-center'>\u8BF7\u9009\u62E9\u9700\u8981\u8BC4\u4EF7\u7684\u4EBA\uFF0C\u5426\u5219\u4E0D\u80FD\u8FDB\u884C\u4E0B\u4E00\u6B65\u7684\u64CD\u4F5C</p>\n                        </div>\n                        <div class=\"text-center\"><a id='preva' href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary hideele\" id='btnSave'>\u4FDD\u5B58</button>&nbsp;&nbsp;<a id='nexta' href='Evaluation1?i=" + examId + "' class='hideele'>\u4E0B\u4E00\u9875<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></div> \n                        ";
+                    }
                     _this.container.html(ht);
                     var sltUsers = $('#sltUsers');
                     sltUsers.change(function () {

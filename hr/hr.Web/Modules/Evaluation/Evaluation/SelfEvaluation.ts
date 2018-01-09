@@ -50,15 +50,15 @@
                                 examId
                             }&p=${userId}' id='nexta' class='hideele'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`;
                         } else {
-                            html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
-                            html += `<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=${examId
-                                }&p=${userId}'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`;
+                            html += "<tr><td colspan='5'>管理员未添加或启用您的自我评价内容</td></tr>";
+                            html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId
+                                }'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`;
                         }
 
                     } else {
-                        html += "<tr><td colspan='5'>管理员还未添加或启用您的自我评价内容</td></tr>";
-                        html += `<tr><td colspan='5' class='text-center'><a href='CompanyEvaluation?i=${examId
-                            }&p=${userId}'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`;
+                        html += "<tr><td colspan='5'>管理员未添加或启用您的自我评价内容</td></tr>";
+                        html += `<tr><td colspan='5' class='text-center'><a href='SelfEvaluation1?i=${examId
+                            }'>下一页<i class="fa fa-arrow-right" aria-hidden="true"></i></a></td><tr></table>`;
                     }
                     this.container.html(html);
                     let saveBtn = $("button.btn-primary");
