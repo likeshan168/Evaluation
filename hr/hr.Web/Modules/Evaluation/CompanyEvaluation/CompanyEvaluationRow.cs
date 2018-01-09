@@ -1,4 +1,6 @@
 ﻿
+using hr.Administration.Entities;
+
 namespace hr.Evaluation.Entities
 {
     using Serenity;
@@ -22,6 +24,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("User"), NotNull, ForeignKey("[dbo].[Users]", "UserId"), LeftJoin("jUser"), TextualField("Username")]
+        [LookupEditor(typeof(UserRow))]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }
@@ -36,6 +39,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("Username"), Expression("jUser.[Username]")]
+        [QuickSearch]
         public String Username
         {
             get { return Fields.Username[this]; }
@@ -50,6 +54,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[hr].[Exam]", "Id"), LeftJoin("jExam"), TextualField("Title")]
+        [LookupEditor(typeof(ExamRow))]
         public Int32? ExamId
         {
             get { return Fields.ExamId[this]; }
@@ -57,6 +62,7 @@ namespace hr.Evaluation.Entities
         }
 
         [DisplayName("Title"), Expression("jExam.[Title]")]
+        [QuickSearch]
         public String Title
         {
             get { return Fields.Title[this]; }

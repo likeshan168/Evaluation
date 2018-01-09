@@ -15,7 +15,9 @@ namespace hr.Evaluation.Columns
     {
         [DisplayName("Db.Shared.RecordId"), AlignRight]
         public Int64 CompanyEvaluationId { get; set; }
+        [QuickFilter]
         public string Username { get; set; }
+        [QuickFilter]
         public string Title { get; set; }
         public string EvaluationContent { get; set; }
     }

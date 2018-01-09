@@ -3555,6 +3555,42 @@ var hr;
                 grid.setSelectionModel(new Slick.RowSelectionModel());
                 return grid;
             };
+            CompanyEvaluationGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.unshift({
+                    field: 'Delete Row',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action delete-row" title="delete">' +
+                        '<i class="fa fa-trash-o text-red"></i></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                return columns;
+            };
+            CompanyEvaluationGrid.prototype.onClick = function (e, row, cell) {
+                var _this = this;
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('delete-row')) {
+                        Q.confirm('Delete record?', function () {
+                            Evaluation.CompanyEvaluationService.Delete({
+                                EntityId: item.CompanyEvaluationId,
+                            }, function (response) {
+                                _this.refresh();
+                            });
+                        });
+                    }
+                }
+            };
             return CompanyEvaluationGrid;
         }(Serenity.EntityGrid));
         CompanyEvaluationGrid = __decorate([
