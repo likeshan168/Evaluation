@@ -95,7 +95,7 @@ namespace hr.Evaluation.Endpoints
                         //在服务器端进行判断，如果还有未进行评估的就报错
                         throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationError);
                     }
-                    else if (!isSelfEvaluation && (!item.Score.HasValue || item.Score.HasValue && item.Score.Value == 0))
+                    else if (!isSelfEvaluation && !item.Score.HasValue)
                     {
                         throw new ValidationError("EvaluationError", Texts.Evaluation.EvaluationError);
                     }

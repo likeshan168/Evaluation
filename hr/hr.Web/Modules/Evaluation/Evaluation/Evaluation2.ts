@@ -77,7 +77,7 @@
 
                 let checkedRd = $("input[type='radio']:checked");
                 //已经评价过之后就不能再修改
-                if (checkedRd.length != 0) {
+                if (checkedRd.length !== 0) {
                     radio.attr('disabled', 'disabled');
                     btnSave.addClass('hidden');
                 }
@@ -118,7 +118,6 @@
                 radio.change(e => {
                     prt = $(e.target).parent().parent().parent();
                     if (prt.hasClass('text-notdone')) {
-                        console.log("hello");
                         $(e.target).parent().parent().parent().removeClass("text-notdone").addClass("text-done");
                     }
                 });
@@ -146,14 +145,14 @@
             //进入下一页之前判断领导关系
             LeaderShipService.CheckCurrentUserIsParent({
                 UserId: userId
-            }, response => {
+            }, (response => {
                 if (response) {
                     window.location.href = preva.attr('href');
                 }
                 else {
                     window.location.href = `SelfEvaluation1?i=${examId}&p=${userId}`;
                 }
-            });
+            }) as any);
         }
     }
 }
