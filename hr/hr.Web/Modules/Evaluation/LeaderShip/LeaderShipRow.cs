@@ -22,7 +22,7 @@ namespace hr.Evaluation.Entities
         //}
 
         [PrimaryKey, DisplayName("User"), ForeignKey("[dbo].[Users]", "UserId"), LeftJoin("jUser"), TextualField("UserUsername")]
-        //[LookupEditor(typeof(Administration.Entities.UserRow), InplaceAdd = true)]
+        [LookupEditor(typeof(Administration.Entities.UserRow))]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }

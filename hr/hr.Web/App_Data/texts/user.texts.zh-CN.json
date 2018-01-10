@@ -87,6 +87,7 @@
   "Db.Evaluation.LeaderShip.EntitySingular": "上下级关系管理",
   "Db.Evaluation.LeaderShip.ParentUserId": "领导",
   "Db.Evaluation.LeaderShip.ParentUsername": "领导",
+  "Db.Evaluation.LeaderShip.UserId": "用户名",
   "Db.Evaluation.LeaderShip.UserUsername": "用户名",
   "Db.Evaluation.SecondKpi.EntityPlural": "第二指标",
   "Db.Evaluation.SecondKpi.EntitySingular": "第二指标",

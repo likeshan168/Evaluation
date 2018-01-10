@@ -191,7 +191,7 @@ namespace hr.Evaluation {
          * Gets children list of an item
          */
         private getChildren(item: LeaderShipRow) {
-            return this.getItems().filter(x => x.ParentUserId == item.UserId);
+            return this.getItems().filter(x => x.ParentUserId === item.UserId);
         }
 
         /**
@@ -216,9 +216,9 @@ namespace hr.Evaluation {
             return result;
         }
 
-        protected getButtons() {
-            return [];
-        }
+        //protected getButtons() {
+        //    return [];
+        //}
 
         protected usePager() {
             return false;

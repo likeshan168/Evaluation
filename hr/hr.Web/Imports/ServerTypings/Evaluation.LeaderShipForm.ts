@@ -5,10 +5,10 @@
     }
 
     export interface LeaderShipForm {
-        UserUsername: Serenity.StringEditor;
+        UserId: Serenity.LookupEditor;
         ParentUserId: Serenity.LookupEditor;
     }
 
-    [['UserUsername', () => Serenity.StringEditor], ['ParentUserId', () => Serenity.LookupEditor]].forEach(x => Object.defineProperty(LeaderShipForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    [['UserId', () => Serenity.LookupEditor], ['ParentUserId', () => Serenity.LookupEditor]].forEach(x => Object.defineProperty(LeaderShipForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
 

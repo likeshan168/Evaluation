@@ -9,7 +9,18 @@ namespace hr.Evaluation {
         protected getLocalTextPrefix() { return LeaderShipRow.localTextPrefix; }
         protected getService() { return LeaderShipService.baseUrl; }
 
-        protected form = new LeaderShipForm(this.idPrefix);
+        protected form: LeaderShipForm;
+
+        constructor() {
+            super();
+            this.form = new LeaderShipForm(this.idPrefix);
+        }
+
+        protected afterLoadEntity() {
+            super.afterLoadEntity();
+            if (!this.isNew)
+                Serenity.EditorUtils.setReadOnly(this.form.UserId, true);
+        }
 
     }
 }

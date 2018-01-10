@@ -13,8 +13,8 @@ namespace hr.Evaluation.Forms
     [BasedOnRow(typeof(Entities.LeaderShipRow))]
     public class LeaderShipForm
     {
-        //public int UserId { get; set; }
-        public String UserUsername { get; set; }
+        public int UserId { get; set; }
+        //public String UserUsername { get; set; }
 
         public int ParentUserId { get; set; }
     }
