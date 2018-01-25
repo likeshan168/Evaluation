@@ -37,12 +37,17 @@ namespace hr.Evaluation.Repositories
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             var response = new MyListHandler().Process(connection, request);
-            var userIds = connection.Query<UserIds>($"SELECT UserId FROM hr.EvaluationResultView WHERE TotalScore = 0 GROUP BY UserId;");
+            var userIds = connection.Query<UserIds>($"SELECT UserId, EvaluationUserId FROM hr.EvaluationResultView WHERE TotalScore = 0 GROUP BY UserId, EvaluationUserId;");
             response.Entities.ForEach(p =>
             {
                 foreach (var item in userIds)
                 {
-                    if (item.UserId == p.UserId)
+                    //还要判断是否已经进行过评价，但是就是给0分的情况
+                    var userViewModel = connection.Query<UserViewModel>(
+                            $"SELECT r.UserId,us.Username, u.HasEvaluated FROM hr.UserEvaluationToUser u LEFT JOIN hr.UserEvaluationRelation r ON u.UserEvaluationRelationId = r.Id LEFT JOIN dbo.Users us ON us.UserId = r.UserId WHERE u.UserId = {item.EvaluationUserId} and r.UserId={item.UserId}")
+                        .FirstOrDefault();
+                    
+                    if (userViewModel != null && (item.UserId == p.UserId && !userViewModel.HasEvaluated))
                     {
                         p.TotalScore = 0;
                         p.Grade = "考核还未完";

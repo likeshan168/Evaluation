@@ -8,5 +8,6 @@ namespace hr.Evaluation
     public class UserIds
     {
         public int UserId { get; set; }
+        public int EvaluationUserId { get; set; }
     }
 }
