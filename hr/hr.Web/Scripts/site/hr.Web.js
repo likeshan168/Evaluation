@@ -4656,6 +4656,14 @@ var hr;
                     onViewSubmit: function () { return _this.onViewSubmit(); },
                     separator: true
                 }));
+                buttons.push(hr.Common.ExcelExportHelper.createToolButton({
+                    title: '导出自我评价',
+                    hint: '导出自我评价',
+                    grid: this,
+                    service: Evaluation.EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
                 return buttons;
             };
             EvaluationFinalResultGrid.prototype.getColumns = function () {

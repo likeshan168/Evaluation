@@ -1945,6 +1945,7 @@
     <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
     <Compile Include="Modules\Evaluation\Common\MyExcelImportRequest.cs" />
+    <Compile Include="Modules\Evaluation\Common\SelfEvaluationModel.cs" />
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRequest.cs" />

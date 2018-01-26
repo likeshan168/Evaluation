@@ -33,6 +33,14 @@ namespace hr.Evaluation {
                 onViewSubmit: () => this.onViewSubmit(),
                 separator: true
             }));
+            buttons.push(Common.ExcelExportHelper.createToolButton({
+                title: '导出自我评价',
+                hint: '导出自我评价',
+                grid: this,
+                service: EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
+                onViewSubmit: () => this.onViewSubmit(),
+                separator: true
+            }));
             return buttons;
         }
 

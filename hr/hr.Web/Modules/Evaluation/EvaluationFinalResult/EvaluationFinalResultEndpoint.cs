@@ -63,5 +63,19 @@ namespace hr.Evaluation.Endpoints
             return Serenity.Web.ExcelContentResult.Create(bytes, "EvaluationFinalResultDetail_" +
                 System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
         }
+        
+        public FileContentResult ListSelfEvaluationExcel(IDbConnection connection, ListRequest request)
+        {
+            var sql =
+                "select i.Content,InputContent, Username from [hr].[EvaluationResultDetail] e left join dbo.Users u " +
+                "on e.UserId=u.UserId left join hr.EvaluationItem i on " +
+                "i.Id = e.EvaluationItemId where inputcontent is not null and e.Score is null  order by UserName";
+            var data = connection.Query<SelfEvaluationModel>(sql);
+            var includeColums = new List<string> {"Username", "Content", "InputContent" };
+            var report = new Serenity.Reporting.DynamicDataReport(data, includeColums, typeof(SelfEvaluationModel));
+            var bytes = new ReportRepository().Render(report);
+            return Serenity.Web.ExcelContentResult.Create(bytes, "自我评价_" +
+                                                                 System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
+        }
     }
 }
