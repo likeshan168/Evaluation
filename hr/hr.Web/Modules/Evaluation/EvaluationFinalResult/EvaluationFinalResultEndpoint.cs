@@ -67,7 +67,7 @@ namespace hr.Evaluation.Endpoints
         public FileContentResult ListSelfEvaluationExcel(IDbConnection connection, ListRequest request)
         {
             var sql =
-                "select i.Content,InputContent, Username from [hr].[EvaluationResultDetail] e left join dbo.Users u " +
+                "select distinct i.Content,InputContent, Username from [hr].[EvaluationResultDetail] e left join dbo.Users u " +
                 "on e.UserId=u.UserId left join hr.EvaluationItem i on " +
                 "i.Id = e.EvaluationItemId where inputcontent is not null and e.Score is null  order by UserName";
             var data = connection.Query<SelfEvaluationModel>(sql);
