@@ -69,7 +69,7 @@ namespace hr.Evaluation.Endpoints
             var sql =
                 "select distinct i.Content,InputContent, Username from [hr].[EvaluationResultDetail] e left join dbo.Users u " +
                 "on e.UserId=u.UserId left join hr.EvaluationItem i on " +
-                "i.Id = e.EvaluationItemId where inputcontent is not null and e.Score is null  order by UserName";
+                "i.Id = e.EvaluationItemId where inputcontent is not null order by UserName";
             var data = connection.Query<SelfEvaluationModel>(sql);
             var includeColums = new List<string> {"Username", "Content", "InputContent" };
             var report = new Serenity.Reporting.DynamicDataReport(data, includeColums, typeof(SelfEvaluationModel));
