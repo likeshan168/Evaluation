@@ -5432,6 +5432,23 @@ var hr;
             ExamGrid.prototype.getIdProperty = function () { return Evaluation.ExamRow.idProperty; };
             ExamGrid.prototype.getLocalTextPrefix = function () { return Evaluation.ExamRow.localTextPrefix; };
             ExamGrid.prototype.getService = function () { return Evaluation.ExamService.baseUrl; };
+            ExamGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            ExamGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            ExamGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
             ExamGrid.prototype.addButtonClick = function () {
                 var now = new Date();
                 var endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3);
@@ -5584,6 +5601,23 @@ var hr;
             FirstKpiGrid.prototype.getIdProperty = function () { return Evaluation.FirstKpiRow.idProperty; };
             FirstKpiGrid.prototype.getLocalTextPrefix = function () { return Evaluation.FirstKpiRow.localTextPrefix; };
             FirstKpiGrid.prototype.getService = function () { return Evaluation.FirstKpiService.baseUrl; };
+            FirstKpiGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            FirstKpiGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            FirstKpiGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
             FirstKpiGrid.prototype.addButtonClick = function () {
                 this.editItem({
                     OrderNo: this.getMax(this.getItems()) + 1
@@ -5783,6 +5817,23 @@ var hr;
             LeaderShipGrid.prototype.getIdProperty = function () { return Evaluation.LeaderShipRow.idProperty; };
             LeaderShipGrid.prototype.getLocalTextPrefix = function () { return Evaluation.LeaderShipRow.localTextPrefix; };
             LeaderShipGrid.prototype.getService = function () { return Evaluation.LeaderShipService.baseUrl; };
+            LeaderShipGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            LeaderShipGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            LeaderShipGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
             /**
              * This method will determine if item can be moved under a given target
              * An item can't be moved under itself, under one of its children
@@ -5917,6 +5968,23 @@ var hr;
             SecondKpiGrid.prototype.getIdProperty = function () { return Evaluation.SecondKpiRow.idProperty; };
             SecondKpiGrid.prototype.getLocalTextPrefix = function () { return Evaluation.SecondKpiRow.localTextPrefix; };
             SecondKpiGrid.prototype.getService = function () { return Evaluation.SecondKpiService.baseUrl; };
+            SecondKpiGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            SecondKpiGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            SecondKpiGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
             return SecondKpiGrid;
         }(Serenity.EntityGrid));
         SecondKpiGrid = __decorate([
@@ -6177,6 +6245,19 @@ var hr;
             UserEvaluationRelationGrid.prototype.createToolbarExtensions = function () {
                 _super.prototype.createToolbarExtensions.call(this);
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            UserEvaluationRelationGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            UserEvaluationRelationGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
             };
             UserEvaluationRelationGrid.prototype.getButtons = function () {
                 var _this = this;

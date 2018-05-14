@@ -172,6 +172,25 @@ namespace hr.Evaluation {
             });
         }
 
+        public rowSelection: Serenity.GridRowSelectionMixin;
+        protected createToolbarExtensions() {
+            super.createToolbarExtensions();
+            this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+        }
+        protected getSlickOptions(): Slick.GridOptions {
+            var opt = super.getSlickOptions();
+            opt.enableTextSelectionOnCells = true;
+            opt.selectedCellCssClass = "slick-row-selected";
+            opt.enableCellNavigation = true;
+            return opt;
+        }
+
+        protected createSlickGrid(): Slick.Grid {
+            var grid = super.createSlickGrid();
+            grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+            grid.setSelectionModel(new Slick.RowSelectionModel());
+            return grid;
+        }
 
         /**
          * This method will determine if item can be moved under a given target
