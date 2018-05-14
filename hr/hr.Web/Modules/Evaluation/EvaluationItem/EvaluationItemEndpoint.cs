@@ -102,7 +102,7 @@ namespace hr.Evaluation.Endpoints
         /// get the self evaluation items
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<EvaluationItemViewModel> GetSelfEvaluationByExam(EvaluationItemRequest request)
+        public EvaluationItemResponse GetSelfEvaluationByExam(EvaluationItemRequest request)
         {
             using (var conn = SqlConnections.NewByKey("Default"))
             {
@@ -112,17 +112,31 @@ namespace hr.Evaluation.Endpoints
                 //验证一下考核是否已经结束或者还未开始
                 ValidateExamDate(exam);
 
-                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
-                var items = conn.Query<EvaluationItemViewModel>(sql).DistinctBy(p => new { p.Id });
+                //sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
+                sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc;" +
+                    $"select * from hr.SelfEvaluationRecord where IsSelfEvaluated = 1 and ExamId={request.ExamId} and UserId={request.UserId};";
+                var gridReader = conn.QueryMultiple(sql);//.DistinctBy(p => new { p.Id });
 
+                var items = gridReader.Read<EvaluationItemViewModel>().DistinctBy(p => new { p.Id });
+                //判断是否已经进行过自我评价，如果已经进行过自我评价的话，则被考核人，就不能再进行自我评价
+                var selfEvaluationRecord = gridReader.Read<SelfEvaluationRecordRow>().ToList();
+                bool isSelfEvaluated = false;
+                if (selfEvaluationRecord?.Count > 0)
+                {
+                    isSelfEvaluated = true;
+                }
                 if (exam != null)
                 {
                     var itemIds = exam.EvaluationIds.Split(',');
 
-                    return items.Where(p => itemIds.Contains(p.Id.ToString()));
+                    items = items.Where(p => itemIds.Contains(p.Id.ToString()));
                 }
 
-                return items;
+                return new EvaluationItemResponse
+                {
+                    Items = items.ToList(),
+                    IsSelfEvaluated = isSelfEvaluated
+                };
             }
         }
         [AllowAnonymous]
@@ -140,6 +154,7 @@ namespace hr.Evaluation.Endpoints
                 //验证一下考核是否已经结束或者还未开始
                 ValidateExamDate(exam);
                 sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} and EvaluationUserId={int.Parse(Authorization.UserId)} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
+                //sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} and EvaluationUserId={int.Parse(Authorization.UserId)} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
                 var items = conn.Query<EvaluationItemViewModel>(sql);
 
                 if (exam != null)

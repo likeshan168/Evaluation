@@ -2,6 +2,7 @@
     export interface AddEvaluationResultRequest<T> extends Serenity.ServiceRequest {
         Entities?: T[];
         IsComplete?: boolean;
+        IsSelfEvaluationComplete?: boolean;
     }
 }
 

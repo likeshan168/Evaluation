@@ -7,6 +7,7 @@ namespace hr.Evaluation.Endpoints
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -69,9 +70,8 @@ namespace hr.Evaluation.Endpoints
                 if (item.EvaluationUserId.HasValue)
                 {
                     evaluationUserId = item.EvaluationUserId.Value;
-                    //只有是自我评价的时候，才会上传EvaluationUserId这个参数
+                    //只有是自我评价的时候，才会上传EvaluationUserId这个参数，如果是暂存则应该怎么处理？
                     isSelfEvaluation = true;
-
                 }
                 else
                 {
@@ -79,15 +79,7 @@ namespace hr.Evaluation.Endpoints
                 }
 
                 var result = uow.Connection.Query<MyRow>($"select * from hr.EvaluationResultDetail where EvaluationItemId={item.EvaluationItemId} and ExamId={item.ExamId} and UserId={item.UserId} and EvaluationUserId={evaluationUserId}").FirstOrDefault();
-                if (result == null)
-                {
-                    //rep.Create(uow, new SaveRequest<MyRow>
-                    //{
-                    //    Entity = item
-                    //});
-                    //uow.Connection.Execute($"insert into hr.EvaluationResultDetail(ExamId,EvaluationItemId, InputContent, UserId,Score, EvaluationUserId) values({item.ExamId},{item.EvaluationItemId},'{item.InputContent}',{item.UserId},{item.Score},{item.EvaluationUserId}) ;");
-                }
-                else
+                if (result != null)
                 {
                     //update
                     if (isSelfEvaluation && string.IsNullOrWhiteSpace(item.InputContent))
@@ -105,19 +97,12 @@ namespace hr.Evaluation.Endpoints
                         EntityId = result.Id,
                         Entity = item
                     });
-                    //if (string.IsNullOrWhiteSpace(item.InputContent))
-                    //{
-                    //    uow.Connection.Execute($"update hr.EvaluationResultDetail set Score={item.Score.Value} where Id={result.Id};");
-                    //}
-                    //else
-                    //{
-                    //    uow.Connection.Execute($"update hr.EvaluationResultDetail set Score={item.Score.Value}, InputContent='{item.InputContent}' where Id={result.Id};");
-                    //}
                 }
             }
             //在完成自我评价之后，通知其他的评估人对本人进行评估
             if (isSelfEvaluation)
             {
+                #region
                 //发送邮件通知评估人进行评估
                 //var equalityFilter = new Dictionary<string, object>();
                 //equalityFilter.Add(UserToUserViewRow.Fields.UserId.Name, Authorization.UserId);
@@ -125,17 +110,18 @@ namespace hr.Evaluation.Endpoints
                 //var evaluationUsers = new UserToUserViewRepository().List(uow.Connection, new ListRequest
                 //{
                 //    EqualityFilter = equalityFilter
-                //});
-
+                //}); 
+                #endregion
                 var evaluationUsers = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={Authorization.UserId} and ExamId={examId}");
-
+                #region
                 //var examEqualityFilter = new Dictionary<string, object>();
                 //examEqualityFilter.Add(ExamRow.Fields.Id.Name, examId);
                 //examEqualityFilter.Add(ExamRow.Fields.IsEnabled.Name, 1);
                 //var exam = new ExamRepository().List(uow.Connection, new ListRequest
                 //{
                 //    EqualityFilter = examEqualityFilter
-                //}).Entities.FirstOrDefault();
+                //}).Entities.FirstOrDefault(); 
+                #endregion
                 var exam = uow.Connection.Query<ExamRow>($"select * from hr.Exam where Id={examId} and IsEnabled=1;").FirstOrDefault();
                 if (exam != null)
                 {
@@ -147,6 +133,22 @@ namespace hr.Evaluation.Endpoints
                             "http://" + HttpContext.Request.Url.Host + ':' + HttpContext.Request.Url.Port,
                             item.EvaluationEmail,
                             item.EvaluationName));
+                    }
+
+                    //需要标记自我评价已经完成
+                    if (request.IsSelfEvaluationComplete.HasValue && request.IsSelfEvaluationComplete.Value)
+                    {
+                        var selfEvaluationRecordRepository = new SelfEvaluationRecordRepository();
+                        selfEvaluationRecordRepository.Create(uow, new SaveRequest<SelfEvaluationRecordRow>
+                        {
+                            Entity = new SelfEvaluationRecordRow
+                            {
+                                ExamId = exam.Id,
+                                UserId = userId,
+                                IsSelfEvaluated = true,
+                                EvaluationDate = DateTime.Now,
+                            }
+                        });
                     }
                 }
             }
@@ -165,6 +167,7 @@ namespace hr.Evaluation.Endpoints
                 if (relation != null)
                 {
                     uow.Connection.Execute($"update hr.UserEvaluationToUser set HasEvaluated = 1 where UserId={int.Parse(Authorization.UserId)} and UserEvaluationRelationId={relation.Id};");
+                    #region
                     //发邮件通知
                     //var noEvaluations = uow.Connection.Query<UserToUserViewRow>($"select * from hr.UserToUserView where UserId={userId} and ExamId={examId} and HasEvaluated is null;");
                     //if (noEvaluations == null || noEvaluations.Count() == 0)
@@ -174,7 +177,8 @@ namespace hr.Evaluation.Endpoints
                     //    {
                     //        Hangfire.BackgroundJob.Enqueue(() => EmailMangement.Send3(evaluationResult));
                     //    }
-                    //}
+                    //} 
+                    #endregion
                 }
             }
             #endregion

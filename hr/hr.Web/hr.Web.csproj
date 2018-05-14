@@ -1175,6 +1175,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemResponse.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.EvaluationItemViewModel.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1200,6 +1203,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SecondKpiColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.T.ts">
@@ -1881,6 +1887,15 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationGrid.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationDialog.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1925,6 +1940,7 @@
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_173600_AddFirstKPIToEvaluationContent.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_171200_EvaluationContent.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170627_113900_Employee.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180514_101100_SelfEvaluationRecord.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180109_104000_CompanyEvaluation.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
@@ -1952,6 +1968,7 @@
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamTitleLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamUserLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\GradeLookup.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemResponse.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultDetail\AddEvaluationResultRequest.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportEndpoint.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationImportForm.cs" />
@@ -2169,6 +2186,11 @@
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRepository.cs" />
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationEndpoint.cs" />
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationPage.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordRow.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordColumns.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordForm.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordRepository.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordEndpoint.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

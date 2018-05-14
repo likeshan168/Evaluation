@@ -10,7 +10,7 @@
         export declare function GetSelfEvaluation(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation1(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation2(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GetSelfEvaluationByExam(request: EvaluationItemRequest, onSuccess?: (response: EvaluationItemResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetSelfEvaluation1ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation1ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function GetEvaluation2ByExam(request: EvaluationItemRequest, onSuccess?: (response: System.Collections.Generic.IEnumerable<EvaluationItemViewModel>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
