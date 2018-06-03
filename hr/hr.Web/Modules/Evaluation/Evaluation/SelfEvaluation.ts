@@ -89,12 +89,16 @@
                             this.saveData(userId, examId);
                         });
                     });
-
-                    this.inputs.on('keypress', (e) => {
-                       setTimeout(() => {
-                            console.log('interval');
-                            this.saveData(userId, examId, $(e.target));
-                        }, 3000);
+                    let count = 0;
+                    this.inputs.on('keydown', (e) => {
+                        count++;
+                        //每一次需要输入两个字才会去保存
+                        if (count > 2) {
+                            count = 0;
+                            setTimeout(() => {
+                                this.saveData(userId, examId, $(e.target));
+                            }, 1000);
+                        }
                     });
                 });
             });

@@ -100,7 +100,7 @@ namespace hr.Evaluation.Endpoints
                 }
             }
             //在完成自我评价之后，通知其他的评估人对本人进行评估
-            if (isSelfEvaluation)
+            if (isSelfEvaluation && request.IsSelfEvaluationComplete)
             {
                 #region
                 //发送邮件通知评估人进行评估
@@ -136,7 +136,7 @@ namespace hr.Evaluation.Endpoints
                     }
 
                     //需要标记自我评价已经完成
-                    if (request.IsSelfEvaluationComplete.HasValue && request.IsSelfEvaluationComplete.Value)
+                    if (request.IsSelfEvaluationComplete)
                     {
                         var selfEvaluationRecordRepository = new SelfEvaluationRecordRepository();
                         selfEvaluationRecordRepository.Create(uow, new SaveRequest<SelfEvaluationRecordRow>

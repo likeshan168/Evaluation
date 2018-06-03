@@ -18,7 +18,7 @@ namespace hr.Evaluation
         /// <summary>
         /// 这个是标记自我评价是完成
         /// </summary>
-        public bool? IsSelfEvaluationComplete { get; set; }
+        public bool IsSelfEvaluationComplete { get; set; }
 
     }
 }

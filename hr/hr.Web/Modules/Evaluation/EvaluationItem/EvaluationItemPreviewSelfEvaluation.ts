@@ -7,7 +7,6 @@
         }
 
         public init(): void {
-            //let html = `<select id='exam_list' class='form-control'><option value='0'>请选择考核标题</option>`;
             let examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
             
             ExamService.List({}, response => {
@@ -42,7 +41,7 @@
             let res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, (response) => {
                 let html = `<table>
                                    <tr>
-                                        <th colspan='5' class='text-center' style='font-size:18px'>
+                                        <th colspan='4' class='text-center' style='font-size:18px'>
                                             自我评价
                                         </th>
                                     </tr>
@@ -62,18 +61,18 @@
                                 //输入框
                                 html += `<td>${item.Mark}<br/><textarea style='width:100%;min-height:150px;'></textarea></td>`
                             }
-                            html += `<td style='width:150px;'>${item.Remark}</td>`;
+                            //html += `<td style='width:150px;'>${item.Remark}</td>`;
                             html += "</tr>"
                         })
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += `<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     } else {
-                        html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                        html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                        html += `<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                     }
 
                 } else {
-                    html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                    html += `<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
+                    html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                    html += `<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=${examId}'><i class="fa fa-arrow-right" aria-hidden="true"></i>下一页</a></td><tr></table>`
                 }
                 container.html(html);
             });

@@ -1,13 +1,8 @@
-﻿var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+﻿var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,14 +13,14 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var LanguageForm = /** @class */ (function (_super) {
+        var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            LanguageForm.formKey = 'Administration.Language';
             return LanguageForm;
         }(Serenity.PrefixedContext));
+        LanguageForm.formKey = 'Administration.Language';
         Administration.LanguageForm = LanguageForm;
         [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = hr.Administration || (hr.Administration = {}));
@@ -72,14 +67,14 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var RoleForm = /** @class */ (function (_super) {
+        var RoleForm = (function (_super) {
             __extends(RoleForm, _super);
             function RoleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            RoleForm.formKey = 'Administration.Role';
             return RoleForm;
         }(Serenity.PrefixedContext));
+        RoleForm.formKey = 'Administration.Role';
         Administration.RoleForm = RoleForm;
         [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = hr.Administration || (hr.Administration = {}));
@@ -176,14 +171,14 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var UserForm = /** @class */ (function (_super) {
+        var UserForm = (function (_super) {
             __extends(UserForm, _super);
             function UserForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            UserForm.formKey = 'Administration.User';
             return UserForm;
         }(Serenity.PrefixedContext));
+        UserForm.formKey = 'Administration.User';
         Administration.UserForm = UserForm;
         [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = hr.Administration || (hr.Administration = {}));
@@ -329,14 +324,14 @@ var hr;
 (function (hr) {
     var Default;
     (function (Default) {
-        var TodoListViewForm = /** @class */ (function (_super) {
+        var TodoListViewForm = (function (_super) {
             __extends(TodoListViewForm, _super);
             function TodoListViewForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            TodoListViewForm.formKey = 'Default.TodoListView';
             return TodoListViewForm;
         }(Serenity.PrefixedContext));
+        TodoListViewForm.formKey = 'Default.TodoListView';
         Default.TodoListViewForm = TodoListViewForm;
         [['Id', function () { return Serenity.IntegerEditor; }], ['Username', function () { return Serenity.StringEditor; }], ['Url', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TodoListViewForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Default = hr.Default || (hr.Default = {}));
@@ -423,14 +418,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var DepartmentForm = /** @class */ (function (_super) {
+        var DepartmentForm = (function (_super) {
             __extends(DepartmentForm, _super);
             function DepartmentForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            DepartmentForm.formKey = 'Evaluation.Department';
             return DepartmentForm;
         }(Serenity.PrefixedContext));
+        DepartmentForm.formKey = 'Evaluation.Department';
         Evaluation.DepartmentForm = DepartmentForm;
         [['Name', function () { return Serenity.StringEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(DepartmentForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -477,14 +472,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EmployeeExcelImportForm = /** @class */ (function (_super) {
+        var EmployeeExcelImportForm = (function (_super) {
             __extends(EmployeeExcelImportForm, _super);
             function EmployeeExcelImportForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            EmployeeExcelImportForm.formKey = 'Evaluation.EmployeeExcelImport';
             return EmployeeExcelImportForm;
         }(Serenity.PrefixedContext));
+        EmployeeExcelImportForm.formKey = 'Evaluation.EmployeeExcelImport';
         Evaluation.EmployeeExcelImportForm = EmployeeExcelImportForm;
         [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(EmployeeExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -493,14 +488,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EmployeeForm = /** @class */ (function (_super) {
+        var EmployeeForm = (function (_super) {
             __extends(EmployeeForm, _super);
             function EmployeeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            EmployeeForm.formKey = 'Evaluation.Employee';
             return EmployeeForm;
         }(Serenity.PrefixedContext));
+        EmployeeForm.formKey = 'Evaluation.Employee';
         Evaluation.EmployeeForm = EmployeeForm;
         [['Name', function () { return Serenity.StringEditor; }], ['IdCard', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.StringEditor; }], ['BirthDate', function () { return Serenity.DateEditor; }], ['Email', function () { return Serenity.StringEditor; }], ['DepartmentId', function () { return Serenity.LookupEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EmployeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -597,14 +592,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemForm = /** @class */ (function (_super) {
+        var EvaluationItemForm = (function (_super) {
             __extends(EvaluationItemForm, _super);
             function EvaluationItemForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            EvaluationItemForm.formKey = 'Evaluation.EvaluationItem';
             return EvaluationItemForm;
         }(Serenity.PrefixedContext));
+        EvaluationItemForm.formKey = 'Evaluation.EvaluationItem';
         Evaluation.EvaluationItemForm = EvaluationItemForm;
         [['FirstKpiId', function () { return Serenity.LookupEditor; }], ['SecondKpiId', function () { return Serenity.LookupEditor; }], ['Content', function () { return Serenity.TextAreaEditor; }], ['ContentType', function () { return Serenity.EnumEditor; }], ['Score', function () { return Serenity.IntegerEditor; }], ['Mark', function () { return Serenity.TextAreaEditor; }], ['IsEnabled', function () { return Serenity.BooleanEditor; }], ['IsSelfEvaluation', function () { return Serenity.BooleanEditor; }], ['OrderNo', function () { return Serenity.IntegerEditor; }], ['Remark', function () { return Serenity.TextAreaEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationItemForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -646,14 +641,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultDetailForm = /** @class */ (function (_super) {
+        var EvaluationResultDetailForm = (function (_super) {
             __extends(EvaluationResultDetailForm, _super);
             function EvaluationResultDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            EvaluationResultDetailForm.formKey = 'Evaluation.EvaluationResultDetail';
             return EvaluationResultDetailForm;
         }(Serenity.PrefixedContext));
+        EvaluationResultDetailForm.formKey = 'Evaluation.EvaluationResultDetail';
         Evaluation.EvaluationResultDetailForm = EvaluationResultDetailForm;
         [['ExamId', function () { return Serenity.IntegerEditor; }], ['EvaluationItemId', function () { return Serenity.IntegerEditor; }], ['InputContent', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationResultDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -728,14 +723,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ExamForm = /** @class */ (function (_super) {
+        var ExamForm = (function (_super) {
             __extends(ExamForm, _super);
             function ExamForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ExamForm.formKey = 'Evaluation.Exam';
             return ExamForm;
         }(Serenity.PrefixedContext));
+        ExamForm.formKey = 'Evaluation.Exam';
         Evaluation.ExamForm = ExamForm;
         [['Title', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['EvaluationIds', function () { return Serenity.StringEditor; }], ['IsEnabled', function () { return Serenity.BooleanEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(ExamForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -782,14 +777,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var FirstKpiForm = /** @class */ (function (_super) {
+        var FirstKpiForm = (function (_super) {
             __extends(FirstKpiForm, _super);
             function FirstKpiForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            FirstKpiForm.formKey = 'Evaluation.FirstKpi';
             return FirstKpiForm;
         }(Serenity.PrefixedContext));
+        FirstKpiForm.formKey = 'Evaluation.FirstKpi';
         Evaluation.FirstKpiForm = FirstKpiForm;
         [['OrderNo', function () { return Serenity.IntegerEditor; }], ['Name', function () { return Serenity.StringEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(FirstKpiForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -836,14 +831,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var LeaderShipForm = /** @class */ (function (_super) {
+        var LeaderShipForm = (function (_super) {
             __extends(LeaderShipForm, _super);
             function LeaderShipForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            LeaderShipForm.formKey = 'Evaluation.LeaderShip';
             return LeaderShipForm;
         }(Serenity.PrefixedContext));
+        LeaderShipForm.formKey = 'Evaluation.LeaderShip';
         Evaluation.LeaderShipForm = LeaderShipForm;
         [['UserId', function () { return Serenity.LookupEditor; }], ['ParentUserId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(LeaderShipForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -884,14 +879,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ScoreDetailForm = /** @class */ (function (_super) {
+        var ScoreDetailForm = (function (_super) {
             __extends(ScoreDetailForm, _super);
             function ScoreDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ScoreDetailForm.formKey = 'Evaluation.ScoreDetail';
             return ScoreDetailForm;
         }(Serenity.PrefixedContext));
+        ScoreDetailForm.formKey = 'Evaluation.ScoreDetail';
         Evaluation.ScoreDetailForm = ScoreDetailForm;
         [['EvaluationResultDetailId', function () { return Serenity.IntegerEditor; }], ['UserId', function () { return Serenity.IntegerEditor; }], ['Score', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ScoreDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -932,14 +927,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SecondKpiForm = /** @class */ (function (_super) {
+        var SecondKpiForm = (function (_super) {
             __extends(SecondKpiForm, _super);
             function SecondKpiForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            SecondKpiForm.formKey = 'Evaluation.SecondKpi';
             return SecondKpiForm;
         }(Serenity.PrefixedContext));
+        SecondKpiForm.formKey = 'Evaluation.SecondKpi';
         Evaluation.SecondKpiForm = SecondKpiForm;
         [['FirstKpiId', function () { return Serenity.LookupEditor; }], ['Name', function () { return Serenity.StringEditor; }], ['OrderNo', function () { return Serenity.IntegerEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SecondKpiForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -986,14 +981,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SelfEvaluationRecordForm = /** @class */ (function (_super) {
+        var SelfEvaluationRecordForm = (function (_super) {
             __extends(SelfEvaluationRecordForm, _super);
             function SelfEvaluationRecordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            SelfEvaluationRecordForm.formKey = 'Evaluation.SelfEvaluationRecord';
             return SelfEvaluationRecordForm;
         }(Serenity.PrefixedContext));
+        SelfEvaluationRecordForm.formKey = 'Evaluation.SelfEvaluationRecord';
         Evaluation.SelfEvaluationRecordForm = SelfEvaluationRecordForm;
         [['UserId', function () { return Serenity.IntegerEditor; }], ['ExamId', function () { return Serenity.IntegerEditor; }], ['EvaluationDate', function () { return Serenity.DateEditor; }], ['IsSelfEvaluated', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(SelfEvaluationRecordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1034,14 +1029,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ToDoListForm = /** @class */ (function (_super) {
+        var ToDoListForm = (function (_super) {
             __extends(ToDoListForm, _super);
             function ToDoListForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ToDoListForm.formKey = 'Evaluation.ToDoList';
             return ToDoListForm;
         }(Serenity.PrefixedContext));
+        ToDoListForm.formKey = 'Evaluation.ToDoList';
         Evaluation.ToDoListForm = ToDoListForm;
         [['UserId', function () { return Serenity.LookupEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Content', function () { return Serenity.TextAreaEditor; }], ['ExamId', function () { return Serenity.LookupEditor; }], ['CreateBy', function () { return Serenity.LookupEditor; }], ['IsEnabled', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(ToDoListForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1083,14 +1078,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var TodoListViewForm = /** @class */ (function (_super) {
+        var TodoListViewForm = (function (_super) {
             __extends(TodoListViewForm, _super);
             function TodoListViewForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            TodoListViewForm.formKey = 'Evaluation.TodoListView';
             return TodoListViewForm;
         }(Serenity.PrefixedContext));
+        TodoListViewForm.formKey = 'Evaluation.TodoListView';
         Evaluation.TodoListViewForm = TodoListViewForm;
         [['Id', function () { return Serenity.IntegerEditor; }], ['Username', function () { return Serenity.StringEditor; }], ['Url', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TodoListViewForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1149,14 +1144,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationRelationForm = /** @class */ (function (_super) {
+        var UserEvaluationRelationForm = (function (_super) {
             __extends(UserEvaluationRelationForm, _super);
             function UserEvaluationRelationForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            UserEvaluationRelationForm.formKey = 'Evaluation.UserEvaluationRelation';
             return UserEvaluationRelationForm;
         }(Serenity.PrefixedContext));
+        UserEvaluationRelationForm.formKey = 'Evaluation.UserEvaluationRelation';
         Evaluation.UserEvaluationRelationForm = UserEvaluationRelationForm;
         [['UserId', function () { return Serenity.LookupEditor; }], ['UserList', function () { return Serenity.LookupEditor; }], ['ExamId', function () { return Serenity.LookupEditor; }], ['Remark', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserEvaluationRelationForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1165,14 +1160,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationRelationImportForm = /** @class */ (function (_super) {
+        var UserEvaluationRelationImportForm = (function (_super) {
             __extends(UserEvaluationRelationImportForm, _super);
             function UserEvaluationRelationImportForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            UserEvaluationRelationImportForm.formKey = 'Evaluation.UserEvaluationRelationExcelImport';
             return UserEvaluationRelationImportForm;
         }(Serenity.PrefixedContext));
+        UserEvaluationRelationImportForm.formKey = 'Evaluation.UserEvaluationRelationExcelImport';
         Evaluation.UserEvaluationRelationImportForm = UserEvaluationRelationImportForm;
         [['ExamId', function () { return Serenity.LookupEditor; }], ['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(UserEvaluationRelationImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1214,14 +1209,14 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationToUserForm = /** @class */ (function (_super) {
+        var UserEvaluationToUserForm = (function (_super) {
             __extends(UserEvaluationToUserForm, _super);
             function UserEvaluationToUserForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            UserEvaluationToUserForm.formKey = 'Evaluation.UserEvaluationToUser';
             return UserEvaluationToUserForm;
         }(Serenity.PrefixedContext));
+        UserEvaluationToUserForm.formKey = 'Evaluation.UserEvaluationToUser';
         Evaluation.UserEvaluationToUserForm = UserEvaluationToUserForm;
         [['UserEvaluationRelationId', function () { return Serenity.IntegerEditor; }], ['UserId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(UserEvaluationToUserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
@@ -1294,14 +1289,14 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordForm = /** @class */ (function (_super) {
+        var ChangePasswordForm = (function (_super) {
             __extends(ChangePasswordForm, _super);
             function ChangePasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ChangePasswordForm.formKey = 'Membership.ChangePassword';
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
+        ChangePasswordForm.formKey = 'Membership.ChangePassword';
         Membership.ChangePasswordForm = ChangePasswordForm;
         [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = hr.Membership || (hr.Membership = {}));
@@ -1310,14 +1305,14 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var ForgotPasswordForm = /** @class */ (function (_super) {
+        var ForgotPasswordForm = (function (_super) {
             __extends(ForgotPasswordForm, _super);
             function ForgotPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
+        ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
         Membership.ForgotPasswordForm = ForgotPasswordForm;
         [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = hr.Membership || (hr.Membership = {}));
@@ -1326,14 +1321,14 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var LoginForm = /** @class */ (function (_super) {
+        var LoginForm = (function (_super) {
             __extends(LoginForm, _super);
             function LoginForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            LoginForm.formKey = 'Membership.Login';
             return LoginForm;
         }(Serenity.PrefixedContext));
+        LoginForm.formKey = 'Membership.Login';
         Membership.LoginForm = LoginForm;
         [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = hr.Membership || (hr.Membership = {}));
@@ -1342,14 +1337,14 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var ResetPasswordForm = /** @class */ (function (_super) {
+        var ResetPasswordForm = (function (_super) {
             __extends(ResetPasswordForm, _super);
             function ResetPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ResetPasswordForm.formKey = 'Membership.ResetPassword';
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
+        ResetPasswordForm.formKey = 'Membership.ResetPassword';
         Membership.ResetPasswordForm = ResetPasswordForm;
         [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = hr.Membership || (hr.Membership = {}));
@@ -1358,51 +1353,23 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var SignUpForm = /** @class */ (function (_super) {
+        var SignUpForm = (function (_super) {
             __extends(SignUpForm, _super);
             function SignUpForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            SignUpForm.formKey = 'Membership.SignUp';
             return SignUpForm;
         }(Serenity.PrefixedContext));
+        SignUpForm.formKey = 'Membership.SignUp';
         Membership.SignUpForm = SignUpForm;
         [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = hr.Membership || (hr.Membership = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
-    var LanguageList;
-    (function (LanguageList) {
-        function getValue() {
-            var result = [];
-            for (var _i = 0, _a = hr.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
-                var k = _a[_i];
-                if (k.LanguageId !== 'en') {
-                    result.push([k.Id.toString(), k.LanguageName]);
-                }
-            }
-            return result;
-        }
-        LanguageList.getValue = getValue;
-    })(LanguageList = hr.LanguageList || (hr.LanguageList = {}));
-})(hr || (hr = {}));
-/// <reference path="../Common/Helpers/LanguageList.ts" />
-var hr;
-(function (hr) {
-    var ScriptInitialization;
-    (function (ScriptInitialization) {
-        Q.Config.responsiveDialogs = true;
-        Q.Config.rootNamespaces.push('hr');
-        Serenity.EntityDialog.defaultLanguageList = hr.LanguageList.getValue;
-        Serenity.DataGrid.defaultPersistanceStorage = window.localStorage;
-    })(ScriptInitialization = hr.ScriptInitialization || (hr.ScriptInitialization = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
     var Administration;
     (function (Administration) {
-        var LanguageDialog = /** @class */ (function (_super) {
+        var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1414,11 +1381,11 @@ var hr;
             LanguageDialog.prototype.getLocalTextPrefix = function () { return Administration.LanguageRow.localTextPrefix; };
             LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
             LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
-            LanguageDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LanguageDialog);
             return LanguageDialog;
         }(Serenity.EntityDialog));
+        LanguageDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LanguageDialog);
         Administration.LanguageDialog = LanguageDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1426,7 +1393,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var LanguageGrid = /** @class */ (function (_super) {
+        var LanguageGrid = (function (_super) {
             __extends(LanguageGrid, _super);
             function LanguageGrid(container) {
                 return _super.call(this, container) || this;
@@ -1439,11 +1406,11 @@ var hr;
             LanguageGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.LanguageRow.Fields.LanguageName];
             };
-            LanguageGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LanguageGrid);
             return LanguageGrid;
         }(Serenity.EntityGrid));
+        LanguageGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LanguageGrid);
         Administration.LanguageGrid = LanguageGrid;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1451,7 +1418,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var RoleDialog = /** @class */ (function (_super) {
+        var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1483,11 +1450,11 @@ var hr;
                 _super.prototype.updateInterface.call(this);
                 this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
-            RoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RoleDialog);
             return RoleDialog;
         }(Serenity.EntityDialog));
+        RoleDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RoleDialog);
         Administration.RoleDialog = RoleDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1495,7 +1462,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var RoleGrid = /** @class */ (function (_super) {
+        var RoleGrid = (function (_super) {
             __extends(RoleGrid, _super);
             function RoleGrid(container) {
                 return _super.call(this, container) || this;
@@ -1508,11 +1475,11 @@ var hr;
             RoleGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.RoleRow.Fields.RoleName];
             };
-            RoleGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RoleGrid);
             return RoleGrid;
         }(Serenity.EntityGrid));
+        RoleGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RoleGrid);
         Administration.RoleGrid = RoleGrid;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1520,7 +1487,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var RolePermissionDialog = /** @class */ (function (_super) {
+        var RolePermissionDialog = (function (_super) {
             __extends(RolePermissionDialog, _super);
             function RolePermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -1564,11 +1531,11 @@ var hr;
             RolePermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
-            RolePermissionDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RolePermissionDialog);
             return RolePermissionDialog;
         }(Serenity.TemplatedDialog));
+        RolePermissionDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RolePermissionDialog);
         Administration.RolePermissionDialog = RolePermissionDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1576,7 +1543,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var TranslationGrid = /** @class */ (function (_super) {
+        var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -1761,19 +1728,35 @@ var hr;
             TranslationGrid.prototype.usePager = function () {
                 return false;
             };
-            TranslationGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], TranslationGrid);
             return TranslationGrid;
         }(Serenity.EntityGrid));
+        TranslationGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TranslationGrid);
         Administration.TranslationGrid = TranslationGrid;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
+    var Authorization;
+    (function (Authorization) {
+        Object.defineProperty(Authorization, 'userDefinition', {
+            get: function () {
+                return Q.getRemoteData('UserData');
+            }
+        });
+        function hasPermission(permissionKey) {
+            var ud = Authorization.userDefinition;
+            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        }
+        Authorization.hasPermission = hasPermission;
+    })(Authorization = hr.Authorization || (hr.Authorization = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
     var Administration;
     (function (Administration) {
-        var ChooseRoleDialog = /** @class */ (function (_super) {
+        var ChooseRoleDialog = (function (_super) {
             __extends(ChooseRoleDialog, _super);
             function ChooseRoleDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -1806,11 +1789,11 @@ var hr;
             ChooseRoleDialog.prototype.getTemplate = function () {
                 return "<div id='~_Roles'></div>";
             };
-            ChooseRoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ChooseRoleDialog);
             return ChooseRoleDialog;
         }(Serenity.TemplatedDialog));
+        ChooseRoleDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ChooseRoleDialog);
         Administration.ChooseRoleDialog = ChooseRoleDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1818,7 +1801,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var UserDialog = /** @class */ (function (_super) {
+        var UserDialog = (function (_super) {
             __extends(UserDialog, _super);
             function UserDialog() {
                 var _this = _super.call(this) || this;
@@ -1879,11 +1862,11 @@ var hr;
                 this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                     .closest('.field').find('sup').toggle(this.isNew());
             };
-            UserDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserDialog);
             return UserDialog;
         }(Serenity.EntityDialog));
+        UserDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserDialog);
         Administration.UserDialog = UserDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -1891,7 +1874,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var UserGrid = /** @class */ (function (_super) {
+        var UserGrid = (function (_super) {
             __extends(UserGrid, _super);
             function UserGrid(container) {
                 return _super.call(this, container) || this;
@@ -2009,11 +1992,11 @@ var hr;
             UserGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.UserRow.Fields.Username];
             };
-            UserGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserGrid);
             return UserGrid;
         }(Serenity.EntityGrid));
+        UserGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserGrid);
         Administration.UserGrid = UserGrid;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -2021,7 +2004,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var PermissionCheckEditor = /** @class */ (function (_super) {
+        var PermissionCheckEditor = (function (_super) {
             __extends(PermissionCheckEditor, _super);
             function PermissionCheckEditor(container, opt) {
                 var _this = _super.call(this, container, opt) || this;
@@ -2281,11 +2264,11 @@ var hr;
                 }
                 this.setItems(this.getItems());
             };
-            PermissionCheckEditor = __decorate([
-                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
-            ], PermissionCheckEditor);
             return PermissionCheckEditor;
         }(Serenity.DataGrid));
+        PermissionCheckEditor = __decorate([
+            Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
+        ], PermissionCheckEditor);
         Administration.PermissionCheckEditor = PermissionCheckEditor;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -2293,7 +2276,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var UserPermissionDialog = /** @class */ (function (_super) {
+        var UserPermissionDialog = (function (_super) {
             __extends(UserPermissionDialog, _super);
             function UserPermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -2344,11 +2327,11 @@ var hr;
             UserPermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
-            UserPermissionDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserPermissionDialog);
             return UserPermissionDialog;
         }(Serenity.TemplatedDialog));
+        UserPermissionDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserPermissionDialog);
         Administration.UserPermissionDialog = UserPermissionDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -2356,7 +2339,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var RoleCheckEditor = /** @class */ (function (_super) {
+        var RoleCheckEditor = (function (_super) {
             __extends(RoleCheckEditor, _super);
             function RoleCheckEditor(div) {
                 return _super.call(this, div) || this;
@@ -2394,11 +2377,11 @@ var hr;
                         Select2.util.stripDiacritics(item.text || '')
                             .toUpperCase().indexOf(this.searchText) >= 0);
             };
-            RoleCheckEditor = __decorate([
-                Serenity.Decorators.registerEditor()
-            ], RoleCheckEditor);
             return RoleCheckEditor;
         }(Serenity.CheckTreeEditor));
+        RoleCheckEditor = __decorate([
+            Serenity.Decorators.registerEditor()
+        ], RoleCheckEditor);
         Administration.RoleCheckEditor = RoleCheckEditor;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
@@ -2406,7 +2389,7 @@ var hr;
 (function (hr) {
     var Administration;
     (function (Administration) {
-        var UserRoleDialog = /** @class */ (function (_super) {
+        var UserRoleDialog = (function (_super) {
             __extends(UserRoleDialog, _super);
             function UserRoleDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -2442,17 +2425,17 @@ var hr;
             UserRoleDialog.prototype.getTemplate = function () {
                 return "<div id='~_Roles'></div>";
             };
-            UserRoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserRoleDialog);
             return UserRoleDialog;
         }(Serenity.TemplatedDialog));
+        UserRoleDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserRoleDialog);
         Administration.UserRoleDialog = UserRoleDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
-    var BasicProgressDialog = /** @class */ (function (_super) {
+    var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
             var _this = _super.call(this) || this;
@@ -2534,7 +2517,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var BulkServiceAction = /** @class */ (function () {
+        var BulkServiceAction = (function () {
             function BulkServiceAction() {
             }
             BulkServiceAction.prototype.createProgressDialog = function () {
@@ -2710,7 +2693,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var EnumSelectFormatter = /** @class */ (function () {
+        var EnumSelectFormatter = (function () {
             function EnumSelectFormatter() {
                 this.allowClear = true;
             }
@@ -2735,20 +2718,20 @@ var hr;
                 sb += "</select>";
                 return sb;
             };
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "enumKey", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "allowClear", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
-            EnumSelectFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], EnumSelectFormatter);
             return EnumSelectFormatter;
         }());
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "enumKey", void 0);
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "allowClear", void 0);
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
+        EnumSelectFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], EnumSelectFormatter);
         Common.EnumSelectFormatter = EnumSelectFormatter;
     })(Common = hr.Common || (hr.Common = {}));
 })(hr || (hr = {}));
@@ -2794,7 +2777,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var GridEditorBase = /** @class */ (function (_super) {
+        var GridEditorBase = (function (_super) {
             __extends(GridEditorBase, _super);
             function GridEditorBase(container) {
                 var _this = _super.call(this, container) || this;
@@ -2918,13 +2901,13 @@ var hr;
             };
             GridEditorBase.prototype.createQuickSearchInput = function () {
             };
-            GridEditorBase = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.element("<div/>")
-            ], GridEditorBase);
             return GridEditorBase;
         }(Serenity.EntityGrid));
+        GridEditorBase = __decorate([
+            Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+            Serenity.Decorators.editor(),
+            Serenity.Decorators.element("<div/>")
+        ], GridEditorBase);
         Common.GridEditorBase = GridEditorBase;
     })(Common = hr.Common || (hr.Common = {}));
 })(hr || (hr = {}));
@@ -2932,7 +2915,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var GridEditorDialog = /** @class */ (function (_super) {
+        var GridEditorDialog = (function (_super) {
             __extends(GridEditorDialog, _super);
             function GridEditorDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -2956,13 +2939,30 @@ var hr;
             GridEditorDialog.prototype.deleteHandler = function (options, callback) {
                 this.onDelete && this.onDelete(options, callback);
             };
-            GridEditorDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridEditorDialog);
             return GridEditorDialog;
         }(Serenity.EntityDialog));
+        GridEditorDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], GridEditorDialog);
         Common.GridEditorDialog = GridEditorDialog;
     })(Common = hr.Common || (hr.Common = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var LanguageList;
+    (function (LanguageList) {
+        function getValue() {
+            var result = [];
+            for (var _i = 0, _a = hr.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
+                var k = _a[_i];
+                if (k.LanguageId !== 'en') {
+                    result.push([k.Id.toString(), k.LanguageName]);
+                }
+            }
+            return result;
+        }
+        LanguageList.getValue = getValue;
+    })(LanguageList = hr.LanguageList || (hr.LanguageList = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
@@ -2989,7 +2989,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var LanguageSelection = /** @class */ (function (_super) {
+        var LanguageSelection = (function (_super) {
             __extends(LanguageSelection, _super);
             function LanguageSelection(select, currentLanguage) {
                 var _this = _super.call(this, select) || this;
@@ -3031,7 +3031,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var SidebarSearch = /** @class */ (function (_super) {
+        var SidebarSearch = (function (_super) {
             __extends(SidebarSearch, _super);
             function SidebarSearch(input, menuUL) {
                 var _this = _super.call(this, input) || this;
@@ -3084,7 +3084,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var ThemeSelection = /** @class */ (function (_super) {
+        var ThemeSelection = (function (_super) {
             __extends(ThemeSelection, _super);
             function ThemeSelection(select) {
                 var _this = _super.call(this, select) || this;
@@ -3312,7 +3312,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var ReportDialog = /** @class */ (function (_super) {
+        var ReportDialog = (function (_super) {
             __extends(ReportDialog, _super);
             function ReportDialog(options) {
                 var _this = _super.call(this, options) || this;
@@ -3432,7 +3432,7 @@ var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var ReportPage = /** @class */ (function (_super) {
+        var ReportPage = (function (_super) {
             __extends(ReportPage, _super);
             function ReportPage(element) {
                 var _this = _super.call(this, element) || this;
@@ -3499,11 +3499,22 @@ var hr;
         Common.ReportPage = ReportPage;
     })(Common = hr.Common || (hr.Common = {}));
 })(hr || (hr = {}));
+/// <reference path="../Common/Helpers/LanguageList.ts" />
+var hr;
+(function (hr) {
+    var ScriptInitialization;
+    (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
+        Q.Config.rootNamespaces.push('hr');
+        Serenity.EntityDialog.defaultLanguageList = hr.LanguageList.getValue;
+        Serenity.DataGrid.defaultPersistanceStorage = window.localStorage;
+    })(ScriptInitialization = hr.ScriptInitialization || (hr.ScriptInitialization = {}));
+})(hr || (hr = {}));
 var hr;
 (function (hr) {
     var Common;
     (function (Common) {
-        var UserPreferenceStorage = /** @class */ (function () {
+        var UserPreferenceStorage = (function () {
             function UserPreferenceStorage() {
             }
             UserPreferenceStorage.prototype.getItem = function (key) {
@@ -3532,7 +3543,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var CompanyEvaluationDialog = /** @class */ (function (_super) {
+        var CompanyEvaluationDialog = (function (_super) {
             __extends(CompanyEvaluationDialog, _super);
             function CompanyEvaluationDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3543,12 +3554,12 @@ var hr;
             CompanyEvaluationDialog.prototype.getIdProperty = function () { return Evaluation.CompanyEvaluationRow.idProperty; };
             CompanyEvaluationDialog.prototype.getLocalTextPrefix = function () { return Evaluation.CompanyEvaluationRow.localTextPrefix; };
             CompanyEvaluationDialog.prototype.getService = function () { return Evaluation.CompanyEvaluationService.baseUrl; };
-            CompanyEvaluationDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], CompanyEvaluationDialog);
             return CompanyEvaluationDialog;
         }(Serenity.EntityDialog));
+        CompanyEvaluationDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], CompanyEvaluationDialog);
         Evaluation.CompanyEvaluationDialog = CompanyEvaluationDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3556,7 +3567,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var CompanyEvaluationGrid = /** @class */ (function (_super) {
+        var CompanyEvaluationGrid = (function (_super) {
             __extends(CompanyEvaluationGrid, _super);
             function CompanyEvaluationGrid(container) {
                 return _super.call(this, container) || this;
@@ -3628,11 +3639,11 @@ var hr;
                     }
                 }
             };
-            CompanyEvaluationGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], CompanyEvaluationGrid);
             return CompanyEvaluationGrid;
         }(Serenity.EntityGrid));
+        CompanyEvaluationGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], CompanyEvaluationGrid);
         Evaluation.CompanyEvaluationGrid = CompanyEvaluationGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3640,7 +3651,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var DepartmentDialog = /** @class */ (function (_super) {
+        var DepartmentDialog = (function (_super) {
             __extends(DepartmentDialog, _super);
             function DepartmentDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3656,13 +3667,13 @@ var hr;
             DepartmentDialog.prototype.getLocalTextPrefix = function () { return Evaluation.DepartmentRow.localTextPrefix; };
             DepartmentDialog.prototype.getNameProperty = function () { return Evaluation.DepartmentRow.nameProperty; };
             DepartmentDialog.prototype.getService = function () { return Evaluation.DepartmentService.baseUrl; };
-            DepartmentDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
-                Serenity.Decorators.maximizable()
-            ], DepartmentDialog);
             return DepartmentDialog;
         }(Serenity.EntityDialog));
+        DepartmentDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.maximizable()
+        ], DepartmentDialog);
         Evaluation.DepartmentDialog = DepartmentDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3670,7 +3681,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var DepartmentGrid = /** @class */ (function (_super) {
+        var DepartmentGrid = (function (_super) {
             __extends(DepartmentGrid, _super);
             function DepartmentGrid(container) {
                 return _super.call(this, container) || this;
@@ -3680,11 +3691,11 @@ var hr;
             DepartmentGrid.prototype.getIdProperty = function () { return Evaluation.DepartmentRow.idProperty; };
             DepartmentGrid.prototype.getLocalTextPrefix = function () { return Evaluation.DepartmentRow.localTextPrefix; };
             DepartmentGrid.prototype.getService = function () { return Evaluation.DepartmentService.baseUrl; };
-            DepartmentGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], DepartmentGrid);
             return DepartmentGrid;
         }(Serenity.EntityGrid));
+        DepartmentGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], DepartmentGrid);
         Evaluation.DepartmentGrid = DepartmentGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3692,7 +3703,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EmployeeDialog = /** @class */ (function (_super) {
+        var EmployeeDialog = (function (_super) {
             __extends(EmployeeDialog, _super);
             function EmployeeDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3708,13 +3719,13 @@ var hr;
             EmployeeDialog.prototype.getLocalTextPrefix = function () { return Evaluation.EmployeeRow.localTextPrefix; };
             EmployeeDialog.prototype.getNameProperty = function () { return Evaluation.EmployeeRow.nameProperty; };
             EmployeeDialog.prototype.getService = function () { return Evaluation.EmployeeService.baseUrl; };
-            EmployeeDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
-                Serenity.Decorators.maximizable()
-            ], EmployeeDialog);
             return EmployeeDialog;
         }(Serenity.EntityDialog));
+        EmployeeDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.maximizable()
+        ], EmployeeDialog);
         Evaluation.EmployeeDialog = EmployeeDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3722,7 +3733,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EmployeeExcelImportDialog = /** @class */ (function (_super) {
+        var EmployeeExcelImportDialog = (function (_super) {
             __extends(EmployeeExcelImportDialog, _super);
             function EmployeeExcelImportDialog() {
                 var _this = _super.call(this) || this;
@@ -3767,11 +3778,11 @@ var hr;
                     }
                 ];
             };
-            EmployeeExcelImportDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EmployeeExcelImportDialog);
             return EmployeeExcelImportDialog;
         }(Serenity.PropertyDialog));
+        EmployeeExcelImportDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EmployeeExcelImportDialog);
         Evaluation.EmployeeExcelImportDialog = EmployeeExcelImportDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3779,7 +3790,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EmployeeGrid = /** @class */ (function (_super) {
+        var EmployeeGrid = (function (_super) {
             __extends(EmployeeGrid, _super);
             function EmployeeGrid(container) {
                 return _super.call(this, container) || this;
@@ -3895,11 +3906,11 @@ var hr;
                     }
                 }
             };
-            EmployeeGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EmployeeGrid);
             return EmployeeGrid;
         }(Serenity.EntityGrid));
+        EmployeeGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EmployeeGrid);
         Evaluation.EmployeeGrid = EmployeeGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -3907,7 +3918,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var CompanyEvaluation = /** @class */ (function () {
+        var CompanyEvaluation = (function () {
             function CompanyEvaluation(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -3990,7 +4001,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var Evaluation1 = /** @class */ (function () {
+        var Evaluation1 = (function () {
             function Evaluation1(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -4143,7 +4154,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var Evaluation2 = /** @class */ (function () {
+        var Evaluation2 = (function () {
             function Evaluation2(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -4288,7 +4299,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SelfEvaluation = /** @class */ (function () {
+        var SelfEvaluation = (function () {
             function SelfEvaluation(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -4361,11 +4372,16 @@ var hr;
                                 _this.saveData(userId, examId);
                             });
                         });
-                        _this.inputs.on('keypress', function (e) {
-                            setTimeout(function () {
-                                console.log('interval');
-                                _this.saveData(userId, examId, $(e.target));
-                            }, 3000);
+                        var count = 0;
+                        _this.inputs.on('keydown', function (e) {
+                            count++;
+                            //每一次需要输入两个字才会去保存
+                            if (count > 2) {
+                                count = 0;
+                                setTimeout(function () {
+                                    _this.saveData(userId, examId, $(e.target));
+                                }, 1000);
+                            }
                         });
                     });
                 });
@@ -4432,7 +4448,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SelfEvaluation1 = /** @class */ (function () {
+        var SelfEvaluation1 = (function () {
             function SelfEvaluation1(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -4623,7 +4639,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationFinalResultDetail = /** @class */ (function (_super) {
+        var EvaluationFinalResultDetail = (function (_super) {
             __extends(EvaluationFinalResultDetail, _super);
             function EvaluationFinalResultDetail(userId, examId) {
                 var _this = _super.call(this) || this;
@@ -4679,12 +4695,12 @@ var hr;
                 ];
                 return opt;
             };
-            EvaluationFinalResultDetail = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.maximizable()
-            ], EvaluationFinalResultDetail);
             return EvaluationFinalResultDetail;
         }(Serenity.TemplatedDialog));
+        EvaluationFinalResultDetail = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.maximizable()
+        ], EvaluationFinalResultDetail);
         Evaluation.EvaluationFinalResultDetail = EvaluationFinalResultDetail;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -4692,7 +4708,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationFinalResultGrid = /** @class */ (function (_super) {
+        var EvaluationFinalResultGrid = (function (_super) {
             __extends(EvaluationFinalResultGrid, _super);
             function EvaluationFinalResultGrid(container) {
                 return _super.call(this, container) || this;
@@ -4763,11 +4779,11 @@ var hr;
                     new Evaluation.EvaluationFinalResultDetail(rst.UserId, rst.ExamId).dialogOpen();
                 }
             };
-            EvaluationFinalResultGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EvaluationFinalResultGrid);
             return EvaluationFinalResultGrid;
         }(Serenity.EntityGrid));
+        EvaluationFinalResultGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationFinalResultGrid);
         Evaluation.EvaluationFinalResultGrid = EvaluationFinalResultGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -4775,7 +4791,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemDialog = /** @class */ (function (_super) {
+        var EvaluationItemDialog = (function (_super) {
             __extends(EvaluationItemDialog, _super);
             function EvaluationItemDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -4811,13 +4827,13 @@ var hr;
                 clone.Score = clone.Score + 1;
                 return clone;
             };
-            EvaluationItemDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
-                Serenity.Decorators.maximizable()
-            ], EvaluationItemDialog);
             return EvaluationItemDialog;
         }(Serenity.EntityDialog));
+        EvaluationItemDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.maximizable()
+        ], EvaluationItemDialog);
         Evaluation.EvaluationItemDialog = EvaluationItemDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -4825,7 +4841,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemGrid = /** @class */ (function (_super) {
+        var EvaluationItemGrid = (function (_super) {
             __extends(EvaluationItemGrid, _super);
             function EvaluationItemGrid(container) {
                 return _super.call(this, container) || this;
@@ -4954,11 +4970,11 @@ var hr;
                     }
                 }
             };
-            EvaluationItemGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EvaluationItemGrid);
             return EvaluationItemGrid;
         }(Serenity.EntityGrid));
+        EvaluationItemGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationItemGrid);
         Evaluation.EvaluationItemGrid = EvaluationItemGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -4966,7 +4982,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemPreviewCompanyEvaluation = /** @class */ (function () {
+        var EvaluationItemPreviewCompanyEvaluation = (function () {
             function EvaluationItemPreviewCompanyEvaluation(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -4985,7 +5001,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemPreviewEvaluation = /** @class */ (function () {
+        var EvaluationItemPreviewEvaluation = (function () {
             function EvaluationItemPreviewEvaluation(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -5043,7 +5059,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemPreviewEvaluation2 = /** @class */ (function () {
+        var EvaluationItemPreviewEvaluation2 = (function () {
             function EvaluationItemPreviewEvaluation2(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -5058,7 +5074,7 @@ var hr;
                         result[current.FirstKpiName].push(current);
                         return result;
                     }, {});
-                    var html = "<div class='row'><table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='8'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                               \n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='5' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
+                    var html = "<div class='row'><table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='8'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                               \n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='5' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                    </tr>\n                                ";
                     for (var pro in grps) {
                         //console.log(pro);
                         var subGrps = grps[pro].reduce(function (result, current) {
@@ -5085,7 +5101,6 @@ var hr;
                             $.each(subarr, function (index, value) {
                                 html += "<td style='vertical-align:bottom;'><label style='font-weight:normal'>" + value.Content + "(" + value.Score + "\u5206)<br/><input type=\"radio\" name='" + value.SecondKpiName + "' value='" + value.Score + "' style='width:100%'/></label> </td>";
                             });
-                            html += "<td style='vertical- align:middle;' ><input type=\"text\" style=\"width:100%\"/></td></tr>";
                         }
                     }
                     html += "<tr><td colspan='8' class='text-center'><a href='PreviewEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a></td><tr></table></div>";
@@ -5101,14 +5116,13 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemPreviewSelfEvaluation = /** @class */ (function () {
+        var EvaluationItemPreviewSelfEvaluation = (function () {
             function EvaluationItemPreviewSelfEvaluation(container) {
                 //this.InitView(container);
                 this.container = container;
             }
             EvaluationItemPreviewSelfEvaluation.prototype.init = function () {
                 var _this = this;
-                //let html = `<select id='exam_list' class='form-control'><option value='0'>请选择考核标题</option>`;
                 var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
                 Evaluation.ExamService.List({}, function (response) {
                     var opts = "<select id='exam_list' class='form-control'><option value='0'>请选择考核标题</option>";
@@ -5140,7 +5154,7 @@ var hr;
             };
             EvaluationItemPreviewSelfEvaluation.prototype.initHtml = function (container, examId) {
                 var res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, function (response) {
-                    var html = "<table>\n                                   <tr>\n                                        <th colspan='5' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
+                    var html = "<table>\n                                   <tr>\n                                        <th colspan='4' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
                     if (response !== null) {
                         var count_3 = res.responseJSON.length;
                         if (res.responseJSON.length !== 0) {
@@ -5154,19 +5168,19 @@ var hr;
                                     //输入框
                                     html += "<td>" + item.Mark + "<br/><textarea style='width:100%;min-height:150px;'></textarea></td>";
                                 }
-                                html += "<td style='width:150px;'>" + item.Remark + "</td>";
+                                //html += `<td style='width:150px;'>${item.Remark}</td>`;
                                 html += "</tr>";
                             });
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                         else {
-                            html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                            html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                            html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                            html += "<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                         }
                     }
                     else {
-                        html += "<tr><td colspan='5'>请添加或启用自我评价内容</td></tr>";
-                        html += "<tr><td colspan='5' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                        html += "<tr><td colspan='4' class='text-center'><a href='PreviewCompanyEvaluation?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
                     }
                     container.html(html);
                 });
@@ -5180,7 +5194,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationItemPreviewSelfEvaluation0 = /** @class */ (function () {
+        var EvaluationItemPreviewSelfEvaluation0 = (function () {
             function EvaluationItemPreviewSelfEvaluation0(container) {
                 //this.InitView(container);
                 this.container = container;
@@ -5228,7 +5242,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultDialog = /** @class */ (function (_super) {
+        var EvaluationResultDialog = (function (_super) {
             __extends(EvaluationResultDialog, _super);
             function EvaluationResultDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -5239,12 +5253,12 @@ var hr;
             EvaluationResultDialog.prototype.getIdProperty = function () { return EvaluationResultRow.idProperty; };
             EvaluationResultDialog.prototype.getLocalTextPrefix = function () { return EvaluationResultRow.localTextPrefix; };
             EvaluationResultDialog.prototype.getService = function () { return EvaluationResultService.baseUrl; };
-            EvaluationResultDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], EvaluationResultDialog);
             return EvaluationResultDialog;
         }(Serenity.EntityDialog));
+        EvaluationResultDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], EvaluationResultDialog);
         Evaluation.EvaluationResultDialog = EvaluationResultDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5252,7 +5266,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultGrid = /** @class */ (function (_super) {
+        var EvaluationResultGrid = (function (_super) {
             __extends(EvaluationResultGrid, _super);
             function EvaluationResultGrid(container) {
                 return _super.call(this, container) || this;
@@ -5268,11 +5282,11 @@ var hr;
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
                 return buttons;
             };
-            EvaluationResultGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EvaluationResultGrid);
             return EvaluationResultGrid;
         }(Serenity.EntityGrid));
+        EvaluationResultGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationResultGrid);
         Evaluation.EvaluationResultGrid = EvaluationResultGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5280,7 +5294,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultDetailDialog = /** @class */ (function (_super) {
+        var EvaluationResultDetailDialog = (function (_super) {
             __extends(EvaluationResultDetailDialog, _super);
             function EvaluationResultDetailDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -5292,12 +5306,12 @@ var hr;
             EvaluationResultDetailDialog.prototype.getLocalTextPrefix = function () { return Evaluation.EvaluationResultDetailRow.localTextPrefix; };
             EvaluationResultDetailDialog.prototype.getNameProperty = function () { return Evaluation.EvaluationResultDetailRow.nameProperty; };
             EvaluationResultDetailDialog.prototype.getService = function () { return Evaluation.EvaluationResultDetailService.baseUrl; };
-            EvaluationResultDetailDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], EvaluationResultDetailDialog);
             return EvaluationResultDetailDialog;
         }(Serenity.EntityDialog));
+        EvaluationResultDetailDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], EvaluationResultDetailDialog);
         Evaluation.EvaluationResultDetailDialog = EvaluationResultDetailDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5305,7 +5319,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultDetailGrid = /** @class */ (function (_super) {
+        var EvaluationResultDetailGrid = (function (_super) {
             __extends(EvaluationResultDetailGrid, _super);
             function EvaluationResultDetailGrid(container) {
                 return _super.call(this, container) || this;
@@ -5315,11 +5329,11 @@ var hr;
             EvaluationResultDetailGrid.prototype.getIdProperty = function () { return Evaluation.EvaluationResultDetailRow.idProperty; };
             EvaluationResultDetailGrid.prototype.getLocalTextPrefix = function () { return Evaluation.EvaluationResultDetailRow.localTextPrefix; };
             EvaluationResultDetailGrid.prototype.getService = function () { return Evaluation.EvaluationResultDetailService.baseUrl; };
-            EvaluationResultDetailGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EvaluationResultDetailGrid);
             return EvaluationResultDetailGrid;
         }(Serenity.EntityGrid));
+        EvaluationResultDetailGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationResultDetailGrid);
         Evaluation.EvaluationResultDetailGrid = EvaluationResultDetailGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5327,7 +5341,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var EvaluationResultViewGrid = /** @class */ (function (_super) {
+        var EvaluationResultViewGrid = (function (_super) {
             __extends(EvaluationResultViewGrid, _super);
             function EvaluationResultViewGrid(container, userId, examId) {
                 var _this = _super.call(this, container) || this;
@@ -5446,11 +5460,11 @@ var hr;
                     });
                 }
             };
-            EvaluationResultViewGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], EvaluationResultViewGrid);
             return EvaluationResultViewGrid;
         }(Serenity.EntityGrid));
+        EvaluationResultViewGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationResultViewGrid);
         Evaluation.EvaluationResultViewGrid = EvaluationResultViewGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5458,7 +5472,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ExamDialog = /** @class */ (function (_super) {
+        var ExamDialog = (function (_super) {
             __extends(ExamDialog, _super);
             function ExamDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -5475,12 +5489,12 @@ var hr;
                     (new Evaluation.ExamListDialog()).dialogOpen();
                 });
             };
-            ExamDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], ExamDialog);
             return ExamDialog;
         }(Serenity.EntityDialog));
+        ExamDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], ExamDialog);
         Evaluation.ExamDialog = ExamDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5488,7 +5502,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ExamGrid = /** @class */ (function (_super) {
+        var ExamGrid = (function (_super) {
             __extends(ExamGrid, _super);
             function ExamGrid(container) {
                 return _super.call(this, container) || this;
@@ -5560,11 +5574,11 @@ var hr;
                     }
                 }
             };
-            ExamGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ExamGrid);
             return ExamGrid;
         }(Serenity.EntityGrid));
+        ExamGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ExamGrid);
         Evaluation.ExamGrid = ExamGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5572,7 +5586,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ExamListDialog = /** @class */ (function (_super) {
+        var ExamListDialog = (function (_super) {
             __extends(ExamListDialog, _super);
             function ExamListDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -5619,12 +5633,12 @@ var hr;
                     }];
                 return opt;
             };
-            ExamListDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.maximizable()
-            ], ExamListDialog);
             return ExamListDialog;
         }(Serenity.TemplatedDialog));
+        ExamListDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.maximizable()
+        ], ExamListDialog);
         Evaluation.ExamListDialog = ExamListDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5632,7 +5646,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var FirstKpiDialog = /** @class */ (function (_super) {
+        var FirstKpiDialog = (function (_super) {
             __extends(FirstKpiDialog, _super);
             function FirstKpiDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -5644,12 +5658,12 @@ var hr;
             FirstKpiDialog.prototype.getLocalTextPrefix = function () { return Evaluation.FirstKpiRow.localTextPrefix; };
             FirstKpiDialog.prototype.getNameProperty = function () { return Evaluation.FirstKpiRow.nameProperty; };
             FirstKpiDialog.prototype.getService = function () { return Evaluation.FirstKpiService.baseUrl; };
-            FirstKpiDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], FirstKpiDialog);
             return FirstKpiDialog;
         }(Serenity.EntityDialog));
+        FirstKpiDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], FirstKpiDialog);
         Evaluation.FirstKpiDialog = FirstKpiDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5657,7 +5671,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var FirstKpiGrid = /** @class */ (function (_super) {
+        var FirstKpiGrid = (function (_super) {
             __extends(FirstKpiGrid, _super);
             function FirstKpiGrid(container) {
                 return _super.call(this, container) || this;
@@ -5699,11 +5713,11 @@ var hr;
                 }
                 return max;
             };
-            FirstKpiGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], FirstKpiGrid);
             return FirstKpiGrid;
         }(Serenity.EntityGrid));
+        FirstKpiGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], FirstKpiGrid);
         Evaluation.FirstKpiGrid = FirstKpiGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5711,7 +5725,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var LeaderShipDialog = /** @class */ (function (_super) {
+        var LeaderShipDialog = (function (_super) {
             __extends(LeaderShipDialog, _super);
             function LeaderShipDialog() {
                 var _this = _super.call(this) || this;
@@ -5727,12 +5741,12 @@ var hr;
                 if (!this.isNew)
                     Serenity.EditorUtils.setReadOnly(this.form.UserId, true);
             };
-            LeaderShipDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], LeaderShipDialog);
             return LeaderShipDialog;
         }(Serenity.EntityDialog));
+        LeaderShipDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], LeaderShipDialog);
         Evaluation.LeaderShipDialog = LeaderShipDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5740,7 +5754,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var LeaderShipGrid = /** @class */ (function (_super) {
+        var LeaderShipGrid = (function (_super) {
             __extends(LeaderShipGrid, _super);
             function LeaderShipGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -5941,11 +5955,11 @@ var hr;
             LeaderShipGrid.prototype.usePager = function () {
                 return false;
             };
-            LeaderShipGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LeaderShipGrid);
             return LeaderShipGrid;
         }(Serenity.EntityGrid));
+        LeaderShipGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LeaderShipGrid);
         Evaluation.LeaderShipGrid = LeaderShipGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5953,7 +5967,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ScoreDetailDialog = /** @class */ (function (_super) {
+        var ScoreDetailDialog = (function (_super) {
             __extends(ScoreDetailDialog, _super);
             function ScoreDetailDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -5964,12 +5978,12 @@ var hr;
             ScoreDetailDialog.prototype.getIdProperty = function () { return Evaluation.ScoreDetailRow.idProperty; };
             ScoreDetailDialog.prototype.getLocalTextPrefix = function () { return Evaluation.ScoreDetailRow.localTextPrefix; };
             ScoreDetailDialog.prototype.getService = function () { return Evaluation.ScoreDetailService.baseUrl; };
-            ScoreDetailDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], ScoreDetailDialog);
             return ScoreDetailDialog;
         }(Serenity.EntityDialog));
+        ScoreDetailDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], ScoreDetailDialog);
         Evaluation.ScoreDetailDialog = ScoreDetailDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5977,7 +5991,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ScoreDetailGrid = /** @class */ (function (_super) {
+        var ScoreDetailGrid = (function (_super) {
             __extends(ScoreDetailGrid, _super);
             function ScoreDetailGrid(container) {
                 return _super.call(this, container) || this;
@@ -5987,11 +6001,11 @@ var hr;
             ScoreDetailGrid.prototype.getIdProperty = function () { return Evaluation.ScoreDetailRow.idProperty; };
             ScoreDetailGrid.prototype.getLocalTextPrefix = function () { return Evaluation.ScoreDetailRow.localTextPrefix; };
             ScoreDetailGrid.prototype.getService = function () { return Evaluation.ScoreDetailService.baseUrl; };
-            ScoreDetailGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ScoreDetailGrid);
             return ScoreDetailGrid;
         }(Serenity.EntityGrid));
+        ScoreDetailGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ScoreDetailGrid);
         Evaluation.ScoreDetailGrid = ScoreDetailGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -5999,7 +6013,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SecondKpiDialog = /** @class */ (function (_super) {
+        var SecondKpiDialog = (function (_super) {
             __extends(SecondKpiDialog, _super);
             function SecondKpiDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -6011,12 +6025,12 @@ var hr;
             SecondKpiDialog.prototype.getLocalTextPrefix = function () { return Evaluation.SecondKpiRow.localTextPrefix; };
             SecondKpiDialog.prototype.getNameProperty = function () { return Evaluation.SecondKpiRow.nameProperty; };
             SecondKpiDialog.prototype.getService = function () { return Evaluation.SecondKpiService.baseUrl; };
-            SecondKpiDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], SecondKpiDialog);
             return SecondKpiDialog;
         }(Serenity.EntityDialog));
+        SecondKpiDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], SecondKpiDialog);
         Evaluation.SecondKpiDialog = SecondKpiDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6024,7 +6038,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var SecondKpiGrid = /** @class */ (function (_super) {
+        var SecondKpiGrid = (function (_super) {
             __extends(SecondKpiGrid, _super);
             function SecondKpiGrid(container) {
                 return _super.call(this, container) || this;
@@ -6051,11 +6065,11 @@ var hr;
                 grid.setSelectionModel(new Slick.RowSelectionModel());
                 return grid;
             };
-            SecondKpiGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SecondKpiGrid);
             return SecondKpiGrid;
         }(Serenity.EntityGrid));
+        SecondKpiGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SecondKpiGrid);
         Evaluation.SecondKpiGrid = SecondKpiGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6063,7 +6077,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ToDoListDialog = /** @class */ (function (_super) {
+        var ToDoListDialog = (function (_super) {
             __extends(ToDoListDialog, _super);
             function ToDoListDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -6082,12 +6096,12 @@ var hr;
                 }
                 Serenity.EditorUtils.setReadonly(this.element.find('[name="CreateBy"]'), true);
             };
-            ToDoListDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], ToDoListDialog);
             return ToDoListDialog;
         }(Serenity.EntityDialog));
+        ToDoListDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], ToDoListDialog);
         Evaluation.ToDoListDialog = ToDoListDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6095,7 +6109,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var ToDoListGrid = /** @class */ (function (_super) {
+        var ToDoListGrid = (function (_super) {
             __extends(ToDoListGrid, _super);
             function ToDoListGrid(container) {
                 return _super.call(this, container) || this;
@@ -6198,11 +6212,11 @@ var hr;
                 };
                 return filters;
             };
-            ToDoListGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ToDoListGrid);
             return ToDoListGrid;
         }(Serenity.EntityGrid));
+        ToDoListGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ToDoListGrid);
         Evaluation.ToDoListGrid = ToDoListGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6210,7 +6224,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationRelationDialog = /** @class */ (function (_super) {
+        var UserEvaluationRelationDialog = (function (_super) {
             __extends(UserEvaluationRelationDialog, _super);
             function UserEvaluationRelationDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -6227,12 +6241,12 @@ var hr;
             UserEvaluationRelationDialog.prototype.getLocalTextPrefix = function () { return Evaluation.UserEvaluationRelationRow.localTextPrefix; };
             UserEvaluationRelationDialog.prototype.getNameProperty = function () { return Evaluation.UserEvaluationRelationRow.nameProperty; };
             UserEvaluationRelationDialog.prototype.getService = function () { return Evaluation.UserEvaluationRelationService.baseUrl; };
-            UserEvaluationRelationDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], UserEvaluationRelationDialog);
             return UserEvaluationRelationDialog;
         }(Serenity.EntityDialog));
+        UserEvaluationRelationDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], UserEvaluationRelationDialog);
         Evaluation.UserEvaluationRelationDialog = UserEvaluationRelationDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6240,7 +6254,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationRelationExcelImportDialog = /** @class */ (function (_super) {
+        var UserEvaluationRelationExcelImportDialog = (function (_super) {
             __extends(UserEvaluationRelationExcelImportDialog, _super);
             function UserEvaluationRelationExcelImportDialog() {
                 var _this = _super.call(this) || this;
@@ -6286,11 +6300,11 @@ var hr;
                     }
                 ];
             };
-            UserEvaluationRelationExcelImportDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserEvaluationRelationExcelImportDialog);
             return UserEvaluationRelationExcelImportDialog;
         }(Serenity.PropertyDialog));
+        UserEvaluationRelationExcelImportDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserEvaluationRelationExcelImportDialog);
         Evaluation.UserEvaluationRelationExcelImportDialog = UserEvaluationRelationExcelImportDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6298,7 +6312,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserEvaluationRelationGrid = /** @class */ (function (_super) {
+        var UserEvaluationRelationGrid = (function (_super) {
             __extends(UserEvaluationRelationGrid, _super);
             function UserEvaluationRelationGrid(container) {
                 return _super.call(this, container) || this;
@@ -6447,11 +6461,11 @@ var hr;
                     }
                 }
             };
-            UserEvaluationRelationGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserEvaluationRelationGrid);
             return UserEvaluationRelationGrid;
         }(Serenity.EntityGrid));
+        UserEvaluationRelationGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserEvaluationRelationGrid);
         Evaluation.UserEvaluationRelationGrid = UserEvaluationRelationGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6459,7 +6473,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserListDialog = /** @class */ (function (_super) {
+        var UserListDialog = (function (_super) {
             __extends(UserListDialog, _super);
             function UserListDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -6514,12 +6528,12 @@ var hr;
                     }];
                 return opt;
             };
-            UserListDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.maximizable()
-            ], UserListDialog);
             return UserListDialog;
         }(Serenity.TemplatedDialog));
+        UserListDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.maximizable()
+        ], UserListDialog);
         Evaluation.UserListDialog = UserListDialog;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6527,7 +6541,7 @@ var hr;
 (function (hr) {
     var Evaluation;
     (function (Evaluation) {
-        var UserListFormatter = /** @class */ (function () {
+        var UserListFormatter = (function () {
             function UserListFormatter() {
             }
             UserListFormatter.prototype.format = function (ctx) {
@@ -6542,11 +6556,11 @@ var hr;
                     return Q.htmlEncode(g.Username);
                 }).join(", ");
             };
-            UserListFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], UserListFormatter);
             return UserListFormatter;
         }());
+        UserListFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], UserListFormatter);
         Evaluation.UserListFormatter = UserListFormatter;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -6554,7 +6568,89 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var LoginPanel = /** @class */ (function (_super) {
+        var ChangePasswordPanel = (function (_super) {
+            __extends(ChangePasswordPanel, _super);
+            function ChangePasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ChangePassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
+            return ChangePasswordPanel;
+        }(Serenity.PropertyPanel));
+        ChangePasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ChangePasswordPanel);
+        Membership.ChangePasswordPanel = ChangePasswordPanel;
+    })(Membership = hr.Membership || (hr.Membership = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordPanel = (function (_super) {
+            __extends(ForgotPasswordPanel, _super);
+            function ForgotPasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ForgotPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
+            return ForgotPasswordPanel;
+        }(Serenity.PropertyPanel));
+        ForgotPasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ForgotPasswordPanel);
+        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
+    })(Membership = hr.Membership || (hr.Membership = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Membership;
+    (function (Membership) {
+        var LoginPanel = (function (_super) {
             __extends(LoginPanel, _super);
             function LoginPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -6597,117 +6693,19 @@ var hr;
                 return _this;
             }
             LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
-            LoginPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LoginPanel);
             return LoginPanel;
         }(Serenity.PropertyPanel));
+        LoginPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LoginPanel);
         Membership.LoginPanel = LoginPanel;
     })(Membership = hr.Membership || (hr.Membership = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
-    var Authorization;
-    (function (Authorization) {
-        Object.defineProperty(Authorization, 'userDefinition', {
-            get: function () {
-                return Q.getRemoteData('UserData');
-            }
-        });
-        function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
-        }
-        Authorization.hasPermission = hasPermission;
-    })(Authorization = hr.Authorization || (hr.Authorization = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordPanel = /** @class */ (function (_super) {
-            __extends(ChangePasswordPanel, _super);
-            function ChangePasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
-                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
-                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
-                    }
-                });
-                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
-                        return Q.text('Validation.PasswordConfirm');
-                    }
-                });
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ChangePassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
-            ChangePasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ChangePasswordPanel);
-            return ChangePasswordPanel;
-        }(Serenity.PropertyPanel));
-        Membership.ChangePasswordPanel = ChangePasswordPanel;
-    })(Membership = hr.Membership || (hr.Membership = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
-    var Membership;
-    (function (Membership) {
-        var ForgotPasswordPanel = /** @class */ (function (_super) {
-            __extends(ForgotPasswordPanel, _super);
-            function ForgotPasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ForgotPassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
-            ForgotPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ForgotPasswordPanel);
-            return ForgotPasswordPanel;
-        }(Serenity.PropertyPanel));
-        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
-    })(Membership = hr.Membership || (hr.Membership = {}));
-})(hr || (hr = {}));
-var hr;
-(function (hr) {
-    var Membership;
-    (function (Membership) {
-        var ResetPasswordPanel = /** @class */ (function (_super) {
+        var ResetPasswordPanel = (function (_super) {
             __extends(ResetPasswordPanel, _super);
             function ResetPasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -6742,11 +6740,11 @@ var hr;
                 return _this;
             }
             ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
-            ResetPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ResetPasswordPanel);
             return ResetPasswordPanel;
         }(Serenity.PropertyPanel));
+        ResetPasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ResetPasswordPanel);
         Membership.ResetPasswordPanel = ResetPasswordPanel;
     })(Membership = hr.Membership || (hr.Membership = {}));
 })(hr || (hr = {}));
@@ -6754,7 +6752,7 @@ var hr;
 (function (hr) {
     var Membership;
     (function (Membership) {
-        var SignUpPanel = /** @class */ (function (_super) {
+        var SignUpPanel = (function (_super) {
             __extends(SignUpPanel, _super);
             function SignUpPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -6791,11 +6789,11 @@ var hr;
                 return _this;
             }
             SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
-            SignUpPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SignUpPanel);
             return SignUpPanel;
         }(Serenity.PropertyPanel));
+        SignUpPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = hr.Membership || (hr.Membership = {}));
 })(hr || (hr = {}));
