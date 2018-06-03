@@ -9,6 +9,7 @@ namespace hr.Evaluation
     public class EvaluationItemResponse : ServiceResponse
     {
         public bool IsSelfEvaluated { get; set; }
+        public bool IsCompanyEvaluated { get; set; }
         public List<EvaluationItemViewModel> Items { get; set; }
     }
 }

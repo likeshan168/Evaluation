@@ -114,7 +114,8 @@ namespace hr.Evaluation.Endpoints
 
                 //sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled ,e.Remark,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc";
                 sql = $"SELECT  f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Id ,e.Content , e.ContentType , e.Score ,e.Mark , e.IsEnabled,d.InputContent,d.Score as FScore FROM hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id LEFT JOIN hr.EvaluationResultDetail d ON d.EvaluationItemId = e.id WHERE isselfevaluation = 1 AND e.IsEnabled = 1 AND d.ExamId={request.ExamId} and d.UserId={request.UserId} ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc;" +
-                    $"select * from hr.SelfEvaluationRecord where IsSelfEvaluated = 1 and ExamId={request.ExamId} and UserId={request.UserId};";
+                    $"select * from hr.SelfEvaluationRecord where IsSelfEvaluated = 1 and ExamId={request.ExamId} and UserId={request.UserId};" +
+                    $"select * from hr.[CompanyEvaluation] where UserId={request.UserId} and ExamId={request.ExamId};";
                 var gridReader = conn.QueryMultiple(sql);//.DistinctBy(p => new { p.Id });
 
                 var items = gridReader.Read<EvaluationItemViewModel>().DistinctBy(p => new { p.Id });
@@ -132,10 +133,19 @@ namespace hr.Evaluation.Endpoints
                     items = items.Where(p => itemIds.Contains(p.Id.ToString()));
                 }
 
+                //判断是否已经对公司进行过评价
+                var companyEvaluated = gridReader.Read<CompanyEvaluationRow>().ToList();
+                var isCompanyEvaluated = false;
+                if (companyEvaluated?.Count > 0)
+                {
+                    isCompanyEvaluated = true;
+                }
+
                 return new EvaluationItemResponse
                 {
                     Items = items.ToList(),
-                    IsSelfEvaluated = isSelfEvaluated
+                    IsSelfEvaluated = isSelfEvaluated,
+                    IsCompanyEvaluated = isCompanyEvaluated
                 };
             }
         }

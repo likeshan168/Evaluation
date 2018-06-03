@@ -1,4 +1,4 @@
-﻿@model IEnumerable<hr.Evaluation.Entities.ExamRow>
+﻿@model IEnumerable<hr.Common.DashboardPageModel>
 @{
     ViewData["Title"] = "Dashboard";
     ViewData["PageId"] = "Dashboard";
@@ -52,7 +52,19 @@
 
                             <!-- todo text -->
                             <span class="text">
-                                <a class="text-success" href="Evaluation/Evaluation/SelfEvaluation?i=@item.Id">@item.Title</a>
+                                @if (item.IsCompanyEvaluated)
+                                {
+                                    <a class="text-success" href="Evaluation/Evaluation/SelfEvaluation1?i=@item.Id">@item.Title</a>
+                                }
+                                else if (item.IsSelfEvaluated)
+                                {
+                                    <a class="text-success" href="Evaluation/Evaluation/CompanyEvaluation?i=@item.Id&p=@item.UserId">@item.Title</a>
+                                }
+                                else
+                                {
+                                    <a class="text-success" href="Evaluation/Evaluation/SelfEvaluation?i=@item.Id">@item.Title</a>
+                                }
+
                             </span>
 
                             <!-- Emphasis label -->
@@ -80,12 +92,12 @@
                 </div><!-- /. tools -->
             </div>
             <div class="box-body">
-                1、被评人的执行力考核内容作为评分人的考核依据<br/>
-                2、评分人依据客观事实进行评价，根据实际情况酌情增减分数<br/>
-                3、“工作计划” 要求被考核人把重点工作按照时间和关键点进行展开，以制定具体的阶段性分目标，便于落实<br/>
+                1、被评人的执行力考核内容作为评分人的考核依据<br />
+                2、评分人依据客观事实进行评价，根据实际情况酌情增减分数<br />
+                3、“工作计划” 要求被考核人把重点工作按照时间和关键点进行展开，以制定具体的阶段性分目标，便于落实<br />
                 4、“结果汇报”要求被考核人标明工作计划完成的具体时间节点
             </div>
-        </div> 
+        </div>
     </section>
 </div><!-- /.row -->
 <script>
