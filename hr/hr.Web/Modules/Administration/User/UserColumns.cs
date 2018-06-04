@@ -20,5 +20,7 @@ namespace hr.Administration.Columns
         public String Source { get; set; }
         [QuickFilter]
         public String RoleName { get; set; }
+        [QuickFilter]
+        public String DepartmentName{get;set;}
     }
 }

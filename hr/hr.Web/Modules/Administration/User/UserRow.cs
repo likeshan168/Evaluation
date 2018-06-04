@@ -1,6 +1,7 @@
 ﻿
 namespace hr.Administration.Entities
 {
+    using hr.Evaluation.Entities;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -115,6 +116,21 @@ namespace hr.Administration.Entities
             set { Fields.RoleName[this] = value; }
         }
 
+        [DisplayName("DepartmentId"), ForeignKey("hr.[Department]", "Id"), LeftJoin("lDepartment"), TextualField("DepartmentName")]
+        [LookupEditor(typeof(DepartmentRow))]
+        public int? DepartmentId
+        {
+            get { return Fields.DepartmentId[this]; }
+            set { Fields.DepartmentId[this] = value; }
+        }
+
+        [DisplayName("DepartmentName"), Expression("lDepartment.[Name]"), QuickSearch]
+        public String DepartmentName
+        {
+            get { return Fields.DepartmentName[this]; }
+            set { Fields.DepartmentName[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.UserId; }
@@ -154,6 +170,8 @@ namespace hr.Administration.Entities
             public StringField PasswordConfirm;
             public Int32Field RoleId;
             public StringField RoleName;
+            public Int32Field DepartmentId;
+            public StringField DepartmentName;
 
             public RowFields()
                 : base("Users")

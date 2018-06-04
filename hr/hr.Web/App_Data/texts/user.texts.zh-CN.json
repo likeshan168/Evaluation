@@ -1,4 +1,6 @@
 {
+  "Db.Administration.User.DepartmentId": "部门",
+  "Db.Administration.User.DepartmentName": "部门",
   "Db.Administration.User.RoleName": "角色",
   "Db.Administration.User.UserImage": "用户头像",
   "Db.Evaluation.CompanyEvaluation.EntityPlural": "公司评价",
@@ -132,6 +134,7 @@
   "Evaluation.EvaluationError": "还有未完成的考核项",
   "Evaluation.EvaluationNotStart": "考核还未开始",
   "Forms.Membership.Login.FormTitle": "Welcome to SkyFaith",
+  "Navigation.Administration/Department": "部门管理",
   "Navigation.Administration/Exceptions Log": "异常日志",
   "Navigation.Dashboard": "待考核事项",
   "Navigation.Evaluation": "考核",
