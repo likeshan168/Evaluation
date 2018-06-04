@@ -289,6 +289,202 @@ var hr;
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
+    var Archive;
+    (function (Archive) {
+        var CompanyEvaluationArchiveForm = (function (_super) {
+            __extends(CompanyEvaluationArchiveForm, _super);
+            function CompanyEvaluationArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return CompanyEvaluationArchiveForm;
+        }(Serenity.PrefixedContext));
+        CompanyEvaluationArchiveForm.formKey = 'Archive.CompanyEvaluationArchive';
+        Archive.CompanyEvaluationArchiveForm = CompanyEvaluationArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['InputContent', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CompanyEvaluationArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var CompanyEvaluationArchiveRow;
+        (function (CompanyEvaluationArchiveRow) {
+            CompanyEvaluationArchiveRow.idProperty = 'Id';
+            CompanyEvaluationArchiveRow.nameProperty = 'ExamTitle';
+            CompanyEvaluationArchiveRow.localTextPrefix = 'Archive.CompanyEvaluationArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CompanyEvaluationArchiveRow.Fields || (CompanyEvaluationArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'InputContent', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(CompanyEvaluationArchiveRow = Archive.CompanyEvaluationArchiveRow || (Archive.CompanyEvaluationArchiveRow = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var CompanyEvaluationArchiveService;
+        (function (CompanyEvaluationArchiveService) {
+            CompanyEvaluationArchiveService.baseUrl = 'Archive/CompanyEvaluationArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CompanyEvaluationArchiveService.Methods || (CompanyEvaluationArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                CompanyEvaluationArchiveService[x] = function (r, s, o) { return Q.serviceRequest(CompanyEvaluationArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CompanyEvaluationArchiveService.baseUrl + '/' + x;
+            });
+        })(CompanyEvaluationArchiveService = Archive.CompanyEvaluationArchiveService || (Archive.CompanyEvaluationArchiveService = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultArchiveForm = (function (_super) {
+            __extends(EvaluationFinalResultArchiveForm, _super);
+            function EvaluationFinalResultArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return EvaluationFinalResultArchiveForm;
+        }(Serenity.PrefixedContext));
+        EvaluationFinalResultArchiveForm.formKey = 'Archive.EvaluationFinalResultArchive';
+        Archive.EvaluationFinalResultArchiveForm = EvaluationFinalResultArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['TotalScore', function () { return Serenity.IntegerEditor; }], ['Grade', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationFinalResultArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultArchiveRow;
+        (function (EvaluationFinalResultArchiveRow) {
+            EvaluationFinalResultArchiveRow.idProperty = 'Id';
+            EvaluationFinalResultArchiveRow.nameProperty = 'ExamTitle';
+            EvaluationFinalResultArchiveRow.localTextPrefix = 'Archive.EvaluationFinalResultArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EvaluationFinalResultArchiveRow.Fields || (EvaluationFinalResultArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'TotalScore', 'Grade', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(EvaluationFinalResultArchiveRow = Archive.EvaluationFinalResultArchiveRow || (Archive.EvaluationFinalResultArchiveRow = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultArchiveService;
+        (function (EvaluationFinalResultArchiveService) {
+            EvaluationFinalResultArchiveService.baseUrl = 'Archive/EvaluationFinalResultArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EvaluationFinalResultArchiveService.Methods || (EvaluationFinalResultArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                EvaluationFinalResultArchiveService[x] = function (r, s, o) { return Q.serviceRequest(EvaluationFinalResultArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EvaluationFinalResultArchiveService.baseUrl + '/' + x;
+            });
+        })(EvaluationFinalResultArchiveService = Archive.EvaluationFinalResultArchiveService || (Archive.EvaluationFinalResultArchiveService = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultDetailArchiveForm = (function (_super) {
+            __extends(EvaluationFinalResultDetailArchiveForm, _super);
+            function EvaluationFinalResultDetailArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return EvaluationFinalResultDetailArchiveForm;
+        }(Serenity.PrefixedContext));
+        EvaluationFinalResultDetailArchiveForm.formKey = 'Archive.EvaluationFinalResultDetailArchive';
+        Archive.EvaluationFinalResultDetailArchiveForm = EvaluationFinalResultDetailArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['Score', function () { return Serenity.IntegerEditor; }], ['EvaluationUserName', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationFinalResultDetailArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultDetailArchiveRow;
+        (function (EvaluationFinalResultDetailArchiveRow) {
+            EvaluationFinalResultDetailArchiveRow.idProperty = 'Id';
+            EvaluationFinalResultDetailArchiveRow.nameProperty = 'ExamTitle';
+            EvaluationFinalResultDetailArchiveRow.localTextPrefix = 'Archive.EvaluationFinalResultDetailArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EvaluationFinalResultDetailArchiveRow.Fields || (EvaluationFinalResultDetailArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'Score', 'EvaluationUserName', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(EvaluationFinalResultDetailArchiveRow = Archive.EvaluationFinalResultDetailArchiveRow || (Archive.EvaluationFinalResultDetailArchiveRow = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultDetailArchiveService;
+        (function (EvaluationFinalResultDetailArchiveService) {
+            EvaluationFinalResultDetailArchiveService.baseUrl = 'Archive/EvaluationFinalResultDetailArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EvaluationFinalResultDetailArchiveService.Methods || (EvaluationFinalResultDetailArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                EvaluationFinalResultDetailArchiveService[x] = function (r, s, o) { return Q.serviceRequest(EvaluationFinalResultDetailArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EvaluationFinalResultDetailArchiveService.baseUrl + '/' + x;
+            });
+        })(EvaluationFinalResultDetailArchiveService = Archive.EvaluationFinalResultDetailArchiveService || (Archive.EvaluationFinalResultDetailArchiveService = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var SelfEvaluationResultArchiveForm = (function (_super) {
+            __extends(SelfEvaluationResultArchiveForm, _super);
+            function SelfEvaluationResultArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return SelfEvaluationResultArchiveForm;
+        }(Serenity.PrefixedContext));
+        SelfEvaluationResultArchiveForm.formKey = 'Archive.SelfEvaluationResultArchive';
+        Archive.SelfEvaluationResultArchiveForm = SelfEvaluationResultArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['ExamContent', function () { return Serenity.StringEditor; }], ['InputContent', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SelfEvaluationResultArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var SelfEvaluationResultArchiveRow;
+        (function (SelfEvaluationResultArchiveRow) {
+            SelfEvaluationResultArchiveRow.idProperty = 'Id';
+            SelfEvaluationResultArchiveRow.nameProperty = 'ExamTitle';
+            SelfEvaluationResultArchiveRow.localTextPrefix = 'Archive.SelfEvaluationResultArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = SelfEvaluationResultArchiveRow.Fields || (SelfEvaluationResultArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'ExamContent', 'InputContent', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(SelfEvaluationResultArchiveRow = Archive.SelfEvaluationResultArchiveRow || (Archive.SelfEvaluationResultArchiveRow = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var SelfEvaluationResultArchiveService;
+        (function (SelfEvaluationResultArchiveService) {
+            SelfEvaluationResultArchiveService.baseUrl = 'Archive/SelfEvaluationResultArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SelfEvaluationResultArchiveService.Methods || (SelfEvaluationResultArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                SelfEvaluationResultArchiveService[x] = function (r, s, o) { return Q.serviceRequest(SelfEvaluationResultArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SelfEvaluationResultArchiveService.baseUrl + '/' + x;
+            });
+        })(SelfEvaluationResultArchiveService = Archive.SelfEvaluationResultArchiveService || (Archive.SelfEvaluationResultArchiveService = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
     var Common;
     (function (Common) {
         var UserPreferenceRow;
@@ -319,6 +515,202 @@ var hr;
             });
         })(UserPreferenceService = Common.UserPreferenceService || (Common.UserPreferenceService = {}));
     })(Common = hr.Common || (hr.Common = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var CompanyEvaluationArchiveForm = (function (_super) {
+            __extends(CompanyEvaluationArchiveForm, _super);
+            function CompanyEvaluationArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return CompanyEvaluationArchiveForm;
+        }(Serenity.PrefixedContext));
+        CompanyEvaluationArchiveForm.formKey = 'Default.CompanyEvaluationArchive';
+        Default.CompanyEvaluationArchiveForm = CompanyEvaluationArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['InputContent', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CompanyEvaluationArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var CompanyEvaluationArchiveRow;
+        (function (CompanyEvaluationArchiveRow) {
+            CompanyEvaluationArchiveRow.idProperty = 'Id';
+            CompanyEvaluationArchiveRow.nameProperty = 'ExamTitle';
+            CompanyEvaluationArchiveRow.localTextPrefix = 'Default.CompanyEvaluationArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CompanyEvaluationArchiveRow.Fields || (CompanyEvaluationArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'InputContent', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(CompanyEvaluationArchiveRow = Default.CompanyEvaluationArchiveRow || (Default.CompanyEvaluationArchiveRow = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var CompanyEvaluationArchiveService;
+        (function (CompanyEvaluationArchiveService) {
+            CompanyEvaluationArchiveService.baseUrl = 'Default/CompanyEvaluationArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CompanyEvaluationArchiveService.Methods || (CompanyEvaluationArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                CompanyEvaluationArchiveService[x] = function (r, s, o) { return Q.serviceRequest(CompanyEvaluationArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CompanyEvaluationArchiveService.baseUrl + '/' + x;
+            });
+        })(CompanyEvaluationArchiveService = Default.CompanyEvaluationArchiveService || (Default.CompanyEvaluationArchiveService = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultArchiveForm = (function (_super) {
+            __extends(EvaluationFinalResultArchiveForm, _super);
+            function EvaluationFinalResultArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return EvaluationFinalResultArchiveForm;
+        }(Serenity.PrefixedContext));
+        EvaluationFinalResultArchiveForm.formKey = 'Default.EvaluationFinalResultArchive';
+        Default.EvaluationFinalResultArchiveForm = EvaluationFinalResultArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['TotalScore', function () { return Serenity.IntegerEditor; }], ['Grade', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationFinalResultArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultArchiveRow;
+        (function (EvaluationFinalResultArchiveRow) {
+            EvaluationFinalResultArchiveRow.idProperty = 'Id';
+            EvaluationFinalResultArchiveRow.nameProperty = 'ExamTitle';
+            EvaluationFinalResultArchiveRow.localTextPrefix = 'Default.EvaluationFinalResultArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EvaluationFinalResultArchiveRow.Fields || (EvaluationFinalResultArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'TotalScore', 'Grade', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(EvaluationFinalResultArchiveRow = Default.EvaluationFinalResultArchiveRow || (Default.EvaluationFinalResultArchiveRow = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultArchiveService;
+        (function (EvaluationFinalResultArchiveService) {
+            EvaluationFinalResultArchiveService.baseUrl = 'Default/EvaluationFinalResultArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EvaluationFinalResultArchiveService.Methods || (EvaluationFinalResultArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                EvaluationFinalResultArchiveService[x] = function (r, s, o) { return Q.serviceRequest(EvaluationFinalResultArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EvaluationFinalResultArchiveService.baseUrl + '/' + x;
+            });
+        })(EvaluationFinalResultArchiveService = Default.EvaluationFinalResultArchiveService || (Default.EvaluationFinalResultArchiveService = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultDetailArchiveForm = (function (_super) {
+            __extends(EvaluationFinalResultDetailArchiveForm, _super);
+            function EvaluationFinalResultDetailArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return EvaluationFinalResultDetailArchiveForm;
+        }(Serenity.PrefixedContext));
+        EvaluationFinalResultDetailArchiveForm.formKey = 'Default.EvaluationFinalResultDetailArchive';
+        Default.EvaluationFinalResultDetailArchiveForm = EvaluationFinalResultDetailArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['Score', function () { return Serenity.IntegerEditor; }], ['EvaluationUserName', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(EvaluationFinalResultDetailArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultDetailArchiveRow;
+        (function (EvaluationFinalResultDetailArchiveRow) {
+            EvaluationFinalResultDetailArchiveRow.idProperty = 'Id';
+            EvaluationFinalResultDetailArchiveRow.nameProperty = 'ExamTitle';
+            EvaluationFinalResultDetailArchiveRow.localTextPrefix = 'Default.EvaluationFinalResultDetailArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EvaluationFinalResultDetailArchiveRow.Fields || (EvaluationFinalResultDetailArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'Score', 'EvaluationUserName', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(EvaluationFinalResultDetailArchiveRow = Default.EvaluationFinalResultDetailArchiveRow || (Default.EvaluationFinalResultDetailArchiveRow = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var EvaluationFinalResultDetailArchiveService;
+        (function (EvaluationFinalResultDetailArchiveService) {
+            EvaluationFinalResultDetailArchiveService.baseUrl = 'Default/EvaluationFinalResultDetailArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EvaluationFinalResultDetailArchiveService.Methods || (EvaluationFinalResultDetailArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                EvaluationFinalResultDetailArchiveService[x] = function (r, s, o) { return Q.serviceRequest(EvaluationFinalResultDetailArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EvaluationFinalResultDetailArchiveService.baseUrl + '/' + x;
+            });
+        })(EvaluationFinalResultDetailArchiveService = Default.EvaluationFinalResultDetailArchiveService || (Default.EvaluationFinalResultDetailArchiveService = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var SelfEvaluationResultArchiveForm = (function (_super) {
+            __extends(SelfEvaluationResultArchiveForm, _super);
+            function SelfEvaluationResultArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return SelfEvaluationResultArchiveForm;
+        }(Serenity.PrefixedContext));
+        SelfEvaluationResultArchiveForm.formKey = 'Default.SelfEvaluationResultArchive';
+        Default.SelfEvaluationResultArchiveForm = SelfEvaluationResultArchiveForm;
+        [['ExamTitle', function () { return Serenity.StringEditor; }], ['UserName', function () { return Serenity.StringEditor; }], ['ExamContent', function () { return Serenity.StringEditor; }], ['InputContent', function () { return Serenity.StringEditor; }], ['DepartmentName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SelfEvaluationResultArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var SelfEvaluationResultArchiveRow;
+        (function (SelfEvaluationResultArchiveRow) {
+            SelfEvaluationResultArchiveRow.idProperty = 'Id';
+            SelfEvaluationResultArchiveRow.nameProperty = 'ExamTitle';
+            SelfEvaluationResultArchiveRow.localTextPrefix = 'Default.SelfEvaluationResultArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = SelfEvaluationResultArchiveRow.Fields || (SelfEvaluationResultArchiveRow.Fields = {}));
+            ['Id', 'ExamTitle', 'UserName', 'ExamContent', 'InputContent', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(SelfEvaluationResultArchiveRow = Default.SelfEvaluationResultArchiveRow || (Default.SelfEvaluationResultArchiveRow = {}));
+    })(Default = hr.Default || (hr.Default = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Default;
+    (function (Default) {
+        var SelfEvaluationResultArchiveService;
+        (function (SelfEvaluationResultArchiveService) {
+            SelfEvaluationResultArchiveService.baseUrl = 'Default/SelfEvaluationResultArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SelfEvaluationResultArchiveService.Methods || (SelfEvaluationResultArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                SelfEvaluationResultArchiveService[x] = function (r, s, o) { return Q.serviceRequest(SelfEvaluationResultArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SelfEvaluationResultArchiveService.baseUrl + '/' + x;
+            });
+        })(SelfEvaluationResultArchiveService = Default.SelfEvaluationResultArchiveService || (Default.SelfEvaluationResultArchiveService = {}));
+    })(Default = hr.Default || (hr.Default = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
@@ -379,7 +771,7 @@ var hr;
             var Fields;
             (function (Fields) {
             })(Fields = CompanyEvaluationRow.Fields || (CompanyEvaluationRow.Fields = {}));
-            ['CompanyEvaluationId', 'UserId', 'ExamId', 'EvaluationContent', 'Username', 'UserEmail', 'Title'].forEach(function (x) { return Fields[x] = x; });
+            ['CompanyEvaluationId', 'UserId', 'ExamId', 'EvaluationContent', 'Username', 'UserEmail', 'Title', 'DepartmentId', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
         })(CompanyEvaluationRow = Evaluation.CompanyEvaluationRow || (Evaluation.CompanyEvaluationRow = {}));
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -567,7 +959,7 @@ var hr;
             var Fields;
             (function (Fields) {
             })(Fields = EvaluationFinalResultRow.Fields || (EvaluationFinalResultRow.Fields = {}));
-            ['Id', 'UserId', 'ExamId', 'Title', 'UserName', 'TotalScore', 'Grade', 'Email'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'UserId', 'ExamId', 'Title', 'UserName', 'TotalScore', 'Grade', 'Email', 'DepartmentId', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
         })(EvaluationFinalResultRow = Evaluation.EvaluationFinalResultRow || (Evaluation.EvaluationFinalResultRow = {}));
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
@@ -766,7 +1158,7 @@ var hr;
             var Methods;
             (function (Methods) {
             })(Methods = ExamService.Methods || (ExamService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'Archive'].forEach(function (x) {
                 ExamService[x] = function (r, s, o) { return Q.serviceRequest(ExamService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = ExamService.baseUrl + '/' + x;
             });
@@ -1023,6 +1415,39 @@ var hr;
                 Methods[x] = SelfEvaluationRecordService.baseUrl + '/' + x;
             });
         })(SelfEvaluationRecordService = Evaluation.SelfEvaluationRecordService || (Evaluation.SelfEvaluationRecordService = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var SelfEvaluationResultRow;
+        (function (SelfEvaluationResultRow) {
+            SelfEvaluationResultRow.idProperty = 'Id';
+            SelfEvaluationResultRow.nameProperty = 'Content';
+            SelfEvaluationResultRow.localTextPrefix = 'Evaluation.SelfEvaluationResult';
+            var Fields;
+            (function (Fields) {
+            })(Fields = SelfEvaluationResultRow.Fields || (SelfEvaluationResultRow.Fields = {}));
+            ['Id', 'Title', 'Content', 'InputContent', 'Username', 'DepartmentName'].forEach(function (x) { return Fields[x] = x; });
+        })(SelfEvaluationResultRow = Evaluation.SelfEvaluationResultRow || (Evaluation.SelfEvaluationResultRow = {}));
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var SelfEvaluationResultService;
+        (function (SelfEvaluationResultService) {
+            SelfEvaluationResultService.baseUrl = 'Evaluation/SelfEvaluationResult';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SelfEvaluationResultService.Methods || (SelfEvaluationResultService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                SelfEvaluationResultService[x] = function (r, s, o) { return Q.serviceRequest(SelfEvaluationResultService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SelfEvaluationResultService.baseUrl + '/' + x;
+            });
+        })(SelfEvaluationResultService = Evaluation.SelfEvaluationResultService || (Evaluation.SelfEvaluationResultService = {}));
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;
@@ -1472,6 +1897,23 @@ var hr;
             RoleGrid.prototype.getIdProperty = function () { return Administration.RoleRow.idProperty; };
             RoleGrid.prototype.getLocalTextPrefix = function () { return Administration.RoleRow.localTextPrefix; };
             RoleGrid.prototype.getService = function () { return Administration.RoleService.baseUrl; };
+            RoleGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            RoleGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            RoleGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
             RoleGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.RoleRow.Fields.RoleName];
             };
@@ -2432,6 +2874,178 @@ var hr;
         ], UserRoleDialog);
         Administration.UserRoleDialog = UserRoleDialog;
     })(Administration = hr.Administration || (hr.Administration = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var CompanyEvaluationArchiveGrid = (function (_super) {
+            __extends(CompanyEvaluationArchiveGrid, _super);
+            function CompanyEvaluationArchiveGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            CompanyEvaluationArchiveGrid.prototype.getColumnsKey = function () { return 'Archive.CompanyEvaluationArchive'; };
+            //protected getDialogType() { return CompanyEvaluationArchiveDialog; }
+            CompanyEvaluationArchiveGrid.prototype.getIdProperty = function () { return Archive.CompanyEvaluationArchiveRow.idProperty; };
+            CompanyEvaluationArchiveGrid.prototype.getLocalTextPrefix = function () { return Archive.CompanyEvaluationArchiveRow.localTextPrefix; };
+            CompanyEvaluationArchiveGrid.prototype.getService = function () { return Archive.CompanyEvaluationArchiveService.baseUrl; };
+            CompanyEvaluationArchiveGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            CompanyEvaluationArchiveGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            CompanyEvaluationArchiveGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            CompanyEvaluationArchiveGrid.prototype.getButtons = function () {
+                var buttons = _super.prototype.getButtons.call(this);
+                return buttons.filter(function (x) { return x.cssClass !== 'add-button'; });
+            };
+            return CompanyEvaluationArchiveGrid;
+        }(Serenity.EntityGrid));
+        CompanyEvaluationArchiveGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], CompanyEvaluationArchiveGrid);
+        Archive.CompanyEvaluationArchiveGrid = CompanyEvaluationArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultArchiveGrid = (function (_super) {
+            __extends(EvaluationFinalResultArchiveGrid, _super);
+            function EvaluationFinalResultArchiveGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            EvaluationFinalResultArchiveGrid.prototype.getColumnsKey = function () { return 'Archive.EvaluationFinalResultArchive'; };
+            //protected getDialogType() { return EvaluationFinalResultArchiveDialog; }
+            EvaluationFinalResultArchiveGrid.prototype.getIdProperty = function () { return Archive.EvaluationFinalResultArchiveRow.idProperty; };
+            EvaluationFinalResultArchiveGrid.prototype.getLocalTextPrefix = function () { return Archive.EvaluationFinalResultArchiveRow.localTextPrefix; };
+            EvaluationFinalResultArchiveGrid.prototype.getService = function () { return Archive.EvaluationFinalResultArchiveService.baseUrl; };
+            EvaluationFinalResultArchiveGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            EvaluationFinalResultArchiveGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            EvaluationFinalResultArchiveGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            EvaluationFinalResultArchiveGrid.prototype.getButtons = function () {
+                var buttons = _super.prototype.getButtons.call(this);
+                return buttons.filter(function (x) { return x.cssClass !== 'add-button'; });
+            };
+            return EvaluationFinalResultArchiveGrid;
+        }(Serenity.EntityGrid));
+        EvaluationFinalResultArchiveGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationFinalResultArchiveGrid);
+        Archive.EvaluationFinalResultArchiveGrid = EvaluationFinalResultArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var EvaluationFinalResultDetailArchiveGrid = (function (_super) {
+            __extends(EvaluationFinalResultDetailArchiveGrid, _super);
+            function EvaluationFinalResultDetailArchiveGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            EvaluationFinalResultDetailArchiveGrid.prototype.getColumnsKey = function () { return 'Archive.EvaluationFinalResultDetailArchive'; };
+            //protected getDialogType() { return EvaluationFinalResultDetailArchiveDialog; }
+            EvaluationFinalResultDetailArchiveGrid.prototype.getIdProperty = function () { return Archive.EvaluationFinalResultDetailArchiveRow.idProperty; };
+            EvaluationFinalResultDetailArchiveGrid.prototype.getLocalTextPrefix = function () { return Archive.EvaluationFinalResultDetailArchiveRow.localTextPrefix; };
+            EvaluationFinalResultDetailArchiveGrid.prototype.getService = function () { return Archive.EvaluationFinalResultDetailArchiveService.baseUrl; };
+            EvaluationFinalResultDetailArchiveGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            EvaluationFinalResultDetailArchiveGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            EvaluationFinalResultDetailArchiveGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            EvaluationFinalResultDetailArchiveGrid.prototype.getButtons = function () {
+                var buttons = _super.prototype.getButtons.call(this);
+                return buttons.filter(function (x) { return x.cssClass !== 'add-button'; });
+            };
+            return EvaluationFinalResultDetailArchiveGrid;
+        }(Serenity.EntityGrid));
+        EvaluationFinalResultDetailArchiveGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], EvaluationFinalResultDetailArchiveGrid);
+        Archive.EvaluationFinalResultDetailArchiveGrid = EvaluationFinalResultDetailArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var SelfEvaluationResultArchiveGrid = (function (_super) {
+            __extends(SelfEvaluationResultArchiveGrid, _super);
+            function SelfEvaluationResultArchiveGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            SelfEvaluationResultArchiveGrid.prototype.getColumnsKey = function () { return 'Archive.SelfEvaluationResultArchive'; };
+            //protected getDialogType() { return SelfEvaluationResultArchiveDialog; }
+            SelfEvaluationResultArchiveGrid.prototype.getIdProperty = function () { return Archive.SelfEvaluationResultArchiveRow.idProperty; };
+            SelfEvaluationResultArchiveGrid.prototype.getLocalTextPrefix = function () { return Archive.SelfEvaluationResultArchiveRow.localTextPrefix; };
+            SelfEvaluationResultArchiveGrid.prototype.getService = function () { return Archive.SelfEvaluationResultArchiveService.baseUrl; };
+            SelfEvaluationResultArchiveGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            SelfEvaluationResultArchiveGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            SelfEvaluationResultArchiveGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            SelfEvaluationResultArchiveGrid.prototype.getButtons = function () {
+                var buttons = _super.prototype.getButtons.call(this);
+                return buttons.filter(function (x) { return x.cssClass !== 'add-button'; });
+            };
+            return SelfEvaluationResultArchiveGrid;
+        }(Serenity.EntityGrid));
+        SelfEvaluationResultArchiveGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SelfEvaluationResultArchiveGrid);
+        Archive.SelfEvaluationResultArchiveGrid = SelfEvaluationResultArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
 })(hr || (hr = {}));
 var hr;
 (function (hr) {
@@ -3603,19 +4217,19 @@ var hr;
                 grid.setSelectionModel(new Slick.RowSelectionModel());
                 return grid;
             };
-            CompanyEvaluationGrid.prototype.getColumns = function () {
-                var columns = _super.prototype.getColumns.call(this);
-                columns.unshift({
-                    field: 'Delete Row',
-                    name: '',
-                    format: function (ctx) { return '<a class="inline-action delete-row" title="delete">' +
-                        '<i class="fa fa-trash-o text-red"></i></a>'; },
-                    width: 24,
-                    minWidth: 24,
-                    maxWidth: 24
-                });
-                return columns;
-            };
+            //protected getColumns() {
+            //    var columns = super.getColumns();
+            //    columns.unshift({
+            //        field: 'Delete Row',
+            //        name: '',
+            //        format: ctx => '<a class="inline-action delete-row" title="delete">' +
+            //            '<i class="fa fa-trash-o text-red"></i></a>',
+            //        width: 24,
+            //        minWidth: 24,
+            //        maxWidth: 24
+            //    });
+            //    return columns;
+            //}
             CompanyEvaluationGrid.prototype.onClick = function (e, row, cell) {
                 var _this = this;
                 _super.prototype.onClick.call(this, e, row, cell);
@@ -3638,6 +4252,19 @@ var hr;
                         });
                     }
                 }
+            };
+            CompanyEvaluationGrid.prototype.getQuickFilters = function () {
+                var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
+                    var fld_1 = Evaluation.CompanyEvaluationRow.Fields;
+                    Q.first(filters, function (x) { return x.field === fld_1.DepartmentId; }).init = function (w) {
+                        var editor = w;
+                        editor.value = hr.Authorization.userDefinition.DepartmentId.toString();
+                        editor.element.attr("disabled", "disabled");
+                    };
+                    return filters.filter(function (x) { return x.field !== fld_1.UserId; });
+                }
+                return filters;
             };
             return CompanyEvaluationGrid;
         }(Serenity.EntityGrid));
@@ -4755,14 +5382,20 @@ var hr;
                     onViewSubmit: function () { return _this.onViewSubmit(); },
                     separator: true
                 }));
-                buttons.push(hr.Common.ExcelExportHelper.createToolButton({
-                    title: '导出自我评价',
-                    hint: '导出自我评价',
-                    grid: this,
-                    service: Evaluation.EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
-                    onViewSubmit: function () { return _this.onViewSubmit(); },
-                    separator: true
-                }));
+                //buttons.push({
+                //    title: '一键归档',
+                //    cssClass: 'add-file-button',
+                //    onClick: () => {
+                //    }
+                //});
+                //buttons.push(Common.ExcelExportHelper.createToolButton({
+                //    title: '导出自我评价',
+                //    hint: '导出自我评价',
+                //    grid: this,
+                //    service: EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
+                //    onViewSubmit: () => this.onViewSubmit(),
+                //    separator: true
+                //}));
                 return buttons;
             };
             EvaluationFinalResultGrid.prototype.getColumns = function () {
@@ -4795,6 +5428,19 @@ var hr;
                 if (target.hasClass("check_detail")) {
                     new Evaluation.EvaluationFinalResultDetail(rst.UserId, rst.ExamId).dialogOpen();
                 }
+            };
+            EvaluationFinalResultGrid.prototype.getQuickFilters = function () {
+                var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
+                    var fld_2 = Evaluation.EvaluationFinalResultRow.Fields;
+                    Q.first(filters, function (x) { return x.field === fld_2.DepartmentName; }).init = function (w) {
+                        var editor = w;
+                        editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
+                        editor.element.attr("disabled", "disabled");
+                    };
+                    return filters.filter(function (x) { return x.field !== fld_2.UserName; });
+                }
+                return filters;
             };
             return EvaluationFinalResultGrid;
         }(Serenity.EntityGrid));
@@ -5556,6 +6202,7 @@ var hr;
                 });
             };
             ExamGrid.prototype.getColumns = function () {
+                var _this = this;
                 var columns = _super.prototype.getColumns.call(this);
                 columns.unshift({
                     field: 'Delete Row',
@@ -5566,6 +6213,7 @@ var hr;
                     minWidth: 24,
                     maxWidth: 24
                 });
+                columns.splice(0, 0, Serenity.GridRowSelectionMixin.createSelectColumn(function () { return _this.rowSelection; }));
                 return columns;
             };
             ExamGrid.prototype.onClick = function (e, row, cell) {
@@ -5578,6 +6226,17 @@ var hr;
                 // if user clicks "i" element, e.g. icon
                 if (target.parent().hasClass('inline-action'))
                     target = target.parent();
+                if (target.is('.check-box')) {
+                    return;
+                }
+                if (item) {
+                    e.preventDefault();
+                    var checkBox = target.closest('.slick-row').find('.check-box');
+                    if (!checkBox.hasClass("checked")) {
+                        this.rowSelection.clear();
+                        checkBox.click();
+                    }
+                }
                 if (target.hasClass('inline-action')) {
                     e.preventDefault();
                     if (target.hasClass('delete-row')) {
@@ -5590,6 +6249,36 @@ var hr;
                         });
                     }
                 }
+            };
+            ExamGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push({
+                    title: '一键归档',
+                    cssClass: 'add-file-button',
+                    onClick: function () {
+                        var selectedKeys = _this.rowSelection.getSelectedKeys();
+                        if (selectedKeys.length == 0) {
+                            Q.alert("请选择需要归档的考核");
+                        }
+                        else if (selectedKeys.length > 1) {
+                            Q.alert("一次只能选择一条记录");
+                        }
+                        else {
+                            Q.confirm("确认要归档选中的考核吗", function () {
+                                var item = _this.view.getItemById(selectedKeys[0]);
+                                Evaluation.ExamService.Archive({
+                                    ExamId: item.Id,
+                                    Title: item.Title
+                                }, function (response) {
+                                    Q.notifySuccess("归档成功！");
+                                    _this.refresh();
+                                });
+                            });
+                        }
+                    }
+                });
+                return buttons;
             };
             return ExamGrid;
         }(Serenity.EntityGrid));
@@ -6088,6 +6777,72 @@ var hr;
             Serenity.Decorators.registerClass()
         ], SecondKpiGrid);
         Evaluation.SecondKpiGrid = SecondKpiGrid;
+    })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Evaluation;
+    (function (Evaluation) {
+        var SelfEvaluationResultGrid = (function (_super) {
+            __extends(SelfEvaluationResultGrid, _super);
+            function SelfEvaluationResultGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            SelfEvaluationResultGrid.prototype.getColumnsKey = function () { return 'Evaluation.SelfEvaluationResult'; };
+            //protected getDialogType() { return SelfEvaluationResultDialog; }
+            SelfEvaluationResultGrid.prototype.getLocalTextPrefix = function () { return Evaluation.SelfEvaluationResultRow.localTextPrefix; };
+            SelfEvaluationResultGrid.prototype.getService = function () { return Evaluation.SelfEvaluationResultService.baseUrl; };
+            SelfEvaluationResultGrid.prototype.getIdProperty = function () { return Evaluation.SelfEvaluationResultRow.idProperty; };
+            SelfEvaluationResultGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            SelfEvaluationResultGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.enableTextSelectionOnCells = true;
+                opt.selectedCellCssClass = "slick-row-selected";
+                opt.enableCellNavigation = true;
+                return opt;
+            };
+            SelfEvaluationResultGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                grid.setSelectionModel(new Slick.RowSelectionModel());
+                return grid;
+            };
+            SelfEvaluationResultGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons = buttons.filter(function (x) { return x.cssClass !== 'add-button'; });
+                buttons.push(hr.Common.ExcelExportHelper.createToolButton({
+                    title: '导出Excel',
+                    hint: '导出Excel',
+                    grid: this,
+                    service: Evaluation.SelfEvaluationResultService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
+                return buttons;
+            };
+            SelfEvaluationResultGrid.prototype.getQuickFilters = function () {
+                var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
+                    var fld_3 = Evaluation.SelfEvaluationResultRow.Fields;
+                    Q.first(filters, function (x) { return x.field === fld_3.DepartmentName; }).init = function (w) {
+                        var editor = w;
+                        editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
+                        editor.element.attr("disabled", "disabled");
+                    };
+                    return filters.filter(function (x) { return x.field !== fld_3.Username; });
+                }
+                return filters;
+            };
+            return SelfEvaluationResultGrid;
+        }(Serenity.EntityGrid));
+        SelfEvaluationResultGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SelfEvaluationResultGrid);
+        Evaluation.SelfEvaluationResultGrid = SelfEvaluationResultGrid;
     })(Evaluation = hr.Evaluation || (hr.Evaluation = {}));
 })(hr || (hr = {}));
 var hr;

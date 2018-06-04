@@ -5,11 +5,13 @@ Create View hr.OtherEvaluationResult
 AS
 SELECT 
         UserId ,
+		DepartmentId,
         ExamId ,
         Title,
         Username ,
+		DepartmentName,
         AVG( TotalScore) TotalScore,
         Email
 FROM    hr.EvaluationResultView
 WHERE   ParentUserId != EvaluationUserId
-GROUP BY UserId,ExamId,Title,Username,Email
+GROUP BY UserId,ExamId,Title,Username,Email,DepartmentId, DepartmentName

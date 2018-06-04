@@ -1,7 +1,5 @@
 ﻿
 
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "Evaluation/CompanyEvaluation", typeof(hr.Evaluation.Pages.CompanyEvaluationController))]
-
 namespace hr.Evaluation.Pages
 {
     using Serenity;

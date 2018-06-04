@@ -9,6 +9,8 @@ SELECT
 	r.UserId,
 	u1.Username,
 	l.ParentUserId,
+	u1.DepartmentId,
+  d.Name AS DepartmentName,
 	ExamId,
 	e.Title,
 	u1.Email,
@@ -27,6 +29,7 @@ LEFT JOIN dbo.Users AS u1 ON u1.UserId = r.UserId
 LEFT JOIN dbo.Users AS u2 ON u2.UserId = r.EvaluationUserId
 LEFT JOIN hr.LeaderShip l ON l.UserId = r.UserId
 LEFT JOIN hr.Exam e ON e.Id = r.ExamId
+LEFT JOIN hr.Department d on d.Id = u1.DepartmentId
 GROUP BY
 	r.UserId,
 	l.ParentUserId,
@@ -36,4 +39,6 @@ GROUP BY
 	u1.Username,
 	u2.Username,
 	u1.Email,
-	u2.Email
+	u2.Email,
+  u1.DepartmentId,
+	d.Name

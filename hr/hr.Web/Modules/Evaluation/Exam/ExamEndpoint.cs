@@ -6,7 +6,9 @@ namespace hr.Evaluation.Endpoints
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Configuration;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Text;
     using System.Web.Mvc;
     using MyRepository = Repositories.ExamRepository;
@@ -69,6 +71,73 @@ namespace hr.Evaluation.Endpoints
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
+        }
+
+        public SaveResponse Archive(ArchiveRequest request)
+        {
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings[Constants.Db.ConnectionName].ConnectionString))
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                var tran = connection.BeginTransaction();
+                try
+                {
+                    var cmd = new SqlCommand();
+                    cmd.Connection = connection;
+                    cmd.Transaction = tran;
+                    //归档公司评价
+                    cmd.CommandText = $"insert into hr.CompanyEvaluation_Archive " +
+                    $"select e.Title, Username as UserName ,c.EvaluationContent,d.Name as DepartmentName from hr.CompanyEvaluation c left join dbo.Users u on c.UserId = u.UserId " +
+                    $"left join hr.Exam e on e.id = c.ExamId " +
+                    $"LEFT JOIN hr.Department d on d.Id = u.DepartmentId where e.Id = {request.ExamId};";
+                    cmd.ExecuteNonQuery();
+                    //归档自我评价
+                    cmd.CommandText = $"insert into hr.SelfEvaluationResult_Archive " +
+                    $"select Title as ExamTitle, Username as UserName, Content as ExamContent, InputContent, DepartmentName " +
+                    $"from hr.SelfEvaluationResult where Title='{request.Title}';";
+                    cmd.ExecuteNonQuery();
+                    //归档考核结果
+                    cmd.CommandText = $"insert into hr.EvaluationFinalResult_Archive " +
+                    $"select Title as ExamTitle, Username as UserName, TotalScore,Grade, DepartmentName " +
+                    $"from hr.EvaluationFinalResult where ExamId={request.ExamId};";
+                    cmd.ExecuteNonQuery();
+                    //过当考核结果明细
+                    cmd.CommandText = $"insert into hr.EvaluationFinalResultDetail_Archive " +
+                    $"select Title as ExamTitle, Username as UserName, TotalScore as Score,EvaluationUser as EvaluationUserName, DepartmentName from hr.EvaluationResultView where ExamId={request.ExamId};";
+                    cmd.ExecuteNonQuery();
+
+                    //删除已经归档的考核
+                    //删除考核之前，需要删除考核关系和考核结果
+                    //var cmd2 = new SqlCommand();
+                    //cmd2.Connection = connection;
+                    //cmd2.CommandText = $"select Id from hr.[UserEvaluationRelation] where ExamId={request.ExamId};";
+                    //var reader = cmd2.ExecuteReader();
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append($"delete from [hr].[UserEvaluationToUser] where UserEvaluationRelationId in (select Id from hr.[UserEvaluationRelation] where ExamId={request.ExamId});");
+                    sb.Append($"delete from [hr].[UserEvaluationRelation] where ExamId={request.ExamId}");
+                    sb.Append($"delete from [hr].[EvaluationResultDetail] where ExamId={request.ExamId}");
+                    if (sb.Length != 0)
+                    {
+                        cmd.CommandText = sb.ToString();
+                        cmd.ExecuteNonQuery();
+                    }
+                    //}
+                    cmd.CommandText = $"delete from hr.[Exam] where Id ={request.ExamId};";
+                    cmd.ExecuteNonQuery();
+
+                    tran.Commit();
+                }
+                catch (System.Exception ex)
+                {
+                    tran.Rollback();
+                    throw ex;
+                }
+
+                return new SaveResponse();
+            };
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace hr.Evaluation.Entities
     //[ModifyPermission(PermissionKeys.Department.Modify)]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Evaluation.Department")]
+    [LookupScript("Evaluation.Department", Permission = PermissionKeys.Department.LookupScript)]
     public sealed class DepartmentRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

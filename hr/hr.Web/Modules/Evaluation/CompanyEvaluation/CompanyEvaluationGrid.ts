@@ -41,20 +41,20 @@ namespace hr.Evaluation {
             return grid;
         }
 
-        protected getColumns() {
-            var columns = super.getColumns();
-            columns.unshift({
-                field: 'Delete Row',
-                name: '',
-                format: ctx => '<a class="inline-action delete-row" title="delete">' +
-                    '<i class="fa fa-trash-o text-red"></i></a>',
-                width: 24,
-                minWidth: 24,
-                maxWidth: 24
-            });
+        //protected getColumns() {
+        //    var columns = super.getColumns();
+        //    columns.unshift({
+        //        field: 'Delete Row',
+        //        name: '',
+        //        format: ctx => '<a class="inline-action delete-row" title="delete">' +
+        //            '<i class="fa fa-trash-o text-red"></i></a>',
+        //        width: 24,
+        //        minWidth: 24,
+        //        maxWidth: 24
+        //    });
 
-            return columns;
-        }
+        //    return columns;
+        //}
 
         protected onClick(e: JQueryEventObject, row: number, cell: number) {
             super.onClick(e, row, cell);
@@ -80,8 +80,24 @@ namespace hr.Evaluation {
                             this.refresh();
                         });
                     });
-                } 
+                }
             }
+        }
+
+        protected getQuickFilters() {
+            let filters = super.getQuickFilters();
+            if (Authorization.hasPermission("Evaluation:Users:LookupScript") && !Authorization.hasPermission("Administration:Security")) {
+                let fld = CompanyEvaluationRow.Fields;
+                Q.first(filters, x => x.field === fld.DepartmentId).init = w => {
+                    let editor = w as Serenity.LookupEditor;
+                    
+                    editor.value = Authorization.userDefinition.DepartmentId.toString();
+                    editor.element.attr("disabled","disabled");
+                }
+                return filters.filter(x => x.field !== fld.UserId);
+            }
+
+            return filters
         }
     }
 }

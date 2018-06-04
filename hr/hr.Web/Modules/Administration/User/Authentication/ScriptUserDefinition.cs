@@ -15,5 +15,8 @@
         public String DisplayName { get; set; }
         public Boolean IsAdmin { get; set; }
         public Dictionary<string, bool> Permissions { get; set; }
+
+        public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

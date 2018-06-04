@@ -21,6 +21,8 @@ namespace hr.Evaluation.Columns
         public String Title { get; set; }
         [QuickFilter]
         public String UserName { get; set; }
+        [QuickFilter]
+        public String DepartmentName { get; set; }
         public Decimal TotalScore { get; set; }
 
         [QuickFilter]

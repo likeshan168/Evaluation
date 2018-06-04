@@ -83,6 +83,30 @@ namespace MVC
             public const string Widgets = "~/Modules/AdminLTE/Widgets.cshtml";
         }
 
+        public static class Archive
+        {
+            public static class CompanyEvaluationArchive
+            {
+                public const string CompanyEvaluationArchiveIndex = "~/Modules/Archive/CompanyEvaluationArchive/CompanyEvaluationArchiveIndex.cshtml";
+            }
+
+            public static class EvaluationFinalResultArchive
+            {
+                public const string EvaluationFinalResultArchiveIndex = "~/Modules/Archive/EvaluationFinalResultArchive/EvaluationFinalResultArchiveIndex.cshtml";
+            }
+
+            public static class EvaluationFinalResultDetailArchive
+            {
+                public const string EvaluationFinalResultDetailArchiveIndex = "~/Modules/Archive/EvaluationFinalResultDetailArchive/EvaluationFinalResultDetailArchiveIndex.cshtml";
+            }
+
+            public static class SelfEvaluationResultArchive
+            {
+                public const string SelfEvaluationResultArchiveIndex = "~/Modules/Archive/SelfEvaluationResultArchive/SelfEvaluationResultArchiveIndex.cshtml";
+            }
+
+        }
+
         public static class Common
         {
             public static class Dashboard
@@ -181,6 +205,11 @@ namespace MVC
             public static class SecondKpi
             {
                 public const string SecondKpiIndex = "~/Modules/Evaluation/SecondKpi/SecondKpiIndex.cshtml";
+            }
+
+            public static class SelfEvaluationResult
+            {
+                public const string SelfEvaluationResultIndex = "~/Modules/Evaluation/SelfEvaluationResult/SelfEvaluationResultIndex.cshtml";
             }
 
             public static class ToDoList

@@ -12,7 +12,7 @@ namespace hr.Evaluation.Entities
     [ConnectionKey("Default"), TableName("[hr].[Exam]"), DisplayName("Exam"), InstanceName("Exam"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Exam.View)]
     [ModifyPermission(PermissionKeys.Exam.Modify)]
-    [LookupScript("Evaluation.Exam")]
+    [LookupScript("Evaluation.Exam", Permission = PermissionKeys.Exam.LookupScript)]
     public sealed class ExamRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

@@ -31,6 +31,21 @@ namespace hr.Evaluation.Entities
             set { Fields.UserId[this] = value; }
         }
 
+        [DisplayName("DepartmentId"), Expression("jUser.[DepartmentId]"), ForeignKey("hr.[Department]", "Id"), LeftJoin("jDepartment"), TextualField("DepartmentName")]
+        [LookupEditor(typeof(DepartmentRow))]
+        public int? DepartmentId
+        {
+            get { return Fields.DepartmentId[this]; }
+            set { Fields.DepartmentId[this] = value; }
+        }
+
+        [DisplayName("DepartmentName"), Expression("jDepartment.[Name]"), QuickSearch]
+        public String DepartmentName
+        {
+            get { return Fields.DepartmentName[this]; }
+            set { Fields.DepartmentName[this] = value; }
+        }
+
         [DisplayName("Evaluation Content")]
         public string EvaluationContent
         {
@@ -91,7 +106,8 @@ namespace hr.Evaluation.Entities
             public StringField Username;
             public StringField UserEmail;
             public StringField Title;
-
+            public Int32Field DepartmentId;
+            public StringField DepartmentName;
 
             public RowFields()
                 : base()

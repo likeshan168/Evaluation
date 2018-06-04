@@ -571,6 +571,7 @@
     <EmbeddedResource Include="Migrations\DefaultDB\Scripts\LeaderEvaluationResult.sql" />
     <EmbeddedResource Include="Migrations\DefaultDB\Scripts\OtherEvaluationResult.sql" />
     <EmbeddedResource Include="Migrations\DefaultDB\Scripts\UserToUserView.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\Scripts\SelfEvaluationResult.sql" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Imports\Web.config" />
     <Content Include="Migrations\Web.config" />
@@ -1136,7 +1137,46 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleBatchUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.CompanyEvaluationArchiveColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.CompanyEvaluationArchiveRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.CompanyEvaluationArchiveService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultArchiveColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultArchiveRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultArchiveService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultDetailArchiveColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultDetailArchiveRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultDetailArchiveService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.SelfEvaluationResultArchiveColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.SelfEvaluationResultArchiveRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.SelfEvaluationResultArchiveService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.AddEvaluationResultRequest`1.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.ArchiveRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.BatchDeleteRequest.ts">
@@ -1206,6 +1246,15 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationResultColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationResultRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationResultService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.T.ts">
@@ -1290,6 +1339,10 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <TypeScriptCompile Include="Modules\Administration\User\ChooseRoleDialog.ts" />
+    <TypeScriptCompile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
@@ -1341,6 +1394,7 @@
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation1.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Evaluation\SelfEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\Exam\ExamListDialog.ts" />
+    <TypeScriptCompile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultGrid.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListDialog.ts" />
     <TypeScriptCompile Include="Modules\Evaluation\UserEvaluationRelation\UserListFormatter.ts" />
@@ -1370,6 +1424,11 @@
     <Content Include="Modules\Evaluation\UserEvaluationRelation\EvaluationRemind.cshtml" />
     <Content Include="Modules\Evaluation\Evaluation\CompanyEvaluation.cshtml" />
     <Content Include="Modules\Evaluation\EvaluationItem\EvaluationItemPreviewCompanyEvaluation.cshtml" />
+    <Content Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultIndex.cshtml" />
+    <Content Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveIndex.cshtml" />
+    <Content Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveIndex.cshtml" />
+    <Content Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveIndex.cshtml" />
+    <Content Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveIndex.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\hr.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -1896,6 +1955,18 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Evaluation.SelfEvaluationRecordForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.CompanyEvaluationArchiveRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.CompanyEvaluationArchiveService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.CompanyEvaluationArchiveForm.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultArchiveRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultArchiveService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultArchiveForm.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultDetailArchiveRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultDetailArchiveService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.EvaluationFinalResultDetailArchiveForm.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveForm.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1917,6 +1988,11 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_103200_AddIsSelfEvaluationToEvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_110700_SelfEvaluationResult.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_094800_EvaluationFinalResultDetail_Archive.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_094500_EvaluationFinalResult_Archive.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_094300_CompanyEvaluation_Archive.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_093600_SelfEvaluationResult_Archive.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_085000_AddDepartmentIdInUser.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170817_170100_CreateView2.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170710_171800_AddEvaluationUserIdToEvaluationResultDetail.cs" />
@@ -1957,7 +2033,30 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Administration\User\BatchUpdateUserRequest.cs" />
+    <Compile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveColumns.cs" />
+    <Compile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveEndpoint.cs" />
+    <Compile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchivePage.cs" />
+    <Compile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveRepository.cs" />
+    <Compile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveRow.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveColumns.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveEndpoint.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchivePage.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveRepository.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveRow.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveColumns.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveEndpoint.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchivePage.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveRepository.cs" />
+    <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveRow.cs" />
+    <Compile Include="Modules\Archive\ArchiveNavigation.cs" />
+    <Compile Include="Modules\Archive\PermissionKeys.cs" />
+    <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveColumns.cs" />
+    <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveEndpoint.cs" />
+    <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchivePage.cs" />
+    <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveRepository.cs" />
+    <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveRow.cs" />
     <Compile Include="Modules\Common\Helpers\CustomUserLookup.cs" />
+    <Compile Include="Modules\Evaluation\Common\ArchiveRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchDeleteRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\BatchEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\EmailMangement.cs" />
@@ -1967,10 +2066,16 @@
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRequest.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamTitleLookup.cs" />
+    <Compile Include="Modules\Evaluation\EvaluationFinalResult\DepartmentNameLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamUserLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\GradeLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationItem\EvaluationItemResponse.cs" />
     <Compile Include="Modules\Evaluation\EvaluationResultDetail\AddEvaluationResultRequest.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultColumns.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultEndpoint.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultPage.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultRepository.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\SelfEvaluationResultRow.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationExcelImportEndpoint.cs" />
     <Compile Include="Modules\Evaluation\UserEvaluationRelation\UserEvaluationRelationImportForm.cs" />
     <Compile Include="Startup.cs" />

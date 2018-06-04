@@ -4,6 +4,8 @@
         DisplayName?: string;
         IsAdmin?: boolean;
         Permissions?: { [key: string]: boolean };
+        DepartmentId?: number;
+        DepartmentName?: string;
     }
 }
 

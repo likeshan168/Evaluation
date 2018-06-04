@@ -7,6 +7,8 @@
         Username?: string;
         UserEmail?: string;
         Title?: string;
+        DepartmentId?: number;
+        DepartmentName?: string;
     }
 
     export namespace CompanyEvaluationRow {
@@ -21,9 +23,11 @@
             export declare const Username: string;
             export declare const UserEmail: string;
             export declare const Title: string;
+            export declare const DepartmentId: string;
+            export declare const DepartmentName: string;
         }
 
-        ['CompanyEvaluationId', 'UserId', 'ExamId', 'EvaluationContent', 'Username', 'UserEmail', 'Title'].forEach(x => (<any>Fields)[x] = x);
+        ['CompanyEvaluationId', 'UserId', 'ExamId', 'EvaluationContent', 'Username', 'UserEmail', 'Title', 'DepartmentId', 'DepartmentName'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

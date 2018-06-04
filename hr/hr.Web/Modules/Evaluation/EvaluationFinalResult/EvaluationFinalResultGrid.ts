@@ -33,14 +33,21 @@ namespace hr.Evaluation {
                 onViewSubmit: () => this.onViewSubmit(),
                 separator: true
             }));
-            buttons.push(Common.ExcelExportHelper.createToolButton({
-                title: '导出自我评价',
-                hint: '导出自我评价',
-                grid: this,
-                service: EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
-                onViewSubmit: () => this.onViewSubmit(),
-                separator: true
-            }));
+            //buttons.push({
+            //    title: '一键归档',
+            //    cssClass: 'add-file-button',
+            //    onClick: () => {
+
+            //    }
+            //});
+            //buttons.push(Common.ExcelExportHelper.createToolButton({
+            //    title: '导出自我评价',
+            //    hint: '导出自我评价',
+            //    grid: this,
+            //    service: EvaluationFinalResultService.baseUrl + '/ListSelfEvaluationExcel',
+            //    onViewSubmit: () => this.onViewSubmit(),
+            //    separator: true
+            //}));
             return buttons;
         }
 
@@ -78,7 +85,22 @@ namespace hr.Evaluation {
             if (target.hasClass("check_detail")) {
                 new EvaluationFinalResultDetail(rst.UserId, rst.ExamId).dialogOpen();
             }
+        }
 
+        protected getQuickFilters() {
+            let filters = super.getQuickFilters();
+            if (Authorization.hasPermission("Evaluation:Users:LookupScript") && !Authorization.hasPermission("Administration:Security")) {
+                let fld = EvaluationFinalResultRow.Fields;
+                Q.first(filters, x => x.field === fld.DepartmentName).init = w => {
+                    let editor = w as Serenity.LookupEditor;
+                    
+                    editor.value = Authorization.userDefinition.DepartmentName.toString();
+                    editor.element.attr("disabled","disabled");
+                }
+                return filters.filter(x => x.field !== fld.UserName);
+            }
+
+            return filters
         }
     }
 }

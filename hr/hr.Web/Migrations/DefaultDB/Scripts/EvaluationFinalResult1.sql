@@ -4,9 +4,11 @@ GO
 CREATE VIEW hr.EvaluationFinalResult1
 AS
 SELECT  f.UserId ,
+		f.DepartmentId,
         f.ExamId ,
         f.Title ,
         f.Username AS UserName,
+		f.DepartmentName,
         f.Email,
         SUM(f.TotalScore) TotalScore
 FROM    ( SELECT    *
@@ -19,4 +21,6 @@ GROUP BY f.UserId ,
         f.ExamId ,
         f.Title ,
         f.Email,
-        f.Username;
+        f.Username,
+		f.DepartmentId,
+		f.DepartmentName

@@ -80,12 +80,11 @@ namespace hr.Administration.Endpoints
         /// similar to static variables, not per user.
         /// </summary>
         [NonAction, DataScript("UserData", CacheDuration = -1), ServiceAuthorize]
-        public ScriptUserDefinition GetUserData()
+        public ScriptUserDefinition GetUserData(IDbConnection connection)
         {
             var result = new ScriptUserDefinition();
-            var user = Authorization.UserDefinition as UserDefinition;
 
-            if (user == null)
+            if (!(Authorization.UserDefinition is UserDefinition user))
             {
                 result.Permissions = new Dictionary<string, bool>();
                 return result;
@@ -94,6 +93,12 @@ namespace hr.Administration.Endpoints
             result.Username = user.Username;
             result.DisplayName = user.DisplayName;
             result.IsAdmin = user.Username == "admin";
+            var userEntity = connection.Query($"select u.DepartmentId, d.Name as DepartmentName from dbo.[Users] u left join hr.department d on d.Id = u.DepartmentId where UserId={user.UserId};").FirstOrDefault();
+            if (userEntity?.DepartmentId != null)
+            {
+                result.DepartmentId = userEntity.DepartmentId;
+                result.DepartmentName = userEntity.DepartmentName;
+            }
 
             result.Permissions = TwoLevelCache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
                 UserPermissionRow.Fields.GenerationKey, () =>

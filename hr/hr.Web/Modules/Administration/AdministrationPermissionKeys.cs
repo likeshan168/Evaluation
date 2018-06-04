@@ -13,5 +13,11 @@ namespace hr.Administration
 
         [Description("Languages and Translations")]
         public const string Translation = "Administration:Translation";
+
+        [DisplayName("Users")]
+        public class Users
+        {
+            public const string LookupScript = "Evaluation:Users:LookupScript";
+        }
     }
 }

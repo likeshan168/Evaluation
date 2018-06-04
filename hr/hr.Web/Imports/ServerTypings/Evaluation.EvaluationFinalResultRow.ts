@@ -8,6 +8,8 @@
         TotalScore?: number;
         Grade?: string;
         Email?: string;
+        DepartmentId?: number;
+        DepartmentName?: string;
     }
 
     export namespace EvaluationFinalResultRow {
@@ -29,9 +31,11 @@
             export declare const TotalScore: string;
             export declare const Grade: string;
             export declare const Email: string;
+            export declare const DepartmentId: string;
+            export declare const DepartmentName: string;
         }
 
-        ['Id', 'UserId', 'ExamId', 'Title', 'UserName', 'TotalScore', 'Grade', 'Email'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'UserId', 'ExamId', 'Title', 'UserName', 'TotalScore', 'Grade', 'Email', 'DepartmentId', 'DepartmentName'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

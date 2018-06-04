@@ -1,7 +1,5 @@
 ﻿
 
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "Evaluation/EvaluationFinalResult", typeof(hr.Evaluation.Pages.EvaluationFinalResultController))]
-
 namespace hr.Evaluation.Pages
 {
     using Serenity;

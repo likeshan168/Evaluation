@@ -57,6 +57,7 @@ namespace hr.Evaluation {
                 minWidth: 24,
                 maxWidth: 24
             });
+            columns.splice(0, 0, Serenity.GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
             return columns;
         }
 
@@ -73,6 +74,18 @@ namespace hr.Evaluation {
             if (target.parent().hasClass('inline-action'))
                 target = target.parent();
 
+            if (target.is('.check-box')) {
+                return;
+            }
+            if (item) {
+                e.preventDefault();
+                let checkBox = target.closest('.slick-row').find('.check-box');
+                if (!checkBox.hasClass("checked")) {
+                    this.rowSelection.clear();
+                    checkBox.click();
+                }
+            }
+
             if (target.hasClass('inline-action')) {
                 e.preventDefault();
 
@@ -86,6 +99,35 @@ namespace hr.Evaluation {
                     });
                 }
             }
+        }
+
+        protected getButtons(): Serenity.ToolButton[] {
+            var buttons = super.getButtons();
+            buttons.push({
+                title: '一键归档',
+                cssClass: 'add-file-button',
+                onClick: () => {
+                    let selectedKeys = this.rowSelection.getSelectedKeys();
+                    if (selectedKeys.length == 0) {
+                        Q.alert("请选择需要归档的考核");
+                    } else if (selectedKeys.length > 1) {
+                        Q.alert("一次只能选择一条记录");
+                    } else {
+                        Q.confirm("确认要归档选中的考核吗", () => {
+                            let item = this.view.getItemById(selectedKeys[0]);
+                            ExamService.Archive({
+                                ExamId: item.Id,
+                                Title: item.Title
+                            }, response => {
+                                Q.notifySuccess("归档成功！");
+                                this.refresh();
+                            });
+                        });
+                    }
+                }
+            });
+
+            return buttons;
         }
     }
 }

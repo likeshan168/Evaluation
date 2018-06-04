@@ -5,9 +5,11 @@ CREATE VIEW hr.LeaderEvaluationResult
 AS
 SELECT  
         UserId ,
+		DepartmentId,
         ExamId ,
         Title,
         Username ,
+		DepartmentName,
         TotalScore,
         Email
 FROM    hr.EvaluationResultView

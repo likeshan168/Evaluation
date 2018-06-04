@@ -30,6 +30,13 @@ namespace hr.Evaluation.Entities
             set { Fields.UserId[this] = value; }
         }
 
+        [DisplayName("Department Id")]
+        public Int32? DepartmentId
+        {
+            get { return Fields.DepartmentId[this]; }
+            set { Fields.DepartmentId[this] = value; }
+        }
+
         [DisplayName("Exam Id"), NotNull]
         public Int32? ExamId
         {
@@ -51,6 +58,14 @@ namespace hr.Evaluation.Entities
         {
             get { return Fields.UserName[this]; }
             set { Fields.UserName[this] = value; }
+        }
+
+        [DisplayName("DepartmentName"), Size(100), QuickSearch]
+        [LookupEditor(typeof(DepartmentNameLookup))]
+        public String DepartmentName
+        {
+            get { return Fields.DepartmentName[this]; }
+            set { Fields.DepartmentName[this] = value; }
         }
 
         [DisplayName("Total Score"), Size(38), Scale(1), QuickSearch]
@@ -102,6 +117,8 @@ namespace hr.Evaluation.Entities
             public DecimalField TotalScore;
             public StringField Grade;
             public StringField Email;
+            public Int32Field DepartmentId;
+            public StringField DepartmentName;
 
             public RowFields()
                 : base()

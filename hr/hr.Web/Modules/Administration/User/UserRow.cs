@@ -11,7 +11,7 @@ namespace hr.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    [LookupScript("Administration.User", Permission = PermissionKeys.Security)]
+    [LookupScript("Administration.User", Permission = PermissionKeys.Users.LookupScript)]
     [LeftJoin("ur", "UserRoles", "ur.[UserId] = T0.[UserId]")]
     //[LeftJoin("r", "Role", "r.[RoleId] = ur.[RoleId]")]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
