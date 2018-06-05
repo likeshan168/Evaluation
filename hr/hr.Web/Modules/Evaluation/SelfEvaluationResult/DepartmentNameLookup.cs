@@ -3,19 +3,19 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Web;
 
-namespace hr.Evaluation.EvaluationFinalResult
+namespace hr.Evaluation.SelfEvaluationResult
 {
-    [LookupScript("EvaluationFinalResult.DepartmentName")]
-    public class DepartmentNameLookup : RowLookupScript<EvaluationFinalResultRow>
+    [LookupScript("SelfEvaluationResult.DepartmentName")]
+    public class DepartmentNameLookup : RowLookupScript<SelfEvaluationResultRow>
     {
         public DepartmentNameLookup()
         {
-            IdField = TextField = EvaluationFinalResultRow.Fields.DepartmentName.PropertyName;
+            IdField = TextField = SelfEvaluationResultRow.Fields.DepartmentName.PropertyName;
         }
 
         protected override void PrepareQuery(SqlQuery query)
         {
-            var fld = EvaluationFinalResultRow.Fields;
+            var fld = SelfEvaluationResultRow.Fields;
             query.Distinct(true)
                 .Select(fld.DepartmentName)
                 .Where(

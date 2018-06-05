@@ -38,6 +38,11 @@ namespace hr.Evaluation.Endpoints
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
+            var user = (UserDefinition)Authorization.UserDefinition;
+            if (user.Username != "admin" && !Authorization.HasPermission("Administration:Security") && !user.DepartmentId.HasValue)
+            {
+                throw new ValidationError("您无权查看，未找到您所属的部门信息");
+            }
             return new MyRepository().List(connection, request);
         }
 

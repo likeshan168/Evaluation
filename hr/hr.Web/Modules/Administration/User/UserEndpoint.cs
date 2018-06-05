@@ -99,6 +99,13 @@ namespace hr.Administration.Endpoints
                 result.DepartmentId = userEntity.DepartmentId;
                 result.DepartmentName = userEntity.DepartmentName;
             }
+            //else
+            //{
+            //    if (!result.IsAdmin)
+            //    {
+            //        throw new ValidationError("你无权查看任何信息，因为没有找到你所属的部门信息");
+            //    }
+            //}
 
             result.Permissions = TwoLevelCache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
                 UserPermissionRow.Fields.GenerationKey, () =>

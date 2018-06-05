@@ -4255,14 +4255,19 @@ var hr;
             };
             CompanyEvaluationGrid.prototype.getQuickFilters = function () {
                 var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.userDefinition.IsAdmin) {
+                    return filters;
+                }
                 if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
                     var fld_1 = Evaluation.CompanyEvaluationRow.Fields;
-                    Q.first(filters, function (x) { return x.field === fld_1.DepartmentId; }).init = function (w) {
-                        var editor = w;
-                        editor.value = hr.Authorization.userDefinition.DepartmentId.toString();
-                        editor.element.attr("disabled", "disabled");
-                    };
-                    return filters.filter(function (x) { return x.field !== fld_1.UserId; });
+                    if (hr.Authorization.userDefinition.DepartmentId) {
+                        Q.first(filters, function (x) { return x.field === fld_1.DepartmentId; }).init = function (w) {
+                            var editor = w;
+                            editor.value = hr.Authorization.userDefinition.DepartmentId.toString();
+                            editor.element.attr("disabled", "disabled");
+                        };
+                        return filters.filter(function (x) { return x.field !== fld_1.UserId; });
+                    }
                 }
                 return filters;
             };
@@ -5431,14 +5436,19 @@ var hr;
             };
             EvaluationFinalResultGrid.prototype.getQuickFilters = function () {
                 var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.userDefinition.IsAdmin) {
+                    return filters;
+                }
                 if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
                     var fld_2 = Evaluation.EvaluationFinalResultRow.Fields;
-                    Q.first(filters, function (x) { return x.field === fld_2.DepartmentName; }).init = function (w) {
-                        var editor = w;
-                        editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
-                        editor.element.attr("disabled", "disabled");
-                    };
-                    return filters.filter(function (x) { return x.field !== fld_2.UserName; });
+                    if (hr.Authorization.userDefinition.DepartmentName) {
+                        Q.first(filters, function (x) { return x.field === fld_2.DepartmentName; }).init = function (w) {
+                            var editor = w;
+                            editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
+                            editor.element.attr("disabled", "disabled");
+                        };
+                        return filters.filter(function (x) { return x.field !== fld_2.UserName; });
+                    }
                 }
                 return filters;
             };
@@ -6786,7 +6796,9 @@ var hr;
         var SelfEvaluationResultGrid = (function (_super) {
             __extends(SelfEvaluationResultGrid, _super);
             function SelfEvaluationResultGrid(container) {
-                return _super.call(this, container) || this;
+                var _this = _super.call(this, container) || this;
+                console.log(hr.Authorization.userDefinition);
+                return _this;
             }
             SelfEvaluationResultGrid.prototype.getColumnsKey = function () { return 'Evaluation.SelfEvaluationResult'; };
             //protected getDialogType() { return SelfEvaluationResultDialog; }
@@ -6826,14 +6838,19 @@ var hr;
             };
             SelfEvaluationResultGrid.prototype.getQuickFilters = function () {
                 var filters = _super.prototype.getQuickFilters.call(this);
+                if (hr.Authorization.userDefinition.IsAdmin) {
+                    return filters;
+                }
                 if (hr.Authorization.hasPermission("Evaluation:Users:LookupScript") && !hr.Authorization.hasPermission("Administration:Security")) {
                     var fld_3 = Evaluation.SelfEvaluationResultRow.Fields;
-                    Q.first(filters, function (x) { return x.field === fld_3.DepartmentName; }).init = function (w) {
-                        var editor = w;
-                        editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
-                        editor.element.attr("disabled", "disabled");
-                    };
-                    return filters.filter(function (x) { return x.field !== fld_3.Username; });
+                    if (hr.Authorization.userDefinition.DepartmentName) {
+                        Q.first(filters, function (x) { return x.field === fld_3.DepartmentName; }).init = function (w) {
+                            var editor = w;
+                            editor.value = hr.Authorization.userDefinition.DepartmentName.toString();
+                            editor.element.attr("disabled", "disabled");
+                        };
+                        return filters.filter(function (x) { return x.field !== fld_3.Username; });
+                    }
                 }
                 return filters;
             };

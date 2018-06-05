@@ -1,8 +1,7 @@
 ﻿
-//using hr.Evaluation.SelfEvaluationResult;
+using hr.Evaluation.SelfEvaluationResult;
 namespace hr.Evaluation.Entities
 {
-    using hr.Evaluation.EvaluationFinalResult;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;

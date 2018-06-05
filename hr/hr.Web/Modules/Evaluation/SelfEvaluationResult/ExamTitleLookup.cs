@@ -3,24 +3,23 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Web;
 
-namespace hr.Evaluation.EvaluationFinalResult
+namespace hr.Evaluation.SelfEvaluationResult
 {
-    [LookupScript("EvaluationFinalResult.ExamTitle")]
-    public class ExamTitleLookup: RowLookupScript<EvaluationFinalResultRow>
+    [LookupScript("SelfEvaluationResult.ExamTitle")]
+    public class ExamTitleLookup: RowLookupScript<SelfEvaluationResultRow>
     {
         public ExamTitleLookup()
         {
-            IdField = TextField = EvaluationFinalResultRow.Fields.Title.PropertyName;
+            IdField = TextField = SelfEvaluationResultRow.Fields.Title.PropertyName;
         }
         protected override void PrepareQuery(SqlQuery query)
         {
-            var fld = EvaluationFinalResultRow.Fields;
+            var fld = SelfEvaluationResultRow.Fields;
             query.Distinct(true)
                 .Select(fld.Title)
                 .Where(
                     new Criteria(fld.Title).IsNotNull());
         }
-        
         //保留下面的时候因为启用了Distinct
         protected override void ApplyOrder(SqlQuery query)
         {

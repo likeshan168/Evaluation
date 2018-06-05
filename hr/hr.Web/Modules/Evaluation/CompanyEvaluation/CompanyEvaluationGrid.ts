@@ -86,15 +86,20 @@ namespace hr.Evaluation {
 
         protected getQuickFilters() {
             let filters = super.getQuickFilters();
+            if (Authorization.userDefinition.IsAdmin) {
+                return filters;
+            }
             if (Authorization.hasPermission("Evaluation:Users:LookupScript") && !Authorization.hasPermission("Administration:Security")) {
                 let fld = CompanyEvaluationRow.Fields;
-                Q.first(filters, x => x.field === fld.DepartmentId).init = w => {
-                    let editor = w as Serenity.LookupEditor;
-                    
-                    editor.value = Authorization.userDefinition.DepartmentId.toString();
-                    editor.element.attr("disabled","disabled");
+                if (Authorization.userDefinition.DepartmentId) {
+                    Q.first(filters, x => x.field === fld.DepartmentId).init = w => {
+                        let editor = w as Serenity.LookupEditor;
+
+                        editor.value = Authorization.userDefinition.DepartmentId.toString();
+                        editor.element.attr("disabled", "disabled");
+                    }
+                    return filters.filter(x => x.field !== fld.UserId);
                 }
-                return filters.filter(x => x.field !== fld.UserId);
             }
 
             return filters

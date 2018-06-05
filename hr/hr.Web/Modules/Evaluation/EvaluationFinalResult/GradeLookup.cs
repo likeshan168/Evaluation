@@ -22,6 +22,7 @@ namespace hr.Evaluation.EvaluationFinalResult
                     new Criteria(fld.Grade).IsNotNull());
         }
 
+        //保留下面的时候因为启用了Distinct
         protected override void ApplyOrder(SqlQuery query)
         {
         }

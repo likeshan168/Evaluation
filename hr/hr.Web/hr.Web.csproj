@@ -2065,6 +2065,9 @@
     <Compile Include="Modules\Evaluation\Common\UserEmailRequest.cs" />
     <Compile Include="Modules\Evaluation\Common\UserIds.cs" />
     <Compile Include="Modules\Evaluation\CompanyEvaluation\CompanyEvaluationRequest.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\DepartmentNameLookup.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\ExamTitleLookup.cs" />
+    <Compile Include="Modules\Evaluation\SelfEvaluationResult\ExamUserLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamTitleLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\DepartmentNameLookup.cs" />
     <Compile Include="Modules\Evaluation\EvaluationFinalResult\ExamUserLookup.cs" />

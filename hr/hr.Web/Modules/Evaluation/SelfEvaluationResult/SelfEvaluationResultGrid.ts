@@ -1,6 +1,6 @@
 ﻿
 namespace hr.Evaluation {
-    
+
     @Serenity.Decorators.registerClass()
     export class SelfEvaluationResultGrid extends Serenity.EntityGrid<SelfEvaluationResultRow, any> {
         protected getColumnsKey() { return 'Evaluation.SelfEvaluationResult'; }
@@ -13,6 +13,7 @@ namespace hr.Evaluation {
 
         constructor(container: JQuery) {
             super(container);
+            console.log(Authorization.userDefinition);
         }
 
         protected createToolbarExtensions() {
@@ -37,7 +38,7 @@ namespace hr.Evaluation {
 
         protected getButtons() {
             let buttons = super.getButtons();
-            buttons = buttons.filter(x=>x.cssClass!=='add-button');
+            buttons = buttons.filter(x => x.cssClass !== 'add-button');
             buttons.push(Common.ExcelExportHelper.createToolButton({
                 title: '导出Excel',
                 hint: '导出Excel',
@@ -51,15 +52,19 @@ namespace hr.Evaluation {
 
         protected getQuickFilters() {
             let filters = super.getQuickFilters();
+            if (Authorization.userDefinition.IsAdmin) {
+                return filters;
+            }
             if (Authorization.hasPermission("Evaluation:Users:LookupScript") && !Authorization.hasPermission("Administration:Security")) {
                 let fld = SelfEvaluationResultRow.Fields;
-                Q.first(filters, x => x.field === fld.DepartmentName).init = w => {
-                    let editor = w as Serenity.LookupEditor;
-                    
-                    editor.value = Authorization.userDefinition.DepartmentName.toString();
-                    editor.element.attr("disabled","disabled");
-                }
-                return filters.filter(x => x.field !== fld.Username);
+                if (Authorization.userDefinition.DepartmentName) {
+                    Q.first(filters, x => x.field === fld.DepartmentName).init = w => {
+                        let editor = w as Serenity.LookupEditor;
+                        editor.value = Authorization.userDefinition.DepartmentName.toString();
+                        editor.element.attr("disabled", "disabled");
+                    }
+                    return filters.filter(x => x.field !== fld.Username);
+                } 
             }
 
             return filters
