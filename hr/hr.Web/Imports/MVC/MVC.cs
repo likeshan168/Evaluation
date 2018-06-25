@@ -100,6 +100,14 @@ namespace MVC
                 public const string EvaluationFinalResultDetailArchiveIndex = "~/Modules/Archive/EvaluationFinalResultDetailArchive/EvaluationFinalResultDetailArchiveIndex.cshtml";
             }
 
+            public static class ExamArchive
+            {
+                public const string Evaluation1 = "~/Modules/Archive/ExamArchive/Evaluation1.cshtml";
+                public const string Evaluation2 = "~/Modules/Archive/ExamArchive/Evaluation2.cshtml";
+                public const string ExamArchiveIndex = "~/Modules/Archive/ExamArchive/ExamArchiveIndex.cshtml";
+                public const string SelfEvaluation = "~/Modules/Archive/ExamArchive/SelfEvaluation.cshtml";
+            }
+
             public static class SelfEvaluationResultArchive
             {
                 public const string SelfEvaluationResultArchiveIndex = "~/Modules/Archive/SelfEvaluationResultArchive/SelfEvaluationResultArchiveIndex.cshtml";

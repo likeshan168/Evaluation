@@ -1,6 +1,7 @@
 ﻿
 namespace hr.Evaluation.Endpoints
 {
+    using hr.Archive.Entities;
     using hr.Evaluation.Entities;
     using hr.Evaluation.Repositories;
     using Serenity;
@@ -72,7 +73,7 @@ namespace hr.Evaluation.Endpoints
         {
             return new MyRepository().List(connection, request);
         }
-
+        //一键归档的功能
         public SaveResponse Archive(ArchiveRequest request)
         {
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings[Constants.Db.ConnectionName].ConnectionString))
@@ -87,6 +88,54 @@ namespace hr.Evaluation.Endpoints
                     var cmd = new SqlCommand();
                     cmd.Connection = connection;
                     cmd.Transaction = tran;
+                    //归档考核项
+                    #region 归档考核项
+                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb2 = new StringBuilder();
+                    sb.Append($"declare @s varchar(4000),@sql varchar(4000) SELECT @s =EvaluationIds from hr.Exam where Id={request.ExamId} ");
+                    sb.Append($"set @sql='select f.Name as FirstKpiName ,s.Name as SecondKpiName,e.Content , e.ContentType , e.Score ,e.Mark ,e.Remark from hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id where isselfevaluation = 1 AND e.IsEnabled = 1 and e.Id IN(select col='''+ replace(@s,',',''' union all select ''')+''') ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc '");
+                    sb.Append("exec (@sql) ");
+                    cmd.CommandText = sb.ToString();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        sb2.Append($"insert into hr.Exam_Archive(ExamId,ExamTitle,FirstKpiName,SecondKpiName,Content,ContentType,Score,Mark,Remark,EvaluationType) values({request.ExamId},'{request.Title}','{(reader.IsDBNull(0) ? "" : reader.GetString(0))}','{(reader.IsDBNull(1) ? "" : reader.GetString(1))}','{(reader.IsDBNull(2) ? "" : reader.GetString(2))}',{reader.GetInt32(3)},{reader.GetInt32(4)},'{(reader.IsDBNull(5) ? "" : reader.GetString(5))}','{(reader.IsDBNull(6) ? "" : reader.GetString(6))}',1);");
+                    }
+                    reader.Close();
+                    cmd.CommandText = sb2.ToString();
+                    cmd.ExecuteNonQuery();
+
+                    sb.Clear();
+                    sb2.Clear();
+                    sb.Append($"declare @s varchar(4000),@sql varchar(4000) SELECT @s =EvaluationIds from hr.Exam where Id={request.ExamId} ");
+                    sb.Append($"set @sql='select f.Name as FirstKpiName ,s.Name as SecondKpiName ,e.Content , e.ContentType , e.Score ,e.Mark , e.Remark from hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id where isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 4 and e.Id IN(select col='''+ replace(@s,',',''' union all select ''')+''') ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc '");
+                    sb.Append("exec (@sql) ");
+                    cmd.CommandText = sb.ToString();
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                         sb2.Append($"insert into hr.Exam_Archive(ExamId,ExamTitle,FirstKpiName,SecondKpiName,Content,ContentType,Score,Mark,Remark,EvaluationType) values({request.ExamId},'{request.Title}','{(reader.IsDBNull(0) ? "" : reader.GetString(0))}','{(reader.IsDBNull(1) ? "" : reader.GetString(1))}','{(reader.IsDBNull(2) ? "" : reader.GetString(2))}',{reader.GetInt32(3)},{reader.GetInt32(4)},'{(reader.IsDBNull(5) ? "" : reader.GetString(5))}','{(reader.IsDBNull(6) ? "" : reader.GetString(6))}',2);");
+                    }
+                    reader.Close();
+                    cmd.CommandText = sb2.ToString();
+                    cmd.ExecuteNonQuery();
+
+                    sb.Clear();
+                    sb2.Clear();
+                    sb.Append($"declare @s varchar(4000),@sql varchar(4000) SELECT @s =EvaluationIds from hr.Exam where Id={request.ExamId} ");
+                    sb.Append($"set @sql='select f.Name as FirstKpiName ,s.Name as SecondKpiName,e.Content , e.ContentType , e.Score ,e.Mark ,e.Remark ,e.Remark from hr.EvaluationItem e LEFT JOIN hr.FirstKPI AS f ON e.FirstKPIId = f.Id LEFT JOIN hr.SecondKPI s ON e.SecondKPIId = s.Id where isselfevaluation = 0 AND e.IsEnabled = 1 AND e.ContentType = 2 and e.Id IN(select col='''+ replace(@s,',',''' union all select ''')+''') ORDER BY f.OrderNo asc, s.OrderNo asc, e.orderNo asc '");
+                    sb.Append("exec (@sql) ");
+                    cmd.CommandText = sb.ToString();
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                         sb2.Append($"insert into hr.Exam_Archive(ExamId,ExamTitle,FirstKpiName,SecondKpiName,Content,ContentType,Score,Mark,Remark,EvaluationType) values({request.ExamId},'{request.Title}','{(reader.IsDBNull(0) ? "" : reader.GetString(0))}','{(reader.IsDBNull(1) ? "" : reader.GetString(1))}','{(reader.IsDBNull(2) ? "" : reader.GetString(2))}',{reader.GetInt32(3)},{reader.GetInt32(4)},'{(reader.IsDBNull(5) ? "" : reader.GetString(5))}','{(reader.IsDBNull(6) ? "" : reader.GetString(6))}',3);");
+                    }
+                    reader.Close();
+                    cmd.CommandText = sb2.ToString();
+                    cmd.ExecuteNonQuery();
+
+                    #endregion
                     //归档公司评价
                     cmd.CommandText = $"insert into hr.CompanyEvaluation_Archive " +
                     $"select e.Title, Username as UserName ,c.EvaluationContent,d.Name as DepartmentName from hr.CompanyEvaluation c left join dbo.Users u on c.UserId = u.UserId " +
@@ -103,7 +152,7 @@ namespace hr.Evaluation.Endpoints
                     $"select Title as ExamTitle, Username as UserName, TotalScore,Grade, DepartmentName " +
                     $"from hr.EvaluationFinalResult where ExamId={request.ExamId};";
                     cmd.ExecuteNonQuery();
-                    //过当考核结果明细
+                    //归当考核结果明细
                     cmd.CommandText = $"insert into hr.EvaluationFinalResultDetail_Archive " +
                     $"select Title as ExamTitle, Username as UserName, TotalScore as Score,EvaluationUser as EvaluationUserName, DepartmentName from hr.EvaluationResultView where ExamId={request.ExamId};";
                     cmd.ExecuteNonQuery();
@@ -114,7 +163,7 @@ namespace hr.Evaluation.Endpoints
                     //cmd2.Connection = connection;
                     //cmd2.CommandText = $"select Id from hr.[UserEvaluationRelation] where ExamId={request.ExamId};";
                     //var reader = cmd2.ExecuteReader();
-                    StringBuilder sb = new StringBuilder();
+                    sb.Clear();
                     sb.Append($"delete from [hr].[UserEvaluationToUser] where UserEvaluationRelationId in (select Id from hr.[UserEvaluationRelation] where ExamId={request.ExamId});");
                     sb.Append($"delete from [hr].[UserEvaluationRelation] where ExamId={request.ExamId}");
                     sb.Append($"delete from [hr].[EvaluationResultDetail] where ExamId={request.ExamId}");

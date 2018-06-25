@@ -1164,6 +1164,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Archive.EvaluationFinalResultDetailArchiveService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.ExamArchiveColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Archive.SelfEvaluationResultArchiveColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1342,6 +1345,9 @@
     <TypeScriptCompile Include="Modules\Archive\CompanyEvaluationArchive\CompanyEvaluationArchiveGrid.ts" />
     <TypeScriptCompile Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveGrid.ts" />
     <TypeScriptCompile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\Archive\ExamArchive\Evaluation1.ts" />
+    <TypeScriptCompile Include="Modules\Archive\ExamArchive\Evaluation2.ts" />
+    <TypeScriptCompile Include="Modules\Archive\ExamArchive\SelfEvaluation.ts" />
     <TypeScriptCompile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
@@ -1429,6 +1435,9 @@
     <Content Include="Modules\Archive\EvaluationFinalResultArchive\EvaluationFinalResultArchiveIndex.cshtml" />
     <Content Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveIndex.cshtml" />
     <Content Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveIndex.cshtml" />
+    <Content Include="Modules\Archive\ExamArchive\Evaluation1.cshtml" />
+    <Content Include="Modules\Archive\ExamArchive\Evaluation2.cshtml" />
+    <Content Include="Modules\Archive\ExamArchive\SelfEvaluation.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\hr.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -1967,6 +1976,17 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveRow.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveService.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Default.SelfEvaluationResultArchiveForm.ts" />
+    <Content Include="Modules\Archive\ExamArchive\ExamArchiveIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.ExamArchiveRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.ExamArchiveService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Archive.ExamArchiveForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Archive\ExamArchive\ExamArchiveGrid.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1988,6 +2008,8 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170628_103200_AddIsSelfEvaluationToEvaluationContent.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180825_111800_CreateView2.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180625_092500_Exam_Archive.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_110700_SelfEvaluationResult.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_094800_EvaluationFinalResultDetail_Archive.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180604_094500_EvaluationFinalResult_Archive.cs" />
@@ -2049,6 +2071,7 @@
     <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveRepository.cs" />
     <Compile Include="Modules\Archive\EvaluationFinalResultDetailArchive\EvaluationFinalResultDetailArchiveRow.cs" />
     <Compile Include="Modules\Archive\ArchiveNavigation.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ArchiveExam.cs" />
     <Compile Include="Modules\Archive\PermissionKeys.cs" />
     <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveColumns.cs" />
     <Compile Include="Modules\Archive\SelfEvaluationResultArchive\SelfEvaluationResultArchiveEndpoint.cs" />
@@ -2300,6 +2323,12 @@
     <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordForm.cs" />
     <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordRepository.cs" />
     <Compile Include="Modules\Evaluation\SelfEvaluationRecord\SelfEvaluationRecordEndpoint.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchiveRow.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchiveColumns.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchiveForm.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchiveRepository.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchiveEndpoint.cs" />
+    <Compile Include="Modules\Archive\ExamArchive\ExamArchivePage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -2452,7 +2481,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55610/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

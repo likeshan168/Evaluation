@@ -438,6 +438,55 @@ var hr;
 (function (hr) {
     var Archive;
     (function (Archive) {
+        var ExamArchiveForm = (function (_super) {
+            __extends(ExamArchiveForm, _super);
+            function ExamArchiveForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return ExamArchiveForm;
+        }(Serenity.PrefixedContext));
+        ExamArchiveForm.formKey = 'Archive.ExamArchive';
+        Archive.ExamArchiveForm = ExamArchiveForm;
+        [['ExamId', function () { return Serenity.IntegerEditor; }], ['ExamTitle', function () { return Serenity.StringEditor; }], ['FirstKpiName', function () { return Serenity.StringEditor; }], ['SecondKpiName', function () { return Serenity.StringEditor; }], ['Content', function () { return Serenity.StringEditor; }], ['ContentType', function () { return Serenity.IntegerEditor; }], ['Score', function () { return Serenity.IntegerEditor; }], ['Mark', function () { return Serenity.StringEditor; }], ['Remark', function () { return Serenity.StringEditor; }], ['EvaluationType', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ExamArchiveForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var ExamArchiveRow;
+        (function (ExamArchiveRow) {
+            ExamArchiveRow.idProperty = 'Id';
+            ExamArchiveRow.nameProperty = 'ExamTitle';
+            ExamArchiveRow.localTextPrefix = 'Archive.ExamArchive';
+            var Fields;
+            (function (Fields) {
+            })(Fields = ExamArchiveRow.Fields || (ExamArchiveRow.Fields = {}));
+            ['Id', 'ExamId', 'ExamTitle', 'FirstKpiName', 'SecondKpiName', 'Content', 'ContentType', 'Score', 'Mark', 'Remark', 'EvaluationType'].forEach(function (x) { return Fields[x] = x; });
+        })(ExamArchiveRow = Archive.ExamArchiveRow || (Archive.ExamArchiveRow = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var ExamArchiveService;
+        (function (ExamArchiveService) {
+            ExamArchiveService.baseUrl = 'Archive/ExamArchive';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ExamArchiveService.Methods || (ExamArchiveService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'GetExamArchiveList', 'GetSelfEvaluation', 'GetEvaluation1', 'GetEvaluation2'].forEach(function (x) {
+                ExamArchiveService[x] = function (r, s, o) { return Q.serviceRequest(ExamArchiveService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ExamArchiveService.baseUrl + '/' + x;
+            });
+        })(ExamArchiveService = Archive.ExamArchiveService || (Archive.ExamArchiveService = {}));
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
         var SelfEvaluationResultArchiveForm = (function (_super) {
             __extends(SelfEvaluationResultArchiveForm, _super);
             function SelfEvaluationResultArchiveForm() {
@@ -1426,6 +1475,11 @@ var hr;
             SelfEvaluationResultRow.idProperty = 'Id';
             SelfEvaluationResultRow.nameProperty = 'Content';
             SelfEvaluationResultRow.localTextPrefix = 'Evaluation.SelfEvaluationResult';
+            SelfEvaluationResultRow.lookupKey = 'SelfEvaluationResult.DepartmentName';
+            function getLookup() {
+                return Q.getLookup('SelfEvaluationResult.DepartmentName');
+            }
+            SelfEvaluationResultRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = SelfEvaluationResultRow.Fields || (SelfEvaluationResultRow.Fields = {}));
@@ -3002,6 +3056,222 @@ var hr;
             Serenity.Decorators.registerClass()
         ], EvaluationFinalResultDetailArchiveGrid);
         Archive.EvaluationFinalResultDetailArchiveGrid = EvaluationFinalResultDetailArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var Evaluation1 = (function () {
+            function Evaluation1(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            Evaluation1.prototype.init = function () {
+                var _this = this;
+                var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+                var res = Archive.ExamArchiveService.GetEvaluation1({ ExamId: examId }, function (response) {
+                    console.log(response);
+                    var grps = response.reduce(function (result, current) {
+                        result[current.FirstKpiName] = result[current.FirstKpiName] || [];
+                        result[current.FirstKpiName].push(current);
+                        return result;
+                    }, {});
+                    var html = "<div class='row'> <table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='4'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                        <td style='width:80px;'>\u5F97\u5206</td>\n                                    </tr>\n                                ";
+                    for (var pro in grps) {
+                        //console.log(pro);
+                        var subGrps = grps[pro].reduce(function (result, current) {
+                            result[current.SecondKpiName] = result[current.SecondKpiName] || [];
+                            result[current.SecondKpiName].push(current);
+                            return result;
+                        }, {});
+                        console.log(subGrps);
+                        var subKeys = [];
+                        for (var subpro in subGrps) {
+                            subKeys.push(subpro);
+                        }
+                        var toprowpan = subKeys.length;
+                        var colspan = 5;
+                        var i = 0;
+                        for (var subpro in subGrps) {
+                            var subarr = subGrps[subpro];
+                            html += '<tr>';
+                            if (i === 0) {
+                                html += "<td rowspan='" + toprowpan + "' style='vertical-align: middle;width:80px'>" + pro + "</td>";
+                            }
+                            i++;
+                            html += "<td>" + subpro + "</td>";
+                            $.each(subarr, function (index, value) {
+                                html += "<td><textarea style='width:100%;min-height:100px;' type='text'>" + value.Content + "</textarea></td>";
+                            });
+                            html += '<td><input type="text" /></td></tr>';
+                        }
+                    }
+                    html += "<tr><td colspan='4' class='text-center'><a href='SelfEvaluation?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a>&nbsp;&nbsp;&nbsp;<a href='Evaluation2?i=" + examId + "'><i class='fa fa-arrow-right' aria-hidden='true'></i>\u4E0B\u4E00\u9875</a></td><tr></table></div>";
+                    _this.container.html(html);
+                });
+            };
+            return Evaluation1;
+        }());
+        Archive.Evaluation1 = Evaluation1;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var Evaluation2 = (function () {
+            function Evaluation2(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            Evaluation2.prototype.init = function () {
+                var _this = this;
+                var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+                var res = Archive.ExamArchiveService.GetEvaluation2({ ExamId: examId }, function (response) {
+                    console.log(response);
+                    var grps = response.reduce(function (result, current) {
+                        result[current.FirstKpiName] = result[current.FirstKpiName] || [];
+                        result[current.FirstKpiName].push(current);
+                        return result;
+                    }, {});
+                    var html = "<div class='row'><table>\n                                <tr>\n                                    <th class='text-center' style='font-size:18px;' colspan='8'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                </tr>\n                               \n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='5' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6</td>\n                                    </tr>\n                                ";
+                    for (var pro in grps) {
+                        //console.log(pro);
+                        var subGrps = grps[pro].reduce(function (result, current) {
+                            result[current.SecondKpiName] = result[current.SecondKpiName] || [];
+                            result[current.SecondKpiName].push(current);
+                            return result;
+                        }, {});
+                        console.log(subGrps);
+                        var subKeys = [];
+                        for (var subpro in subGrps) {
+                            subKeys.push(subpro);
+                        }
+                        var toprowpan = subKeys.length;
+                        var colspan = 5;
+                        var i = 0;
+                        for (var subpro in subGrps) {
+                            var subarr = subGrps[subpro];
+                            html += '<tr>';
+                            if (i === 0) {
+                                html += "<td rowspan='" + toprowpan + "' style='vertical-align: middle;width:80px'>" + pro + "</td>";
+                            }
+                            i++;
+                            html += "<td style='vertical-align:middle;'>" + subpro + "</td>";
+                            $.each(subarr, function (index, value) {
+                                html += "<td style='vertical-align:bottom;'><label style='font-weight:normal'>" + value.Content + "(" + value.Score + "\u5206)<br/><input type=\"radio\" name='" + value.SecondKpiName + "' value='" + value.Score + "' style='width:100%'/></label> </td>";
+                            });
+                        }
+                    }
+                    html += "<tr><td colspan='8' class='text-center'><a href='Evaluation1?i=" + examId + "'><i class='fa fa-arrow-left' aria-hidden='true'></i>\u4E0A\u4E00\u9875</a></td><tr></table></div>";
+                    _this.container.html(html);
+                });
+            };
+            return Evaluation2;
+        }());
+        Archive.Evaluation2 = Evaluation2;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var ExamArchiveGrid = (function (_super) {
+            __extends(ExamArchiveGrid, _super);
+            function ExamArchiveGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            ExamArchiveGrid.prototype.getColumnsKey = function () { return 'Archive.ExamArchive'; };
+            ExamArchiveGrid.prototype.getDialogType = function () { return ExamArchiveDialog; };
+            ExamArchiveGrid.prototype.getIdProperty = function () { return Archive.ExamArchiveRow.idProperty; };
+            ExamArchiveGrid.prototype.getLocalTextPrefix = function () { return Archive.ExamArchiveRow.localTextPrefix; };
+            ExamArchiveGrid.prototype.getService = function () { return Archive.ExamArchiveService.baseUrl; };
+            return ExamArchiveGrid;
+        }(Serenity.EntityGrid));
+        ExamArchiveGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ExamArchiveGrid);
+        Archive.ExamArchiveGrid = ExamArchiveGrid;
+    })(Archive = hr.Archive || (hr.Archive = {}));
+})(hr || (hr = {}));
+var hr;
+(function (hr) {
+    var Archive;
+    (function (Archive) {
+        var SelfEvaluation = (function () {
+            function SelfEvaluation(container) {
+                //this.InitView(container);
+                this.container = container;
+            }
+            SelfEvaluation.prototype.init = function () {
+                var _this = this;
+                var examId = parseInt(hr.Utils.getQueryString("i", window.location.href));
+                Archive.ExamArchiveService.GetExamArchiveList({}, function (response) {
+                    console.log(response);
+                    var opts = "<select id='exam_list' class='form-control'><option value='0'>请选择考核标题</option>";
+                    response.Entities.forEach(function (value, index) {
+                        if (value.Id === examId) {
+                            opts += "<option value=" + value.ExamId + " selected>" + value.ExamTitle + "</option>";
+                        }
+                        else {
+                            opts += "<option value=" + value.ExamId + ">" + value.ExamTitle + "</option>";
+                        }
+                    });
+                    opts += "</select><div id='exam_detail' class='row'></div>";
+                    _this.container.html(opts);
+                    var slt = $('#exam_list');
+                    var exam_detail = $('#exam_detail');
+                    if (examId) {
+                        _this.initHtml(exam_detail, examId);
+                    }
+                    slt.change(function () {
+                        var examId = parseInt(slt.val());
+                        if (examId === 0) {
+                            Q.notifyWarning('请选择考核标题');
+                        }
+                        else {
+                            _this.initHtml(exam_detail, examId);
+                        }
+                    });
+                });
+            };
+            SelfEvaluation.prototype.initHtml = function (container, examId) {
+                var res = Archive.ExamArchiveService.GetSelfEvaluation({ ExamId: examId }, function (response) {
+                    var html = "<table>\n                                   <tr>\n                                        <th colspan='4' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
+                    if (response !== null) {
+                        var count_1 = res.responseJSON.length;
+                        if (res.responseJSON.length !== 0) {
+                            res.responseJSON.forEach(function (item, index) {
+                                html += "<tr>";
+                                if (index == 0) {
+                                    html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                }
+                                html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
+                                if (item.ContentType === 1) {
+                                    //输入框
+                                    html += "<td>" + item.Mark + "<br/><textarea style='width:100%;min-height:150px;'></textarea></td>";
+                                }
+                                //html += `<td style='width:150px;'>${item.Remark}</td>`;
+                                html += "</tr>";
+                            });
+                            html += "<tr><td colspan='4' class='text-center'><a href='Evaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                        else {
+                            html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                            html += "<tr><td colspan='4' class='text-center'><a href='Evaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                        }
+                    }
+                    else {
+                        html += "<tr><td colspan='4'>请添加或启用自我评价内容</td></tr>";
+                        html += "<tr><td colspan='4' class='text-center'><a href='Evaluation1?i=" + examId + "'><i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i>\u4E0B\u4E00\u9875</a></td><tr></table>";
+                    }
+                    container.html(html);
+                });
+            };
+            return SelfEvaluation;
+        }());
+        Archive.SelfEvaluation = SelfEvaluation;
     })(Archive = hr.Archive || (hr.Archive = {}));
 })(hr || (hr = {}));
 var hr;
@@ -4962,12 +5232,12 @@ var hr;
                     Evaluation.EvaluationItemService.GetSelfEvaluationByExam({ ExamId: examId, UserId: userId }, function (response) {
                         var html = "<table>\n                                   <tr>\n                                        <th colspan='5' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7 &nbsp;&nbsp;&nbsp;<span id='saveMsg' style='display: none; color: green'>\u5DF2\u4FDD\u5B58</span>\n                                        </th>\n                                    </tr>\n                                ";
                         if (response !== null && response.Items !== null) {
-                            var count_1 = response.Items.length;
+                            var count_2 = response.Items.length;
                             if (response.Items.length !== 0) {
                                 response.Items.forEach(function (item, index) {
                                     html += "<tr>";
                                     if (index == 0) {
-                                        html += "<td rowspan='" + count_1 + "' style='vertical-align: middle;width:80px'><p>" + item
+                                        html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'><p>" + item
                                             .FirstKpiName + "</p></td>";
                                     }
                                     html += "<td width='80px'><p>" + item.SecondKpiName + "</p></td>\n                                    <td width='150px'><p>" + item.Content + "</p></td>";
@@ -5153,7 +5423,7 @@ var hr;
                     UserId: sltUsers.val()
                 }, function (response) {
                     if (response !== null) {
-                        var count_2 = res.responseJSON.length;
+                        var count_3 = res.responseJSON.length;
                         //console.log(res.responseJSON);
                         if (res.responseJSON.length !== 0) {
                             if (Q.any(res.responseJSON, function (p) { return Q.isEmptyOrNull(p['InputContent']); })) {
@@ -5166,7 +5436,7 @@ var hr;
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
                                 if (index === 0) {
-                                    html += "<td rowspan='" + count_2 + "' style='vertical-align: middle;width:80px'><p>" + item
+                                    html += "<td rowspan='" + count_3 + "' style='vertical-align: middle;width:80px'><p>" + item
                                         .FirstKpiName + "</p></td>";
                                 }
                                 html += "<td width='80px'><p>" + item.SecondKpiName + "</p></td>\n                                    <td width='150px'><p>" + item.Content + "</p></td>";
@@ -5829,12 +6099,12 @@ var hr;
                 var res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, function (response) {
                     var html = "<table>\n                                   <tr>\n                                        <th colspan='4' class='text-center' style='font-size:18px'>\n                                            \u81EA\u6211\u8BC4\u4EF7\n                                        </th>\n                                    </tr>\n                                ";
                     if (response !== null) {
-                        var count_3 = res.responseJSON.length;
+                        var count_4 = res.responseJSON.length;
                         if (res.responseJSON.length !== 0) {
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
                                 if (index == 0) {
-                                    html += "<td rowspan='" + count_3 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                    html += "<td rowspan='" + count_4 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
                                 }
                                 html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
                                 if (item.ContentType === 1) {
@@ -5878,12 +6148,12 @@ var hr;
                 var res = Evaluation.EvaluationItemService.GetSelfEvaluation({ ExamId: examId }, function (response) {
                     var html = "<div class='row'><table>\n                                    <tr>\n                                        <th class='text-center' style='font-size:18px;' colspan='5'>\u4ED6\u4EBA\u8BC4\u4EF7</th>\n                                     </tr>\n                                    <tr>\n                                        <td style='width:80px;'>\u8003\u6838\u9879\u76EE</td>\n                                        <td style='width:80px;'>\u8BC4\u4EF7\u5185\u5BB9</td>\n                                        <td colspan='2' style='min-width:400px;'>\u8BC4\u4EF7\u6807\u51C6(\u88AB\u8BC4\u4EBA\u7684\u81EA\u6211\u8BC4\u4EF7)</td>\n                                        <td style='width:80px;'>\u5F97\u5206(\u53C2\u8BC4\u4EBA\u8BC4\u4EF7)</td>\n                                    </tr>\n                                ";
                     if (response !== null) {
-                        var count_4 = res.responseJSON.length;
+                        var count_5 = res.responseJSON.length;
                         if (res.responseJSON.length !== 0) {
                             res.responseJSON.forEach(function (item, index) {
                                 html += "<tr>";
                                 if (index == 0) {
-                                    html += "<td rowspan='" + count_4 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
+                                    html += "<td rowspan='" + count_5 + "' style='vertical-align: middle;width:80px'>" + item.FirstKpiName + "</td>";
                                 }
                                 html += "<td width='80px'>" + item.SecondKpiName + "</td>\n                                    <td width='150px'>" + item.Content + "</td>";
                                 if (item.ContentType === 1) {

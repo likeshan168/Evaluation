@@ -176,6 +176,7 @@
   "Navigation.Archive/CompanyEvaluationArchive": "公司评价",
   "Navigation.Archive/EvaluationFinalResultArchive": "考核结果",
   "Navigation.Archive/EvaluationFinalResultDetailArchive": "考核结果详情",
+  "Navigation.Archive/Exam": "考题",
   "Navigation.Archive/SelfEvaluationResultArchive": "自我评价",
   "Navigation.Dashboard": "待考核事项",
   "Navigation.Evaluation": "考核",
